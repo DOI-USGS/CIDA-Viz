@@ -1,0 +1,42 @@
+# Css Lab (428)
+# California  SNOTEL Site - 6855 ft
+# Monthly Data for May 1981 to Sep 2014
+#
+# (As of: Wed Sep 17 14:18:58 PDT 2014)
+#  **Provisional data, subject to revision**
+#
+Water Year,Jan,Jan,Jan,Feb,Feb,Feb,Mar,Mar,Mar,Apr,Apr,Apr,May,May,May,Jun,Jun,Jun
+,Snow Water Equivalent Collection Date,Snow Depth (in),Snow Water Equivalent (in),Snow Water Equivalent Collection Date,Snow Depth (in),Snow Water Equivalent (in),Snow Water Equivalent Collection Date,Snow Depth (in),Snow Water Equivalent (in),Snow Water Equivalent Collection Date,Snow Depth (in),Snow Water Equivalent (in),Snow Water Equivalent Collection Date,Snow Depth (in),Snow Water Equivalent (in),Snow Water Equivalent Collection Date,Snow Depth (in),Snow Water Equivalent (in)
+1982,Jan 01,,12.7,Feb 01,,20.3,Mar 01,,20.9,Apr 01,,33.2,May 01,,28.4,Jun 01,,3.6
+1983,Jan 01,,29.3,,,,,,,Apr 01,,25.5,May 01,,11.8,Jun 01,,0.0
+1984,Jan 01,,30.7,Feb 01,,29.7,Mar 01,,39.0,Apr 01,,37.9,May 01,,30.0,Jun 01,,0.0
+1985,Jan 01,,18.3,Feb 01,,19.1,Mar 01,,23.5,Apr 01,,32.3,May 01,,8.4,Jun 01,,0.0
+1986,Jan 01,,19.5,Feb 01,,24.5,Mar 01,,45.6,Apr 01,,43.3,May 01,,25.1,Jun 01,,0.0
+1987,Jan 01,,2.9,Feb 01,,11.5,Mar 01,,18.7,Apr 01,,24.0,May 01,,0.0,Jun 01,,0.0
+1988,Jan 01,,9.8,Feb 01,,19.1,Mar 01,,16.4,Apr 01,,5.4,May 01,,0.0,Jun 01,,0.0
+1989,Jan 01,,16.3,Feb 01,,18.3,Mar 01,,24.3,Apr 01,,33.9,May 01,,19.4,Jun 01,,0.0
+1990,Jan 01,,2.8,Feb 01,,11.9,Mar 01,,18.3,Apr 01,,13.7,May 01,,0.0,Jun 01,,0.4
+1991,Jan 01,,3.1,Feb 01,,3.5,Mar 01,,2.4,Apr 01,,20.2,May 01,,12.1,Jun 01,,0.0
+1992,Jan 01,,6.1,Feb 01,,6.7,Mar 01,,16.2,Apr 01,,14.0,May 01,,0.0,Jun 01,,0.0
+1993,Jan 01,,21.1,Feb 01,,39.1,Mar 01,,52.6,Apr 01,,50.5,May 01,,41.5,Jun 01,,4.9
+1994,Jan 01,,9.4,Feb 01,,12.5,Mar 01,,24.4,Apr 01,,16.6,May 01,,0.0,Jun 01,,0.0
+1995,Jan 01,,21.0,Feb 01,,43.2,Mar 01,,40.1,Apr 01,,61.7,May 01,,60.0,Jun 01,,36.5
+1996,Jan 01,,3.8,Feb 01,,20.3,Mar 01,,30.7,Apr 01,,33.5,May 01,,22.2,Jun 01,,0.0
+1997,Jan 01,,23.6,Feb 01,,44.5,Mar 01,,47.0,Apr 01,,36.0,May 01,,15.0,Jun 01,,0.0
+1998,Jan 01,,10.0,Feb 01,,24.3,Mar 01,,46.4,Apr 01,,47.6,May 01,,42.8,Jun 01,,30.5
+1999,Jan 01,,14.4,Feb 01,,28.8,Mar 01,,51.2,Apr 01,,50.6,May 01,,40.7,Jun 01,,5.3
+2000,Jan 01,,4.4,Feb 01,,20.5,Mar 01,,42.0,Apr 01,,37.8,May 01,,17.3,Jun 01,,0.0
+2001,Jan 01,,5.8,Feb 01,,10.9,Mar 01,,21.7,Apr 01,,13.7,May 01,,5.7,Jun 01,,0.0
+2002,Jan 01,,19.7,Feb 01,,24.5,Mar 01,,26.7,Apr 01,,30.5,May 01,,8.1,Jun 01,,0.0
+2003,Jan 01,,22.7,Feb 01,,25.7,Mar 01,,28.5,Apr 01,,24.8,May 01,,37.2,Jun 01,,5.2
+2004,Jan 01,,19.9,Feb 01,,27.0,Mar 01,,38.2,Apr 01,,27.0,May 01,,5.9,Jun 01,,0.0
+2005,Jan 01,,18.3,Feb 01,,31.4,Mar 01,,34.3,Apr 01,,42.7,May 01,,34.9,Jun 01,,1.8
+2006,Jan 01,32,10.0,Feb 01,70,24.5,Mar 01,65,27.5,Apr 01,121,45.6,May 01,97,46.2,Jun 01,10,5.9
+2007,Jan 01,37,9.2,Feb 01,32,11.4,Mar 01,101,27.6,Apr 01,45,19.6,May 01,9,4.1,Jun 01,0,0.0
+2008,Jan 01,35,8.5,Feb 01,104,27.8,Mar 01,97,37.0,Apr 01,75,33.3,May 01,24,11.3,Jun 01,0,0.0
+2009,Jan 01,44,11.9,Feb 01,39,14.0,Mar 01,77,27.7,Apr 01,77,34.8,May 01,38,17.7,Jun 01,0,0.0
+2010,Jan 01,49,13.4,Feb 01,82,25.8,Mar 01,90,32.9,Apr 01,96,39.9,May 01,84,39.3,Jun 01,39,19.9
+2011,Jan 01,99,31.1,Feb 01,84,33.2,Mar 01,135,46.9,Apr 01,,70.9,May 01,137,66.6,Jun 01,95,47.7
+2012,Jan 01,6,2.0,Feb 01,18,5.5,Mar 01,51,9.6,Apr 01,77,24.2,May 01,29,12.5,Jun 01,0,0.0
+2013,Jan 01,72,18.0,Feb 01,53,18.9,Mar 01,50,19.0,Apr 01,35,12.6,May 01,0,0.0,Jun 01,0,0.0
+2014,Jan 01,13,2.6,Feb 01,12,0.8,Mar 01,37,7.7,Apr 01,52,10.7,May 01,2,0.5,Jun 01,0,0.0
