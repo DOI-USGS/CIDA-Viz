@@ -259,9 +259,9 @@
     "Longitude":-120.421,
     "County":"TUOLUMNE",
     "Operating Agency":"Turlock Irrigation District",
-    "National ID":"",
-    "Year Built":null,
-    "Capacity (Ac-ft)":null
+    "National ID":"CA00281",
+    "Year Built":1971,
+    "Capacity (Ac-ft)":2030000
   },
   {
     "Station":"DONNELLS",
@@ -271,9 +271,9 @@
     "Longitude":-119.96,
     "County":"TUOLUMNE",
     "Operating Agency":"US Bureau of Reclamation",
-    "National ID":"",
-    "Year Built":null,
-    "Capacity (Ac-ft)":null
+    "National ID":"CA00264",
+    "Year Built":1958,
+    "Capacity (Ac-ft)":56893
   },
   {
     "Station":"DONNER LAKE (DWR)",
@@ -283,9 +283,9 @@
     "Longitude":-120.25,
     "County":"NEVADA",
     "Operating Agency":"US Geological Survey",
-    "National ID":"",
-    "Year Built":null,
-    "Capacity (Ac-ft)":null
+    "National ID":"CA00537",
+    "Year Built":1927,
+    "Capacity (Ac-ft)":10300
   },
   {
     "Station":"ENGLEBRIGHT (USACE)",
@@ -307,9 +307,9 @@
     "Longitude":-120.935,
     "County":"SAN JOAQUIN",
     "Operating Agency":"US Army Corps of Engineers",
-    "National ID":"",
-    "Year Built":null,
-    "Capacity (Ac-ft)":null
+    "National ID":"CA10105",
+    "Year Built":1941,
+    "Capacity (Ac-ft)":70000
   },
   {
     "Station":"FOLSOM LAKE",
@@ -319,9 +319,9 @@
     "Longitude":-121.183,
     "County":"SACRAMENTO",
     "Operating Agency":"US Bureau of Reclamation",
-    "National ID":"",
-    "Year Built":null,
-    "Capacity (Ac-ft)":null
+    "National ID":"CA10148",
+    "Year Built":1956,
+    "Capacity (Ac-ft)":975000
   },
   {
     "Station":"FRENCH MEADOWS",
@@ -343,9 +343,9 @@
     "Longitude":-120.183,
     "County":"PLUMAS",
     "Operating Agency":"CA Dept of Water Resources/O & M",
-    "National ID":"",
-    "Year Built":null,
-    "Capacity (Ac-ft)":null
+    "National ID":"CA00032",
+    "Year Built":1961,
+    "Capacity (Ac-ft)":55477
   },
   {
     "Station":"FRIANT DAM (MILLERTON)",
@@ -355,9 +355,9 @@
     "Longitude":-119.705,
     "County":"FRESNO",
     "Operating Agency":"US Bureau of Reclamation",
-    "National ID":"",
-    "Year Built":null,
-    "Capacity (Ac-ft)":null
+    "National ID":"CA10154",
+    "Year Built":1942,
+    "Capacity (Ac-ft)":520500
   },
   {
     "Station":"GERLE LAKE",
@@ -367,9 +367,9 @@
     "Longitude":-120.367,
     "County":"EL DORADO",
     "Operating Agency":"Sacramento Municipal Utility District",
-    "National ID":"",
-    "Year Built":null,
-    "Capacity (Ac-ft)":null
+    "National ID":"CA00818",
+    "Year Built":1962,
+    "Capacity (Ac-ft)":1200
   },
   {
     "Station":"GOODWIN DAM",
@@ -379,9 +379,9 @@
     "Longitude":-120.6297,
     "County":"CALAVERAS",
     "Operating Agency":"US Bureau of Reclamation",
-    "National ID":"",
-    "Year Built":null,
-    "Capacity (Ac-ft)":null
+    "National ID":"CA00260",
+    "Year Built":1912,
+    "Capacity (Ac-ft)":500
   },
   {
     "Station":"HELL HOLE (PCWA)",
@@ -391,9 +391,9 @@
     "Longitude":-120.407,
     "County":"PLACER",
     "Operating Agency":"Placer County Water Agency",
-    "National ID":"",
-    "Year Built":null,
-    "Capacity (Ac-ft)":null
+    "National ID":"CA00857",
+    "Year Built":1966,
+    "Capacity (Ac-ft)":208400
   },
   {
     "Station":"HETCH HETCHY",
@@ -415,9 +415,9 @@
     "Longitude":-119.917,
     "County":"MADERA",
     "Operating Agency":"US Army Corps of Engineers",
-    "National ID":"",
-    "Year Built":null,
-    "Capacity (Ac-ft)":null
+    "National ID":"CA10244",
+    "Year Built":1975,
+    "Capacity (Ac-ft)":90000
   },
   {
     "Station":"ICE HOUSE (SMUD)",
@@ -427,9 +427,9 @@
     "Longitude":-120.359,
     "County":"EL DORADO",
     "Operating Agency":"Sacramento Municipal Utility District",
-    "National ID":"",
-    "Year Built":null,
-    "Capacity (Ac-ft)":null
+    "National ID":"CA00814",
+    "Year Built":1959,
+    "Capacity (Ac-ft)":37120
   },
   {
     "Station":"INDEPENDENCE LAKE NEAR TRUCKEE",
@@ -439,9 +439,9 @@
     "Longitude":-120.29,
     "County":"SIERRA",
     "Operating Agency":"US Geological Survey",
-    "National ID":"",
-    "Year Built":null,
-    "Capacity (Ac-ft)":null
+    "National ID":"CA00458",
+    "Year Built":1939,
+    "Capacity (Ac-ft)":18500
   },
   {
     "Station":"INDIAN VALLEY",
@@ -451,9 +451,9 @@
     "Longitude":-122.533,
     "County":"LAKE",
     "Operating Agency":"Yolo County Flood Control and Water Consv Dist",
-    "National ID":"",
-    "Year Built":null,
-    "Capacity (Ac-ft)":null
+    "National ID":"CA01107",
+    "Year Built":1976,
+    "Capacity (Ac-ft)":300000
   },
   {
     "Station":"ISABELLA DAM",
@@ -463,9 +463,9 @@
     "Longitude":-118.473,
     "County":"KERN",
     "Operating Agency":"US Army Corps of Engineers",
-    "National ID":"",
-    "Year Built":null,
-    "Capacity (Ac-ft)":null
+    "National ID":"CA10106",
+    "Year Built":1953,
+    "Capacity (Ac-ft)":568000
   },
   {
     "Station":"JUNCTION",
@@ -475,9 +475,9 @@
     "Longitude":-120.453,
     "County":"EL DORADO",
     "Operating Agency":"Sacramento Municipal Utility District",
-    "National ID":"",
-    "Year Built":null,
-    "Capacity (Ac-ft)":null
+    "National ID":"CA00815",
+    "Year Built":1962,
+    "Capacity (Ac-ft)":3250
   },
   {
     "Station":"KESWICK RESERVOIR",
@@ -487,9 +487,9 @@
     "Longitude":-122.443,
     "County":"SHASTA",
     "Operating Agency":"US Bureau of Reclamation",
-    "National ID":"",
-    "Year Built":null,
-    "Capacity (Ac-ft)":null
+    "National ID":"CA10160",
+    "Year Built":1950,
+    "Capacity (Ac-ft)":23772
   },
   {
     "Station":"LAKE ALMANOR",
@@ -499,9 +499,9 @@
     "Longitude":-121.173,
     "County":"PLUMAS",
     "Operating Agency":"Pacific Gas & Electric",
-    "National ID":"",
-    "Year Built":null,
-    "Capacity (Ac-ft)":null
+    "National ID":"CA00327",
+    "Year Built":1927,
+    "Capacity (Ac-ft)":1308000
   },
   {
     "Station":"LAKE DAVIS (DWR)",
@@ -523,9 +523,9 @@
     "Longitude":-121.183,
     "County":"SACRAMENTO",
     "Operating Agency":"US Bureau of Reclamation",
-    "National ID":"",
-    "Year Built":null,
-    "Capacity (Ac-ft)":null
+    "National ID":"CA10174",
+    "Year Built":1955,
+    "Capacity (Ac-ft)":8760
   },
   {
     "Station":"LAKE PILLSBURY NR POTTER VLY 24HR AVG",
