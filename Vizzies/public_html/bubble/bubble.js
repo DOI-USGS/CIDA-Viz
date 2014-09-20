@@ -74,13 +74,14 @@ d3.json("abbrev.reservoirs.json", function(reservoirs) {
   var dot = svg.append("g")
       .attr("class", "dots")
     .selectAll(".dot")
-      .data(interpolateData(1800))
-    .enter().append("circle")
+      .data(interpolateData(1800));
+
+    dot.enter().append("circle")
       .attr("class", "dot")
       .style("fill", function(d) { return colorScale(color(d)); })
       .call(position)
       .sort(order);
-
+  dot.exit().remove();
   // Add a title.
   dot.append("title")
       .text(function(d) { return d.name; });
@@ -88,20 +89,12 @@ d3.json("abbrev.reservoirs.json", function(reservoirs) {
   // Add an overlay for the year label.
   var box = label.node().getBBox();
 
-  var overlay = svg.append("rect")
-        .attr("class", "overlay")
-        .attr("x", box.x)
-        .attr("y", box.y)
-        .attr("width", box.width)
-        .attr("height", box.height)
-        .on("mouseover", enableInteraction);
-
-  // Start a transition that interpolates the data based on year.
-  svg.transition()
-      .duration(30000)
-      .ease("linear")
-      .tween("year", tweenYear)
-      .each("end", enableInteraction);
+   // Start a transition that interpolates the data based on year.
+  // svg.transition()
+  //     .duration(30000)
+  //     .ease("linear")
+  //     .tween("year", tweenYear)
+  //     .each("end", enableInteraction);
 
   // Positions the dots based on data.
   function position(dot) {
@@ -113,35 +106,6 @@ d3.json("abbrev.reservoirs.json", function(reservoirs) {
   // Defines a sort order so that the smallest dots are drawn on top.
   function order(a, b) {
     return radius(b) - radius(a);
-  }
-
-  // After the transition finishes, you can mouseover to change the year.
-  function enableInteraction() {
-    var yearScale = d3.scale.linear()
-        .domain([1800, 2009])
-        .range([box.x + 10, box.x + box.width - 10])
-        .clamp(true);
-
-    // Cancel the current transition, if any.
-    svg.transition().duration(0);
-
-    overlay
-        .on("mouseover", mouseover)
-        .on("mouseout", mouseout)
-        .on("mousemove", mousemove)
-        .on("touchmove", mousemove);
-
-    function mouseover() {
-      label.classed("active", true);
-    }
-
-    function mouseout() {
-      label.classed("active", false);
-    }
-
-    function mousemove() {
-      displayYear(yearScale.invert(d3.mouse(this)[0]));
-    }
   }
 
   // Tweens the entire chart by first tweening the year, and then the data.
@@ -156,10 +120,15 @@ d3.json("abbrev.reservoirs.json", function(reservoirs) {
     dot.data(interpolateData(year), key).call(position).sort(order);
     label.text(Math.round(year));
   }
-
+  var yearCounter = 1800;
+setInterval(function(){
+  displayYear(yearCounter);
+  yearCounter += 1;
+}, 1000);
   // Interpolates the dataset for the given (fractional) year.
   function interpolateData(year) {
-    var strYear = '' + year;
+    var truncatedYear = year.toFixed(0);
+    var strYear = '' + truncatedYear;
      return reservoirs.map(function(d) {
       return {
         name: d.name,
