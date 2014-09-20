@@ -199,18 +199,29 @@ $(document).ready(function () {
 	var geoJSONLayer = new ol.layer.Vector({
 		source: new ol.source.GeoJSON({
 			url: 'data/drought_shp/USDM_20140916.json',
-			projection: ol.proj.get('EPSG:4326')
+			projection: ol.proj.get('EPSG:3857')
 		}),
-		style: new ol.style.Style({
-			stroke: new ol.style.Stroke({
-				color: 'blue',
-				lineDash: [4],
-				width: 3
-			}),
-			fill: new ol.style.Fill({
-				color: 'rgba(0, 0, 255, 0.1)'
-			})
-		}),
+		style: 
+			function (feature) {
+			var dm = feature.values_.DM,
+				fillColors = {
+					0: 'rgba(255, 255, 0, 0.5)',
+					1: 'rgba(255, 211, 127, 0.5)',
+					2: 'rgba(230, 152, 0, 0.5)',
+					3: 'rgba(230, 0, 0, 0.5)',
+					4: 'rgba(115, 0, 0, 0.5)'
+				};
+
+			return [new ol.style.Style({
+				stroke: new ol.style.Stroke({
+					color: fillColors[dm],
+					width: 1
+				}),
+				fill: new ol.style.Fill({
+					color: fillColors[dm]
+				})
+			})];
+		},
 		visible: true,
 		opacity: 1
 	});
