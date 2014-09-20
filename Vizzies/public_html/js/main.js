@@ -1,4 +1,4 @@
-
+var map;
 $(document).ready(function () {
 
 	var image = new ol.style.Circle({
@@ -222,7 +222,7 @@ $(document).ready(function () {
 		zoom: 2
 	});
 
-	var map = new ol.Map({
+	map = new ol.Map({
 		layers: [
 			new ol.layer.Tile({
 				source: new ol.source.OSM()
@@ -233,12 +233,11 @@ $(document).ready(function () {
 			vectorLayer4
 		],
 		target: 'map',
-		controls: ol.control.defaults({
-			attributionOptions: ({
-				collapsible: false
-			})
-		}),
-		view: view
+		controls: [new ol.control.MousePosition()],
+		view: new ol.View({
+			center: [-13319610.800861657, 4501835.217883743],
+			zoom: 5
+		})
 	});
 
 	var flyToFeatureExtent = function (source) {
