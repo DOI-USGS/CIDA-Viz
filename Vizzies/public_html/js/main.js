@@ -6,7 +6,6 @@ $(document).ready(function () {
 		fill: null,
 		stroke: new ol.style.Stroke({color: 'red', width: 1})
 	});
-
 	var styles = {
 		'Point': [new ol.style.Style({
 				image: image
@@ -71,11 +70,9 @@ $(document).ready(function () {
 				})
 			})]
 	};
-
 	var styleFunction = function (feature, resolution) {
 		return styles[feature.getGeometry().getType()];
 	};
-
 	var vectorSource1 = new ol.source.GeoJSON(({
 		object: {
 			'type': 'FeatureCollection',
@@ -110,7 +107,6 @@ $(document).ready(function () {
 			]
 		}
 	}));
-
 	var vectorSource2 = new ol.source.GeoJSON(({
 		object: {
 			'type': 'FeatureCollection',
@@ -136,7 +132,6 @@ $(document).ready(function () {
 			]
 		}
 	}));
-
 	var vectorSource3 = new ol.source.GeoJSON(({
 		object: {
 			'type': 'FeatureCollection',
@@ -161,7 +156,6 @@ $(document).ready(function () {
 			]
 		}
 	}));
-
 	var vectorSource4 = new ol.source.GeoJSON(({
 		object: {
 			'type': 'FeatureCollection',
@@ -195,7 +189,6 @@ $(document).ready(function () {
 			]
 		}
 	}));
-
 	var getDroughtStyle = function (feature) {
 		var dm = feature.values_.DM,
 			fillColors = {
@@ -205,7 +198,6 @@ $(document).ready(function () {
 				3: 'rgba(230, 0, 0, 0.5)',
 				4: 'rgba(115, 0, 0, 0.5)'
 			};
-
 		return [new ol.style.Style({
 				stroke: new ol.style.Stroke({
 					color: fillColors[dm],
@@ -216,9 +208,37 @@ $(document).ready(function () {
 				})
 			})];
 	};
-
-
-
+	var getFireStyle = function () {
+		return [new ol.style.Style({
+				stroke: new ol.style.Stroke({
+					color: 'magenta',
+					width: 2
+				}),
+				fill: new ol.style.Fill({
+					color: 'magenta'
+				}),
+				image: new ol.style.Circle({
+					radius: 10,
+					fill: null,
+					stroke: new ol.style.Stroke({
+						color: 'magenta'
+					})
+				})
+			})];
+	};
+	var getFireLayer = function (timestep) {
+		var layer = new ol.layer.Vector({
+			source: new ol.source.GeoJSON({
+				url: 'data/fire_shp/FIRE_' + timestep + '.geojson',
+				projection: ol.proj.get('EPSG:3857')
+			}),
+			style: getFireStyle,
+			visible: true,
+			opacity: 1
+		});
+		layer.layer_type = 'fire';
+		return layer;
+	};
 	var getDroughtLayer = function (timestep) {
 		var layer = new ol.layer.Vector({
 			source: new ol.source.GeoJSON({
@@ -232,7 +252,6 @@ $(document).ready(function () {
 		layer.layer_type = 'drought';
 		return layer;
 	};
-
 	var vectorLayer1 = new ol.layer.Vector({
 		source: vectorSource1,
 		opacity: 0,
@@ -253,12 +272,10 @@ $(document).ready(function () {
 		opacity: 0,
 		style: styleFunction
 	});
-
 	var view = new ol.View({
 		center: [0, 0],
 		zoom: 2
 	});
-
 	map = new ol.Map({
 		layers: [
 			new ol.layer.Tile({
@@ -273,23 +290,6 @@ $(document).ready(function () {
 		}),
 		renderer: 'canvas'
 	});
-
-	map.reeplaceDroughtLayer = function (layer) {
-		map.addLayer(layer);
-		layer.getSource().on('change', function (event) {
-			var isReady = event.target.state_ === 'ready';
-
-			if (isReady) {
-				var layers = map.getLayers().array_.filter(function (oldLayer) {
-					return oldLayer.layer_type === 'drought' && oldLayer !== layer;
-				});
-				for (var i = 0; i < layers.length; i++) {
-					map.removeLayer(layers[i]);
-				}
-			}
-		});
-	};
-
 	var flyToFeatureExtent = function (source) {
 		var duration = 2000;
 		var start = +new Date();
@@ -306,14 +306,11 @@ $(document).ready(function () {
 		map.beforeRender(pan, bounce);
 		view.setCenter(ol.extent.getCenter(source.getExtent()));
 	};
-
 	// define params
 	var duration = 500;
 	var bgPosMovement = "0 " + (duration * 0.8) + "px";
-
 	// init controller
 	var controller = new ScrollMagic({globalSceneOptions: {triggerHook: "onEnter", duration: duration}});
-
 	// build scenes
 	new ScrollScene({triggerElement: "#feature1"})
 		.setTween(TweenMax.to("#feature1", 1, {backgroundPosition: bgPosMovement, ease: Linear.easeNone}))
@@ -325,7 +322,6 @@ $(document).ready(function () {
 		.on("leave", function (e) {
 			vectorLayer1.setOpacity(0);
 		});
-
 	new ScrollScene({triggerElement: "#feature2"})
 		.setTween(TweenMax.to("#feature2", 1, {backgroundPosition: bgPosMovement, ease: Linear.easeNone}))
 		.addTo(controller)
@@ -336,7 +332,6 @@ $(document).ready(function () {
 		.on("leave", function (e) {
 			vectorLayer2.setOpacity(0);
 		});
-
 	new ScrollScene({triggerElement: "#feature3"})
 		.setTween(TweenMax.to("#feature3", 1, {backgroundPosition: bgPosMovement, ease: Linear.easeNone}))
 		.addTo(controller)
@@ -347,7 +342,6 @@ $(document).ready(function () {
 		.on("leave", function (e) {
 			vectorLayer3.setOpacity(0);
 		});
-
 	new ScrollScene({triggerElement: "#feature4"})
 		.setTween(TweenMax.to("#feature4", 1, {backgroundPosition: bgPosMovement, ease: Linear.easeNone}))
 		.addTo(controller)
@@ -358,33 +352,60 @@ $(document).ready(function () {
 		.on("leave", function (e) {
 			vectorLayer4.setOpacity(0);
 		});
-
-	var updateDroughtTimestep = function (timestep) {
-		var layer = getDroughtLayer(timestep);
-		map.reeplaceDroughtLayer(layer);
+	map.replaceLayer = function (layer, layerType) {
+		map.addLayer(layer);
+		layer.getSource().on('change', function (event) {
+			var isReady = event.target.state_ === 'ready';
+			if (isReady) {
+				var layers = map.getLayers().array_.filter(function (oldLayer) {
+					return oldLayer.layer_type === layerType && oldLayer !== layer;
+				});
+				for (var i = 0; i < layers.length; i++) {
+					map.removeLayer(layers[i]);
+				}
+			}
+		});
 	};
-
+	var updateTimestep = function (timestep) {
+		var droughtLayer = getDroughtLayer(timestep);
+		var fireLayer = getFireLayer(timestep);
+		map.replaceLayer(droughtLayer, 'drought');
+		map.replaceLayer(fireLayer, 'fire');
+	};
 	var sitesLayer = new ol.layer.Vector({
 		source: new ol.source.GeoJSON({
 			url: 'data/reservoirs/ca_reservoirs.geojson',
 			projection: ol.proj.get('EPSG:3857')
 		}),
+		style: [new ol.style.Style({
+				stroke: new ol.style.Stroke({
+					color: 'blue',
+					width: 2
+				}),
+				fill: new ol.style.Fill({
+					color: 'blue'
+				}),
+				image: new ol.style.Circle({
+					radius: 1,
+					fill: null,
+					stroke: new ol.style.Stroke({
+						color: 'blue'
+					})
+				})
+			})],
 		visible: true,
 		opacity: 1
 	});
-
 	map.addLayer(sitesLayer);
-
-	// yyyymmdd
+// yyyymmdd
 	$.ajax('data/drought_shp/times.json', {
 		success: function (data) {
-			var timesArray = data.d,
+			var timesArray = data.d.reverse(),
 				i = 0;
-
 			setInterval(function () {
-				updateDroughtTimestep(timesArray[i]);
+				updateTimestep(timesArray[i]);
 				i++;
-			}, 1000);
+			}, 2000);
 		}
 	});
 });
