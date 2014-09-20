@@ -278,13 +278,20 @@ $(document).ready(function () {
 		renderer: 'canvas'
 	});
 
-	map.removeAllDroughtLayers = function () {
-		var layers = this.getLayers().array_.filter(function (layer) {
-			return layer.layer_type === 'drought';
+	map.reeplaceDroughtLayer = function (layer) {
+		map.addLayer(layer);
+		layer.getSource().on('change', function (event) {
+			var isReady = event.target.state_ === 'ready';
+
+			if (isReady) {
+				var layers = map.getLayers().array_.filter(function (oldLayer) {
+					return oldLayer.layer_type === 'drought' && oldLayer !== layer;
+				});
+				for (var i = 0; i < layers.length; i++) {
+					map.removeLayer(layers[i]);
+				}
+			}
 		});
-		for (var i = 0; i < layers.length; i++) {
-			this.removeLayer(layers[i]);
-		}
 	};
 
 	var flyToFeatureExtent = function (source) {
@@ -357,9 +364,9 @@ $(document).ready(function () {
 		});
 
 	var updateDroughtTimestep = function (timestep) {
-		map.removeAllDroughtLayers();
-		map.addLayer(getDroughtLayer(timestep));
-	}
+		var layer = getDroughtLayer(timestep);
+		map.reeplaceDroughtLayer(layer);
+	};
 
 	// yyyymmdd
 	$.ajax('data/drought_shp/times.json', {
@@ -370,8 +377,7 @@ $(document).ready(function () {
 			setInterval(function () {
 				updateDroughtTimestep(timesArray[i]);
 				i++;
-			}, 2000);
-
+			}, 1000);
 		}
 	});
 });
