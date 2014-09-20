@@ -263,11 +263,7 @@ $(document).ready(function () {
 		layers: [
 			new ol.layer.Tile({
 				source: new ol.source.OSM()
-			}),
-			vectorLayer1,
-			vectorLayer2,
-			vectorLayer3,
-			vectorLayer4
+			})
 		],
 		target: 'map',
 		controls: [new ol.control.MousePosition()],
@@ -367,6 +363,17 @@ $(document).ready(function () {
 		var layer = getDroughtLayer(timestep);
 		map.reeplaceDroughtLayer(layer);
 	};
+
+	var sitesLayer = new ol.layer.Vector({
+		source: new ol.source.GeoJSON({
+			url: 'data/reservoirs/ca_reservoirs.geojson',
+			projection: ol.proj.get('EPSG:3857')
+		}),
+		visible: true,
+		opacity: 1
+	});
+
+	map.addLayer(sitesLayer);
 
 	// yyyymmdd
 	$.ajax('data/drought_shp/times.json', {
