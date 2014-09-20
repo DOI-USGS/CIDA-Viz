@@ -1,7 +1,7 @@
 library(rjson)
 week_time <- seq.POSIXt(as.POSIXlt('2000-01-04'), as.POSIXlt('2014-09-20'), by = 'week')
-
-
+library(jsonlite)
+json_res <- jsonlite::fromJSON('../Data/ca_reservoirs.json')
 sites = read.csv('../Data/ca_reservoirs.csv', as.is=TRUE)
 
 # open all files, downsample and stick into list
@@ -27,31 +27,34 @@ for (i in 1:num_station){
 stations_all[rmv_i] <- NULL
 station_names <- station_names[!rmv_i] 
 num_station <- length(stations_all)
-for (j in 1:num_steps){
-  stations <- vector('list', length=num_station)
+
+reservoirs <- vector('list', length = num_station )
+for (i in 1:num_station){
   
-  for (i in 1:num_station){
-    stations[[i]] <- list(name=station_names[i], storage = NULL)
-    # downsample obs data
+  res_mat <- matrix(nrow = num_steps, ncol = 1)
+  for (j in 1:num_steps){
     period <- c(trunc(week_time[j]-3*86400, 'days'), trunc(week_time[j]+4*86400, 'days'))
     dates <- stations_all[[i]]$dates
     use_i <- dates <= period[2] & dates > period[1]
     if (sum(use_i) > 0){
       val <- mean(stations_all[[i]]$storage[use_i], na.rm = TRUE)
       if (!is.na(val)){
-        stations[[i]]$storage <- val
+        res_mat[j,1] <- val
       }
       
     }
-    
-    
   }
-  cat('time:');cat(format(trunc(week_time[j], 'days')));cat('\n')
-  time_out[[j]] <- list('time'=format(trunc(week_time[j], 'days')), 'station'=stations)
-  
+  rmv_i <- is.na(res_mat[,1])
+  j_id <- which(json_res$ID == station_names[i])
+  reservoirs[[i]] <- list("Station"=json_res$Station[j_id],"ID"=station_names[i],
+                          "Elev"=json_res$Elev[j_id], "Latitude"=json_res$Latitude[j_id], "Longitude" = json_res$Longitude[j_id],
+                    "County"=json_res$County[j_id], "Nat_ID"=json_res[j_id, 8],"Year_Built"=json_res[j_id, 9], 
+                    "Capacity"=json_res[j_id, 10], "Storage"=res_mat[!rmv_i,])
+  names(reservoirs[[i]]$Storage) <- strftime(week_time[!rmv_i], "%Y%m%d")
+  cat(i);cat('\n')
 }
 
-json <- toJSON(time_out)
+json <- toJSON(reservoirs)
 
-cat(json,file = '../storage_data/storage.json')
+cat(json,file = '../storage_data/reservoir.json')
 
