@@ -1,0 +1,91 @@
+@charset "UTF-8";
+/* CSS Document */
+
+*{margin:0; padding:0;}
+
+html{height:100%;}
+
+body{height:100%;}
+
+
+#map{width: 50%;
+  height: 50%;
+  overflow: auto;
+  margin: auto;
+  position: fixed;
+  top: 15%; left: 0; bottom: auto; right: 0;
+  background:rgb(250,250,250);
+  border:10px solid rgb(255,255,255);
+  box-shadow:1px 1px 5px rgba(0,0,0,.1);
+  z-index:3000;
+  }
+  
+header,
+#feature1,
+#feature2,
+#feature3,
+#feature4,
+footer{	height:100%;
+			padding:15px 15px;
+			font-family:"Open Sans";
+			position:relative;}
+  
+.top{width:50%;
+	margin:0 auto;
+	padding:3px 15px 10px 15px;
+	text-align:center;
+	color:rgb(80,146,204);
+	}
+	
+.top p{color:#000;}
+	
+.top h1{font-size:3em;}
+
+.top h1#bottom{color:#fff;}
+
+.left,
+.right{	width:19%;
+		height:47%;
+		margin: auto;
+		position: absolute;
+		padding:1% 1%;}
+		
+.left{top: 0; left: 35px; bottom: 195px; right: auto;
+		background:rgba(255,255,255,.8);}
+
+.right{top: 0; left: auto; bottom: 195px; right: 35px;
+		background:rgba(80,146,204,.6);}
+		
+.left h2{color:rgb(80,146,204);
+		margin-bottom:5px;}
+		
+.right h2{color:#fff;
+		margin-bottom:5px;}
+			
+.bottom{width:50%;
+		margin: auto;
+  		position: absolute;
+  		top: auto; left: 0; bottom: 200px; right: 0;
+		}
+		
+.bottom h2{color:#fff;
+			margin-bottom:5px;}
+			
+.bottom p{float:left;
+			margin-right:10px;}
+				
+#feature1,
+#feature3,
+footer{background:rgb(80,146,204);
+			}			
+#feature2,
+#feature4,
+header{background: url(../img/cream_dust.png) repeat center center; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+			
+footer{padding-top:5%;
+		height:95%;}
