@@ -13,7 +13,7 @@ var margin = {top: 19.5, right: 19.5, bottom: 19.5, left: 39.5},
 
 // Various scales. These domains make assumptions of data, naturally.
 var xScale = d3.scale.log().domain([0, 5000]).range([0, width]),
-    yScale = d3.scale.linear().domain([10, 85]).range([height, 0]),
+    yScale = d3.scale.linear().domain([0, 100]).range([height, 0]),
     radiusScale = d3.scale.sqrt().domain([0, 800]).range([0, 40]),
     colorScale = d3.scale.category10();
 
@@ -65,7 +65,7 @@ var label = svg.append("text")
     .text(1800);
 
 // Load the data.
-d3.json("abbrev.reservoirs.json", function(nations) {
+d3.json("abbrev.reservoirs.json", function(reservoirs) {
 
   // A bisector since many nation's data is sparsely-defined.
   var bisect = d3.bisector(function(d) { return d[0]; });
@@ -159,18 +159,15 @@ d3.json("abbrev.reservoirs.json", function(nations) {
 
   // Interpolates the dataset for the given (fractional) year.
   function interpolateData(year) {
-    return nations;
-  }
-
-  // Finds (and possibly interpolates) the value for the specified year.
-  function interpolateValues(values, year) {
-    var i = bisect.left(values, year, 0, values.length - 1),
-        a = values[i];
-    if (i > 0) {
-      var b = values[i - 1],
-          t = (year - a[0]) / (b[0] - a[0]);
-      return a[1] * (1 - t) + b[1] * t;
-    }
-    return a[1];
+    var strYear = '' + year;
+     return reservoirs.map(function(d) {
+      return {
+        name: d.name,
+        region: d.region,
+        elevation: d.elevation,
+        maxVolume: d.maxVolume,
+        volume: d.volume[strYear]
+      };
+    });
   }
 });

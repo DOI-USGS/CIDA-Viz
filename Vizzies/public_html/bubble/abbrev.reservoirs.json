@@ -4,15 +4,9 @@
     "region": "Sub-Saharan Africa",
     "elevation" : 4000,
     "maxVolume" : 600,
-    "volume": [
-      [
-        1800,
-        15
-      ],
-      [
-	1900,
-	90
-	]
-	]
+    "volume": {
+        "1800" : 15,
+  	   "1900":90
+	   }
 }
 ]
