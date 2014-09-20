@@ -1,7 +1,7 @@
 [
   {
     "name": "Angola",
-    "region": "Sub-Saharan Africa",
+    "region": "SUPER CALIFORNIA",
     "elevation" : 4000,
     "maxVolume" : 600,
     "volume": {
@@ -13,13 +13,13 @@
         "1805" : 85,
         "1806" : 15,
         "1807" : 85,
-  	   "1900":90
+  	   "1809":90
 	   }
 },
   {
     "name": "B",
-    "region": "Super-Saharan Africa",
-    "elevation" : 40000,
+    "region": "AWESOME CALIFORNIA",
+    "elevation" : 400,
     "maxVolume" : 900,
     "volume": {
         "1800" : 90,
@@ -30,7 +30,24 @@
         "1805" : 10,
         "1806" : 90,
         "1807" : 10,
-       "1900":90
+       "1809":90
+     }
+},
+  {
+    "name": "C",
+    "region": "BAJA CALIFORNIA",
+    "elevation" : 2000,
+    "maxVolume" : 90,
+    "volume": {
+        "1800" : 50,
+        "1801" : 20,
+        "1802" : 50,
+        "1803" : 20,
+        "1804" : 50,
+        "1805" : 20,
+        "1806" : 50,
+        "1807" : 20,
+       "1809":90
      }
 }
 ]
