@@ -2,6 +2,9 @@ library(rjson)
 week_time <- seq.POSIXt(as.POSIXlt('2000-01-04'), as.POSIXlt('2014-09-20'), by = 'week')
 library(jsonlite)
 json_res <- jsonlite::fromJSON('../Data/ca_reservoirs.json')
+#yes, this is goofy
+detach("package:jsonlite", unload=TRUE)
+
 sites = read.csv('../Data/ca_reservoirs.csv', as.is=TRUE)
 
 # open all files, downsample and stick into list
