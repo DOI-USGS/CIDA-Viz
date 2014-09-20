@@ -196,6 +196,25 @@ $(document).ready(function () {
 		}
 	}));
 
+	var geoJSONLayer = new ol.layer.Vector({
+		source: new ol.source.GeoJSON({
+			url: 'data/drought_shp/USDM_20140916.json',
+			projection: ol.proj.get('EPSG:4326')
+		}),
+		style: new ol.style.Style({
+			stroke: new ol.style.Stroke({
+				color: 'blue',
+				lineDash: [4],
+				width: 3
+			}),
+			fill: new ol.style.Fill({
+				color: 'rgba(0, 0, 255, 0.1)'
+			})
+		}),
+		visible: true,
+		opacity: 1
+	});
+
 	var vectorLayer1 = new ol.layer.Vector({
 		source: vectorSource1,
 		opacity: 0,
@@ -227,6 +246,7 @@ $(document).ready(function () {
 			new ol.layer.Tile({
 				source: new ol.source.OSM()
 			}),
+			geoJSONLayer,
 			vectorLayer1,
 			vectorLayer2,
 			vectorLayer3,
@@ -237,7 +257,8 @@ $(document).ready(function () {
 		view: new ol.View({
 			center: [-13319610.800861657, 4501835.217883743],
 			zoom: 5
-		})
+		}),
+		renderer: 'canvas'
 	});
 
 	var flyToFeatureExtent = function (source) {
