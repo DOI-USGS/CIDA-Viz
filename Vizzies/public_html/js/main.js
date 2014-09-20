@@ -196,24 +196,42 @@ $(document).ready(function () {
 		}
 	}));
 
-	var geoJSONLayer = new ol.layer.Vector({
-		source: new ol.source.GeoJSON({
-			url: 'data/drought_shp/USDM_20140916.json',
-			projection: ol.proj.get('EPSG:3857')
-		}),
-		style: new ol.style.Style({
-			stroke: new ol.style.Stroke({
-				color: 'blue',
-				lineDash: [4],
-				width: 3
+	var getDroughtStyle = function (feature) {
+		var dm = feature.values_.DM,
+			fillColors = {
+				0: 'rgba(255, 255, 0, 0.5)',
+				1: 'rgba(255, 211, 127, 0.5)',
+				2: 'rgba(230, 152, 0, 0.5)',
+				3: 'rgba(230, 0, 0, 0.5)',
+				4: 'rgba(115, 0, 0, 0.5)'
+			};
+
+		return [new ol.style.Style({
+				stroke: new ol.style.Stroke({
+					color: fillColors[dm],
+					width: 1
+				}),
+				fill: new ol.style.Fill({
+					color: fillColors[dm]
+				})
+			})];
+	};
+
+
+
+	var getDroughtLayer = function (timestep) {
+		var layer = new ol.layer.Vector({
+			source: new ol.source.GeoJSON({
+				url: 'data/drought_shp/USDM_' + timestep + '.json',
+				projection: ol.proj.get('EPSG:3857')
 			}),
-			fill: new ol.style.Fill({
-				color: 'rgba(0, 0, 255, 0.1)'
-			})
-		}),
-		visible: true,
-		opacity: 1
-	});
+			style: getDroughtStyle,
+			visible: true,
+			opacity: 1
+		});
+		layer.layer_type = 'drought';
+		return layer;
+	};
 
 	var vectorLayer1 = new ol.layer.Vector({
 		source: vectorSource1,
@@ -246,7 +264,6 @@ $(document).ready(function () {
 			new ol.layer.Tile({
 				source: new ol.source.OSM()
 			}),
-			geoJSONLayer,
 			vectorLayer1,
 			vectorLayer2,
 			vectorLayer3,
@@ -260,6 +277,15 @@ $(document).ready(function () {
 		}),
 		renderer: 'canvas'
 	});
+
+	map.removeAllDroughtLayers = function () {
+		var layers = this.getLayers().array_.filter(function (layer) {
+			return layer.layer_type === 'drought';
+		});
+		for (var i = 0; i < layers.length; i++) {
+			this.removeLayer(layers[i]);
+		}
+	};
 
 	var flyToFeatureExtent = function (source) {
 		var duration = 2000;
@@ -329,5 +355,23 @@ $(document).ready(function () {
 		.on("leave", function (e) {
 			vectorLayer4.setOpacity(0);
 		});
-		
+
+	var updateDroughtTimestep = function (timestep) {
+		map.removeAllDroughtLayers();
+		map.addLayer(getDroughtLayer(timestep));
+	}
+
+	// yyyymmdd
+	$.ajax('data/drought_shp/times.json', {
+		success: function (data) {
+			var timesArray = data.d,
+				i = 0;
+
+			setInterval(function () {
+				updateDroughtTimestep(timesArray[i]);
+				i++;
+			}, 2000);
+
+		}
+	});
 });

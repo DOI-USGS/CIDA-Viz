@@ -547,9 +547,9 @@
     "Longitude":-120.583,
     "County":"PLACER",
     "Operating Agency":"Pacific Gas & Electric",
-    "National ID":"",
-    "Year Built":null,
-    "Capacity (Ac-ft)":null
+    "National ID":"CA00361",
+    "Year Built":1911,
+    "Capacity (Ac-ft)":8127
   },
   {
     "Station":"LEWISTON",
@@ -559,9 +559,9 @@
     "Longitude":-122.793,
     "County":"TRINITY",
     "Operating Agency":"US Bureau of Reclamation",
-    "National ID":"",
-    "Year Built":null,
-    "Capacity (Ac-ft)":null
+    "National ID":"CA10165",
+    "Year Built":1963,
+    "Capacity (Ac-ft)":14660
   },
   {
     "Station":"LITTLE GRASS VALLEY",
@@ -571,9 +571,9 @@
     "Longitude":-121.019,
     "County":"PLUMAS",
     "Operating Agency":"South Feather Water and Power Agency",
-    "National ID":"",
-    "Year Built":null,
-    "Capacity (Ac-ft)":null
+    "National ID":"CA00269",
+    "Year Built":1961,
+    "Capacity (Ac-ft)":93010
   },
   {
     "Station":"LOON LAKE (SMUD)",
@@ -583,9 +583,9 @@
     "Longitude":-120.323,
     "County":"EL DORADO",
     "Operating Agency":"Sacramento Municipal Utility District",
-    "National ID":"",
-    "Year Built":null,
-    "Capacity (Ac-ft)":null
+    "National ID":"CA00820",
+    "Year Built":1963,
+    "Capacity (Ac-ft)":76500
   },
   {
     "Station":"LYONS RESERVOIR",
@@ -595,9 +595,9 @@
     "Longitude":-120.166,
     "County":"TUOLUMNE",
     "Operating Agency":"Pacific Gas & Electric",
-    "National ID":"",
-    "Year Built":null,
-    "Capacity (Ac-ft)":null
+    "National ID":"CA00387",
+    "Year Built":1930,
+    "Capacity (Ac-ft)":6228
   },
   {
     "Station":"MARIPOSA CREEK DAM",
@@ -619,9 +619,9 @@
     "Longitude":-120.113,
     "County":"NEVADA",
     "Operating Agency":"US Army Corps of Engineers",
-    "National ID":"",
-    "Year Built":null,
-    "Capacity (Ac-ft)":null
+    "National ID":"CA10107",
+    "Year Built":1948,
+    "Capacity (Ac-ft)":15000
   },
   {
     "Station":"MOUNTAIN MEADOWS",
@@ -643,9 +643,9 @@
     "Longitude":-121.14,
     "County":"YUBA",
     "Operating Agency":"Yuba County Water Agency",
-    "National ID":"",
-    "Year Built":null,
-    "Capacity (Ac-ft)":null
+    "National ID":"CA00863",
+    "Year Built":1970,
+    "Capacity (Ac-ft)":969600
   },
   {
     "Station":"NEW EXCHEQUER-LK MCCLURE",
@@ -655,9 +655,9 @@
     "Longitude":-120.27,
     "County":"MARIPOSA",
     "Operating Agency":"Merced Irrigation District",
-    "National ID":"",
-    "Year Built":null,
-    "Capacity (Ac-ft)":null
+    "National ID":"CA00026",
+    "Year Built":1960,
+    "Capacity (Ac-ft)":209
   },
   {
     "Station":"NEW HOGAN LAKE",
@@ -667,9 +667,9 @@
     "Longitude":-120.812,
     "County":"CALAVERAS",
     "Operating Agency":"US Army Corps of Engineers",
-    "National ID":"",
-    "Year Built":null,
-    "Capacity (Ac-ft)":null
+    "National ID":"CA10109",
+    "Year Built":1963,
+    "Capacity (Ac-ft)":317000
   },
   {
     "Station":"NEW MELONES RESERVOIR",
@@ -679,9 +679,9 @@
     "Longitude":-120.525,
     "County":"CALAVERAS",
     "Operating Agency":"US Bureau of Reclamation",
-    "National ID":"",
-    "Year Built":null,
-    "Capacity (Ac-ft)":null
+    "National ID":"CA10246",
+    "Year Built":1979,
+    "Capacity (Ac-ft)":2400000
   },
   {
     "Station":"OROVILLE DAM",
@@ -691,9 +691,9 @@
     "Longitude":-121.493,
     "County":"BUTTE",
     "Operating Agency":"CA Dept of Water Resources/O & M",
-    "National ID":"",
-    "Year Built":null,
-    "Capacity (Ac-ft)":null
+    "National ID":"CA00035",
+    "Year Built":1968,
+    "Capacity (Ac-ft)":3537577
   },
   {
     "Station":"OWENS CREEK DAM",
@@ -703,9 +703,9 @@
     "Longitude":-120.187,
     "County":"MARIPOSA",
     "Operating Agency":"US Army Corps of Engineers",
-    "National ID":"",
-    "Year Built":null,
-    "Capacity (Ac-ft)":null
+    "National ID":"CA10111",
+    "Year Built":1949,
+    "Capacity (Ac-ft)":3600
   },
   {
     "Station":"PARDEE",
@@ -715,9 +715,9 @@
     "Longitude":-120.85,
     "County":"CALAVERAS",
     "Operating Agency":"East Bay Municipal Utility District",
-    "National ID":"",
-    "Year Built":null,
-    "Capacity (Ac-ft)":null
+    "National ID":"CA00164",
+    "Year Built":1929,
+    "Capacity (Ac-ft)":197950
   },
   {
     "Station":"PERRIS",
@@ -727,9 +727,9 @@
     "Longitude":-117.183,
     "County":"RIVERSIDE",
     "Operating Agency":"CA Dept of Water Resources, Southern Field Div",
-    "National ID":"",
-    "Year Built":null,
-    "Capacity (Ac-ft)":null
+    "National ID":"CA00054",
+    "Year Built":1973,
+    "Capacity (Ac-ft)":131452
   },
   {
     "Station":"PINE FLAT DAM",
@@ -739,9 +739,9 @@
     "Longitude":-119.325,
     "County":"FRESNO",
     "Operating Agency":"US Army Corps of Engineers",
-    "National ID":"",
-    "Year Built":null,
-    "Capacity (Ac-ft)":null
+    "National ID":"CA10112",
+    "Year Built":1954,
+    "Capacity (Ac-ft)":1000000
   },
   {
     "Station":"PRADO DAM",
@@ -751,9 +751,9 @@
     "Longitude":-117.643,
     "County":"RIVERSIDE",
     "Operating Agency":"US Army Corps of Engineers",
-    "National ID":"",
-    "Year Built":null,
-    "Capacity (Ac-ft)":null
+    "National ID":"CA10022",
+    "Year Built":1941,
+    "Capacity (Ac-ft)":314400
   },
   {
     "Station":"PROSSER CREEK RESERVOIR",
@@ -763,9 +763,9 @@
     "Longitude":-120.1367,
     "County":"NEVADA",
     "Operating Agency":"US Geological Survey",
-    "National ID":"",
-    "Year Built":null,
-    "Capacity (Ac-ft)":null
+    "National ID":"CA10179",
+    "Year Built":1962,
+    "Capacity (Ac-ft)":29800
   },
   {
     "Station":"PYRAMID",
@@ -775,9 +775,9 @@
     "Longitude":-118.75,
     "County":"LOS ANGELES",
     "Operating Agency":"CA Dept of Water Resources, Southern Field Div",
-    "National ID":"",
-    "Year Built":null,
-    "Capacity (Ac-ft)":null
+    "National ID":"CA00052",
+    "Year Built":1973,
+    "Capacity (Ac-ft)":178700
   },
   {
     "Station":"RELIEF",
@@ -787,9 +787,9 @@
     "Longitude":-119.733,
     "County":"TUOLUMNE",
     "Operating Agency":"Pacific Gas & Electric",
-    "National ID":"",
-    "Year Built":null,
-    "Capacity (Ac-ft)":null
+    "National ID":"CA00390",
+    "Year Built":1910,
+    "Capacity (Ac-ft)":15122
   },
   {
     "Station":"RUBICON LAKE",
@@ -799,9 +799,9 @@
     "Longitude":-120.217,
     "County":"EL DORADO",
     "Operating Agency":"Sacramento Municipal Utility District",
-    "National ID":"",
-    "Year Built":null,
-    "Capacity (Ac-ft)":null
+    "National ID":"CA00822",
+    "Year Built":1963,
+    "Capacity (Ac-ft)":1450
   },
   {
     "Station":"RUTH DAM",
@@ -823,9 +823,9 @@
     "Longitude":-120.216,
     "County":"AMADOR",
     "Operating Agency":"Pacific Gas & Electric",
-    "National ID":"",
-    "Year Built":null,
-    "Capacity (Ac-ft)":null
+    "National ID":"CA00382",
+    "Year Built":1931,
+    "Capacity (Ac-ft)":141900
   },
   {
     "Station":"SAN LUIS RESERVOIR",
@@ -847,9 +847,9 @@
     "Longitude":-122.9586,
     "County":"LAKE",
     "Operating Agency":"Pacific Gas & Electric",
-    "National ID":"",
-    "Year Built":null,
-    "Capacity (Ac-ft)":null
+    "National ID":"CA00398",
+    "Year Built":1921,
+    "Capacity (Ac-ft)":73000
   },
   {
     "Station":"SEVEN OAKS DAM",
@@ -859,9 +859,9 @@
     "Longitude":-117.0978,
     "County":"SAN BERNARDINO",
     "Operating Agency":"Orange, Riverside and San Bernardino Counties",
-    "National ID":"",
-    "Year Built":null,
-    "Capacity (Ac-ft)":null
+    "National ID":"CA01530",
+    "Year Built":1999,
+    "Capacity (Ac-ft)":145600
   },
   {
     "Station":"SHASTA DAM (USBR)",
@@ -871,9 +871,9 @@
     "Longitude":-122.42,
     "County":"SHASTA",
     "Operating Agency":"US Bureau of Reclamation",
-    "National ID":"",
-    "Year Built":null,
-    "Capacity (Ac-ft)":null
+    "National ID":"CA10186",
+    "Year Built":1945,
+    "Capacity (Ac-ft)":4552000
   },
   {
     "Station":"SILVER LAKE RESERVOIR",
@@ -883,9 +883,9 @@
     "Longitude":-120.121,
     "County":"AMADOR",
     "Operating Agency":"El Dorado Irrigation District",
-    "National ID":"",
-    "Year Built":null,
-    "Capacity (Ac-ft)":null
+    "National ID":"CA00377",
+    "Year Built":1876,
+    "Capacity (Ac-ft)":3840
   },
   {
     "Station":"SLAB CREEK",
@@ -895,9 +895,9 @@
     "Longitude":-120.6994,
     "County":"EL DORADO",
     "Operating Agency":"Sacramento Municipal Utility District",
-    "National ID":"",
-    "Year Built":null,
-    "Capacity (Ac-ft)":null
+    "National ID":"CA00823",
+    "Year Built":1967,
+    "Capacity (Ac-ft)":16600
   },
   {
     "Station":"SLY CREEK",
@@ -907,9 +907,9 @@
     "Longitude":-121.116,
     "County":"BUTTE",
     "Operating Agency":"South Feather Water and Power Agency",
-    "National ID":"",
-    "Year Built":null,
-    "Capacity (Ac-ft)":null
+    "National ID":"CA00272",
+    "Year Built":1961,
+    "Capacity (Ac-ft)":65050
   },
   {
     "Station":"SPICER MEADOWS",
@@ -931,9 +931,9 @@
     "Longitude":-122.474,
     "County":"SHASTA",
     "Operating Agency":"US Bureau of Reclamation",
-    "National ID":"",
-    "Year Built":null,
-    "Capacity (Ac-ft)":null
+    "National ID":"CA10190",
+    "Year Built":1963,
+    "Capacity (Ac-ft)":5874
   },
   {
     "Station":"STAMPEDE",
@@ -943,9 +943,9 @@
     "Longitude":-120.103,
     "County":"SIERRA",
     "Operating Agency":"US Geological Survey",
-    "National ID":"",
-    "Year Built":null,
-    "Capacity (Ac-ft)":null
+    "National ID":"CA10192",
+    "Year Built":1970,
+    "Capacity (Ac-ft)":226500
   },
   {
     "Station":"STRAWBERRY",
@@ -967,9 +967,9 @@
     "Longitude":-120.603,
     "County":"EL DORADO",
     "Operating Agency":"Georgetown Divide Public Utility District",
-    "National ID":"",
-    "Year Built":null,
-    "Capacity (Ac-ft)":null
+    "National ID":"CA00607",
+    "Year Built":1962,
+    "Capacity (Ac-ft)":20000
   },
   {
     "Station":"SUCCESS DAM",
@@ -979,9 +979,9 @@
     "Longitude":-118.922,
     "County":"TULARE",
     "Operating Agency":"US Army Corps of Engineers",
-    "National ID":"",
-    "Year Built":null,
-    "Capacity (Ac-ft)":null
+    "National ID":"CA10113",
+    "Year Built":1961,
+    "Capacity (Ac-ft)":82300
   },
   {
     "Station":"TERMINUS DAM",
@@ -991,9 +991,9 @@
     "Longitude":-119.002,
     "County":"TULARE",
     "Operating Agency":"US Army Corps of Engineers",
-    "National ID":"",
-    "Year Built":null,
-    "Capacity (Ac-ft)":null
+    "National ID":"CA10114",
+    "Year Built":1962,
+    "Capacity (Ac-ft)":143000
   },
   {
     "Station":"THERMALITO AFTERBAY",
@@ -1003,9 +1003,9 @@
     "Longitude":-121.633,
     "County":"BUTTE",
     "Operating Agency":"CA Dept of Water Resources",
-    "National ID":"",
-    "Year Built":null,
-    "Capacity (Ac-ft)":null
+    "National ID":"CA00042",
+    "Year Built":1967,
+    "Capacity (Ac-ft)":57041
   },
   {
     "Station":"TRINITY LAKE",
@@ -1015,8 +1015,8 @@
     "Longitude":-122.762,
     "County":"TRINITY",
     "Operating Agency":"US Bureau of Reclamation",
-    "National ID":"",
-    "Year Built":null,
+    "National ID":"CA10196",
+    "Year Built":1962,
     "Capacity (Ac-ft)":2447650
   },
   {
@@ -1027,9 +1027,9 @@
     "Longitude":-120.603,
     "County":"CALAVERAS",
     "Operating Agency":"US Bureau of Reclamation",
-    "National ID":"",
-    "Year Built":null,
-    "Capacity (Ac-ft)":null
+    "National ID":"CA00265",
+    "Year Built":1958,
+    "Capacity (Ac-ft)":68400
   },
   {
     "Station":"UNION VALLEY",
@@ -1039,21 +1039,9 @@
     "Longitude":-120.438,
     "County":"EL DORADO",
     "Operating Agency":"Sacramento Municipal Utility District",
-    "National ID":"",
-    "Year Built":null,
-    "Capacity (Ac-ft)":null
-  },
-  {
-    "Station":"UPPER SAN JOAQUIN TOTAL",
-    "ID":"SJT",
-    "Elev":9999,
-    "Latitude":99.999,
-    "Longitude":-999.999,
-    "County":"none specified",
-    "Operating Agency":"None Specified",
-    "National ID":"",
-    "Year Built":null,
-    "Capacity (Ac-ft)":null
+    "National ID":"CA00816",
+    "Year Built":1963,
+    "Capacity (Ac-ft)":230000
   },
   {
     "Station":"VAN ARSDALE RESERVOIR 24HR AVG",
@@ -1063,9 +1051,9 @@
     "Longitude":-123.1025,
     "County":"MENDOCINO",
     "Operating Agency":"Pacific Gas & Electric",
-    "National ID":"",
-    "Year Built":null,
-    "Capacity (Ac-ft)":null
+    "National ID":"CA00399",
+    "Year Built":1907,
+    "Capacity (Ac-ft)":700
   },
   {
     "Station":"WARM SPRINGS (USACE)",
@@ -1075,9 +1063,9 @@
     "Longitude":-123.01,
     "County":"SONOMA",
     "Operating Agency":"US Army Corps of Engineers",
-    "National ID":"",
-    "Year Built":null,
-    "Capacity (Ac-ft)":null
+    "National ID":"CA10303",
+    "Year Built":1982,
+    "Capacity (Ac-ft)":381000
   },
   {
     "Station":"WHISKEYTOWN DAM (USBR)",
@@ -1087,9 +1075,9 @@
     "Longitude":-122.537,
     "County":"SHASTA",
     "Operating Agency":"US Bureau of Reclamation",
-    "National ID":"",
-    "Year Built":null,
-    "Capacity (Ac-ft)":null
+    "National ID":"CA10204",
+    "Year Built":1963,
+    "Capacity (Ac-ft)":241100
   },
   {
     "Station":"WISHON",
@@ -1099,8 +1087,8 @@
     "Longitude":-118.969,
     "County":"FRESNO",
     "Operating Agency":"Pacific Gas & Electric",
-    "National ID":"",
-    "Year Built":null,
-    "Capacity (Ac-ft)":null
+    "National ID":"CA00411",
+    "Year Built":1958,
+    "Capacity (Ac-ft)":118000
   }
 ]
