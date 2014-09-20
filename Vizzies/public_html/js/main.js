@@ -329,4 +329,16 @@ $(document).ready(function () {
 		.on("leave", function (e) {
 			vectorLayer4.setOpacity(0);
 		});
+		
+		new ScrollScene({triggerElement: "#feature5"})
+		.setTween(TweenMax.to("#feature5", 1, {backgroundPosition: bgPosMovement, ease: Linear.easeNone}))
+		.addTo(controller)
+		.on("enter", function (e) {
+			flyToFeatureExtent(vectorSource5);
+			vectorLayer5.setOpacity(1);
+		})
+		.on("leave", function (e) {
+			vectorLayer5.setOpacity(0);
+		});
+		
 });
