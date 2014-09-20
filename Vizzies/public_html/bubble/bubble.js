@@ -13,7 +13,7 @@ var margin = {top: 19.5, right: 19.5, bottom: 19.5, left: 39.5},
 
 // Various scales. These domains make assumptions of data, naturally.
 var xScale = d3.scale.log().domain([0, 5000]).range([0, width]),
-    yScale = d3.scale.linear().domain([10, 85]).range([height, 0]),
+    yScale = d3.scale.linear().domain([0, 100]).range([height, 0]),
     radiusScale = d3.scale.sqrt().domain([0, 800]).range([0, 40]),
     colorScale = d3.scale.category10();
 
@@ -65,7 +65,7 @@ var label = svg.append("text")
     .text(1800);
 
 // Load the data.
-d3.json("abbrev.reservoirs.json", function(nations) {
+d3.json("abbrev.reservoirs.json", function(reservoirs) {
 
   // A bisector since many nation's data is sparsely-defined.
   var bisect = d3.bisector(function(d) { return d[0]; });
@@ -74,13 +74,14 @@ d3.json("abbrev.reservoirs.json", function(nations) {
   var dot = svg.append("g")
       .attr("class", "dots")
     .selectAll(".dot")
-      .data(interpolateData(1800))
-    .enter().append("circle")
+      .data(interpolateData(1800));
+
+    dot.enter().append("circle")
       .attr("class", "dot")
       .style("fill", function(d) { return colorScale(color(d)); })
       .call(position)
       .sort(order);
-
+  dot.exit().remove();
   // Add a title.
   dot.append("title")
       .text(function(d) { return d.name; });
@@ -88,20 +89,12 @@ d3.json("abbrev.reservoirs.json", function(nations) {
   // Add an overlay for the year label.
   var box = label.node().getBBox();
 
-  var overlay = svg.append("rect")
-        .attr("class", "overlay")
-        .attr("x", box.x)
-        .attr("y", box.y)
-        .attr("width", box.width)
-        .attr("height", box.height)
-        .on("mouseover", enableInteraction);
-
-  // Start a transition that interpolates the data based on year.
-  svg.transition()
-      .duration(30000)
-      .ease("linear")
-      .tween("year", tweenYear)
-      .each("end", enableInteraction);
+   // Start a transition that interpolates the data based on year.
+  // svg.transition()
+  //     .duration(30000)
+  //     .ease("linear")
+  //     .tween("year", tweenYear)
+  //     .each("end", enableInteraction);
 
   // Positions the dots based on data.
   function position(dot) {
@@ -113,35 +106,6 @@ d3.json("abbrev.reservoirs.json", function(nations) {
   // Defines a sort order so that the smallest dots are drawn on top.
   function order(a, b) {
     return radius(b) - radius(a);
-  }
-
-  // After the transition finishes, you can mouseover to change the year.
-  function enableInteraction() {
-    var yearScale = d3.scale.linear()
-        .domain([1800, 2009])
-        .range([box.x + 10, box.x + box.width - 10])
-        .clamp(true);
-
-    // Cancel the current transition, if any.
-    svg.transition().duration(0);
-
-    overlay
-        .on("mouseover", mouseover)
-        .on("mouseout", mouseout)
-        .on("mousemove", mousemove)
-        .on("touchmove", mousemove);
-
-    function mouseover() {
-      label.classed("active", true);
-    }
-
-    function mouseout() {
-      label.classed("active", false);
-    }
-
-    function mousemove() {
-      displayYear(yearScale.invert(d3.mouse(this)[0]));
-    }
   }
 
   // Tweens the entire chart by first tweening the year, and then the data.
@@ -156,21 +120,23 @@ d3.json("abbrev.reservoirs.json", function(nations) {
     dot.data(interpolateData(year), key).call(position).sort(order);
     label.text(Math.round(year));
   }
-
+  var yearCounter = 1800;
+setInterval(function(){
+  displayYear(yearCounter);
+  yearCounter += 1;
+}, 1000);
   // Interpolates the dataset for the given (fractional) year.
   function interpolateData(year) {
-    return nations;
-  }
-
-  // Finds (and possibly interpolates) the value for the specified year.
-  function interpolateValues(values, year) {
-    var i = bisect.left(values, year, 0, values.length - 1),
-        a = values[i];
-    if (i > 0) {
-      var b = values[i - 1],
-          t = (year - a[0]) / (b[0] - a[0]);
-      return a[1] * (1 - t) + b[1] * t;
-    }
-    return a[1];
+    var truncatedYear = year.toFixed(0);
+    var strYear = '' + truncatedYear;
+     return reservoirs.map(function(d) {
+      return {
+        name: d.name,
+        region: d.region,
+        elevation: d.elevation,
+        maxVolume: d.maxVolume,
+        volume: d.volume[strYear]
+      };
+    });
   }
 });
