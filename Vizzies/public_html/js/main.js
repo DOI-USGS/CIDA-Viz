@@ -201,6 +201,16 @@ $(document).ready(function () {
 			url: 'data/drought_shp/USDM_20140916.json',
 			projection: ol.proj.get('EPSG:3857')
 		}),
+		style: new ol.style.Style({
+			stroke: new ol.style.Stroke({
+				color: 'blue',
+				lineDash: [4],
+				width: 3
+			}),
+			fill: new ol.style.Fill({
+				color: 'rgba(0, 0, 255, 0.1)'
+			})
+		}),
 		style: 
 			function (feature) {
 			var dm = feature.values_.DM,
@@ -340,4 +350,5 @@ $(document).ready(function () {
 		.on("leave", function (e) {
 			vectorLayer4.setOpacity(0);
 		});
+		
 });
