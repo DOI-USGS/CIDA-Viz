@@ -198,7 +198,7 @@ $(document).ready(function () {
 
 	var geoJSONLayer = new ol.layer.Vector({
 		source: new ol.source.GeoJSON({
-			url: '../../ca_drought/shp/USDM_20060627_shp.json',
+			url: 'data/drought_shp/USDM_20140916.json',
 			projection: ol.proj.get('EPSG:4326')
 		}),
 		style: new ol.style.Style({
