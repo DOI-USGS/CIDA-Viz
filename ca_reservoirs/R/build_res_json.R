@@ -1,5 +1,5 @@
 library(rjson)
-week_time <- seq.POSIXt(as.POSIXlt('2001-01-04'), as.POSIXlt('2014-09-20'), by = 'week')
+week_time <- seq.POSIXt(as.POSIXlt('2000-01-04'), as.POSIXlt('2014-09-20'), by = 'week')
 
 
 sites = read.csv('../Data/ca_reservoirs.csv', as.is=TRUE)
