@@ -1044,18 +1044,6 @@
     "Capacity (Ac-ft)":230000
   },
   {
-    "Station":"UPPER SAN JOAQUIN TOTAL",
-    "ID":"SJT",
-    "Elev":9999,
-    "Latitude":99.999,
-    "Longitude":-999.999,
-    "County":"none specified",
-    "Operating Agency":"None Specified",
-    "National ID":"",
-    "Year Built":null,
-    "Capacity (Ac-ft)":null
-  },
-  {
     "Station":"VAN ARSDALE RESERVOIR 24HR AVG",
     "ID":"VAR",
     "Elev":1494,
