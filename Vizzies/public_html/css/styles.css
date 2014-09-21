@@ -26,8 +26,13 @@ header,
 footer{	height:100%;
 			padding:15px 15px;
 			font-family:"Open Sans";
-			position:relative;}
-  
+			position:relative;
+	}
+ 
+.spacer {
+	height: 10em;
+} 
+
 .top{width:50%;
 	margin:0 auto;
 	padding:3px 15px 10px 15px;
@@ -42,16 +47,17 @@ footer{	height:100%;
 .top h1#bottom{color:#fff;}
 
 .left,
-.right{	width:19%;
-		height:47%;
+.right{	
+		display: block;
+		width:19%;
 		margin: auto;
 		position: absolute;
 		padding:1% 1%;}
 		
-.left{top: 0; left: 35px; bottom: 195px; right: auto;
+.left{left: 35px; right: auto;
 		background:rgba(255,255,255,.8);}
 
-.right{top: 0; left: auto; bottom: 195px; right: 35px;
+.right{left: auto; right: 35px;
 		background:rgba(80,146,204,.6);}
 		
 .left h2{color:rgb(80,146,204);
@@ -63,14 +69,22 @@ footer{	height:100%;
 .bottom{width:50%;
 		margin: auto;
   		position: absolute;
-  		top: auto; left: 0; bottom: 200px; right: 0;
+  		top: auto; left: 0; bottom: 150px; right: 0;
+		
 		}
 		
 .bottom h2{color:#fff;
-			margin-bottom:5px;}
+			display: inline:block;
+			margin-bottom:5px;
+			padding-top: 20px;
+			clear: both;
+			}
 			
 .bottom p{float:left;
-			margin-right:10px;}
+			margin-right:10px;
+			clear: both;
+			margin: .25em;
+		}
 			
 footer{padding-top:5%;
 		height:95%;}
