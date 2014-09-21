@@ -12,9 +12,9 @@ var margin = {top: 19.5, right: 19.5, bottom: 19.5, left: 39.5},
     height = 500 - margin.top - margin.bottom;
 
 // Various scales. These domains make assumptions of data, naturally.
-var xScale = d3.scale.linear().domain([0, 5000]).range([0, width]),
+var xScale = d3.scale.linear().domain([0, 8500]).range([0, width]),
     yScale = d3.scale.linear().domain([0, 100]).range([height, 0]),
-    radiusScale = d3.scale.sqrt().domain([0, 800]).range([0, 40]),
+    radiusScale = d3.scale.sqrt().domain([10, 1000000]).range([2, 10]),
     colorScale = d3.scale.category10();
 
 // The x & y axes.
@@ -62,10 +62,16 @@ var label = svg.append("text")
     .attr("text-anchor", "end")
     .attr("y", height - 24)
     .attr("x", width)
-    .text(1800);
+    .text("20000104");
 
+var timesteps = [];
+$.ajax('../data/drought_shp/times.json', {
+	success: function(data) {
+		timesteps = data.d.reverse();
+	}
+});
 // Load the data.
-d3.json("abbrev.reservoirs.json", function(reservoirs) {
+d3.json("../data/reservoirs/reservoir_storage.json", function(reservoirs) {
 
   // A bisector since many nation's data is sparsely-defined.
   var bisect = d3.bisector(function(d) { return d[0]; });
@@ -74,7 +80,7 @@ d3.json("abbrev.reservoirs.json", function(reservoirs) {
   var dot = svg.append("g")
       .attr("class", "dots")
     .selectAll(".dot")
-      .data(interpolateData(1800));
+      .data(interpolateData("20000104"));
 
     dot.enter().append("circle")
       .attr("class", "dot")
@@ -123,22 +129,24 @@ d3.json("abbrev.reservoirs.json", function(reservoirs) {
     dotData.call(position).sort(order);
     label.text(Math.round(year));
   }
-  var yearCounter = 1800;
-setInterval(function(){
-  displayYear(yearCounter);
-  yearCounter += 1;
-}, 1000);
+  
+  var timestepCounter = 0;
+  setInterval(function(){
+    displayYear(timesteps[timestepCounter]);
+    timestepCounter += 1;
+  }, 1000);
+
   // Interpolates the dataset for the given (fractional) year.
-  function interpolateData(year) {
-    var truncatedYear = year.toFixed(0);
-    var strYear = '' + truncatedYear;
+  function interpolateData(timestep) {
+    //var truncatedYear = year.toFixed(0);
+    //var strDate = '' + timestep;
     var unfilteredReservoirs = reservoirs.map(function(d) {
       return {
-        name: d.name,
-        region: d.region,
-        elevation: d.elevation,
-        maxVolume: d.maxVolume,
-        volume: d.volume[strYear]
+        name: d.Station,
+        region: d.ID,
+        elevation: d.Elev,
+        maxVolume: d.Capacity,
+        volume: d.Storage[timestep] / d.Capacity * 100
       };
     });
     filteredReservoirs = unfilteredReservoirs.filter(function(d){
