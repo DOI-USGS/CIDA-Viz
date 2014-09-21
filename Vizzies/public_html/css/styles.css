@@ -16,6 +16,7 @@ body{height:100%;}
   background:rgb(250,250,250);
   border:10px solid rgb(255,255,255);
   box-shadow:1px 1px 5px rgba(0,0,0,.1);
+  z-index: -999;
   }
   
 header,
