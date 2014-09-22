@@ -23,74 +23,73 @@
         <![endif]-->
 
 		<div id="map" class="map"></div>
-
+		<div id="clearDiv" style="position: fixed; top:0;bottom:0;left:0;right:0;height:100%;z-index:999;"></div>
+		<div id="time-indicator"></div>
 		<header>
-
-			<div class="top">
+			<div id="startTrigger" class="top">
 				<h1>The Project Name</h1>
 				<p>California is experiencing the worst drought in recorded history. </p>
 			</div>
-
+			<div class="spacer s1"></div>
 		</header><!--header-->
+		<div class="spacer s0"></div>
+		<section>
+			<div class="spacer s2"></div>
+			<div id="trigger1"></div>
 
-		<div id="feature1">
+			<div id="feature1">
+				<div class="left">
+					<h2>2014 California Drought</h2>
 
-			<div class="left">
+					<p>In 2014, California has received only 20% of its normal precipitation and had only 18% of its normal snow pack, and has faced a devastating three years of drought. Right now, 100% of California faces severe drought conditions according to the National Drought Mitigation Center.</p>
+				</div>
+			</div>
+			<div class="spacer s2"></div>
+		</section>
+		<div class="spacer s0"></div>
+		<section>
+			<div class="spacer s0"></div>
+			<div id="trigger2"></div>
 
-				<h2>2014 California Drought</h2>
+			<div id="feature2">
+				<div class="right">
+					<h2>Snowpack</h2>
 
-				<p>In 2014, California has received only 20% of its normal precipitation and had only 18% of its normal snow pack, and has faced a devastating three years of drought. Right now, 100% of California faces severe drought conditions according to the National Drought Mitigation Center.</p>
-
+					<p>Snowpack in California is the primary source of water to reservoirs that serve drinking water, agriculture and hydroelectric needs.</p>
+				</div>
 			</div>
 
-		</div><!--feature1-->
-
-
+			<div class="spacer s0"></div>
+		</section>
 		<div class="spacer s0"></div>
+		<section>
+			<div class="spacer s0"></div>
+			<div id="trigger3"></div>
 
-		<div id="feature2">
+			<div id="feature3">
+				<div class="left">
+					<h2>Reservoir Storage</h2>
 
-			<div class="right">
-
-				<h2>Snowpack</h2>
-
-				<p>Snowpack in California is the primary source of water to reservoirs that serve drinking water, agriculture and hydroelectric needs.</p>
-
+					<p>Drought reduces snowpack and results in lower reservoir storage and capacity. For the first time in history, some agricultural areas are not receiving any water for irrigation which is resulting in devastation of historically productive areas. The agricultural output for the state could fall by 3.5$ billion dollars this year.</p>
+				</div>
 			</div>
-
-		</div><!--feature2-->
-
+			<div class="spacer s0"></div>
+		</section>
 		<div class="spacer s0"></div>
+		<section>
+			<div class="spacer s0"></div>
+			<div id="trigger4"></div>
 
-		<div id="feature3">
+			<div id="feature4">
+				<div class="right">
+					<h2>Wildfires</h2>
 
-			<div class="left">
-
-				<h2>Reservoir Storage</h2>
-
-				<p>Drought reduces snowpack and results in lower reservoir storage and capacity. For the first time in history, some agricultural areas are not receiving any water for irrigation which is resulting in devastation of historically productive areas. The agricultural output for the state could fall by 3.5$ billion dollars this year.</p>
-
+					<p>As of September 19, California has eight large, active wildfires spread over an area of 205 acres and growing. In 2013, over 575,000 acres were consumed by over 1500 fires. </p>
+				</div>
 			</div>
-
-		</div><!--feature3-->
-
-
+			<div class="spacer s0"></div>
+		</section>
 		<div class="spacer s0"></div>
-
-		<div id="feature4">
-
-			<div class="right">
-
-				<h2>Wildfires</h2>
-
-				<p>As of September 19, California has eight large, active wildfires spread over an area of 205 acres and growing. In 2013, over 575,000 acres were consumed by over 1500 fires. </p>
-
-			</div>
-
-		</div><!--feature4-->
-
-		<div class="spacer s0"></div>
-
 		<footer>
 
 			<div class="top">
@@ -125,6 +124,7 @@
 		<!--<script src="http://openlayers.org/en/v3.0.0/build/ol.js" type="text/javascript"></script>-->
 		<script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/1.13.2/TweenMax.min.js" type="text/javascript"></script>
 		<script src="js/vendor/scrollmagic/jquery.scrollmagic.min.js" type="text/javascript"></script>
+		<script src="js/vendor/scrollmagic/jquery.scrollmagic.debug.js" type="text/javascript"></script>
 		<script src="js/vendor/sugar/sugar.min.js"></script>
 		<script src="js/vendor/openlayers/ol-debug.js"></script>
         <script src="js/plugins.js"></script>
