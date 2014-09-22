@@ -7,14 +7,16 @@ function color(d) { return d.region; }
 function key(d) { return d.name; }
 
 // Chart dimensions.
-var margin = {top: 19.5, right: 19.5, bottom: 19.5, left: 39.5},
-    width = 960 - margin.right,
+var margin = {top: 50, right: 50, bottom: 50, left: 100},
+    largestMargin = Object.values(margin).min();
+    width = 960 - margin.right - margin.left,
     height = 500 - margin.top - margin.bottom;
 
 // Various scales. These domains make assumptions of data, naturally.
 var xScale = d3.scale.linear().domain([0, 5000]).range([0, width]),
     yScale = d3.scale.linear().domain([0, 100]).range([height, 0]),
-    radiusScale = d3.scale.sqrt().domain([0, 800]).range([0, 40]),
+    //bubbles should not be drawn off of the chart, therefore prevent radius from exceeding the smallest margin value 
+    radiusScale = d3.scale.sqrt().domain([0, 800]).range([0, largestMargin]),
     colorScale = d3.scale.category10();
 
 // The x & y axes.
@@ -66,7 +68,7 @@ var label = svg.append("text")
 
 // Load the data.
 d3.json("abbrev.reservoirs.json", function(reservoirs) {
-
+//d3.json("../../../ca_reservoirs/storage_data/reservoir.json", function(reservoirs) {
   // A bisector since many nation's data is sparsely-defined.
   var bisect = d3.bisector(function(d) { return d[0]; });
 

@@ -19,11 +19,11 @@
   {
     "name": "B",
     "region": "AWESOME CALIFORNIA",
-    "elevation" : 400,
-    "maxVolume" : 900,
+    "elevation" : 0,
+    "maxVolume" : 800,
     "volume": {
-        "1800" : 90,
-        "1801" : 10,
+        "1800" : 0,
+        "1801" : 100,
         "1802" : 90,
         "1803" : 10,
         "1804" : 90,
