@@ -37,7 +37,7 @@
     "name": "C",
     "region": "BAJA CALIFORNIA",
     "elevation" : 2000,
-    "maxVolume" : 90,
+    "maxVolume" : 10,
     "volume": {
         "1800" : 50,
         "1801" : 20,

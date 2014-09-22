@@ -8,15 +8,73 @@ function key(d) { return d.name; }
 
 // Chart dimensions.
 var margin = {top: 50, right: 50, bottom: 50, left: 100},
-    largestMargin = Object.values(margin).min();
+    smallestMargin = Object.values(margin).min();
     width = 960 - margin.right - margin.left,
-    height = 500 - margin.top - margin.bottom;
+    height = 500 - margin.top - margin.bottom,
+    //scale computed later dynamically based on available width
+    xScale = undefined,
+    radiusScale = undefined,
+    //this is entirely fixed
+    yScale = yScale = d3.scale.linear().domain([0, 100]).range([height, 0]);
 
-// Various scales. These domains make assumptions of data, naturally.
-var xScale = d3.scale.linear().domain([0, 5000]).range([0, width]),
-    yScale = d3.scale.linear().domain([0, 100]).range([height, 0]),
+
+var getMaxElevation = function(reservoirs){
+  return getExtremeElevation('max', reservoirs);
+};
+var getMinElevation = function(reservoirs){
+  return getExtremeElevation('min', reservoirs);
+};
+
+var getExtremeElevation = function(minOrMax, reservoirs){
+  return getExtremeProperty(minOrMax, reservoirs, 'elevation');
+};
+
+
+var getMinCapacity = function(reservoirs){
+  return getExtremeCapacity('min', reservoirs);
+};
+
+var getMaxCapacity = function(reservoirs){
+  return getExtremeCapacity('max', reservoirs);
+};
+
+var getExtremeCapacity = function(minOrMax, reservoirs){
+  return getExtremeProperty(minOrMax, reservoirs, 'maxVolume');
+};
+
+/**
+ * get either max or min
+ * @param {String} minOrMax - one of 'min' or 'max'
+ * @param {Array} reservoirs - an array of reservoir objects
+ * @param {String} propertyName - name of property to examine
+ */
+var getExtremeProperty = function(minOrMax, reservoirs, propertyName){
+  return reservoirs[minOrMax](function(reservoir){return reservoir[propertyName];})[propertyName];
+};
+
+
+var setXscale = function(dataMax, dataMin, displayMax){
+  xScale = d3.scale.linear().domain([dataMin, dataMax]).range([0, displayMax]);
+};
+
+var setRadiusScale = function(dataMax, dataMin, displayMax){
+  radiusScale = d3.scale.sqrt().domain([dataMin, dataMax]).range([5, displayMax]);
+};
+
+
+// Load the data.
+d3.json("abbrev.reservoirs.json", function(reservoirs) {
+//d3.json("../../../ca_reservoirs/storage_data/reservoir.json", function(reservoirs) {
+    
+    //perform multiple linear scans over reservoirs to determine dataset ranges
+    //@todo: optimize to one-pass scan later if needed
+    var maxElevation = getMaxElevation(reservoirs);
+    var minElevation = getMinElevation(reservoirs);
+    setXscale(maxElevation, minElevation, width);
+    var minCapacity = getMinCapacity(reservoirs);
+    var maxCapacity = getMaxCapacity(reservoirs);
     //bubbles should not be drawn off of the chart, therefore prevent radius from exceeding the smallest margin value 
-    radiusScale = d3.scale.sqrt().domain([0, 800]).range([0, largestMargin]),
+    setRadiusScale(maxCapacity, minCapacity, smallestMargin);
     colorScale = d3.scale.category10();
 
 // The x & y axes.
@@ -66,9 +124,7 @@ var label = svg.append("text")
     .attr("x", width)
     .text(1800);
 
-// Load the data.
-d3.json("abbrev.reservoirs.json", function(reservoirs) {
-//d3.json("../../../ca_reservoirs/storage_data/reservoir.json", function(reservoirs) {
+
   // A bisector since many nation's data is sparsely-defined.
   var bisect = d3.bisector(function(d) { return d[0]; });
 
