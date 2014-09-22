@@ -186,7 +186,7 @@ $(document).ready(function () {
 			var timesArray = data.d.reverse();
 			new ScrollScene({triggerElement: "#trigger1", duration: 40000})
 				.setPin("#feature1")
-				.setTween(TweenMax.fromTo("#time-indicator", 1, {x: 0}, {x: $(window).width()}))
+				.setTween(TweenMax.fromTo("#time-indicator", 1, {x: 0}, {x: $(window).width() - 400}))
 				.on("progress", function (e) {
 					var index = Math.floor(timesArray.length * e.progress);
 					updateTimestep(timesArray[index]);
