@@ -16,8 +16,12 @@ var margin = {top: 50, right: 50, bottom: 50, left: 100},
     radiusScale = undefined,
     //this is entirely fixed
     yScale = yScale = d3.scale.linear().domain([0, 100]).range([height, 0]);
-
-
+  
+  var dateCounter = Date.create("January 1, 2000");
+  var dateDisplayFormat = '{yyyy}-{MM}-{dd}';
+  var formatDateForDisplay = function(date){
+      return date.format(dateDisplayFormat);
+  };
 var getMaxElevation = function(reservoirs){
   return getExtremeElevation('max', reservoirs);
 };
@@ -26,7 +30,7 @@ var getMinElevation = function(reservoirs){
 };
 
 var getExtremeElevation = function(minOrMax, reservoirs){
-  return getExtremeProperty(minOrMax, reservoirs, 'elevation');
+  return getExtremeProperty(minOrMax, reservoirs, 'Elev');
 };
 
 
@@ -39,7 +43,7 @@ var getMaxCapacity = function(reservoirs){
 };
 
 var getExtremeCapacity = function(minOrMax, reservoirs){
-  return getExtremeProperty(minOrMax, reservoirs, 'maxVolume');
+  return getExtremeProperty(minOrMax, reservoirs, 'Capacity');
 };
 
 /**
@@ -122,27 +126,11 @@ var label = svg.append("text")
     .attr("text-anchor", "end")
     .attr("y", height - 24)
     .attr("x", width)
-    .text(1800);
+    .text(formatDateForDisplay(dateCounter));
 
 
   // A bisector since many nation's data is sparsely-defined.
   var bisect = d3.bisector(function(d) { return d[0]; });
-
-  // Add a dot per nation. Initialize the data at 1800, and set the colors.
-  var dot = svg.append("g")
-      .attr("class", "dots")
-    .selectAll(".dot")
-      .data(interpolateData(1800));
-
-    dot.enter().append("circle")
-      .attr("class", "dot")
-      .style("fill", function(d) { return colorScale(color(d)); })
-      .call(position)
-      .sort(order);
-  dot.exit().remove();
-  // Add a title.
-  dot.append("title")
-      .text(function(d) { return d.name; });
 
   // Add an overlay for the year label.
   var box = label.node().getBBox();
@@ -169,34 +157,46 @@ var label = svg.append("text")
   // Tweens the entire chart by first tweening the year, and then the data.
   // For the interpolated data, the dots and label are redrawn.
   function tweenYear() {
-    var year = d3.interpolateNumber(1800, 2009);
+    var year = d3.interpolateNumber(2000, 2014);
     return function(t) { displayYear(year(t)); };
   }
 
   // Updates the display to show the specified year.
-  function displayYear(year) {
-    var interpolatedData = interpolateData(year);
-    var dotData = dot.data(interpolatedData, key);
-    dotData.exit().remove();
-    dotData.call(position).sort(order);
-    label.text(Math.round(year));
+  function displayYear(date) {
+    var interpolatedData = interpolateData(date);
+ var dot = svg.append("g")
+      .attr("class", "dots")
+    .selectAll(".dot")
+      .data(interpolateData(dateCounter));
+
+    dot.enter().append("circle")
+      .attr("class", "dot")
+      .style("fill", function(d) { return colorScale(color(d)); })
+      .call(position)
+      .sort(order);
+  dot.exit().remove();
+  // Add a title.
+  dot.append("title")
+      .text(function(d) { return d.name; });
+    dot.call(position);
+    label.text(formatDateForDisplay(date));
   }
-  var yearCounter = 1800;
+
 setInterval(function(){
-  displayYear(yearCounter);
-  yearCounter += 1;
-}, 1000);
+  displayYear(dateCounter);
+  // dateCounter = dateCounter.advance('1 day');
+}, 100);
   // Interpolates the dataset for the given (fractional) year.
-  function interpolateData(year) {
-    var truncatedYear = year.toFixed(0);
-    var strYear = '' + truncatedYear;
+  var dateLookupFormat = '{yyyy}{MM}{dd}';
+  function interpolateData(date) {
+    var dateLookupKey = date.format(dateLookupFormat);
     var unfilteredReservoirs = reservoirs.map(function(d) {
       return {
-        name: d.name,
-        region: d.region,
-        elevation: d.elevation,
-        maxVolume: d.maxVolume,
-        volume: d.volume[strYear]
+        name: d["Station"],
+        region: d["County"],
+        elevation: d["Elev"],
+        maxVolume: d["Capacity"],
+        volume: d["Storage"][dateLookupKey]
       };
     });
     filteredReservoirs = unfilteredReservoirs.filter(function(d){

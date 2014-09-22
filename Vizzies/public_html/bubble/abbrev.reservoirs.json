@@ -1,53 +1,47 @@
 [
-  {
-    "name": "Angola",
-    "region": "SUPER CALIFORNIA",
-    "elevation" : 4000,
-    "maxVolume" : 600,
-    "volume": {
-        "1800" : 15,
-        "1801" : 40,
-        "1802" : 15,
-        "1803" : 85,
-        "1804" : 15,
-        "1805" : 85,
-        "1806" : 15,
-        "1807" : 85,
-  	   "1809":90
-	   }
-},
-  {
-    "name": "B",
-    "region": "AWESOME CALIFORNIA",
-    "elevation" : 0,
-    "maxVolume" : 800,
-    "volume": {
-        "1800" : 0,
-        "1801" : 100,
-        "1802" : 90,
-        "1803" : 10,
-        "1804" : 90,
-        "1805" : 10,
-        "1806" : 90,
-        "1807" : 10,
-       "1809":90
-     }
-},
-  {
-    "name": "C",
-    "region": "BAJA CALIFORNIA",
-    "elevation" : 2000,
-    "maxVolume" : 10,
-    "volume": {
-        "1800" : 50,
-        "1801" : 20,
-        "1802" : 50,
-        "1803" : 20,
-        "1804" : 50,
-        "1805" : 20,
-        "1806" : 50,
-        "1807" : 20,
-       "1809":90
-     }
-}
+   {
+    "Station": "A Station",
+    "ID": "A",
+    "Elev": 10000,
+    "Latitude": 40.18,
+    "Longitude": -120.607,
+    "County": "A County",
+    "Nat_ID": "CA00037",
+    "Year_Built": 1964,
+    "Capacity": 100,
+    "Storage": {
+      "20000104": 11683.285714286,
+      "20000111": 15240.714285714
+    }
+  },
+   {
+    "Station": "B Station",
+    "ID": "B",
+    "Elev": 1000,
+    "Latitude": 40.18,
+    "Longitude": -120.607,
+    "County": "B County",
+    "Nat_ID": "CA00038",
+    "Year_Built": 1964,
+    "Capacity": 1000,
+    "Storage": {
+      "20000104": 11683.285714286,
+      "20000111": 15240.714285714
+    }
+  },
+   {
+    "Station": "C Station",
+    "ID": "C",
+    "Elev": 100,
+    "Latitude": 40.18,
+    "Longitude": -120.607,
+    "County": "C County",
+    "Nat_ID": "CA00039",
+    "Year_Built": 1964,
+    "Capacity": 10000,
+    "Storage": {
+      "20000104": 11683.285714286,
+      "20000111": 15240.714285714
+    }
+  }
 ]
