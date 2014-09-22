@@ -51,6 +51,11 @@ $(document).ready(function () {
 		layer.layer_type = 'fire';
 		return layer;
 	};
+	
+	var getInitialDroughtLayer = function () {
+		return getDroughtLayer('20140916_US');
+	};
+	
 	var getDroughtLayer = function (timestep) {
 		var layer = new ol.layer.Vector({
 			source: new ol.source.GeoJSON({
@@ -65,10 +70,16 @@ $(document).ready(function () {
 		return layer;
 	};
 	
-	var view = new ol.View({
-		center: [0, 0],
-		zoom: 2
+	var continentalView = new ol.View({
+		center: ol.proj.transform([-98.5, 39.5], "EPSG:4326", "EPSG:3857"),
+		zoom: 4
 	});
+	
+	var californiaView = new ol.View({
+		center : [-13319610.800861657, 4501835.217883743],
+		zoom: 5
+	});
+	
 	map = new ol.Map({
 		layers: [
 			new ol.layer.Tile({
@@ -77,35 +88,37 @@ $(document).ready(function () {
 		],
 		target: 'map',
 		controls: [new ol.control.MousePosition()],
-		view: new ol.View({
-			center: [-13319610.800861657, 4501835.217883743],
-			zoom: 5
-		}),
+		view: continentalView,
 		renderer: 'canvas'
 	});
-	var flyToFeatureExtent = function (source) {
+	var flyToNewView = function (newView, zoomingIn) {
 		var duration = 2000;
 		var start = +new Date();
 		var pan = ol.animation.pan({
 			duration: duration,
-			source: /** @type {ol.Coordinate} */ (view.getCenter()),
+			source: /** @type {ol.Coordinate} */ (map.getView().getCenter()),
 			start: start
 		});
 		var bounce = ol.animation.bounce({
 			duration: duration,
-			resolution: 4 * view.getResolution(),
+			resolution: ((zoomingIn) ? 1 : 4) * map.getView().getResolution(),
 			start: start
 		});
 		map.beforeRender(pan, bounce);
-		view.setCenter(ol.extent.getCenter(source.getExtent()));
+		map.setView(newView);
 	};
 
 	var controller = new ScrollMagic();
 	// build scenes
-	new ScrollScene({triggerElement: "#trigger1", duration: 2000})
-		.setPin("#feature1")
+	new ScrollScene({triggerElement: "#startTrigger", duration: $(window).height()})
+		.on("enter", function(e) {
+			$("#time-indicator").text("");
+			flyToNewView(continentalView, false);
+			map.replaceLayer(getInitialDroughtLayer(), 'drought');
+		})
 		.addTo(controller)
 		.addIndicators();
+	// Scene 1 built in response to ajax
 	new ScrollScene({triggerElement: "#trigger2", duration: 2000})
 		.setPin("#feature2")
 		.addTo(controller)
@@ -118,6 +131,7 @@ $(document).ready(function () {
 		.setPin("#feature4")
 		.addTo(controller)
 		.addIndicators();
+	
 	map.replaceLayer = function (layer, layerType) {
 		map.addLayer(layer);
 		layer.getSource().on('change', function (event) {
@@ -132,11 +146,14 @@ $(document).ready(function () {
 			}
 		});
 	};
+	
 	var updateTimestep = function (timestep) {
 		var droughtLayer = getDroughtLayer(timestep);
 		var fireLayer = getFireLayer(timestep);
+		var datestr = Date.create(timestep).format("{d} {Month} {yyyy}");
 		map.replaceLayer(droughtLayer, 'drought');
 		map.replaceLayer(fireLayer, 'fire');
+		$('#time-indicator').text(datestr);
 	};
 	var sitesLayer = new ol.layer.Vector({
 		source: new ol.source.GeoJSON({
@@ -166,12 +183,19 @@ $(document).ready(function () {
 // yyyymmdd
 	$.ajax('data/drought_shp/times.json', {
 		success: function (data) {
-			var timesArray = data.d.reverse(),
-				i = 0;
-			setInterval(function () {
-				updateTimestep(timesArray[i]);
-				i++;
-			}, 2000);
+			var timesArray = data.d.reverse();
+			new ScrollScene({triggerElement: "#trigger1", duration: 40000})
+				.setPin("#feature1")
+				.setTween(TweenMax.fromTo("#time-indicator", 1, {x: 0}, {x: $(window).width()}))
+				.on("progress", function (e) {
+					var index = Math.floor(timesArray.length * e.progress);
+					updateTimestep(timesArray[index]);
+				})
+				.on("enter", function (e) {
+					flyToNewView(californiaView, true);
+				})
+				.addTo(controller)
+				.addIndicators();
 		}
 	});
 });
