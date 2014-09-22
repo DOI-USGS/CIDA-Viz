@@ -11,3 +11,7 @@
 
 ###Fire data
  - fire shapefiles from MODIS products derived from ...
+
+
+###Economic Data
+ - Agricultural Employment Stats: http://www.labormarketinfo.edd.ca.gov/LMID/Agricultural_Employment_in_California.html
