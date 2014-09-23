@@ -17,7 +17,7 @@ var margin = {top: 50, right: 50, bottom: 50, left: 100},
     //this is entirely fixed
     yScale = yScale = d3.scale.linear().domain([0, 100]).range([height, 0]);
   
-  var dateCounter = Date.create("January 1, 2000");
+  var dateCounter = Date.create("January 4, 2000");
   var dateDisplayFormat = '{yyyy}-{MM}-{dd}';
   var formatDateForDisplay = function(date){
       return date.format(dateDisplayFormat);
@@ -67,8 +67,8 @@ var setRadiusScale = function(dataMax, dataMin, displayMax){
 
 
 // Load the data.
-d3.json("abbrev.reservoirs.json", function(reservoirs) {
-//d3.json("../../../ca_reservoirs/storage_data/reservoir.json", function(reservoirs) {
+// d3.json("abbrev.reservoirs.json", function(reservoirs) {
+d3.json("../../../ca_reservoirs/storage_data/reservoir.json", function(reservoirs) {
     
     //perform multiple linear scans over reservoirs to determine dataset ranges
     //@todo: optimize to one-pass scan later if needed
@@ -214,7 +214,7 @@ var label = svg.append("text")
 
 setInterval(function(){
   displayYear(dateCounter);
-  dateCounter = dateCounter.advance('1 day');
+  dateCounter = dateCounter.advance('1 week');
 }, 1000);
 displayYear(dateCounter);
 
