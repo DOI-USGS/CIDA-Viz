@@ -120,14 +120,15 @@ svg.append("text")
     .attr("transform", "rotate(-90)")
     .text("% capacity");
 
+var dots = svg.append("g")
+      .attr("class", "dots")
+
 // Add the year label; the value is set on transition.
 var label = svg.append("text")
     .attr("class", "year label")
     .attr("text-anchor", "end")
     .attr("y", height - 24)
     .attr("x", width)
-    .text(formatDateForDisplay(dateCounter));
-
 
   // A bisector since many nation's data is sparsely-defined.
   var bisect = d3.bisector(function(d) { return d[0]; });
@@ -144,9 +145,18 @@ var label = svg.append("text")
 
   // Positions the dots based on data.
   function position(dot) {
-    dot .attr("cx", function(d) { return xScale(x(d)); })
-        .attr("cy", function(d) { return yScale(y(d)); })
-        .attr("r", function(d) { return radiusScale(radius(d)); });
+    dot.attr("cx", function(d) {
+      var cx = xScale(x(d)); 
+      return cx;
+    })
+    .attr("cy", function(d) {
+      var cy = yScale(y(d)); 
+      return cy;
+    })
+    .attr("r", function(d) {
+      var r = radiusScale(radius(d)); 
+      return r;
+    });
   }
 
   // Defines a sort order so that the smallest dots are drawn on top.
@@ -164,44 +174,48 @@ var label = svg.append("text")
   // Updates the display to show the specified year.
   function displayYear(date) {
     var interpolatedData = interpolateData(date);
- var dot = svg.append("g")
-      .attr("class", "dots")
-    .selectAll(".dot")
-      .data(interpolateData(dateCounter));
+    var dotData = dots.selectAll(".dot").data(interpolatedData);
 
-    dot.enter().append("circle")
+    dotData.enter().append("circle")
       .attr("class", "dot")
       .style("fill", function(d) { return colorScale(color(d)); })
       .call(position)
-      .sort(order);
-  dot.exit().remove();
+      // .sort(order);
+  dotData.exit().remove();
   // Add a title.
-  dot.append("title")
-      .text(function(d) { return d.name; });
-    dot.call(position);
+  // dot.append("title")
+  //     .text(function(d) { return d.name; });
+    dotData.call(position);
     label.text(formatDateForDisplay(date));
   }
 
-setInterval(function(){
-  displayYear(dateCounter);
-  // dateCounter = dateCounter.advance('1 day');
-}, 100);
   // Interpolates the dataset for the given (fractional) year.
   var dateLookupFormat = '{yyyy}{MM}{dd}';
   function interpolateData(date) {
     var dateLookupKey = date.format(dateLookupFormat);
     var unfilteredReservoirs = reservoirs.map(function(d) {
+      var currentStorage = d["Storage"][dateLookupKey];
+      var maxStorage = d["Capacity"];
+      
+      var percentStorage = 100 * (currentStorage / maxStorage);
       return {
         name: d["Station"],
         region: d["County"],
         elevation: d["Elev"],
-        maxVolume: d["Capacity"],
-        volume: d["Storage"][dateLookupKey]
+        maxVolume: maxStorage,
+        volume: percentStorage
       };
     });
     filteredReservoirs = unfilteredReservoirs.filter(function(d){
         return undefined !== d.volume;
     });
     return filteredReservoirs;
-  }
+  };
+
+setInterval(function(){
+  displayYear(dateCounter);
+  dateCounter = dateCounter.advance('1 day');
+}, 1000);
+displayYear(dateCounter);
+
 });
