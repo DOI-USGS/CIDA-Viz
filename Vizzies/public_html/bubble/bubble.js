@@ -180,14 +180,13 @@ var label = svg.append("text")
     dotData.enter().append("circle")
       .attr("class", "dot")
       .style("fill", function(d) { return colorScale(color(d)); })
+      .append("title").text(function(d) { return d.name; })
       .call(position);
     dotData.sort(order);
 
-  dotData.exit().remove();
-  // Add a title.
-  dotData.append("title").text(function(d) { return d.name; });
-
-    dotData.call(position);
+    dotData.exit().remove();
+    // Add a title.
+    dotData.transition().ease('linear').call(position);
     label.text(formatDateForDisplay(date));
   }
   // Interpolates the dataset for the given (fractional) year.
