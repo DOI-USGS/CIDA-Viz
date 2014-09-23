@@ -3,7 +3,7 @@
 function x(d) { return d.elevation; }
 function y(d) { return d.volume; }
 function radius(d) { return d.maxVolume; }
-function color(d) { return d.elevation; }
+function color(d) { return d.id; }
 function key(d) { return d.id; }
 
 // Chart dimensions.
@@ -79,8 +79,8 @@ d3.json("../data/reservoirs/reservoir_storage.json", function(reservoirs) {
     var maxCapacity = getMaxCapacity(reservoirs);
     //bubbles should not be drawn off of the chart, therefore prevent radius from exceeding the smallest margin value 
     setRadiusScale(maxCapacity, minCapacity, smallestMargin);
-    var reservoirElevations = reservoirs.map(function(reservoir){return reservoir["Elev"]}).sort();
-    colorScale = d3.scale.ordinal().domain(reservoirElevations).range(d3.scale.category20().range());
+    var reservoirIds = reservoirs.map(function(reservoir){return reservoir.ID;});
+    colorScale = d3.scale.ordinal().domain(reservoirIds).range(d3.scale.category20().range());
 
 // The x & y axes.
 var xAxis = d3.svg.axis().orient("bottom").scale(xScale)/*.ticks(12, d3.format(",d"))*/,
