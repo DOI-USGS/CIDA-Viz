@@ -198,16 +198,23 @@ var label = svg.append("text")
       var maxStorage = d["Capacity"];
       
       var percentStorage = 100 * (currentStorage / maxStorage);
-      return {
-        name: d["Station"],
-        region: d["County"],
-        elevation: d["Elev"],
-        maxVolume: maxStorage,
-        volume: percentStorage
-      };
+      var valToReturn;
+      if(isNaN(percentStorage)){
+          valToReturn = null;
+      }
+      else{
+        valToReturn = {
+          name: d["Station"],
+          region: d["County"],
+          elevation: d["Elev"],
+          maxVolume: maxStorage,
+          volume: percentStorage
+        };
+      }
+      return valToReturn;
     });
     filteredReservoirs = unfilteredReservoirs.filter(function(d){
-        return undefined !== d.volume;
+        return d !== null && undefined !== d.volume;
     });
     return filteredReservoirs;
   };
