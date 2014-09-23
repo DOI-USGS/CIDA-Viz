@@ -3,8 +3,8 @@
 function x(d) { return d.elevation; }
 function y(d) { return d.volume; }
 function radius(d) { return d.maxVolume; }
-function color(d) { return d.region; }
-function key(d) { return d.name; }
+function color(d) { return d.id; }
+function key(d) { return d.id; }
 
 // Chart dimensions.
 var margin = {top: 50, right: 50, bottom: 50, left: 100},
@@ -58,7 +58,7 @@ var getExtremeProperty = function(minOrMax, reservoirs, propertyName){
 
 
 var setXscale = function(dataMax, dataMin, displayMax){
-  xScale = d3.scale.linear().domain([dataMin, dataMax]).range([0, displayMax]);
+  xScale = d3.scale.sqrt().domain([dataMin, dataMax]).range([0, displayMax]);
 };
 
 var setRadiusScale = function(dataMax, dataMin, displayMax){
@@ -79,7 +79,8 @@ d3.json("../data/reservoirs/reservoir_storage.json", function(reservoirs) {
     var maxCapacity = getMaxCapacity(reservoirs);
     //bubbles should not be drawn off of the chart, therefore prevent radius from exceeding the smallest margin value 
     setRadiusScale(maxCapacity, minCapacity, smallestMargin);
-    colorScale = d3.scale.category10();
+    var reservoirIds = reservoirs.map(function(reservoir){return reservoir.ID;});
+    colorScale = d3.scale.ordinal().domain(reservoirIds).range(d3.scale.category20().range());
 
 // The x & y axes.
 var xAxis = d3.svg.axis().orient("bottom").scale(xScale)/*.ticks(12, d3.format(",d"))*/,
@@ -174,17 +175,18 @@ var label = svg.append("text")
   // Updates the display to show the specified year.
   function displayYear(date) {
     var interpolatedData = interpolateData(date);
-    var dotData = dots.selectAll(".dot").data(interpolatedData);
+    var dotData = dots.selectAll(".dot").data(interpolatedData, key);
 
     dotData.enter().append("circle")
       .attr("class", "dot")
       .style("fill", function(d) { return colorScale(color(d)); })
-      .call(position)
-      // .sort(order);
+      .call(position);
+    dotData.sort(order);
+
   dotData.exit().remove();
   // Add a title.
-  // dot.append("title")
-  //     .text(function(d) { return d.name; });
+  dotData.append("title").text(function(d) { return d.name; });
+
     dotData.call(position);
     label.text(formatDateForDisplay(date));
   }
@@ -203,6 +205,7 @@ var label = svg.append("text")
       }
       else{
         valToReturn = {
+          id: d.ID,
           name: d["Station"],
           region: d["County"],
           elevation: d["Elev"],
