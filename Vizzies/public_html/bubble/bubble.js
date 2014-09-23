@@ -222,7 +222,7 @@ var label = svg.append("text")
 setInterval(function(){
   displayYear(dateCounter);
   dateCounter = dateCounter.advance('1 week');
-}, 1000);
+}, 250);
 displayYear(dateCounter);
 
 });
