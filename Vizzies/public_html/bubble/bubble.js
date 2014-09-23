@@ -68,7 +68,7 @@ var setRadiusScale = function(dataMax, dataMin, displayMax){
 
 // Load the data.
 // d3.json("abbrev.reservoirs.json", function(reservoirs) {
-d3.json("../../../ca_reservoirs/storage_data/reservoir.json", function(reservoirs) {
+d3.json("../data/reservoirs/reservoir_storage.json", function(reservoirs) {
     
     //perform multiple linear scans over reservoirs to determine dataset ranges
     //@todo: optimize to one-pass scan later if needed
@@ -188,7 +188,6 @@ var label = svg.append("text")
     dotData.call(position);
     label.text(formatDateForDisplay(date));
   }
-
   // Interpolates the dataset for the given (fractional) year.
   var dateLookupFormat = '{yyyy}{MM}{dd}';
   function interpolateData(date) {
