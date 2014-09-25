@@ -150,7 +150,7 @@ var label = svg.append("text")
 
     dot.attr("transform", function(d) {
       var cx = xScale(x(d));
-      return "translate(" + cx + ",0)";
+      return "translate(" + cx + "," + (height - yScale(y(d)))  + ")";
     })
     .attr("height", function(d) {
       var cy = yScale(y(d)); 
