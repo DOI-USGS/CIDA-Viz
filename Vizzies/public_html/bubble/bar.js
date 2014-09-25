@@ -185,10 +185,11 @@ var label = svg.append("text")
       .append("title").text(function(d) { return d.name; })
       .call(position);
 
-    dotData.sort(order);
+    
     dotData.exit().remove();
     // Add a title.
     dotData.transition().ease('linear').call(position);
+    dotData.sort(order);
     label.text(formatDateForDisplay(date));
   }
   // Interpolates the dataset for the given (fractional) year.
