@@ -2,7 +2,7 @@
 // Various accessors that specify the four dimensions of data to visualize.
 function x(d) { return d.elevation; }
 function y(d) { return d.volume; }
-function radius(d) { return d.maxVolume; }
+function thickness(d) { return d.maxVolume; }
 function color(d) { return d.id; }
 function key(d) { return d.id; }
 
@@ -13,7 +13,7 @@ var margin = {top: 50, right: 50, bottom: 50, left: 100},
     height = 500 - margin.top - margin.bottom,
     //scale computed later dynamically based on available width
     xScale = undefined,
-    radiusScale = undefined,
+    thicknessScale = undefined,
     //this is entirely fixed
     yScale = yScale = d3.scale.linear().domain([0, 100]).range([height, 0]);
   var dateCounterStart = Date.create("January 4, 2000");
@@ -61,8 +61,8 @@ var setXscale = function(dataMax, dataMin, displayMax){
   xScale = d3.scale.sqrt().domain([dataMin, dataMax]).range([0, displayMax]);
 };
 
-var setRadiusScale = function(dataMax, dataMin, displayMax){
-  radiusScale = d3.scale.sqrt().domain([dataMin, dataMax]).range([5, displayMax]);
+var setThicknessScale = function(dataMax, dataMin, displayMax){
+  thicknessScale = d3.scale.sqrt().domain([dataMin, dataMax]).range([5, displayMax]);
 };
 
 
@@ -77,8 +77,9 @@ d3.json("../data/reservoirs/reservoir_storage.json", function(reservoirs) {
     setXscale(maxElevation, minElevation, width);
     var minCapacity = getMinCapacity(reservoirs);
     var maxCapacity = getMaxCapacity(reservoirs);
-    //bubbles should not be drawn off of the chart, therefore prevent radius from exceeding the smallest margin value 
-    setRadiusScale(maxCapacity, minCapacity, smallestMargin);
+    //bubbles should not be drawn off of the chart, therefore prevent thickness from exceeding the smallest margin value 
+    //*2 because the shape is centered over the exctremeties, so it's width can be up to twice the smallest margin
+    setThicknessScale(maxCapacity, minCapacity, smallestMargin * 2); 
     var reservoirIds = reservoirs.map(function(reservoir){return reservoir.ID;});
     colorScale = d3.scale.ordinal().domain(reservoirIds).range(d3.scale.category20().range());
 
@@ -146,23 +147,24 @@ var label = svg.append("text")
 
   // Positions the dots based on data.
   function position(dot) {
-    dot.attr("cx", function(d) {
-      var cx = xScale(x(d)); 
-      return cx;
+
+    dot.attr("transform", function(d) {
+      var cx = xScale(x(d));
+      return "translate(" + cx + "," + (height - yScale(y(d)))  + ")";
     })
-    .attr("cy", function(d) {
+    .attr("height", function(d) {
       var cy = yScale(y(d)); 
       return cy;
     })
-    .attr("r", function(d) {
-      var r = radiusScale(radius(d)); 
+    .attr("width", function(d) {
+      var r = thicknessScale(thickness(d)); 
       return r;
     });
   }
 
   // Defines a sort order so that the smallest dots are drawn on top.
   function order(a, b) {
-    return radius(b) - radius(a);
+    return thickness(b) - thickness(a);
   }
 
   // Tweens the entire chart by first tweening the year, and then the data.
@@ -177,16 +179,17 @@ var label = svg.append("text")
     var interpolatedData = interpolateData(date);
     var dotData = dots.selectAll(".dot").data(interpolatedData, key);
 
-    dotData.enter().append("circle")
+    dotData.enter().append("rect")
       .attr("class", "dot")
       .style("fill", function(d) { return colorScale(color(d)); })
       .append("title").text(function(d) { return d.name; })
       .call(position);
-    dotData.sort(order);
 
+    
     dotData.exit().remove();
     // Add a title.
     dotData.transition().ease('linear').call(position);
+    dotData.sort(order);
     label.text(formatDateForDisplay(date));
   }
   // Interpolates the dataset for the given (fractional) year.
