@@ -5,6 +5,20 @@ json_res <- jsonlite::fromJSON('../Data/ca_reservoirs.json')
 #yes, this is goofy
 detach("package:jsonlite", unload=TRUE)
 
+#This interpolates small gaps, in the middle of data
+# and then returns the original 
+interp.storage = function (dates, data){
+	bad.data = is.na(data) | data < 0  #there are some negative values we should drop
+	
+	snip.dates = dates[!bad.data]
+	snip.data = data[!bad.data]
+	
+	fixed.data = approx(snip.dates, snip.data, dates)
+	
+	return(fixed.data$y)
+}
+
+
 sites = read.csv('../Data/ca_reservoirs.csv', as.is=TRUE)
 
 # open all files, downsample and stick into list
@@ -19,9 +33,10 @@ for (i in 1:num_station){
   file_nm <- paste0('../storage_data/', sites$ID[i], '.csv')
   if (file.exists(file_nm)){
     dat <- read.csv(file = file_nm)
-    dates <- as.POSIXlt(dat[,1])
+    dates <- as.POSIXct(dat[,1])
     storage <- dat[, 2]
-    stations_all[[i]] <- data.frame('dates'=dates, 'storage'=storage)
+    new.storage = interp.storage(dates, storage)
+    stations_all[[i]] <- data.frame('dates'=dates, 'storage'=new.storage)
     station_names[i] <- sites$ID[i]
   } else {
     rmv_i[i] <- TRUE
