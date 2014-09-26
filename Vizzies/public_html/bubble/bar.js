@@ -16,7 +16,7 @@ var margin = {top: 50, right: 50, bottom: 50, left: 100},
     thicknessScale = undefined,
     pixelsPerCapacity = undefined,
     //this is entirely fixed
-    xScale = d3.scale.linear(),
+    xScale = d3.scale.ordinal(),
     yScale = d3.scale.linear().domain([0, 100]).range([height, 0]);
   var dateCounterStart = Date.create("January 4, 2000");
   var dateCounter = dateCounterStart.clone();
@@ -72,8 +72,25 @@ var setThicknessScale = function(pixelsPerCapacity){
 
 // Load the data.
 // d3.json("abbrev.reservoirs.json", function(reservoirs) {
-d3.json("../data/reservoirs/reservoir_storage.json", function(reservoirs) {
-    
+d3.json("../../../ca_reservoirs/storage_data/reservoir.json", function(reservoirs) {
+    // reservoirs = [
+    //   {
+    //     "Capacity" : 100,
+    //     "Elev": 1,
+    //     "Storage" : {
+    //       "20000104" : 40,
+    //       "20000111" : 80
+    //     } 
+    //   },
+    //   {
+    //     "Capacity" : 100,
+    //     "Elev": 2,
+    //     "Storage" : {
+    //       "20000104" : 100,
+    //       "20000111" : 20
+    //     } 
+    //   },
+    // ];
     //perform multiple linear scans over reservoirs to determine dataset ranges
     //@todo: optimize to one-pass scan later if needed
     reservoirs = reservoirs.sort(function(reservoir){
@@ -94,12 +111,12 @@ d3.json("../data/reservoirs/reservoir_storage.json", function(reservoirs) {
     for(var i = 0; i < reservoirs.length; i++){
         var preceedingOffset;
         if(i > 0){
-            preceedingOffset = reservoirs[i-1].offset + (thicknessScale(getCapacity(reservoirs[i-1]))/2);
+            preceedingOffset = reservoirs[i-1].offset + (thicknessScale(getCapacity(reservoirs[i-1])));
         }
         else{
           preceedingOffset = 0;
         }
-        var currentOffset = preceedingOffset + padding + (thicknessScale(getCapacity(reservoirs[i]))/2);
+        var currentOffset = preceedingOffset + padding;
         reservoirs[i].offset = currentOffset;
     }
     
@@ -250,7 +267,7 @@ var label = svg.append("text")
 setInterval(function(){
   displayYear(dateCounter);
   dateCounter = dateCounter.advance('1 week');
-}, 1000);
+}, 100);
 displayYear(dateCounter);
 
 });
