@@ -16,8 +16,8 @@ var margin = {top: 50, right: 50, bottom: 50, left: 100},
     thicknessScale = undefined,
     pixelsPerCapacity = undefined,
     //this is entirely fixed
-    xScale = d3.scale.ordinal(),
-    yScale = yScale = d3.scale.linear().domain([0, 100]).range([height, 0]);
+    xScale = d3.scale.linear(),
+    yScale = d3.scale.linear().domain([0, 100]).range([height, 0]);
   var dateCounterStart = Date.create("January 4, 2000");
   var dateCounter = dateCounterStart.clone();
   var dateDisplayFormat = '{yyyy}-{MM}-{dd}';
@@ -79,9 +79,13 @@ d3.json("../data/reservoirs/reservoir_storage.json", function(reservoirs) {
     reservoirs = reservoirs.sort(function(reservoir){
         return +reservoir["Elev"];
     });
+    var getCapacity = function(reservoir){
+      var capacity = +reservoir["Capacity"];
+      capacity = isNaN(capacity) ? 0 : capacity;
+      return capacity;
+    };
     var totalCapacity = reservoirs.reduce(function(previous, reservoir){
-        var capacity = +reservoir["Capacity"];
-        capacity = isNaN(capacity) ? 0 : capacity;
+        var capacity = getCapacity(reservoir);
         return previous + capacity;
     }, 0);
 
@@ -90,12 +94,13 @@ d3.json("../data/reservoirs/reservoir_storage.json", function(reservoirs) {
     for(var i = 0; i < reservoirs.length; i++){
         var preceedingOffset;
         if(i > 0){
-            preceedingOffset = reservoirs[i-1].offset + (thicknessScale(+reservoirs[i-1]['Capacity'])/2);
+            preceedingOffset = reservoirs[i-1].offset + (thicknessScale(getCapacity(reservoirs[i-1]))/2);
         }
         else{
           preceedingOffset = 0;
         }
-        reservoirs[i].offset = preceedingOffset + padding + (thicknessScale(+reservoirs[i]['Capacity'])/2);
+        var currentOffset = preceedingOffset + padding + (thicknessScale(getCapacity(reservoirs[i]))/2);
+        reservoirs[i].offset = currentOffset;
     }
     
     var reservoirIds = reservoirs.map(function(reservoir){return reservoir.ID;});
@@ -166,7 +171,9 @@ var label = svg.append("text")
   // Positions the dots based on data.
   function position(dot) {
     dot.attr("transform", function(d) {
-      return "translate(" + d.offset + "," + (height - yScale(y(d)))  + ")";
+      var xComponent = d.offset;
+      var yComponent = height - yScale(y(d));
+      return "translate(" + xComponent + "," +  yComponent + ")";
     })
     .attr("height", function(d) {
       var cy = yScale(y(d)); 
