@@ -1,3 +1,10 @@
+##Working title
+California Drought Vizualized
+
+##Time Period
+2011-present
+weekly data represention
+
 ##Data Sources
 
 ###Reservoir Data
