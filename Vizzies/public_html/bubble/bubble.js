@@ -3,19 +3,84 @@
 function x(d) { return d.elevation; }
 function y(d) { return d.volume; }
 function radius(d) { return d.maxVolume; }
-function color(d) { return d.region; }
-function key(d) { return d.name; }
+function color(d) { return d.id; }
+function key(d) { return d.id; }
 
 // Chart dimensions.
-var margin = {top: 19.5, right: 19.5, bottom: 19.5, left: 39.5},
-    width = 960 - margin.right,
-    height = 500 - margin.top - margin.bottom;
+var margin = {top: 50, right: 50, bottom: 50, left: 100},
+    smallestMargin = Object.values(margin).min();
+    width = 960 - margin.right - margin.left,
+    height = 500 - margin.top - margin.bottom,
+    //scale computed later dynamically based on available width
+    xScale = undefined,
+    radiusScale = undefined,
+    //this is entirely fixed
+    yScale = yScale = d3.scale.linear().domain([0, 100]).range([height, 0]);
+  var dateCounterStart = Date.create("January 4, 2000");
+  var dateCounter = dateCounterStart.clone();
+  var dateDisplayFormat = '{yyyy}-{MM}-{dd}';
+  var formatDateForDisplay = function(date){
+      return date.format(dateDisplayFormat);
+  };
+var getMaxElevation = function(reservoirs){
+  return getExtremeElevation('max', reservoirs);
+};
+var getMinElevation = function(reservoirs){
+  return getExtremeElevation('min', reservoirs);
+};
 
-// Various scales. These domains make assumptions of data, naturally.
-var xScale = d3.scale.linear().domain([0, 8500]).range([0, width]),
-    yScale = d3.scale.linear().domain([0, 100]).range([height, 0]),
-    radiusScale = d3.scale.sqrt().domain([10, 1000000]).range([2, 10]),
-    colorScale = d3.scale.category10();
+var getExtremeElevation = function(minOrMax, reservoirs){
+  return getExtremeProperty(minOrMax, reservoirs, 'Elev');
+};
+
+
+var getMinCapacity = function(reservoirs){
+  return getExtremeCapacity('min', reservoirs);
+};
+
+var getMaxCapacity = function(reservoirs){
+  return getExtremeCapacity('max', reservoirs);
+};
+
+var getExtremeCapacity = function(minOrMax, reservoirs){
+  return getExtremeProperty(minOrMax, reservoirs, 'Capacity');
+};
+
+/**
+ * get either max or min
+ * @param {String} minOrMax - one of 'min' or 'max'
+ * @param {Array} reservoirs - an array of reservoir objects
+ * @param {String} propertyName - name of property to examine
+ */
+var getExtremeProperty = function(minOrMax, reservoirs, propertyName){
+  return reservoirs[minOrMax](function(reservoir){return reservoir[propertyName];})[propertyName];
+};
+
+
+var setXscale = function(dataMax, dataMin, displayMax){
+  xScale = d3.scale.sqrt().domain([dataMin, dataMax]).range([0, displayMax]);
+};
+
+var setRadiusScale = function(dataMax, dataMin, displayMax){
+  radiusScale = d3.scale.sqrt().domain([dataMin, dataMax]).range([5, displayMax]);
+};
+
+
+// Load the data.
+// d3.json("abbrev.reservoirs.json", function(reservoirs) {
+d3.json("../data/reservoirs/reservoir_storage.json", function(reservoirs) {
+    
+    //perform multiple linear scans over reservoirs to determine dataset ranges
+    //@todo: optimize to one-pass scan later if needed
+    var maxElevation = getMaxElevation(reservoirs);
+    var minElevation = getMinElevation(reservoirs);
+    setXscale(maxElevation, minElevation, width);
+    var minCapacity = getMinCapacity(reservoirs);
+    var maxCapacity = getMaxCapacity(reservoirs);
+    //bubbles should not be drawn off of the chart, therefore prevent radius from exceeding the smallest margin value 
+    setRadiusScale(maxCapacity, minCapacity, smallestMargin);
+    var reservoirIds = reservoirs.map(function(reservoir){return reservoir.ID;});
+    colorScale = d3.scale.ordinal().domain(reservoirIds).range(d3.scale.category20().range());
 
 // The x & y axes.
 var xAxis = d3.svg.axis().orient("bottom").scale(xScale)/*.ticks(12, d3.format(",d"))*/,
@@ -56,41 +121,18 @@ svg.append("text")
     .attr("transform", "rotate(-90)")
     .text("% capacity");
 
+var dots = svg.append("g")
+      .attr("class", "dots")
+
 // Add the year label; the value is set on transition.
 var label = svg.append("text")
     .attr("class", "year label")
     .attr("text-anchor", "end")
     .attr("y", height - 24)
     .attr("x", width)
-    .text("20000104");
-
-var timesteps = [];
-$.ajax('../data/drought_shp/times.json', {
-	success: function(data) {
-		timesteps = data.d.reverse();
-	}
-});
-// Load the data.
-d3.json("../data/reservoirs/reservoir_storage.json", function(reservoirs) {
 
   // A bisector since many nation's data is sparsely-defined.
   var bisect = d3.bisector(function(d) { return d[0]; });
-
-  // Add a dot per nation. Initialize the data at 1800, and set the colors.
-  var dot = svg.append("g")
-      .attr("class", "dots")
-    .selectAll(".dot")
-      .data(interpolateData("20000104"));
-
-    dot.enter().append("circle")
-      .attr("class", "dot")
-      .style("fill", function(d) { return colorScale(color(d)); })
-      .call(position)
-      .sort(order);
-  dot.exit().remove();
-  // Add a title.
-  dot.append("title")
-      .text(function(d) { return d.name; });
 
   // Add an overlay for the year label.
   var box = label.node().getBBox();
@@ -104,9 +146,18 @@ d3.json("../data/reservoirs/reservoir_storage.json", function(reservoirs) {
 
   // Positions the dots based on data.
   function position(dot) {
-    dot .attr("cx", function(d) { return xScale(x(d)); })
-        .attr("cy", function(d) { return yScale(y(d)); })
-        .attr("r", function(d) { return radiusScale(radius(d)); });
+    dot.attr("cx", function(d) {
+      var cx = xScale(x(d)); 
+      return cx;
+    })
+    .attr("cy", function(d) {
+      var cy = yScale(y(d)); 
+      return cy;
+    })
+    .attr("r", function(d) {
+      var r = radiusScale(radius(d)); 
+      return r;
+    });
   }
 
   // Defines a sort order so that the smallest dots are drawn on top.
@@ -117,41 +168,62 @@ d3.json("../data/reservoirs/reservoir_storage.json", function(reservoirs) {
   // Tweens the entire chart by first tweening the year, and then the data.
   // For the interpolated data, the dots and label are redrawn.
   function tweenYear() {
-    var year = d3.interpolateNumber(1800, 2009);
+    var year = d3.interpolateNumber(2000, 2014);
     return function(t) { displayYear(year(t)); };
   }
 
   // Updates the display to show the specified year.
-  function displayYear(year) {
-    var interpolatedData = interpolateData(year);
-    var dotData = dot.data(interpolatedData, key);
-    dotData.exit().remove();
-    dotData.call(position).sort(order);
-    label.text(Math.round(year));
-  }
-  
-  var timestepCounter = 0;
-  setInterval(function(){
-    displayYear(timesteps[timestepCounter]);
-    timestepCounter += 1;
-  }, 1000);
+  function displayYear(date) {
+    var interpolatedData = interpolateData(date);
+    var dotData = dots.selectAll(".dot").data(interpolatedData, key);
 
+    dotData.enter().append("circle")
+      .attr("class", "dot")
+      .style("fill", function(d) { return colorScale(color(d)); })
+      .append("title").text(function(d) { return d.name; })
+      .call(position);
+    dotData.sort(order);
+
+    dotData.exit().remove();
+    // Add a title.
+    dotData.transition().ease('linear').call(position);
+    label.text(formatDateForDisplay(date));
+  }
   // Interpolates the dataset for the given (fractional) year.
-  function interpolateData(timestep) {
-    //var truncatedYear = year.toFixed(0);
-    //var strDate = '' + timestep;
+  var dateLookupFormat = '{yyyy}{MM}{dd}';
+  function interpolateData(date) {
+    var dateLookupKey = date.format(dateLookupFormat);
     var unfilteredReservoirs = reservoirs.map(function(d) {
-      return {
-        name: d.Station,
-        region: d.ID,
-        elevation: d.Elev,
-        maxVolume: d.Capacity,
-        volume: d.Storage[timestep] / d.Capacity * 100
-      };
+      var currentStorage = d["Storage"][dateLookupKey];
+      var maxStorage = d["Capacity"];
+      
+      var percentStorage = 100 * (currentStorage / maxStorage);
+      var valToReturn;
+      if(isNaN(percentStorage)){
+          valToReturn = null;
+      }
+      else{
+        valToReturn = {
+          id: d.ID,
+          name: d["Station"],
+          region: d["County"],
+          elevation: d["Elev"],
+          maxVolume: maxStorage,
+          volume: percentStorage
+        };
+      }
+      return valToReturn;
     });
     filteredReservoirs = unfilteredReservoirs.filter(function(d){
-        return undefined !== d.volume;
+        return d !== null && undefined !== d.volume;
     });
     return filteredReservoirs;
-  }
+  };
+
+setInterval(function(){
+  displayYear(dateCounter);
+  dateCounter = dateCounter.advance('1 week');
+}, 250);
+displayYear(dateCounter);
+
 });
