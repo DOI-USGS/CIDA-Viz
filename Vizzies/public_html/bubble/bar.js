@@ -12,6 +12,7 @@ var margin = {top: 50, right: 50, bottom: 50, left: 100},
     width = 960 - margin.right - margin.left,
     height = 500 - margin.top - margin.bottom,
     padding = 3,
+    barColor = '#5092cc',
     //scale computed later dynamically based on available width
     thicknessScale = undefined,
     pixelsPerCapacity = undefined,
@@ -20,6 +21,7 @@ var margin = {top: 50, right: 50, bottom: 50, left: 100},
     yScale = d3.scale.linear().domain([0, 100]).range([height, 0]);
   var dateCounterStart = Date.create("January 4, 2000");
   var dateCounter = dateCounterStart.clone();
+  var dateCounterEnd = Date.create("September 16, 2014")
   var dateDisplayFormat = '{yyyy}-{MM}-{dd}';
   var formatDateForDisplay = function(date){
       return date.format(dateDisplayFormat);
@@ -121,7 +123,6 @@ d3.json("../../../ca_reservoirs/storage_data/reservoir.json", function(reservoir
     }
     
     var reservoirIds = reservoirs.map(function(reservoir){return reservoir.ID;});
-    colorScale = d3.scale.ordinal().domain(reservoirIds).range(d3.scale.category20().range());
 
 // The x & y axes.
 var xAxis = d3.svg.axis().orient("bottom").scale(xScale)/*.ticks(12, d3.format(",d"))*/,
@@ -221,7 +222,7 @@ var label = svg.append("text")
 
     dotData.enter().append("rect")
       .attr("class", "dot")
-      .style("fill", function(d) { return colorScale(color(d)); })
+      .style("fill", function(d) { return barColor })
       .append("title").text(function(d) { return d.name; })
       .call(position);
 
@@ -267,6 +268,10 @@ var label = svg.append("text")
 setInterval(function(){
   displayYear(dateCounter);
   dateCounter = dateCounter.advance('1 week');
+  if(dateCounter.isAfter(dateCounterEnd)){
+    dateCounter = dateCounterStart.clone();
+  }
+
 }, 100);
 displayYear(dateCounter);
 
