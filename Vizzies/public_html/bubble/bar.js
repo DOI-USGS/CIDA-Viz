@@ -11,10 +11,12 @@ var margin = {top: 50, right: 50, bottom: 50, left: 100},
     smallestMargin = Object.values(margin).min();
     width = 960 - margin.right - margin.left,
     height = 500 - margin.top - margin.bottom,
+    padding = 3,
     //scale computed later dynamically based on available width
-    xScale = undefined,
     thicknessScale = undefined,
+    pixelsPerCapacity = undefined,
     //this is entirely fixed
+    xScale = d3.scale.ordinal(),
     yScale = yScale = d3.scale.linear().domain([0, 100]).range([height, 0]);
   var dateCounterStart = Date.create("January 4, 2000");
   var dateCounter = dateCounterStart.clone();
@@ -57,12 +59,14 @@ var getExtremeProperty = function(minOrMax, reservoirs, propertyName){
 };
 
 
-var setXscale = function(elevations, displayMax){
-  xScale = d3.scale.ordinal().domain(elevations).rangeBands([0, displayMax]);
-};
+// var setXscale = function(elevations, displayMax){
+//   xScale = d3.scale.ordinal().domain(elevations).rangeBands([0, displayMax]);
+// };
 
-var setThicknessScale = function(dataMax, dataMin, displayMax){
-  thicknessScale = d3.scale.linear().domain([dataMin, dataMax]).range([5, displayMax]);
+var setThicknessScale = function(pixelsPerCapacity){
+  thicknessScale = function(t){
+      return t*pixelsPerCapacity;
+  };
 };
 
 
@@ -72,16 +76,28 @@ d3.json("../data/reservoirs/reservoir_storage.json", function(reservoirs) {
     
     //perform multiple linear scans over reservoirs to determine dataset ranges
     //@todo: optimize to one-pass scan later if needed
-    var elevations = reservoirs.map(function(reservoir){
+    reservoirs = reservoirs.sort(function(reservoir){
         return +reservoir["Elev"];
-    }).sort();
+    });
+    var totalCapacity = reservoirs.reduce(function(previous, reservoir){
+        var capacity = +reservoir["Capacity"];
+        capacity = isNaN(capacity) ? 0 : capacity;
+        return previous + capacity;
+    }, 0);
 
-    setXscale(elevations, width);
-    var minCapacity = getMinCapacity(reservoirs);
-    var maxCapacity = getMaxCapacity(reservoirs);
-    //bubbles should not be drawn off of the chart, therefore prevent thickness from exceeding the smallest margin value 
-    //*2 because the shape is centered over the exctremeties, so it's width can be up to twice the smallest margin
-    setThicknessScale(maxCapacity, minCapacity, smallestMargin * 2); 
+    pixelsPerCapacity = (width - padding*reservoirs.length) / totalCapacity;
+    setThicknessScale(pixelsPerCapacity); 
+    for(var i = 0; i < reservoirs.length; i++){
+        var preceedingOffset;
+        if(i > 0){
+            preceedingOffset = reservoirs[i-1].offset + (thicknessScale(+reservoirs[i-1]['Capacity'])/2);
+        }
+        else{
+          preceedingOffset = 0;
+        }
+        reservoirs[i].offset = preceedingOffset + padding + (thicknessScale(+reservoirs[i]['Capacity'])/2);
+    }
+    
     var reservoirIds = reservoirs.map(function(reservoir){return reservoir.ID;});
     colorScale = d3.scale.ordinal().domain(reservoirIds).range(d3.scale.category20().range());
 
@@ -150,8 +166,7 @@ var label = svg.append("text")
   // Positions the dots based on data.
   function position(dot) {
     dot.attr("transform", function(d) {
-      var cx = xScale(x(d));
-      return "translate(" + cx + "," + (height - yScale(y(d)))  + ")";
+      return "translate(" + d.offset + "," + (height - yScale(y(d)))  + ")";
     })
     .attr("height", function(d) {
       var cy = yScale(y(d)); 
@@ -213,7 +228,8 @@ var label = svg.append("text")
           region: d["County"],
           elevation: d["Elev"],
           maxVolume: maxStorage,
-          volume: percentStorage
+          volume: percentStorage,
+          offset: d.offset
         };
       }
       return valToReturn;
