@@ -12,6 +12,7 @@ var margin = {top: 50, right: 50, bottom: 50, left: 100},
     width = 960 - margin.right - margin.left,
     height = 500 - margin.top - margin.bottom,
     padding = 3,
+    barColor = 'rgb(0, 0, 255)',
     //scale computed later dynamically based on available width
     thicknessScale = undefined,
     pixelsPerCapacity = undefined,
@@ -121,7 +122,6 @@ d3.json("../../../ca_reservoirs/storage_data/reservoir.json", function(reservoir
     }
     
     var reservoirIds = reservoirs.map(function(reservoir){return reservoir.ID;});
-    colorScale = d3.scale.ordinal().domain(reservoirIds).range(d3.scale.category20().range());
 
 // The x & y axes.
 var xAxis = d3.svg.axis().orient("bottom").scale(xScale)/*.ticks(12, d3.format(",d"))*/,
@@ -221,7 +221,7 @@ var label = svg.append("text")
 
     dotData.enter().append("rect")
       .attr("class", "dot")
-      .style("fill", function(d) { return colorScale(color(d)); })
+      .style("fill", function(d) { return barColor })
       .append("title").text(function(d) { return d.name; })
       .call(position);
 
