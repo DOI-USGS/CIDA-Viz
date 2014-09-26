@@ -12,7 +12,7 @@ var margin = {top: 50, right: 50, bottom: 50, left: 100},
     width = 960 - margin.right - margin.left,
     height = 500 - margin.top - margin.bottom,
     padding = 3,
-    barColor = 'rgb(0, 0, 255)',
+    barColor = '#5092cc',
     //scale computed later dynamically based on available width
     thicknessScale = undefined,
     pixelsPerCapacity = undefined,
@@ -21,6 +21,7 @@ var margin = {top: 50, right: 50, bottom: 50, left: 100},
     yScale = d3.scale.linear().domain([0, 100]).range([height, 0]);
   var dateCounterStart = Date.create("January 4, 2000");
   var dateCounter = dateCounterStart.clone();
+  var dateCounterEnd = Date.create("January ")
   var dateDisplayFormat = '{yyyy}-{MM}-{dd}';
   var formatDateForDisplay = function(date){
       return date.format(dateDisplayFormat);
