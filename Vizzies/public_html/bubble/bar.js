@@ -57,12 +57,12 @@ var getExtremeProperty = function(minOrMax, reservoirs, propertyName){
 };
 
 
-var setXscale = function(dataMax, dataMin, displayMax){
-  xScale = d3.scale.sqrt().domain([dataMin, dataMax]).range([0, displayMax]);
+var setXscale = function(elevations, displayMax){
+  xScale = d3.scale.ordinal().domain(elevations).rangeBands([0, displayMax]);
 };
 
 var setThicknessScale = function(dataMax, dataMin, displayMax){
-  thicknessScale = d3.scale.sqrt().domain([dataMin, dataMax]).range([5, displayMax]);
+  thicknessScale = d3.scale.linear().domain([dataMin, dataMax]).range([5, displayMax]);
 };
 
 
@@ -72,9 +72,11 @@ d3.json("../data/reservoirs/reservoir_storage.json", function(reservoirs) {
     
     //perform multiple linear scans over reservoirs to determine dataset ranges
     //@todo: optimize to one-pass scan later if needed
-    var maxElevation = getMaxElevation(reservoirs);
-    var minElevation = getMinElevation(reservoirs);
-    setXscale(maxElevation, minElevation, width);
+    var elevations = reservoirs.map(function(reservoir){
+        return +reservoir["Elev"];
+    }).sort();
+
+    setXscale(elevations, width);
     var minCapacity = getMinCapacity(reservoirs);
     var maxCapacity = getMaxCapacity(reservoirs);
     //bubbles should not be drawn off of the chart, therefore prevent thickness from exceeding the smallest margin value 
@@ -147,7 +149,6 @@ var label = svg.append("text")
 
   // Positions the dots based on data.
   function position(dot) {
-
     dot.attr("transform", function(d) {
       var cx = xScale(x(d));
       return "translate(" + cx + "," + (height - yScale(y(d)))  + ")";
@@ -226,7 +227,7 @@ var label = svg.append("text")
 setInterval(function(){
   displayYear(dateCounter);
   dateCounter = dateCounter.advance('1 week');
-}, 250);
+}, 1000);
 displayYear(dateCounter);
 
 });
