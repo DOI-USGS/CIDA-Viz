@@ -7,7 +7,6 @@ var accessors = {
 };
 // Various accessors that specify the four dimensions of data to visualize.
 
-var timeIndex = 0;
 // Chart dimensions.
 var margin = {top: 50, right: 50, bottom: 50, left: 100},
     smallestMargin = Object.values(margin).min();
@@ -22,9 +21,11 @@ var margin = {top: 50, right: 50, bottom: 50, left: 100},
     // xScale = d3.scale.ordinal(),
     yScale = d3.scale.linear().domain([0, 100]).range([height, 0]);
 
+  var timeIndex = 0;
   var times = [];
   d3.json("../data/drought_shp/times.json", function(resp) {
     times = resp.d;
+    timeIndex = times.length - 1;
   });
 
 // The x & y axes.
@@ -89,18 +90,20 @@ var setThicknessScale = function(pixelsPerCapacity){
   };
 
   function paintGraph(data) {
-    var dotData = dots.selectAll(".reservoir").data(data, accessors.key);
+    if (data && 0 < data.length) {
+      var dotData = dots.selectAll(".reservoir").data(data, accessors.key);
 
-    dotData.enter().append("rect")
-      .attr("class", "reservoir")
-      .style("fill", function(d) { return barColor })
-      .append("title").text(function(d) { return d.name; })
-      .call(position);
+      dotData.enter().append("rect")
+        .attr("class", "reservoir")
+        .style("fill", function(d) { return barColor })
+        .append("title").text(function(d) { return d.name; })
+        .call(position);
 
-    
-    dotData.exit().remove();
-    // Add a title.
-    dotData.transition().ease('linear').call(position);
+      
+      dotData.exit().remove();
+      // Add a title.
+      dotData.transition().ease('linear').call(position);
+    }
   }
 
     // Positions the dots based on data.
@@ -150,5 +153,4 @@ d3.json("../data/reservoirs/reservoir_storage.json", function(jsonReservoirs) {
       var currentOffset = preceedingOffset + padding;
       reservoirs[i].offset = currentOffset;
   }
-  timeIndex = reservoirs.length - 1;
 });
