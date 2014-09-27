@@ -1,7 +1,5 @@
 ## Lets look at overall storage in all reservoirs
 
-Sys.glob('../storage_data/*')
-
 sites = read.csv('../Data/ca_reservoirs.csv', as.is=TRUE)
 all.data = data.frame()
 for(i in 1:nrow(sites)){
