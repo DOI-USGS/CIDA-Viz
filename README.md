@@ -28,8 +28,8 @@ weekly data represention
  - Lettuce Contribution of CA: http://www.latimes.com/business/la-fi-fruit-and-vegetable-prices-california-drought-continues-20140625-story.html
  - Lemon Contribution of CA: http://www.bloomberg.com/news/2014-09-22/u-s-lemon-lovers-tasting-bitter-price-shock-from-drought.html
  - US Department of Labor, Bureau of Labor Statistics: http://www.bls.gov/ro3/apmw.htm
- -- Lemon: http://data.bls.gov/timeseries/APU0000711412?data_tool=XGtable
- -- Navel Oranges: http://data.bls.gov/timeseries/APU0000711311?data_tool=XGtable
- -- Lettuce: http://data.bls.gov/timeseries/APU0000712211?data_tool=XGtable
+   - Lemon: http://data.bls.gov/timeseries/APU0000711412?data_tool=XGtable
+   - Navel Oranges: http://data.bls.gov/timeseries/APU0000711311?data_tool=XGtable
+   - Lettuce: http://data.bls.gov/timeseries/APU0000712211?data_tool=XGtable
  - US Drought Monitor: http://droughtmonitor.unl.edu/MapsAndData/DataTables.aspx
  - News article on citrus grower challenges: http://www.desertsun.com/story/news/environment/2014/09/22/california-drought-persist-intensify/16078767/
