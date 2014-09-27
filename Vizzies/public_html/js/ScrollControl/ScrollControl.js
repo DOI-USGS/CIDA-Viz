@@ -58,7 +58,7 @@ ScrollControl = function() {
 		var curPos = this.getScrollPos();
 		var goPos = curPos + offset;
 		var _this = this;
-		if(goPos >= 0 && goPos <= (this.height)) {
+		if(goPos >= 0 && goPos <= (this.height) && _this.action == expectedAction) {
 			this.body.animate({scrollTop:goPos}, rate, 'linear', function(){
 	
 				var newPos = _this.getScrollPos();
@@ -72,7 +72,7 @@ ScrollControl = function() {
 				} 
 			});
 		} else {
-			this.pause();
+			_this.pause();
 		}
 	}
 	
@@ -86,9 +86,9 @@ ScrollControl = function() {
 	
 	control.prototype.pause = function() {
 		this.body.stop();
-		this.pauseBtn.hide();
-		this.playBtn.show();
 		this.action = null;
+		this.playBtn.show();
+		this.pauseBtn.hide();
 	}
 	
 	control.prototype.reverse = function() {
