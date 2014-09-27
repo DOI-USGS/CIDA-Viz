@@ -115,6 +115,14 @@ $(document).ready(function () {
 		map.getView().setZoom(zoomLevel);
 	};
 
+	var activateAnchorLink = function(linkNum) {
+		var filledClass = 'links-anchor-link-filled',
+			emptyClass = 'links-anchor-link-empty';
+		console.log(linkNum);
+		$('.links-anchor').switchClass(filledClass, emptyClass, 250, 'linear', null),
+		$('#links-anchor-link-' + linkNum).switchClass(emptyClass, filledClass, 250, 'linear', null);
+	};
+
 	var controller = new ScrollMagic();
 	// build scenes
 	new ScrollScene({triggerElement: "#startTrigger", duration: $(window).height()})
@@ -122,6 +130,7 @@ $(document).ready(function () {
 			$("#time-indicator").text("");
 			//panAndZoom(continentalCenter, continentalZoom);
 			map.replaceLayer(getInitialDroughtLayer(), 'drought');
+			activateAnchorLink(1);
 		})
 		.addTo(controller)
 		.addIndicators();
@@ -130,6 +139,7 @@ $(document).ready(function () {
 		.setPin("#feature2")
 		.on("enter", function (e) {
 			panAndZoom(caliLeftCenter, caliZoom);
+			activateAnchorLink(2);
 		})
 		.addTo(controller)
 		.addIndicators();
@@ -137,6 +147,7 @@ $(document).ready(function () {
 		.setPin("#feature3")
 		.on("enter", function (e) {
 			panAndZoom(caliRightCenter, caliZoom);
+			activateAnchorLink(3);
 		})
 		.addTo(controller)
 		.addIndicators();
@@ -144,6 +155,7 @@ $(document).ready(function () {
 		.setPin("#feature4")
 		.on("enter", function (e) {
 			panAndZoom(caliLeftCenter, caliZoom);
+			activateAnchorLink(4);
 		})
 		.addTo(controller)
 		.addIndicators();
@@ -151,13 +163,17 @@ $(document).ready(function () {
 		.setPin("#feature5")
 		.on("enter", function (e) {
 			panAndZoom(caliRightCenter, caliZoom);
+			activateAnchorLink(5);
 		})
 		.addTo(controller)
 		.addIndicators();
 	new ScrollScene({triggerElement: "#trigger6", duration: 2000})
 		.setPin("#feature6")
 		.addTo(controller)
-		.addIndicators();
+		.addIndicators()
+		.on("enter", function (e) {
+			activateAnchorLink(6);
+		});
 
 	map.replaceLayer = function (layer, layerType) {
 		if (layer) {
@@ -223,7 +239,7 @@ $(document).ready(function () {
 				.setPin("#feature1")
 				.setTween(TweenMax.fromTo("#time-indicator", 1, {x: 0}, {x: $(window).width() - 400}))
 				.on("progress", function (e) {
-					var index = Math.floor((timesArray.length - 1)* e.progress);
+					var index = Math.floor((timesArray.length - 1) * e.progress);
 					if (index != lastIndexCalled) {
 						updateTimestep(timesArray[index]);
 						lastIndexCalled = index;
@@ -237,19 +253,18 @@ $(document).ready(function () {
 		}
 	});
 
-
 	$('.links-anchor').on('click', function (e) {
 		var $target = $(e.target),
 			filledClass = 'links-anchor-link-filled',
 			emptyClass = 'links-anchor-link-empty';
 
-		if ($(e.target).hasClass('links-anchor-link-filled')) {
+		if ($target.hasClass(filledClass)) {
 			e.stopImmediatePropagation();
 			return false;
 		} else {
 			$('.' + filledClass).switchClass(filledClass, emptyClass, 250, 'linear', function () {
 			});
-			$(e.target).switchClass(emptyClass, filledClass, 250, 'linear', function () {
+			$target.switchClass(emptyClass, filledClass, 250, 'linear', function () {
 			});
 		}
 	});
@@ -260,10 +275,8 @@ $(document).ready(function () {
 		offset: 0,
 		updateURL: true,
 		callbackBefore: function (t, a) {
-			// Hook here
 		},
 		callbackAfter: function (t, a) {
-			// Hook here
 		}
 	});
 
@@ -272,4 +285,12 @@ $(document).ready(function () {
 		scrollStep: 40, 
 		parent: $(document.body)
 	});
+
+	$(document).tooltip({
+		position: {
+			my: "right-20",
+			at: "center left"
+		}
+	});
+
 });
