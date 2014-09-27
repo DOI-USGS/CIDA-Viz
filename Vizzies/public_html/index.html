@@ -16,6 +16,7 @@
         <link rel="stylesheet" href="css/main.css">
         <link rel="stylesheet" href="css/styles.css">
         <link rel="stylesheet" href="css/vendor/font-awesome-4.2.0/css/font-awesome.min.css">
+		<link href="css/nv.d3.css" rel="stylesheet" type="text/css">
         <link rel="stylesheet" href="js/ScrollControl/ScrollControl.css">
     </head>
     <body>
@@ -47,48 +48,70 @@
 		<div class="spacer s0"></div>
 		<section id="s2" class="anchor-link">
 			<div class="spacer s2"></div>
-			<div id="trigger6"></div>
+			<div id="news-trigger"></div>
 
-			<div id="feature6">
+			<div id="news">
 				<div class="top">
 					<h1>Drought of California</h1>
-
-					<div class="spacer s0"></div>
-
-					<div class="left">
-						<p><a href="http://on.rgj.com/1pfIphy" target="_blank">Drought: Tahoe will dip below its natural rim this month 
-								from the Reno Gazette Journal</a><br/><em>from the Reno Gazette Journal</em></p>
-					</div>
-
-					<div class="right">
-						<p><a href="http://www.capradio.org/articles/2014/09/08/drilling-through-the-drought/" target="_blank">Drilling Through the Drought: A Look At Well Drilling Activity In The Central Valley </a><br/><em>from CA Public Radio</em></p>
-					</div>				
-
-					<div class="spacer s0"></div>
-
-					<div class="left">
-						<p><a href="http://www.latimes.com/local/lanow/la-me-ln-drought-conditions-forecast-california-20140924-story.html" target="_blank">Parched California expected to miss out on typical fall rains from the LA Times</a><br/><em>from the LA Times</em></p>
-					</div>
-
-					<div class="right">
-						<p><a href="http://www.latimes.com/local/la-me-critical-water-20140926-story.html#page=1" target="_blank">Drought has 14 communities on the brink of waterlessness</a><br/><em>from the LA Times</em></p>
-					</div>
-
-					<div class="spacer s0"></div>
-
-					<div class="left">
-						<p><a href="http://www.stanforddaily.com/2014/09/25/water-usage-at-stanford-the-quick-facts/" target="_blank">California drought continues to take heavy toll on reservoirs</a><br/><em>from Stanford Daily</em></p>
-					</div>					
-
-					<div class="right">
-						<p><a href="http://www.newyorker.com/culture/photo-booth/california-paradise-burning" target="_blank">California: Paradise Burning</a><br/><em>from the New Yorker</em></p>
-					</div>
-
-					<div class="spacer s0"></div>
-
+					
+				<div class="spacer s0"></div>
+			</div>
+			<div class="spacer s0"></div>
+		</section>
+		<section>
+			<div id="tahoe-trigger"></div>
+			<div id="tahoe">
+				<div class="left">
+					<p><a href="http://on.rgj.com/1pfIphy" target="_blank">Drought: Tahoe will dip below its natural rim this month 
+	from the Reno Gazette Journal</a><br/><em>from the Reno Gazette Journal</em></p>
 				</div>
 			</div>
-			<div class="spacer s2"></div>
+			<div class="spacer s0"></div>
+		</section>
+		<section>
+			<div id="drilling-trigger"></div>
+			<div id="drilling">
+				<div class="right">
+					<p><a href="http://www.capradio.org/articles/2014/09/08/drilling-through-the-drought/" target="_blank">Drilling Through the Drought: A Look At Well Drilling Activity In The Central Valley </a><br/><em>from CA Public Radio</em></p>
+				</div>
+			</div>
+			<div class="spacer s0"></div>
+		</section>
+		<section>
+			<div id="parched-trigger"></div>
+			<div id="parched">
+				<div class="left">
+					<p><a href="http://www.latimes.com/local/lanow/la-me-ln-drought-conditions-forecast-california-20140924-story.html" target="_blank">Parched California expected to miss out on typical fall rains from the LA Times</a><br/><em>from the LA Times</em></p>
+				</div>
+			</div>
+			<div class="spacer s0"></div>
+		</section>
+		<section>
+			<div id="brink-trigger"></div>
+			<div id="brink">
+				<div class="right">
+					<p><a href="http://www.latimes.com/local/la-me-critical-water-20140926-story.html#page=1" target="_blank">Drought has 14 communities on the brink of waterlessness</a><br/><em>from the LA Times</em></p>
+				</div>
+			</div>
+			<div class="spacer s0"></div>
+		</section>
+		<section>
+			<div id="toll-trigger"></div>
+			<div id="toll">
+				<div class="left">
+					<p><a href="http://www.stanforddaily.com/2014/09/25/water-usage-at-stanford-the-quick-facts/" target="_blank">California drought continues to take heavy toll on reservoirs</a><br/><em>from Stanford Daily</em></p>
+				</div>
+			</div>
+			<div class="spacer s0"></div>
+		</section>
+		<section>
+			<div id="burning-trigger"></div>
+			<div id="burning">
+				<div class="right">
+					<p><a href="http://www.newyorker.com/culture/photo-booth/california-paradise-burning" target="_blank">California: Paradise Burning</a><br/><em>from the New Yorker</em></p>
+				</div>
+			</div>
+			<div class="spacer s0"></div>
 		</section>
 		<div class="spacer s0"></div>
 		<div class="spacer s0"></div>
@@ -117,7 +140,8 @@
 					<p>Snowpack in California is the primary source of water to reservoirs that serve drinking water, agriculture, and hydroelectric needs.</p>
 					<p>For any given year, less wintertime snowpack results in lower reservoir levels, and less water for consumptive use.</p>
 				</div>
-				<iframe width="600" height="400" frameborder="0" seamless="seamless" scrolling="no" src="https://plot.ly/~lawinslow/3/600/400"></iframe>
+				<iframe width="600" height="400" frameborder="0" seamless="seamless" scrolling="no" src="https://plot.ly/~lawinslow/2/600/400"></iframe>
+				<svg id="usage" class="mypiechart"></svg>
 			</div>
 
 
@@ -252,5 +276,12 @@
 		<script src="js/ScrollControl/ScrollControl.js"></script>
 		<script src="bubble/reservoirPlot.js"></script>
 		<script src="js/main.js"></script>
+		
+		<!-- Pie Chart -->
+		<script src="js/vendor/d3/d3.v3.js"></script>
+		<script src="js/vendor/d3/nv.d3.js"></script>
+		<script src="js/pieChart.js"></script>
+		<script src="js/vendor/legend.js"></script>
+		<!-- End Pie Chart -->
     </body>
 </html>

@@ -160,8 +160,32 @@ $(document).ready(function () {
 		})
 		.addTo(controller)
 		.addIndicators();
-	new ScrollScene({triggerElement: "#trigger6", duration: 2000})
-		.setPin("#feature6")
+	new ScrollScene({triggerElement: "#news-trigger", duration: 1000})
+		.setPin("#news")
+		.addTo(controller)
+		.addIndicators();
+	new ScrollScene({triggerElement: "#tahoe-trigger", duration: 1000})
+		.setPin("#tahoe")
+		.addTo(controller)
+		.addIndicators();
+	new ScrollScene({triggerElement: "#drilling-trigger", duration: 1000})
+		.setPin("#drilling")
+		.addTo(controller)
+		.addIndicators();
+	new ScrollScene({triggerElement: "#parched-trigger", duration: 1000})
+		.setPin("#parched")
+		.addTo(controller)
+		.addIndicators();
+	new ScrollScene({triggerElement: "#brink-trigger", duration: 1000})
+		.setPin("#brink")
+		.addTo(controller)
+		.addIndicators();
+	new ScrollScene({triggerElement: "#toll-trigger", duration: 1000})
+		.setPin("#toll")
+		.addTo(controller)
+		.addIndicators();
+	new ScrollScene({triggerElement: "#burning-trigger", duration: 1000})
+		.setPin("#burning")
 		.addTo(controller)
 		.addIndicators()
 		.on("enter", function (e) {
@@ -299,5 +323,64 @@ $(document).ready(function () {
 			my: "right-20",
 			at: "center left"
 		}
+	});
+	
+  var ca_consume = [
+    { 
+        key: "Public supply",
+        y : 21.25
+      } , 
+      { 
+        key: "Domestic",
+        y : 1.48
+      } , 
+      { 
+        key: "Irrigation",
+        y : 74.18
+      } , 
+      { 
+        key: "Livestock",
+        y : 0.6
+      } , 
+      { 
+        key: "Aquaculture",
+        y : 1.96
+      } , 
+      { 
+        key: "Industrial",
+        y : 0.22
+      } , 
+      { 
+        key: "Mining",
+        y : 0.16
+      } , 
+      { 
+        key: "Thermoelectric",
+        y : 0.15
+      }
+  ];
+
+
+	nv.addGraph(function() {
+		var width = 500,
+			height = 500;
+
+		var chart = nv.models.pieChart()
+			.x(function(d) { return d.key })
+			.y(function(d) { return d.y })
+			.color(d3.scale.category10().range())
+			.width(width)
+			.height(height);
+
+		  d3.select("#usage")
+			  .datum(ca_consume)
+			.transition().duration(1200)
+			  .attr('width', width)
+			  .attr('height', height)
+			  .call(chart);
+
+		chart.dispatch.on('stateChange', function(e) { nv.log('New State:', JSON.stringify(e)); });
+
+		return chart;
 	});
 });
