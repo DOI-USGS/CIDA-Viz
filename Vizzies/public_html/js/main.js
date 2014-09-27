@@ -153,6 +153,10 @@ $(document).ready(function () {
 			panAndZoom(caliRightCenter, caliZoom);
 		})
 		.addTo(controller)
+		.addIndicators();	
+	new ScrollScene({triggerElement: "#trigger6", duration: 2000})
+		.setPin("#feature6")
+		.addTo(controller)
 		.addIndicators();
 	
 	map.replaceLayer = function (layer, layerType) {
@@ -204,6 +208,7 @@ $(document).ready(function () {
 	});
 	map.addLayer(sitesLayer);
 
+	var lastIndexCalled = -1;
 	$.ajax('data/drought_shp/times.json', {
 		success: function (data) {
 			var timesArray = data.d.reverse();
@@ -212,7 +217,10 @@ $(document).ready(function () {
 				.setTween(TweenMax.fromTo("#time-indicator", 1, {x: 0}, {x: $(window).width() - 400}))
 				.on("progress", function (e) {
 					var index = Math.floor(timesArray.length * e.progress);
-					updateTimestep(timesArray[index]);
+					if(index != lastIndexCalled) {
+						updateTimestep(timesArray[index]);
+						lastIndexCalled = index;
+					}
 				})
 				.on("enter", function (e) {
 					panAndZoom(caliCenterCenter, caliZoom);
@@ -222,6 +230,7 @@ $(document).ready(function () {
 		}
 	});
 	
+
 	$('.links-anchor').on('click', function(e) {
 		var $target = $(e.target),
 			filledClass = 'links-anchor-link-filled',
@@ -234,5 +243,11 @@ $(document).ready(function () {
 			$('.' + filledClass).switchClass(filledClass, emptyClass, 250, 'linear', function() {});
 			$(e.target).switchClass(emptyClass, filledClass, 250, 'linear', function() {});
 		}
+	});
+	
+	new ScrollControl({
+		scrollRate: 50,
+		scrollStep: 25, 
+		parent: $(document.body)
 	});
 });
