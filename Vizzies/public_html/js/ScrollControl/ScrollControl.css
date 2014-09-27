@@ -1,10 +1,12 @@
 .scroll-control-container {
-	position: absolute;
+	position: fixed;
     top: 20px;
-    right: 20px;
+    right: 25px;
+    z-index: 10000;
 }
 
 .scroll-control-container i {
+    z-index: 10001;
 	padding: 3px;
 	cursor: pointer;
 }

@@ -190,6 +190,7 @@ $(document).ready(function () {
 	});
 	map.addLayer(sitesLayer);
 
+	var lastIndexCalled = 0;
 	$.ajax('data/drought_shp/times.json', {
 		success: function (data) {
 			var timesArray = data.d.reverse();
@@ -198,8 +199,10 @@ $(document).ready(function () {
 				.setTween(TweenMax.fromTo("#time-indicator", 1, {x: 0}, {x: $(window).width() - 400}))
 				.on("progress", function (e) {
 					var index = Math.floor(timesArray.length * e.progress);
-					updateTimestep(timesArray[index]);
-					console.log("here");
+					if(index != lastIndexCalled) {
+						updateTimestep(timesArray[index]);
+						lastIndexCalled = index;
+					}
 				})
 				.on("enter", function (e) {
 					panAndZoom(californiaView);
@@ -227,6 +230,6 @@ $(document).ready(function () {
 	new ScrollControl({
 		scrollRate: 50,
 		scrollStep: 25, 
-		parent: $('#clearDiv')
+		parent: $(document.body)
 	});
 });
