@@ -148,6 +148,7 @@ $(document).ready(function () {
 		.on("enter", function (e) {
 			panAndZoom(caliRightCenter, caliZoom);
 			activateAnchorLink(3);
+			reservoirPlot.paintNextGraph();
 		})
 		.addTo(controller)
 		.addIndicators();
@@ -292,5 +293,4 @@ $(document).ready(function () {
 			at: "center left"
 		}
 	});
-
 });
