@@ -151,7 +151,7 @@ $(document).ready(function () {
 		})
 		.addTo(controller)
 		.addIndicators();
-	new ScrollScene({triggerElement: "#trigger4", duration: 2000})
+	new ScrollScene({triggerElement: "#trigger4", duration: 5000})
 		.setPin("#feature4")
 		.on("enter", function (e) {
 			panAndZoom(caliLeftCenter, caliZoom);
