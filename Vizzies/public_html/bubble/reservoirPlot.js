@@ -1,4 +1,4 @@
-var reservoirPlot = new (function ReservoirPlot() {
+var reservoirPlot = new (function ReservoirPlot(chartSelector) {
 	var that = this;
 	var accessors = {
 		x: function x(d) {
@@ -44,7 +44,7 @@ var reservoirPlot = new (function ReservoirPlot() {
 
 	var yAxis = d3.svg.axis().scale(yScale).orient("left");
 
-	var svg = d3.select("#chart").append("svg")
+	var svg = d3.select(chartSelector).append("svg")
 		.attr("width", width + margin.left + margin.right)
 		.attr("height", height + margin.top + margin.bottom)
 		.append("g")
@@ -175,4 +175,4 @@ var reservoirPlot = new (function ReservoirPlot() {
 			reservoirs[i].offset = currentOffset;
 		}
 	});
-})();
+})("#reservoirPlot");
