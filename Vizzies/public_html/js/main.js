@@ -135,7 +135,7 @@ $(document).ready(function () {
 		.addTo(controller)
 		.addIndicators();
 	// Scene 1 built in response to ajax
-	new ScrollScene({triggerElement: "#trigger2", duration: 2000})
+	new ScrollScene({triggerElement: "#trigger2", duration: 3000})
 		.setPin("#feature2")
 		.on("enter", function (e) {
 			panAndZoom(caliLeftCenter, caliZoom);
