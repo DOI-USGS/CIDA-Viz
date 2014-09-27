@@ -58,4 +58,4 @@ source("get_drought_idx.R")
 plot_names = c('oranges','lemons','grapes','lettuce')
 plot_colors = c("rgb(255, 153, 0)", "rgb(255, 255, 150)", "rgb(68, 28, 82)", "rgb(0, 255, 128)")
 
-ca_crop_viz('jordansread','$$$$$',plot_names,plot_colors)
+ca_crop_viz('jordansread','$$$$',plot_names,plot_colors)

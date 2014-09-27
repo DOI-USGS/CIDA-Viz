@@ -1,5 +1,5 @@
 get_drought_idx <- function(layer_name){
-  tot_area = 644712127449
+  tot_area = 206976224224
   library('rgeos')
   library('sp')
   library('jsonlite')
@@ -27,44 +27,22 @@ cumulative_area <- function(vals, drought_i){
   library('rgdal')
   area <- 0
   
-  dg<- tryCatch({
-    dg = vals$features$geometry$coordinates[[drought_i]]
-    
-  }, error=function(err){return(list(F))})
-  if (is.null(dg) || dg[[1]] == F){
-    return(0)
-  }
-  
-  if (is.list(vals$features$geometry$coordinates[[drought_i]][1])){
-    # this is a multi-poly
-    num_feat <- length(vals$features$geometry$coordinates[[drought_i]])
+  area <- tryCatch({
+    num_feat <- length(vals$features[[drought_i]]$geometry$coordinates)
     for (i in 1:num_feat){
-      lon <- vals$features$geometry$coordinates[[drought_i]][[i]][1,,1]
-      lat <- vals$features$geometry$coordinates[[drought_i]][[i]][1,,2]
+      latlong <- unlist(vals$features[[drought_i]]$geometry$coordinates[[1]])
+      lon <- latlong[seq(1,length(latlong),2)]
+      lat <- latlong[seq(2,length(latlong),2)]
       spPolygons <- SpatialPolygons(list(Polygons(list(Polygon(cbind(lon,lat))), ID="a")))
       spPolygons@proj4string <- CRS("+proj=longlat +ellps=sphere +no_defs")
       
       spPolygons<- spTransform(spPolygons, CRS=CRS("+proj=merc +ellps=GRS80"))
       
       area <- area + gArea(spPolygons)
+      return(area)
     }
     
-  } else {
-    # this is a single poly
-    if (length(length(vals$features$geometry$coordinates)) <= drought_i){
-      lon <- vals$features$geometry$coordinates[[drought_i]][1,,1]
-      lat <- vals$features$geometry$coordinates[[drought_i]][1,,2]
-      spPolygons <- SpatialPolygons(list(Polygons(list(Polygon(cbind(lon,lat))), ID="a")))
-      spPolygons@proj4string <- CRS("+proj=longlat +ellps=sphere +no_defs")
-      
-      spPolygons<- spTransform(spPolygons, CRS=CRS("+proj=merc +ellps=GRS80"))
-      
-      area <- area + gArea(spPolygons)
-    } else {
-      # area is not incremented
-    }
-    
-  }
+  }, error=function(err){return(0)})
 
   return(area)
 }
@@ -85,7 +63,7 @@ multi_layer_vals <- function(dates){
   value_out <- vector(length = length(dates))
   for (j in 1:length(dates)){
     layer <- nearest_drought_layer(dates[j])
-    value_out[i] <- get_drought_idx(layer)
+    value_out[j] <- get_drought_idx(layer)
   }
   return(value_out)
 }
