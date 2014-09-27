@@ -143,15 +143,8 @@ $(document).ready(function () {
 		})
 		.addTo(controller)
 		.addIndicators();
-	new ScrollScene({triggerElement: "#trigger3", duration: 2000})
-		.setPin("#feature3")
-		.on("enter", function (e) {
-			panAndZoom(caliRightCenter, caliZoom);
-			activateAnchorLink(3);
-		})
-		.addTo(controller)
-		.addIndicators();
-	new ScrollScene({triggerElement: "#trigger4", duration: 5000})
+	// Scene 3 built in response to ajax
+	new ScrollScene({triggerElement: "#trigger4", duration: 2000})
 		.setPin("#feature4")
 		.on("enter", function (e) {
 			panAndZoom(caliLeftCenter, caliZoom);
@@ -274,7 +267,22 @@ $(document).ready(function () {
 				})
 				.addTo(controller)
 				.addIndicators();
-		}
+			new ScrollScene({triggerElement: "#trigger3", duration: 2000})
+				.setPin("#feature3")
+				.on("progress", function(e) {
+					var index = Math.floor((timesArray.length - 1) * e.progress);
+					if (index != lastIndexCalled) {
+						reservoirPlot.paintGraph(reservoirPlot.getDataAtTimestep(undefined, timesArray[index]));
+						lastIndexCalled = index;
+					}
+				})
+				.on("enter", function (e) {
+					panAndZoom(caliRightCenter, caliZoom);
+					activateAnchorLink(3);
+				})
+				.addTo(controller)
+				.addIndicators();
+				}
 	});
 
 	$('.links-anchor').on('click', function (e) {
@@ -375,5 +383,4 @@ $(document).ready(function () {
 
 		return chart;
 	});
-
 });

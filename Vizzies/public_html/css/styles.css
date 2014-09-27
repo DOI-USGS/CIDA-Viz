@@ -167,3 +167,7 @@ footer{padding-top:5%;
 	border-radius: 15px;
 	-webkit-transform: translateZ(0);
 }
+
+.reservoir {
+  stroke: #000;
+}
