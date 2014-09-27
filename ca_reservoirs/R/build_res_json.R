@@ -1,9 +1,33 @@
 library(rjson)
-week_time <- seq.POSIXt(as.POSIXlt('2000-01-04'), as.POSIXlt('2014-09-20'), by = 'week')
+week_time <- seq.POSIXt(as.POSIXlt('2011-01-04'), as.POSIXlt('2014-09-20'), by = 'week')
 library(jsonlite)
 json_res <- jsonlite::fromJSON('../Data/ca_reservoirs.json')
 #yes, this is goofy
 detach("package:jsonlite", unload=TRUE)
+
+
+qaqc_flags <- function(data){
+  library('sensorQC')
+  mad_vals <- MAD(data)
+  bad_i <- mad_vals > 3 # conservative
+  return(bad_i)
+}
+#This interpolates small gaps, in the middle of data
+# and then returns the original 
+interp.storage = function (dates, data){
+  max.gap = 21*24 # days * hours
+  bad.data <- qaqc_flags(data)
+	snip.dates = dates[!bad.data]
+	snip.data = data[!bad.data]
+  gaps <- as.numeric(diff(snip.dates))
+  if (any(gaps > max.gap)){
+    return(NA)
+  } else {
+    fixed.data = approx(snip.dates, snip.data, dates)
+    return(fixed.data$y)
+  }
+}
+
 
 sites = read.csv('../Data/ca_reservoirs.csv', as.is=TRUE)
 
@@ -19,9 +43,10 @@ for (i in 1:num_station){
   file_nm <- paste0('../storage_data/', sites$ID[i], '.csv')
   if (file.exists(file_nm)){
     dat <- read.csv(file = file_nm)
-    dates <- as.POSIXlt(dat[,1])
+    dates <- as.POSIXct(dat[,1])
     storage <- dat[, 2]
-    stations_all[[i]] <- data.frame('dates'=dates, 'storage'=storage)
+    new.storage = interp.storage(dates, storage)
+    stations_all[[i]] <- data.frame('dates'=dates, 'storage'=new.storage)
     station_names[i] <- sites$ID[i]
   } else {
     rmv_i[i] <- TRUE
@@ -32,6 +57,7 @@ station_names <- station_names[!rmv_i]
 num_station <- length(stations_all)
 
 reservoirs <- vector('list', length = num_station )
+rmv_station <- vector(length = num_station )
 for (i in 1:num_station){
   
   res_mat <- matrix(nrow = num_steps, ncol = 1)
@@ -47,17 +73,18 @@ for (i in 1:num_station){
       
     }
   }
-  rmv_i <- is.na(res_mat[,1])
+  rmv_station[i] <- any(is.na(res_mat[,1])) # should be none!!
   j_id <- which(json_res$ID == station_names[i])
   reservoirs[[i]] <- list("Station"=json_res$Station[j_id],"ID"=station_names[i],
                           "Elev"=json_res$Elev[j_id], "Latitude"=json_res$Latitude[j_id], "Longitude" = json_res$Longitude[j_id],
                     "County"=json_res$County[j_id], "Nat_ID"=json_res[j_id, 8],"Year_Built"=json_res[j_id, 9], 
                     "Capacity"=json_res[j_id, 10], "Storage"=res_mat[!rmv_i,])
   names(reservoirs[[i]]$Storage) <- strftime(week_time[!rmv_i], "%Y%m%d")
-  cat(i);cat('\n')
 }
 
+reservoirs[rmv_station] <- NULL
+cat('stations dropped:');cat(sum(rmv_station))
 json <- toJSON(reservoirs)
 
-cat(json,file = '../storage_data/reservoir.json')
+cat(json,file = '../../Vizzies/public_html/data/reservoirs/reservoir_storage.json')
 
