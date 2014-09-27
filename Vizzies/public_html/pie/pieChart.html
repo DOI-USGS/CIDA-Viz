@@ -26,7 +26,7 @@ text {
 <script src="../js/vendor/legend.js"></script>
 <script>
 
-  var testdata = [
+  var ca_consume = [
     { 
         key: "Public supply",
         y : 21.25
@@ -74,7 +74,7 @@ nv.addGraph(function() {
         .height(height);
 
       d3.select("#test1")
-          .datum(testdata)
+          .datum(ca_consume)
         .transition().duration(1200)
           .attr('width', width)
           .attr('height', height)
