@@ -8,7 +8,7 @@ nv.models.pieChart = function() {
     , legend = nv.models.legend()
     ;
 
-  var margin = {top: 30, right: 20, bottom: 20, left: 20}
+  var margin = {top: 30, right: 10, bottom: 10, left: 10}
     , width = null
     , height = null
     , showLegend = true
