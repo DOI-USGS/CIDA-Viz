@@ -42,7 +42,7 @@ $(document).ready(function () {
 		if (timestep) {
 			var layer = new ol.layer.Vector({
 				source: new ol.source.GeoJSON({
-					url: 'data/fire_shp/FIRE_' + timestep + '.geojson',
+					url: 'data/fire_shp/FIRE_' + timestep + '.json',
 					projection: ol.proj.get('EPSG:3857')
 				}),
 				style: getFireStyle,

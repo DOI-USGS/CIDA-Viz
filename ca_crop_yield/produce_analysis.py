@@ -41,9 +41,11 @@ if __name__ == '__main__':
         df = pd.read_csv(csv_path, sep=',', quotechar='"', skiprows=8, header=0, index_col=0)
         df1 = df.loc[2010:]
         dfs[produce_item] = df1
+    stacked_dfs = []
     for key in dfs:
         produce_df = dfs[key]
         produce_df_stacked = produce_df.stack()
+        stacked_dfs.append(produce_df_stacked)
         produce_df_stacked.plot(kind='bar', color='c')
         title = '{0} CPI'.format(key)
         y_label = '{0} Average Price/lb'.format(key)
@@ -51,8 +53,15 @@ if __name__ == '__main__':
         plt.title(title)
         plt.ylabel(y_label)
         plt.xlabel(x_label)
+        plt.legend(loc='best')
         fig = gcf()
         fig.set_size_inches(18.5, 14.5)
         figure_name = 'plots\\{0}.png'.format(key)
         fig.savefig(figure_name)
+    s_df_0 = stacked_dfs[0]
+    s_df_0.index.names = ['year', 'month']
+    
+    # print(s_df_0)
+    # s_df_0_2011 = s_df_0.loc[(2011, 'Feb'):(2014, 'Mar')]
+    # print(s_df_0_2011)
     
