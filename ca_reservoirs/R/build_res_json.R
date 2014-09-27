@@ -1,15 +1,21 @@
 library(rjson)
-week_time <- seq.POSIXt(as.POSIXlt('2000-01-04'), as.POSIXlt('2014-09-20'), by = 'week')
+week_time <- seq.POSIXt(as.POSIXlt('2011-01-04'), as.POSIXlt('2014-09-20'), by = 'week')
 library(jsonlite)
 json_res <- jsonlite::fromJSON('../Data/ca_reservoirs.json')
 #yes, this is goofy
 detach("package:jsonlite", unload=TRUE)
 
+
+qaqc_flags <- function(data){
+  library('sensorQC')
+  mad_vals <- MAD(data)
+  bad_i <- mad_vals > 3 # conservative
+  return(bad_i)
+}
 #This interpolates small gaps, in the middle of data
 # and then returns the original 
 interp.storage = function (dates, data){
-	bad.data = is.na(data) | data < 0  #there are some negative values we should drop
-	
+  bad.data <- qaqc_flags(data)
 	snip.dates = dates[!bad.data]
 	snip.data = data[!bad.data]
 	
