@@ -52,13 +52,13 @@ $(document).ready(function () {
 			layer.layer_type = 'fire';
 			return layer;
 		}
-		
+
 	};
-	
+
 	var getInitialDroughtLayer = function () {
 		return getDroughtLayer('20140916_US');
 	};
-	
+
 	var getDroughtLayer = function (timestep) {
 		if (timestep) {
 			var layer = new ol.layer.Vector({
@@ -74,17 +74,20 @@ $(document).ready(function () {
 			return layer;
 		}
 	};
-	
-	var continentalView = new ol.View({
-		center: ol.proj.transform([-98.5, 39.5], "EPSG:4326", "EPSG:3857"),
-		zoom: 4
+
+	var continentalCenter = ol.proj.transform([-98.5, 39.5], "EPSG:4326", "EPSG:3857");
+	var caliCenterCenter = ol.proj.transform([-119.0, 38.0], "EPSG:4326", "EPSG:3857");
+	var caliLeftCenter = ol.proj.transform([-110.0, 38.0], "EPSG:4326", "EPSG:3857");
+	var caliRightCenter = ol.proj.transform([-128.0, 38.0], "EPSG:4326", "EPSG:3857");
+
+	var continentalZoom = 4;
+	var caliZoom = 6;
+
+	var view = new ol.View({
+		center: continentalCenter,
+		zoom: continentalZoom
 	});
-	
-	var californiaView = new ol.View({
-		center : [-13319610.800861657, 4501835.217883743],
-		zoom: 5
-	});
-	
+
 	map = new ol.Map({
 		layers: [
 			new ol.layer.Tile({
@@ -93,32 +96,31 @@ $(document).ready(function () {
 		],
 		target: 'map',
 		controls: [new ol.control.MousePosition()],
-		view: continentalView,
+		view: view,
 		renderer: 'canvas'
 	});
-	var panAndZoom = function (newView) {
+	var panAndZoom = function (center, zoomLevel) {
 		var duration = 1500;
 		var start = +new Date();
 		var pan = ol.animation.pan({
 			duration: duration,
-			source: /** @type {ol.Coordinate} */ (map.getView().getCenter()),
-			start: start
+			source: map.getView().getCenter()
 		});
 		var zoom = ol.animation.zoom({
 			duration: duration,
-			resolution: map.getView().getResolution(),
-			start: start
+			resolution: map.getView().getResolution()
 		});
 		map.beforeRender(pan, zoom);
-		map.setView(newView);
+		map.getView().setCenter(center);
+		map.getView().setZoom(zoomLevel);
 	};
 
 	var controller = new ScrollMagic();
 	// build scenes
 	new ScrollScene({triggerElement: "#startTrigger", duration: $(window).height()})
-		.on("enter", function(e) {
+		.on("enter", function (e) {
 			$("#time-indicator").text("");
-			panAndZoom(continentalView);
+			//panAndZoom(continentalCenter, continentalZoom);
 			map.replaceLayer(getInitialDroughtLayer(), 'drought');
 		})
 		.addTo(controller)
@@ -126,36 +128,59 @@ $(document).ready(function () {
 	// Scene 1 built in response to ajax
 	new ScrollScene({triggerElement: "#trigger2", duration: 2000})
 		.setPin("#feature2")
+		.on("enter", function (e) {
+			panAndZoom(caliLeftCenter, caliZoom);
+		})
 		.addTo(controller)
 		.addIndicators();
 	new ScrollScene({triggerElement: "#trigger3", duration: 2000})
 		.setPin("#feature3")
+		.on("enter", function (e) {
+			panAndZoom(caliRightCenter, caliZoom);
+		})
 		.addTo(controller)
 		.addIndicators();
 	new ScrollScene({triggerElement: "#trigger4", duration: 2000})
 		.setPin("#feature4")
+		.on("enter", function (e) {
+			panAndZoom(caliLeftCenter, caliZoom);
+		})
 		.addTo(controller)
 		.addIndicators();
 	new ScrollScene({triggerElement: "#trigger5", duration: 2000})
 		.setPin("#feature5")
+		.on("enter", function (e) {
+			panAndZoom(caliRightCenter, caliZoom);
+		})
 		.addTo(controller)
-		.addIndicators();	
-	
+		.addIndicators();
+	new ScrollScene({triggerElement: "#trigger6", duration: 2000})
+		.setPin("#feature6")
+		.addTo(controller)
+		.addIndicators();
+
 	map.replaceLayer = function (layer, layerType) {
-		map.addLayer(layer);
-		layer.getSource().on('change', function (event) {
-			var isReady = event.target.state_ === 'ready';
-			if (isReady) {
-				var layers = map.getLayers().array_.filter(function (oldLayer) {
-					return oldLayer.layer_type === layerType && oldLayer !== layer;
-				});
-				for (var i = 0; i < layers.length; i++) {
-					map.removeLayer(layers[i]);
+		if (layer) {
+			map.addLayer(layer);
+			layer.getSource().on('change', function (event) {
+				var isReady = event.target.state_ === 'ready';
+				if (isReady) {
+					var layers = map.getLayers().array_.filter(function (oldLayer) {
+						if (oldLayer) {
+							return oldLayer.layer_type === layerType && oldLayer !== layer;
+						} else {
+							return false;
+						}
+
+					});
+					for (var i = 0; i < layers.length; i++) {
+						map.removeLayer(layers[i]);
+					}
 				}
-			}
-		});
+			});
+		}
 	};
-	
+
 	var updateTimestep = function (timestep) {
 		var droughtLayer = getDroughtLayer(timestep);
 		var fireLayer = getFireLayer(timestep);
@@ -190,6 +215,7 @@ $(document).ready(function () {
 	});
 	map.addLayer(sitesLayer);
 
+	var lastIndexCalled = -1;
 	$.ajax('data/drought_shp/times.json', {
 		success: function (data) {
 			var timesArray = data.d.reverse();
@@ -197,28 +223,53 @@ $(document).ready(function () {
 				.setPin("#feature1")
 				.setTween(TweenMax.fromTo("#time-indicator", 1, {x: 0}, {x: $(window).width() - 400}))
 				.on("progress", function (e) {
-					var index = Math.floor(timesArray.length * e.progress);
-					updateTimestep(timesArray[index]);
+					var index = Math.floor((timesArray.length - 1)* e.progress);
+					if (index != lastIndexCalled) {
+						updateTimestep(timesArray[index]);
+						lastIndexCalled = index;
+					}
 				})
 				.on("enter", function (e) {
-					panAndZoom(californiaView);
+					panAndZoom(caliCenterCenter, caliZoom);
 				})
 				.addTo(controller)
 				.addIndicators();
 		}
 	});
-	
-	$('.links-anchor').on('click', function(e) {
+
+
+	$('.links-anchor').on('click', function (e) {
 		var $target = $(e.target),
 			filledClass = 'links-anchor-link-filled',
 			emptyClass = 'links-anchor-link-empty';
-		
+
 		if ($(e.target).hasClass('links-anchor-link-filled')) {
 			e.stopImmediatePropagation();
 			return false;
 		} else {
-			$('.' + filledClass).switchClass(filledClass, emptyClass, 250, 'linear', function() {});
-			$(e.target).switchClass(emptyClass, filledClass, 250, 'linear', function() {});
+			$('.' + filledClass).switchClass(filledClass, emptyClass, 250, 'linear', function () {
+			});
+			$(e.target).switchClass(emptyClass, filledClass, 250, 'linear', function () {
+			});
 		}
+	});
+
+	smoothScroll.init({
+		speed: 1000,
+		easing: 'easeInOutCubic',
+		offset: 0,
+		updateURL: true,
+		callbackBefore: function (t, a) {
+			// Hook here
+		},
+		callbackAfter: function (t, a) {
+			// Hook here
+		}
+	});
+
+	new ScrollControl({
+		scrollRate: 25,
+		scrollStep: 25,
+		parent: $(document.body)
 	});
 });
