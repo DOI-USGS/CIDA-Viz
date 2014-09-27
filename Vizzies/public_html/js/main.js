@@ -190,6 +190,7 @@ $(document).ready(function () {
 				.on("progress", function (e) {
 					var index = Math.floor(timesArray.length * e.progress);
 					updateTimestep(timesArray[index]);
+					console.log("here");
 				})
 				.on("enter", function (e) {
 					flyToNewView(californiaView, true);
@@ -197,5 +198,11 @@ $(document).ready(function () {
 				.addTo(controller)
 				.addIndicators();
 		}
+	});
+	
+	new ScrollControl({
+		scrollRate: 50,
+		scrollStep: 25, 
+		parent: $('#clearDiv')
 	});
 });

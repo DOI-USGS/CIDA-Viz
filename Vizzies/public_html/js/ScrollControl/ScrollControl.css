@@ -1,0 +1,10 @@
+.scroll-control-container {
+	position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+.scroll-control-container i {
+	padding: 3px;
+	cursor: pointer;
+}
