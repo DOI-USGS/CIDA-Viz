@@ -41,6 +41,7 @@ header,
 #feature2,
 #feature3,
 #feature4,
+#feature5,
 footer{	height:100%;
 			padding:15px 15px;
 			font-family:"Open Sans";
@@ -106,3 +107,39 @@ footer{	height:100%;
 			
 footer{padding-top:5%;
 		height:95%;}
+
+/* //// */
+#links-anchor {
+	position: fixed;
+	right: 5px;
+	top: 40%;
+	z-index: 1000;
+}
+
+#links-anchor table tr {
+	margin-top: 5px;
+}
+
+.links-anchor {
+	margin-top: 3px;
+	margin-bottom: 3px;
+}
+
+.links-anchor-link-empty:hover {
+	cursor: pointer;
+}
+
+.links-anchor-link-empty {
+	border: 3px solid #55DA6A;
+	height: 20px;
+	width: 20px;
+	border-radius: 15px;
+}
+
+.links-anchor-link-filled {
+	border: 3px solid #55DA6A;
+	background-color: #55DA6A;
+	height: 20px;
+	width: 20px;
+	border-radius: 15px;
+}

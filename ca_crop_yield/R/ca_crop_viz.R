@@ -31,12 +31,14 @@ build_list <- function(plot_names,plot_colors, years_out){
     y_vals <- crops$anomoly
     x_vals <- crops$drought
     years <- crops$years
+    plot_name <- paste(toupper(substring(crop_name, 1,1)), substring(crop_name, 2),
+                       sep="", collapse=" ")
+    if (plot_name == "Oranges"){plot_name = "Navel oranges"}
     plot_list[[i]] <- list(
       x = x_vals,
       y = y_vals, 
       mode = "markers", 
-      name = paste(toupper(substring(crop_name, 1,1)), substring(crop_name, 2),
-                   sep="", collapse=" "),
+      name = plot_name,
       text = as.character(years),
       marker = list(
         color = plot_colors[i], 
@@ -58,4 +60,4 @@ source("get_drought_idx.R")
 plot_names = c('Oranges','Lemons','Lettuce')
 plot_colors = c("rgb(255, 153, 0)", "rgb(230, 230, 30)", "rgb(0, 153, 0)")
 
-ca_crop_viz('jordansread','90m4bzyins',plot_names,plot_colors, years_out=seq(2008,2014))
+ca_crop_viz('jordansread','$$$',plot_names,plot_colors, years_out=seq(2008,2014))

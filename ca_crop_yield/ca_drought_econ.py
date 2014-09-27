@@ -2,6 +2,8 @@
 Created on Sep 26, 2014
 
 @author: ayan
+
+This is the script that actually got used for data analysis.
 '''
 import calendar
 from datetime import date
@@ -47,9 +49,9 @@ def report_month(series, date_col):
     month_val = date_val.strftime('%m')
     return int(month_val)
     
-def summer(series, year_col):
+def year_str(series, year_col):
     year_val = int(series[year_col])
-    return 'Jun 01 - Aug 31 {0}'.format(year_val)
+    return '{0}'.format(year_val)
 
 if __name__ == '__main__':
     """
@@ -71,14 +73,14 @@ if __name__ == '__main__':
     df_tdi = pd.read_csv(TDI_DATA, sep=',', skiprows=1, header=0, parse_dates=['Week'], comment='#', index_col='Week')
     df_severe = df_tdi[['D2-D4']]
     di_str = 'Percent of CA in Severe Drought'
-    df_tdi_2007_2014 = df_severe[(df_severe.index >= '2007-01-01') & (df_severe.index < '2014-09-01')]
+    df_tdi_2007_2014 = df_severe[(df_severe.index >= '2007-01-01') & (df_severe.index < '2014-09-01')] # get data from 2007 to present
     df_tdi_2007_2014_rs = df_tdi_2007_2014.resample('M')
     df_tdi_2007_2014_rs['date'] = df_tdi_2007_2014_rs.index
     df_tdi_2007_2014_rs.columns = [di_str, 'date']
     
     
     # produce prices
-    produce_items = ['oranges', 'lemons', 'lettuce']
+    produce_items = ['navel_oranges', 'lemons', 'lettuce']
     dfs = {}
     dfs_ri = {}
     for produce_item in produce_items:
@@ -95,7 +97,7 @@ if __name__ == '__main__':
         df_stack_filtered = df_stack_ri[['date', column_name]]
         dfs_ri[produce_item] = df_stack_filtered
     df_lemon = dfs_ri['lemons']
-    df_orange = dfs_ri['oranges']
+    df_orange = dfs_ri['navel_oranges']
     df_lettuce = dfs_ri['lettuce']
     df_lemon_orange = pd.merge(df_lemon, df_orange, how='inner', on='date')
     df_produce = pd.merge(df_lemon_orange, df_lettuce, how='inner', on='date')
@@ -103,14 +105,15 @@ if __name__ == '__main__':
     df_di_produce = pd.merge(df_produce, df_di, how='inner', on='date')
     df_di_produce['mon_int'] = df_di_produce.apply(report_month, axis=1, date_col='date')
     df_di_produce.index = df_di_produce['date']
-    df_di_produce_summer = df_di_produce[(df_di_produce['mon_int'] >= 6) & (df_di_produce['mon_int'] <= 8)] # just get June - August for each year
+    df_di_produce_summer = df_di_produce[(df_di_produce['mon_int'] >= 1) & (df_di_produce['mon_int'] <= 12)] # just get June - August for each year
+    print(df_di_produce_summer)
     grouper_year = pd.TimeGrouper('A')
-    df_summer_avg = df_di_produce_summer.groupby(grouper_year).mean()
-    df_summer_avg['year'] = df_summer_avg.index.year
-    df_summer_avg['summer'] = df_summer_avg.apply(summer, axis=1, year_col='year')
-    pertinent_columns = ['Lemons Avg Price', 'Oranges Avg Price', 'Lettuce Avg Price', di_str, 'summer']
-    df_summer_avg = df_summer_avg[pertinent_columns]
-    df_summer_avg.plot(kind='scatter', y=['Lemons Avg Price', 'Oranges Avg Price', 'Lettuce Avg Price'], 
+    df_avg = df_di_produce_summer.groupby(grouper_year).mean()
+    df_avg['year'] = df_avg.index.year
+    df_avg['year_str'] = df_avg.apply(year_str, axis=1, year_col='year')
+    pertinent_columns = ['Lemons Avg Price', 'Navel_Oranges Avg Price', 'Lettuce Avg Price', di_str, 'year_str']
+    df_summer_avg = df_avg[pertinent_columns]
+    df_summer_avg.plot(kind='scatter', y=['Lemons Avg Price', 'Navel_Oranges Avg Price', 'Lettuce Avg Price'], 
                        x=[di_str]*3, color=['blue', 'red', 'green'], label=['lemon', 'orange', 'lettuce'])
     title = 'Produce Price vs Percent Severe Drought'
     plt.xlabel('Percent of CA experiencing severe drought')
