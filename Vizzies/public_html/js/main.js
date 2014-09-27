@@ -75,14 +75,17 @@ $(document).ready(function () {
 		}
 	};
 	
-	var continentalView = new ol.View({
-		center: ol.proj.transform([-98.5, 39.5], "EPSG:4326", "EPSG:3857"),
-		zoom: 4
-	});
+	var continentalCenter = ol.proj.transform([-98.5, 39.5], "EPSG:4326", "EPSG:3857");
+	var caliCenterCenter = ol.proj.transform([-119.0, 38.0], "EPSG:4326", "EPSG:3857");
+	var caliLeftCenter = ol.proj.transform([-110.0, 38.0], "EPSG:4326", "EPSG:3857");
+	var caliRightCenter = ol.proj.transform([-128.0, 38.0], "EPSG:4326", "EPSG:3857");
 	
-	var californiaView = new ol.View({
-		center : [-13319610.800861657, 4501835.217883743],
-		zoom: 5
+	var continentalZoom = 4;
+	var caliZoom = 6;
+	
+	var view = new ol.View({
+		center: continentalCenter,
+		zoom: continentalZoom
 	});
 	
 	map = new ol.Map({
@@ -93,24 +96,23 @@ $(document).ready(function () {
 		],
 		target: 'map',
 		controls: [new ol.control.MousePosition()],
-		view: continentalView,
+		view: view,
 		renderer: 'canvas'
 	});
-	var panAndZoom = function (newView) {
+	var panAndZoom = function (center, zoomLevel) {
 		var duration = 1500;
 		var start = +new Date();
 		var pan = ol.animation.pan({
 			duration: duration,
-			source: /** @type {ol.Coordinate} */ (map.getView().getCenter()),
-			start: start
+			source: map.getView().getCenter()
 		});
 		var zoom = ol.animation.zoom({
 			duration: duration,
-			resolution: map.getView().getResolution(),
-			start: start
+			resolution: map.getView().getResolution()
 		});
 		map.beforeRender(pan, zoom);
-		map.setView(newView);
+		map.getView().setCenter(center);
+		map.getView().setZoom(zoomLevel);
 	};
 
 	var controller = new ScrollMagic();
@@ -118,7 +120,7 @@ $(document).ready(function () {
 	new ScrollScene({triggerElement: "#startTrigger", duration: $(window).height()})
 		.on("enter", function(e) {
 			$("#time-indicator").text("");
-			panAndZoom(continentalView);
+			//panAndZoom(continentalCenter, continentalZoom);
 			map.replaceLayer(getInitialDroughtLayer(), 'drought');
 		})
 		.addTo(controller)
@@ -126,20 +128,32 @@ $(document).ready(function () {
 	// Scene 1 built in response to ajax
 	new ScrollScene({triggerElement: "#trigger2", duration: 2000})
 		.setPin("#feature2")
+		.on("enter", function(e) {
+			panAndZoom(caliLeftCenter, caliZoom);
+		})
 		.addTo(controller)
 		.addIndicators();
 	new ScrollScene({triggerElement: "#trigger3", duration: 2000})
 		.setPin("#feature3")
+		.on("enter", function(e) {
+			panAndZoom(caliRightCenter, caliZoom);
+		})
 		.addTo(controller)
 		.addIndicators();
 	new ScrollScene({triggerElement: "#trigger4", duration: 2000})
 		.setPin("#feature4")
+		.on("enter", function(e) {
+			panAndZoom(caliLeftCenter, caliZoom);
+		})
 		.addTo(controller)
 		.addIndicators();
 	new ScrollScene({triggerElement: "#trigger5", duration: 2000})
 		.setPin("#feature5")
+		.on("enter", function(e) {
+			panAndZoom(caliRightCenter, caliZoom);
+		})
 		.addTo(controller)
-		.addIndicators();	
+		.addIndicators();
 	
 	map.replaceLayer = function (layer, layerType) {
 		map.addLayer(layer);
@@ -201,7 +215,7 @@ $(document).ready(function () {
 					updateTimestep(timesArray[index]);
 				})
 				.on("enter", function (e) {
-					panAndZoom(californiaView);
+					panAndZoom(caliCenterCenter, caliZoom);
 				})
 				.addTo(controller)
 				.addIndicators();
