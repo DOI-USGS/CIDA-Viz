@@ -8,14 +8,14 @@ Initial reservoir metadata were copied from the [California Data Exchange Center
  
 The daily storage values from 2000-present for these 83 reservoirs were scraped using [get_cal_reservoir_storage.R](get_cal_reservoir_storage.R).  CSVs of data for each reservoir based on these data pulls were placed in the [storage_data](storage_data/) folder.  The commit date and time for these CSVs is within a few minutes of the date and time that the CSVs were pulled.  Initial plots of storage values based on this raw data were generated and are available in [storage_plots](storage_plots).
 
-Final time series for daily storage data were generated using the [build_res_json](build_res_json.R) R script. build\_res\_json
+Final time series for daily storage data were generated using the [build_res_json](.R/build_res_json.R) R script. build\_res\_json
 1. removes errent data using the [sensorQC library](https://github.com/USGS-R/sensorQC)
 2. interpolates small gaps in the data based on preceeding and following data
 3. drops reservoirs that have large gaps in daily data
 4. downsample to weekly values from daily using an average of daily values
-5. generates a [final JSON data file](reservoir_storage.json)
+5. generates a [final JSON data file](../public_html/data/reservoirs/reservoir_storage.json)
 
-As a final data quality check, maximum qc'ed daily values were plotted against the reservoir capacities recorded in the dam metadata to make sure the data were reasonably close, considering the inexact nature of reservoir storage numbers, using [cross_check_capacity](cross_check_capacity.R) 
+As a final data quality check, maximum qc'ed daily values were plotted against the reservoir capacities recorded in the dam metadata to make sure the data were reasonably close, considering the inexact nature of reservoir storage numbers, using [cross_check_capacity](./R/cross_check_capacity.R) 
 
 A GeoJSON file for mapping reservoir locations 
 
