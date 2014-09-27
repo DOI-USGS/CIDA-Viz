@@ -261,8 +261,8 @@ $(document).ready(function () {
 	});
 	
 	new ScrollControl({
-		scrollRate: 25,
-		scrollStep: 25, 
+		scrollRate: 50,
+		scrollStep: 40, 
 		parent: $(document.body)
 	});
 });
