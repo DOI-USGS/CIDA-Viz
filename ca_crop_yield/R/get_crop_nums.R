@@ -1,14 +1,14 @@
-get_crop_nums <- function(crop_name = 'oranges', years_out=seq(2011,2014)){
-  fn <- paste0('../data/produce/',crop_name,'.csv')
+get_crop_nums <- function(crop_name = 'Oranges', years_out=seq(2009,2014)){
+  
+  fn <- paste0('../data/ca_price_vs_di.csv')
   dat <- read.csv(file = fn, sep = ',')
   
-  num_lines <- length(dat$Consumer.Price.Index...Average.Price.Data)
-  years <- as.numeric(as.character(dat$Consumer.Price.Index...Average.Price.Data[9:num_lines]))
+  values <- as.numeric(unlist(dat[eval(paste0(crop_name,'.Avg.Price'))]))
+  years <- substr(as.character(dat$summer),start = 17, stop = nchar(as.character(dat$summer)[1]))
+  anomoly <- values - mean(values)
+  drought <- dat$Percent.of.CA.in.Severe.Drought
   
-  # August is X.7
-  values <- as.numeric(as.character(dat$X.7[9:num_lines]))
-  
-  values <- values[years %in% years_out] # assumes data are in order
-  
-  return(values)
+  use_i <- years %in% years_out
+  df <- data.frame('anomoly' = anomoly[use_i], 'drought' = drought[use_i], 'years' = as.numeric(years[use_i]))
+  return(df)
 }

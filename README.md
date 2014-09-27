@@ -7,8 +7,10 @@ weekly data represention
 
 ##Data Sources
 
-###Reservoir Data
+###Snow Data
+ - Snow water equivalent data from US Department of Agriculture, Conservation Service SNOTEL: http://www.wcc.nrcs.usda.gov/snow/
 
+###Reservoir Data
  - Reservoir Capacities (State of CA Jurisdiction): http://www.water.ca.gov/damsafety/docs/Jurisdictional2014.pdf
  - Reservoir Capacities (Federal Jurisdiction): http://www.water.ca.gov/damsafety/docs/Federal2010.pdf
  - Reservoir time series data: http://cdec.water.ca.gov/cgi-progs/queryDaily
@@ -17,7 +19,7 @@ weekly data represention
  - Site data and shapefiles: http://droughtatlas.unl.edu/Services/DroughtMonitor/Timeseries/
 
 ###Fire data
- - fire shapefiles from MODIS products derived from ...
+ - Active Fire & Burned Area data from MODIS products retrieved from University of Maryland: http://modis-fire.umd.edu/BA_getdata.html
 
 
 ###Economic Data
@@ -26,4 +28,8 @@ weekly data represention
  - Lettuce Contribution of CA: http://www.latimes.com/business/la-fi-fruit-and-vegetable-prices-california-drought-continues-20140625-story.html
  - Lemon Contribution of CA: http://www.bloomberg.com/news/2014-09-22/u-s-lemon-lovers-tasting-bitter-price-shock-from-drought.html
  - US Department of Labor, Bureau of Labor Statistics: http://www.bls.gov/ro3/apmw.htm
+   - Lemon: http://data.bls.gov/timeseries/APU0000711412?data_tool=XGtable
+   - Navel Oranges: http://data.bls.gov/timeseries/APU0000711311?data_tool=XGtable
+   - Lettuce: http://data.bls.gov/timeseries/APU0000712211?data_tool=XGtable
+ - US Drought Monitor: http://droughtmonitor.unl.edu/MapsAndData/DataTables.aspx
  - News article on citrus grower challenges: http://www.desertsun.com/story/news/environment/2014/09/22/california-drought-persist-intensify/16078767/

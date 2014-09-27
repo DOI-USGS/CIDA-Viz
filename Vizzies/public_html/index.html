@@ -21,14 +21,22 @@
         <!--[if lt IE 7]>
             <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
         <![endif]-->
-
+		<div id="links-anchor">
+			<table>
+				<tr><td><a href="#"><div id="links-anchor-link-1" class="links-anchor-link-filled links-anchor">&nbsp;</div></a></td></tr>
+				<tr><td><a href="#"><div id="links-anchor-link-2" class="links-anchor-link-empty links-anchor">&nbsp;</div></a></td></tr>
+				<tr><td><a href="#"><div id="links-anchor-link-3" class="links-anchor-link-empty links-anchor">&nbsp;</div></a></td></tr>
+				<tr><td><a href="#"><div id="links-anchor-link-4" class="links-anchor-link-empty links-anchor">&nbsp;</div></a></td></tr>
+				<tr><td><a href="#"><div id="links-anchor-link-5" class="links-anchor-link-empty links-anchor">&nbsp;</div></a></td></tr>
+			</table>
+		</div>
 		<div id="map" class="map"></div>
 		<div id="clearDiv"></div>
 		<div id="time-indicator"></div>
 		<header>
 			<div id="startTrigger" class="top">
-				<h1>Droughts of California visualized with open data</h1>
-				<p>California is experiencing the worst drought in recorded history. </p>
+				<h1>Drought of California, visualized with open data</h1>
+				<p>California is experiencing its worst drought in recorded history.</p>
 			</div>
 			<div class="spacer s1"></div>
 		</header><!--header-->
@@ -41,7 +49,7 @@
 				<div class="left">
 					<h2>2014 California Drought</h2>
 
-					<p>In 2014, California has received only 20% of its normal precipitation and had only 18% of its normal snow pack, and has faced a devastating three years of drought. Right now, 100% of California faces severe drought conditions according to the National Drought Mitigation Center.</p>
+					<p>In 2014, California has received only 20% of its normal precipitation and had only 18% of its normal snow pack, and has faced a devastating three years of drought (<a href="#ref1">1</a>). Right now, 100% of California faces severe drought conditions according to the National Drought Mitigation Center (<a href="#ref2">2</a>).</p>
 				</div>
 			</div>
 			<div class="spacer s2"></div>
@@ -53,9 +61,10 @@
 
 			<div id="feature2">
 				<div class="right">
-					<h2>Snowpack</h2>
+					<h2>Drought, snowpack, and reservoir storage</h2>
 
-					<p>Snowpack in California is the primary source of water to reservoirs that serve drinking water, agriculture and hydroelectric needs.</p>
+					<p>Snowpack in California is the primary source of water to reservoirs that serve drinking water, agriculture, and hydroelectric needs.</p>
+					<p>For any given year, less wintertime snowpack results in lower reservoir levels, and less water for consumptive use.</p>
 				</div>
 			</div>
 
@@ -70,7 +79,9 @@
 				<div class="left">
 					<h2>Reservoir Storage</h2>
 
-					<p>Drought reduces snowpack and results in lower reservoir storage and capacity. For the first time in history, some agricultural areas are not receiving any water for irrigation which is resulting in devastation of historically productive areas. The agricultural output for the state could fall by 3.5$ billion dollars this year.</p>
+					<p>Drought reduces snowpack and results in lower reservoir storage capacity.</p>
+					<p>Over 80% of public drinking water supply comes from rivers, lakes, reservoirs, and other surface waters (<a href="#ref3">3</a>).</p>
+					<p>Here, the effect of drought on 91 of California's >700 reservoirs are shown through time.</p>
 				</div>
 			</div>
 			<div class="spacer s0"></div>
@@ -82,9 +93,33 @@
 
 			<div id="feature4">
 				<div class="right">
-					<h2>Wildfires</h2>
+					<h2>Drought and Fire</h2>
 
-					<p>As of September 19, California has eight large, active wildfires spread over an area of 205 acres and growing. In 2013, over 575,000 acres were consumed by over 1500 fires. </p>
+					<p>Wildfire is a natural part of the ecosystem in California. Drought years tend to have greater frequency and intensity of wildfires. Wet years promote the buildup of fuels, which then increases the ignitability fires in dryer years (<a href="#ref4">4</a>).</p>
+					<p>&nbsp;</p>
+					<p><strong>2000-2010 Average annual Impacts in California ($2011):</strong>
+					<ul>
+						<li>Number of fires: <strong>5,000</strong></li>
+						<li>Average annual damage: <strong>$177 million</strong></li>
+						<li>Average acreage burned: <strong>1.8 million</strong></li>
+						<li>Structures destroyed: <strong>1,100</strong> (<a href="#ref5">5</a>)</li>
+					</ul>
+					</p>
+				</div>
+			</div>
+			<div class="spacer s0"></div>
+		</section>
+		<div class="spacer s0"></div>
+		<section>
+			<div class="spacer s0"></div>
+			<div id="trigger5"></div>
+
+			<div id="feature5">
+				<div class="right">
+					<h2>Drought and Food Prices</h2>
+
+					<p>Of consumptive water use, agriculture represents 74% of freshwater use (<a href="#ref3">3</a>).</p>
+					<p>For the first time in history, some agricultural areas are not receiving any water for irrigation which is resulting in devastation of historically productive areas. The agricultural output for the state could fall by $3.5 billion this year (<a href="#ref1">1</a>).</p>
 				</div>
 			</div>
 			<div class="spacer s0"></div>
@@ -102,25 +137,41 @@
 
 				<h2>Contributors</h2>
 
-				<p>Persons Name,</p>
-
-				<p>Persons Name,</p>
-
-				<p>Persons Name,</p>
-
-				<p>Persons Name</p>
+				
+				<p><a href="http://cida.usgs.gov/people/mhines.html" target="_blank">Megan Hines</a></p>
+				<p><a href="http://cida.usgs.gov/people/jkreft.html" target="_blank">Jim Kreft</a></p>
+				<p><a href="http://cida.usgs.gov/people/jlucido.html" target="_blank">Jessica Lucido</a></p>
+				<p><a href="http://cida.usgs.gov/people/eread.html" target="_blank">Emily Read</a></p>
+				<p><a href="http://cida.usgs.gov/people/jread.html" target="_blank">Jordan Read</a></p>
+				<p><a href="http://cida.usgs.gov/people/cschroedl.html" target="_blank">Carl Schroedl</a></p>
+				<p><a href="http://cida.usgs.gov/people/dmsibley.html" target="_blank">Dave Sibley</a></p>
+				<p><a href="http://cida.usgs.gov/people/sstephan.html" target="_blank">Shirley Stephan</a></p>
+				<p><a href="http://cida.usgs.gov/people/isuftin.html" target="_blank">Ivan Suftin</a></p>
+				<p><a href="http://cida.usgs.gov/people/thongsav.html" target="_blank">Phethala Thongsavanh</a></p>
+				<p><a href="http://cida.usgs.gov/people/jiwalker.html" target="_blank">Jordan Walker</a></p>
+				<p><a href="http://cida.usgs.gov/people/mwernimont.html" target="_blank">Marty Wernimont</a></p>
+				<p><a href="http://cida.usgs.gov/people/lwinslow.html">Luke Winslow</a></p>
+				<p><a href="http://cida.usgs.gov/people/ayan.html" target="_blank">Andrew Yan</a></p>
 
 				<h2>References</h2>	
 				
-				<p>New York Times</p>
-				<p>Drought Monitor</p>
-				<p>US Bureau of Reclamation</p>
-				<p>Fork it and expand the story - <a href="https://github.com/USGS-CIDA/CIDA-Viz" target="_blank">https://github.com/USGS-CIDA/CIDA-Viz</a></p>
+				<p><a id="ref1"></a>1. <a href="http://www.nytimes.com/video/us/100000002980095/californias-extreme-drought-explained.html?module=Search&mabReward=relbias%3Aw%2C%7B%222%22%3A%22RI%3A12%22%7D" target="_blank">New York Times, California's Drought Explained</a></p>
+				<p><a id="ref2"></a>2. <a href="http://droughtmonitor.unl.edu/" target="_blank">US Drought Monitor - The National Drought Mitigation Center</a></p>
+				<p><a id="ref3"></a>3. <a href="http://pubs.er.usgs.gov/publication/cir1344" target="_blank">US Geological Survey</a></p>
+				<p><a id="ref4"></a>4. Westerling, Anthony L., and Thomas W. Swetnam. "Interannual to decadal drought and wildfire in the western United States." EOS, Transactions American Geophysical Union 84.49 (2003): 545-555.</p>
+				<p><a id="ref5"></a>5. <a href="http://www.fire.ca.gov/communications/downloads/fact_sheets/firestats.pdf" target="_blank">CAL FIRE Jurisdiction Fires, Acres, Dollar Damage, and Structures Destroyed</a></p>
+				
+				<p>&nbsp;&nbsp;</p>
+				<p><strong>Open data and tools were used to create these drought visualizations.</strong></p>
+				<p>You can access the data, tools, and code used to create this, and contribute, by visiting <a href="https://github.com/USGS-CIDA/CIDA-Viz" target="_blank">https://github.com/USGS-CIDA/CIDA-Viz</a></p>
+				<p><strong>Fork it and expand the story!</strong></p>
 				
 			</div><!--bottom-->
 
 		</footer><!--footer-->
 		<script src="js/vendor/jquery/jquery.js"></script>
+		<link rel="stylesheet" href="js/vendor/jquery-ui/jquery-ui.min.css">
+		<script src="js/vendor/jquery-ui/jquery-ui.min.js"></script>
 		<!--<script src="http://openlayers.org/en/v3.0.0/build/ol.js" type="text/javascript"></script>-->
 		<script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/1.13.2/TweenMax.min.js" type="text/javascript"></script>
 		<script src="js/vendor/scrollmagic/jquery.scrollmagic.min.js" type="text/javascript"></script>
