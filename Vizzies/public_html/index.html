@@ -23,13 +23,13 @@
         <![endif]-->
 		<div id="links-anchor">
 			<table>
-				<tr><td><a href="#s1"><div id="links-anchor-link-1" class="links-anchor-link-filled links-anchor">&nbsp;</div></a></td></tr>
-				<tr><td><a href="#s2"><div id="links-anchor-link-2" class="links-anchor-link-empty links-anchor">&nbsp;</div></a></td></tr>
-				<tr><td><a href="#s3"><div id="links-anchor-link-3" class="links-anchor-link-empty links-anchor">&nbsp;</div></a></td></tr>
-				<tr><td><a href="#s4"><div id="links-anchor-link-4" class="links-anchor-link-empty links-anchor">&nbsp;</div></a></td></tr>
-				<tr><td><a href="#s5"><div id="links-anchor-link-5" class="links-anchor-link-empty links-anchor">&nbsp;</div></a></td></tr>
-				<tr><td><a href="#s6"><div id="links-anchor-link-6" class="links-anchor-link-empty links-anchor">&nbsp;</div></a></td></tr>
-				<tr><td><a href="#s7"><div id="links-anchor-link-7" class="links-anchor-link-empty links-anchor">&nbsp;</div></a></td></tr>
+				<tr><td><a data-scroll href="#s1"><div id="links-anchor-link-1" class="links-anchor-link-filled links-anchor">&nbsp;</div></a></td></tr>
+				<tr><td><a data-scroll href="#s2"><div id="links-anchor-link-2" class="links-anchor-link-empty links-anchor">&nbsp;</div></a></td></tr>
+				<tr><td><a data-scroll href="#s3"><div id="links-anchor-link-3" class="links-anchor-link-empty links-anchor">&nbsp;</div></a></td></tr>
+				<tr><td><a data-scroll href="#s4"><div id="links-anchor-link-4" class="links-anchor-link-empty links-anchor">&nbsp;</div></a></td></tr>
+				<tr><td><a data-scroll href="#s5"><div id="links-anchor-link-5" class="links-anchor-link-empty links-anchor">&nbsp;</div></a></td></tr>
+				<tr><td><a data-scroll href="#s6"><div id="links-anchor-link-6" class="links-anchor-link-empty links-anchor">&nbsp;</div></a></td></tr>
+				<tr><td><a data-scroll href="#s7"><div id="links-anchor-link-7" class="links-anchor-link-empty links-anchor">&nbsp;</div></a></td></tr>
 			</table>
 		</div>
 		<div id="map" class="map"></div>
@@ -231,19 +231,5 @@ from the Reno Gazette Journal</a><br/><em>from the Reno Gazette Journal</em></p>
 		<script src="js/vendor/openlayers/ol-debug.js"></script>
         <script src="js/plugins.js"></script>
         <script src="js/main.js"></script>
-		<script>
-			smoothScroll.init({
-				speed: 1000,
-				easing: 'easeInOutCubic',
-				offset: 0,
-				updateURL: true,
-				callbackBefore: function (t, a) {
-					debugger;
-				},
-				callbackAfter: function (t, a) {
-					debugger;
-				}
-			});
-		</script>
     </body>
 </html>

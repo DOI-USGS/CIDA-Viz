@@ -52,13 +52,13 @@ $(document).ready(function () {
 			layer.layer_type = 'fire';
 			return layer;
 		}
-		
+
 	};
-	
+
 	var getInitialDroughtLayer = function () {
 		return getDroughtLayer('20140916_US');
 	};
-	
+
 	var getDroughtLayer = function (timestep) {
 		if (timestep) {
 			var layer = new ol.layer.Vector({
@@ -74,17 +74,17 @@ $(document).ready(function () {
 			return layer;
 		}
 	};
-	
+
 	var continentalView = new ol.View({
 		center: ol.proj.transform([-98.5, 39.5], "EPSG:4326", "EPSG:3857"),
 		zoom: 4
 	});
-	
+
 	var californiaView = new ol.View({
-		center : [-13319610.800861657, 4501835.217883743],
+		center: [-13319610.800861657, 4501835.217883743],
 		zoom: 5
 	});
-	
+
 	map = new ol.Map({
 		layers: [
 			new ol.layer.Tile({
@@ -116,7 +116,7 @@ $(document).ready(function () {
 	var controller = new ScrollMagic();
 	// build scenes
 	new ScrollScene({triggerElement: "#startTrigger", duration: $(window).height()})
-		.on("enter", function(e) {
+		.on("enter", function (e) {
 			$("#time-indicator").text("");
 			panAndZoom(continentalView);
 			map.replaceLayer(getInitialDroughtLayer(), 'drought');
@@ -139,12 +139,12 @@ $(document).ready(function () {
 	new ScrollScene({triggerElement: "#trigger5", duration: 2000})
 		.setPin("#feature5")
 		.addTo(controller)
-		.addIndicators();	
+		.addIndicators();
 	new ScrollScene({triggerElement: "#trigger6", duration: 2000})
 		.setPin("#feature6")
 		.addTo(controller)
-		.addIndicators();	
-	
+		.addIndicators();
+
 	map.replaceLayer = function (layer, layerType) {
 		map.addLayer(layer);
 		layer.getSource().on('change', function (event) {
@@ -159,7 +159,7 @@ $(document).ready(function () {
 			}
 		});
 	};
-	
+
 	var updateTimestep = function (timestep) {
 		var droughtLayer = getDroughtLayer(timestep);
 		var fireLayer = getFireLayer(timestep);
@@ -211,20 +211,33 @@ $(document).ready(function () {
 				.addIndicators();
 		}
 	});
-	
-	$('.links-anchor').on('click', function(e) {
+
+	$('.links-anchor').on('click', function (e) {
 		var $target = $(e.target),
 			filledClass = 'links-anchor-link-filled',
 			emptyClass = 'links-anchor-link-empty';
-		
+
 		if ($(e.target).hasClass('links-anchor-link-filled')) {
 			e.stopImmediatePropagation();
 			return false;
 		} else {
-			$('.' + filledClass).switchClass(filledClass, emptyClass, 250, 'linear', function() {});
-			$(e.target).switchClass(emptyClass, filledClass, 250, 'linear', function() {});
+			$('.' + filledClass).switchClass(filledClass, emptyClass, 250, 'linear', function () {
+			});
+			$(e.target).switchClass(emptyClass, filledClass, 250, 'linear', function () {
+			});
 		}
 	});
-	
 
+	smoothScroll.init({
+		speed: 1000,
+		easing: 'easeInOutCubic',
+		offset: 0,
+		updateURL: true,
+		callbackBefore: function (t, a) {
+			// Hook here
+		},
+		callbackAfter: function (t, a) {
+			// Hook here
+		}
+	});
 });

@@ -148,6 +148,7 @@ footer{padding-top:5%;
 	height: 20px;
 	width: 20px;
 	border-radius: 15px;
+	-webkit-transform: translateZ(0);
 }
 
 .links-anchor-link-filled {
@@ -156,4 +157,5 @@ footer{padding-top:5%;
 	height: 20px;
 	width: 20px;
 	border-radius: 15px;
+	-webkit-transform: translateZ(0);
 }
