@@ -40,7 +40,7 @@ build_list <- function(plot_names,plot_colors){
       text = as.character(years),
       marker = list(
         color = plot_colors[i], 
-        size = 18, 
+        size = 24, 
         line = list(
           color = "white", 
           width = 0.5,
@@ -56,6 +56,6 @@ build_list <- function(plot_names,plot_colors){
 source("get_crop_nums.R")
 source("get_drought_idx.R")
 plot_names = c('Oranges','Lemons','Lettuce')
-plot_colors = c("rgb(255, 153, 0)", "rgb(255, 255, 150)", "rgb(0, 255, 128)")
+plot_colors = c("rgb(255, 153, 0)", "rgb(230, 230, 30)", "rgb(0, 153, 0)")
 
 ca_crop_viz('jordansread','###',plot_names,plot_colors)
