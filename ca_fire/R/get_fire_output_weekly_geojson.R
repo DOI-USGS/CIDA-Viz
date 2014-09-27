@@ -4,6 +4,18 @@ library(sp)
 library(rgdal)
 library(rgeos)
 
+## load
+# Download shapefile data from FTP server using external client
+
+## Unpack the data
+to_untar = Sys.glob('../data_shp/*.tar.gz')
+for(i in 1:length(to_untar)){
+	untar(to_untar[i], exdir = '../data_shp')
+}
+
+
+## Load shape data and output as JSON
+
 makeUniform<-function(SPDF, pref){
   newSPDF<-spChFIDs(SPDF,as.character(paste(pref,rownames(as(SPDF,"data.frame")),sep="_")))
   return(newSPDF)
