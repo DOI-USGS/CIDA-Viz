@@ -105,7 +105,7 @@ if __name__ == '__main__':
     df_di_produce = pd.merge(df_produce, df_di, how='inner', on='date')
     df_di_produce['mon_int'] = df_di_produce.apply(report_month, axis=1, date_col='date')
     df_di_produce.index = df_di_produce['date']
-    df_di_produce_summer = df_di_produce[(df_di_produce['mon_int'] >= 1) & (df_di_produce['mon_int'] <= 12)] # just get June - August for each year
+    df_di_produce_summer = df_di_produce[(df_di_produce['mon_int'] >= 1) & (df_di_produce['mon_int'] <= 12)] # filter to subset months, currently get all of them
     print(df_di_produce_summer)
     grouper_year = pd.TimeGrouper('A')
     df_avg = df_di_produce_summer.groupby(grouper_year).mean()
