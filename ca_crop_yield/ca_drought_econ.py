@@ -2,6 +2,8 @@
 Created on Sep 26, 2014
 
 @author: ayan
+
+This is the script that actually got used for data analysis.
 '''
 import calendar
 from datetime import date
@@ -71,7 +73,7 @@ if __name__ == '__main__':
     df_tdi = pd.read_csv(TDI_DATA, sep=',', skiprows=1, header=0, parse_dates=['Week'], comment='#', index_col='Week')
     df_severe = df_tdi[['D2-D4']]
     di_str = 'Percent of CA in Severe Drought'
-    df_tdi_2007_2014 = df_severe[(df_severe.index >= '2007-01-01') & (df_severe.index < '2014-09-01')]
+    df_tdi_2007_2014 = df_severe[(df_severe.index >= '2007-01-01') & (df_severe.index < '2014-09-01')] # get data from 2007 to present
     df_tdi_2007_2014_rs = df_tdi_2007_2014.resample('M')
     df_tdi_2007_2014_rs['date'] = df_tdi_2007_2014_rs.index
     df_tdi_2007_2014_rs.columns = [di_str, 'date']
@@ -104,6 +106,7 @@ if __name__ == '__main__':
     df_di_produce['mon_int'] = df_di_produce.apply(report_month, axis=1, date_col='date')
     df_di_produce.index = df_di_produce['date']
     df_di_produce_summer = df_di_produce[(df_di_produce['mon_int'] >= 6) & (df_di_produce['mon_int'] <= 8)] # just get June - August for each year
+    print(df_di_produce_summer)
     grouper_year = pd.TimeGrouper('A')
     df_summer_avg = df_di_produce_summer.groupby(grouper_year).mean()
     df_summer_avg['year'] = df_summer_avg.index.year
