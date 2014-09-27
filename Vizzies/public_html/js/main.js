@@ -190,7 +190,7 @@ $(document).ready(function () {
 	});
 	map.addLayer(sitesLayer);
 
-	var lastIndexCalled = 0;
+	var lastIndexCalled = -1;
 	$.ajax('data/drought_shp/times.json', {
 		success: function (data) {
 			var timesArray = data.d.reverse();
