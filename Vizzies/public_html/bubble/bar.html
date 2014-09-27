@@ -13,7 +13,7 @@ text {
   font: 10px sans-serif;
 }
 
-.dot {
+.reservoir {
   stroke: #000;
 }
 
@@ -46,11 +46,20 @@ text {
 <body>
 <h1>Reservoir Storage Over Time</h1>
 
-<p id="chart"></p>
+<table>
+  <tr>
+  <td style="">Y Title</td><td id="chart"></td>
+</tr>
 
+<tr>
+<td></td>
+<td style="text-align: center;">X Title</td>
+</tr>
+</table>
+<button onclick="reservoirPlot.paintNextGraph()">Next Step</button>
 <script src="../js/vendor/jquery/jquery.js"></script>
 <script src="../js/vendor/d3/d3.v3.js"></script>
 <script src="../js/vendor/sugar/sugar.min.js"></script>
-<script src="bar.js"></script>
+<script src="reservoirPlot.js"></script>
 </body>
 </html>
