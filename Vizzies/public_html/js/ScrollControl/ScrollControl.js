@@ -44,6 +44,8 @@ ScrollControl = function() {
 		
 		this.pauseBtn.hide();
 		this.parent.append(div);
+		
+		var _this = this;
 	}
 	
 	control.prototype.getScrollPos = function() {
@@ -59,7 +61,12 @@ ScrollControl = function() {
 		body.animate({scrollTop:newPos}, rate, 'linear', function(){
 			if(_this.action == expectedAction) {
 				$.proxy(function(){_this.scrollBy(offset, rate, expectedAction)}, _this)();
-			}
+				
+				var change = Math.abs(newPos - _this.getScrollPos());
+				if(change > rate) { //this happens when something external did the scroll
+					_this.pause();
+				}
+			} 
 		});
 	}
 	
