@@ -185,7 +185,7 @@ $(document).ready(function () {
 		opacity: 1
 	});
 	map.addLayer(sitesLayer);
-// yyyymmdd
+
 	$.ajax('data/drought_shp/times.json', {
 		success: function (data) {
 			var timesArray = data.d.reverse();
@@ -201,6 +201,20 @@ $(document).ready(function () {
 				})
 				.addTo(controller)
 				.addIndicators();
+		}
+	});
+	
+	$('.links-anchor').on('click', function(e) {
+		var $target = $(e.target),
+			filledClass = 'links-anchor-link-filled',
+			emptyClass = 'links-anchor-link-empty';
+		
+		if ($(e.target).hasClass('links-anchor-link-filled')) {
+			e.stopImmediatePropagation();
+			return false;
+		} else {
+			$('.' + filledClass).switchClass(filledClass, emptyClass, 250, 'linear', function() {});
+			$(e.target).switchClass(emptyClass, filledClass, 250, 'linear', function() {});
 		}
 	});
 });
