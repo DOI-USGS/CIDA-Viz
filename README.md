@@ -7,8 +7,10 @@ weekly data represention
 
 ##Data Sources
 
-###Reservoir Data
+###Snow Data
+ - Snow water equivalent data from US Department of Agriculture, Conservation Service SNOTEL: http://www.wcc.nrcs.usda.gov/snow/
 
+###Reservoir Data
  - Reservoir Capacities (State of CA Jurisdiction): http://www.water.ca.gov/damsafety/docs/Jurisdictional2014.pdf
  - Reservoir Capacities (Federal Jurisdiction): http://www.water.ca.gov/damsafety/docs/Federal2010.pdf
  - Reservoir time series data: http://cdec.water.ca.gov/cgi-progs/queryDaily
@@ -17,7 +19,7 @@ weekly data represention
  - Site data and shapefiles: http://droughtatlas.unl.edu/Services/DroughtMonitor/Timeseries/
 
 ###Fire data
- - fire shapefiles from MODIS products derived from ...
+ - Active Fire & Burned Area data from MODIS products retrieved from University of Maryland: http://modis-fire.umd.edu/BA_getdata.html
 
 
 ###Economic Data
