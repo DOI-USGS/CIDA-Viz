@@ -23,33 +23,36 @@ $(document).ready(function () {
 	var getFireStyle = function () {
 		return [new ol.style.Style({
 				stroke: new ol.style.Stroke({
-					color: 'magenta',
+					color: 'red',
 					width: 2
 				}),
 				fill: new ol.style.Fill({
-					color: 'magenta'
+					color: 'red'
 				}),
 				image: new ol.style.Circle({
 					radius: 10,
 					fill: null,
 					stroke: new ol.style.Stroke({
-						color: 'magenta'
+						color: 'red'
 					})
 				})
 			})];
 	};
 	var getFireLayer = function (timestep) {
-		var layer = new ol.layer.Vector({
-			source: new ol.source.GeoJSON({
-				url: 'data/fire_shp/FIRE_' + timestep + '.geojson',
-				projection: ol.proj.get('EPSG:3857')
-			}),
-			style: getFireStyle,
-			visible: true,
-			opacity: 1
-		});
-		layer.layer_type = 'fire';
-		return layer;
+		if (timestep) {
+			var layer = new ol.layer.Vector({
+				source: new ol.source.GeoJSON({
+					url: 'data/fire_shp/FIRE_' + timestep + '.json',
+					projection: ol.proj.get('EPSG:3857')
+				}),
+				style: getFireStyle,
+				visible: true,
+				opacity: 1
+			});
+			layer.layer_type = 'fire';
+			return layer;
+		}
+		
 	};
 	
 	var getInitialDroughtLayer = function () {
@@ -57,17 +60,19 @@ $(document).ready(function () {
 	};
 	
 	var getDroughtLayer = function (timestep) {
-		var layer = new ol.layer.Vector({
-			source: new ol.source.GeoJSON({
-				url: 'data/drought_shp/USDM_' + timestep + '.json',
-				projection: ol.proj.get('EPSG:3857')
-			}),
-			style: getDroughtStyle,
-			visible: true,
-			opacity: 1
-		});
-		layer.layer_type = 'drought';
-		return layer;
+		if (timestep) {
+			var layer = new ol.layer.Vector({
+				source: new ol.source.GeoJSON({
+					url: 'data/drought_shp/USDM_' + timestep + '.json',
+					projection: ol.proj.get('EPSG:3857')
+				}),
+				style: getDroughtStyle,
+				visible: true,
+				opacity: 1
+			});
+			layer.layer_type = 'drought';
+			return layer;
+		}
 	};
 	
 	var continentalView = new ol.View({
@@ -91,20 +96,20 @@ $(document).ready(function () {
 		view: continentalView,
 		renderer: 'canvas'
 	});
-	var flyToNewView = function (newView, zoomingIn) {
-		var duration = 2000;
+	var panAndZoom = function (newView) {
+		var duration = 1500;
 		var start = +new Date();
 		var pan = ol.animation.pan({
 			duration: duration,
 			source: /** @type {ol.Coordinate} */ (map.getView().getCenter()),
 			start: start
 		});
-		var bounce = ol.animation.bounce({
+		var zoom = ol.animation.zoom({
 			duration: duration,
-			resolution: ((zoomingIn) ? 1 : 4) * map.getView().getResolution(),
+			resolution: map.getView().getResolution(),
 			start: start
 		});
-		map.beforeRender(pan, bounce);
+		map.beforeRender(pan, zoom);
 		map.setView(newView);
 	};
 
@@ -113,7 +118,7 @@ $(document).ready(function () {
 	new ScrollScene({triggerElement: "#startTrigger", duration: $(window).height()})
 		.on("enter", function(e) {
 			$("#time-indicator").text("");
-			flyToNewView(continentalView, false);
+			panAndZoom(continentalView);
 			map.replaceLayer(getInitialDroughtLayer(), 'drought');
 		})
 		.addTo(controller)
@@ -131,6 +136,10 @@ $(document).ready(function () {
 		.setPin("#feature4")
 		.addTo(controller)
 		.addIndicators();
+	new ScrollScene({triggerElement: "#trigger5", duration: 2000})
+		.setPin("#feature5")
+		.addTo(controller)
+		.addIndicators();	
 	
 	map.replaceLayer = function (layer, layerType) {
 		map.addLayer(layer);
@@ -180,7 +189,7 @@ $(document).ready(function () {
 		opacity: 1
 	});
 	map.addLayer(sitesLayer);
-// yyyymmdd
+
 	$.ajax('data/drought_shp/times.json', {
 		success: function (data) {
 			var timesArray = data.d.reverse();
@@ -193,10 +202,25 @@ $(document).ready(function () {
 					console.log("here");
 				})
 				.on("enter", function (e) {
-					flyToNewView(californiaView, true);
+					panAndZoom(californiaView);
 				})
 				.addTo(controller)
 				.addIndicators();
+		}
+	});
+	
+
+	$('.links-anchor').on('click', function(e) {
+		var $target = $(e.target),
+			filledClass = 'links-anchor-link-filled',
+			emptyClass = 'links-anchor-link-empty';
+		
+		if ($(e.target).hasClass('links-anchor-link-filled')) {
+			e.stopImmediatePropagation();
+			return false;
+		} else {
+			$('.' + filledClass).switchClass(filledClass, emptyClass, 250, 'linear', function() {});
+			$(e.target).switchClass(emptyClass, filledClass, 250, 'linear', function() {});
 		}
 	});
 	
