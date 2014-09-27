@@ -74,15 +74,15 @@ $(document).ready(function () {
 			return layer;
 		}
 	};
-	
+
 	var continentalCenter = ol.proj.transform([-98.5, 39.5], "EPSG:4326", "EPSG:3857");
 	var caliCenterCenter = ol.proj.transform([-119.0, 38.0], "EPSG:4326", "EPSG:3857");
 	var caliLeftCenter = ol.proj.transform([-110.0, 38.0], "EPSG:4326", "EPSG:3857");
 	var caliRightCenter = ol.proj.transform([-128.0, 38.0], "EPSG:4326", "EPSG:3857");
-	
+
 	var continentalZoom = 4;
 	var caliZoom = 6;
-	
+
 	var view = new ol.View({
 		center: continentalCenter,
 		zoom: continentalZoom
@@ -128,28 +128,28 @@ $(document).ready(function () {
 	// Scene 1 built in response to ajax
 	new ScrollScene({triggerElement: "#trigger2", duration: 2000})
 		.setPin("#feature2")
-		.on("enter", function(e) {
+		.on("enter", function (e) {
 			panAndZoom(caliLeftCenter, caliZoom);
 		})
 		.addTo(controller)
 		.addIndicators();
 	new ScrollScene({triggerElement: "#trigger3", duration: 2000})
 		.setPin("#feature3")
-		.on("enter", function(e) {
+		.on("enter", function (e) {
 			panAndZoom(caliRightCenter, caliZoom);
 		})
 		.addTo(controller)
 		.addIndicators();
 	new ScrollScene({triggerElement: "#trigger4", duration: 2000})
 		.setPin("#feature4")
-		.on("enter", function(e) {
+		.on("enter", function (e) {
 			panAndZoom(caliLeftCenter, caliZoom);
 		})
 		.addTo(controller)
 		.addIndicators();
 	new ScrollScene({triggerElement: "#trigger5", duration: 2000})
 		.setPin("#feature5")
-		.on("enter", function(e) {
+		.on("enter", function (e) {
 			panAndZoom(caliRightCenter, caliZoom);
 		})
 		.addTo(controller)
@@ -158,20 +158,27 @@ $(document).ready(function () {
 		.setPin("#feature6")
 		.addTo(controller)
 		.addIndicators();
-	
+
 	map.replaceLayer = function (layer, layerType) {
-		map.addLayer(layer);
-		layer.getSource().on('change', function (event) {
-			var isReady = event.target.state_ === 'ready';
-			if (isReady) {
-				var layers = map.getLayers().array_.filter(function (oldLayer) {
-					return oldLayer.layer_type === layerType && oldLayer !== layer;
-				});
-				for (var i = 0; i < layers.length; i++) {
-					map.removeLayer(layers[i]);
+		if (layer) {
+			map.addLayer(layer);
+			layer.getSource().on('change', function (event) {
+				var isReady = event.target.state_ === 'ready';
+				if (isReady) {
+					var layers = map.getLayers().array_.filter(function (oldLayer) {
+						if (oldLayer) {
+							return oldLayer.layer_type === layerType && oldLayer !== layer;
+						} else {
+							return false;
+						}
+
+					});
+					for (var i = 0; i < layers.length; i++) {
+						map.removeLayer(layers[i]);
+					}
 				}
-			}
-		});
+			});
+		}
 	};
 
 	var updateTimestep = function (timestep) {
@@ -216,8 +223,8 @@ $(document).ready(function () {
 				.setPin("#feature1")
 				.setTween(TweenMax.fromTo("#time-indicator", 1, {x: 0}, {x: $(window).width() - 400}))
 				.on("progress", function (e) {
-					var index = Math.floor(timesArray.length * e.progress);
-					if(index != lastIndexCalled) {
+					var index = Math.floor((timesArray.length - 1)* e.progress);
+					if (index != lastIndexCalled) {
 						updateTimestep(timesArray[index]);
 						lastIndexCalled = index;
 					}
@@ -229,9 +236,9 @@ $(document).ready(function () {
 				.addIndicators();
 		}
 	});
-	
 
-	$('.links-anchor').on('click', function(e) {
+
+	$('.links-anchor').on('click', function (e) {
 		var $target = $(e.target),
 			filledClass = 'links-anchor-link-filled',
 			emptyClass = 'links-anchor-link-empty';
@@ -259,7 +266,7 @@ $(document).ready(function () {
 			// Hook here
 		}
 	});
-	
+
 	new ScrollControl({
 		scrollRate: 50,
 		scrollStep: 40, 
