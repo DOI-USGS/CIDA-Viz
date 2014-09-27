@@ -15,13 +15,17 @@ qaqc_flags <- function(data){
 #This interpolates small gaps, in the middle of data
 # and then returns the original 
 interp.storage = function (dates, data){
+  max.gap = 21*24 # days * hours
   bad.data <- qaqc_flags(data)
 	snip.dates = dates[!bad.data]
 	snip.data = data[!bad.data]
-	
-	fixed.data = approx(snip.dates, snip.data, dates)
-	
-	return(fixed.data$y)
+  gaps <- as.numeric(diff(snip.dates))
+  if (any(gaps > max.gap)){
+    return(NA)
+  } else {
+    fixed.data = approx(snip.dates, snip.data, dates)
+    return(fixed.data$y)
+  }
 }
 
 
