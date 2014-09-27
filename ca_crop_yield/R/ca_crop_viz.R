@@ -1,9 +1,9 @@
-ca_crop_viz <- function(username,key,plot_names,plot_colors){
+ca_crop_viz <- function(username,key,plot_names,plot_colors, years_out){
   library(plotly)
   py <- plotly(username=username, key=key)
   
 
-  data <- build_list(plot_names,plot_colors)
+  data <- build_list(plot_names,plot_colors, years_out)
   layout <- list(
     title = "Agricultural output cost data (summer)", 
     xaxis = list(
@@ -21,13 +21,13 @@ ca_crop_viz <- function(username,key,plot_names,plot_colors){
   return(url)
 }
 
-build_list <- function(plot_names,plot_colors){
+build_list <- function(plot_names,plot_colors, years_out){
   
   plot_list <- vector('list', length=length(plot_names))
   
   for (i in 1:length(plot_names)){
     crop_name <- plot_names[i]
-    crops <- get_crop_nums(crop_name)
+    crops <- get_crop_nums(crop_name, years_out=years_out)
     y_vals <- crops$anomoly
     x_vals <- crops$drought
     years <- crops$years
@@ -58,4 +58,4 @@ source("get_drought_idx.R")
 plot_names = c('Oranges','Lemons','Lettuce')
 plot_colors = c("rgb(255, 153, 0)", "rgb(230, 230, 30)", "rgb(0, 153, 0)")
 
-ca_crop_viz('jordansread','###',plot_names,plot_colors)
+ca_crop_viz('jordansread','90m4bzyins',plot_names,plot_colors, years_out=seq(2008,2014))
