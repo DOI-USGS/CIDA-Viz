@@ -57,6 +57,7 @@ station_names <- station_names[!rmv_i]
 num_station <- length(stations_all)
 
 reservoirs <- vector('list', length = num_station )
+rmv_station <- vector(length = num_station )
 for (i in 1:num_station){
   
   res_mat <- matrix(nrow = num_steps, ncol = 1)
@@ -72,17 +73,18 @@ for (i in 1:num_station){
       
     }
   }
-  rmv_i <- is.na(res_mat[,1])
+  rmv_station[i] <- any(is.na(res_mat[,1])) # should be none!!
   j_id <- which(json_res$ID == station_names[i])
   reservoirs[[i]] <- list("Station"=json_res$Station[j_id],"ID"=station_names[i],
                           "Elev"=json_res$Elev[j_id], "Latitude"=json_res$Latitude[j_id], "Longitude" = json_res$Longitude[j_id],
                     "County"=json_res$County[j_id], "Nat_ID"=json_res[j_id, 8],"Year_Built"=json_res[j_id, 9], 
                     "Capacity"=json_res[j_id, 10], "Storage"=res_mat[!rmv_i,])
   names(reservoirs[[i]]$Storage) <- strftime(week_time[!rmv_i], "%Y%m%d")
-  cat(i);cat('\n')
 }
 
+reservoirs[rmv_station] <- NULL
+cat('stations dropped:');cat(sum(rmv_station))
 json <- toJSON(reservoirs)
 
-cat(json,file = '../storage_data/reservoir.json')
+cat(json,file = '../../Vizzies/public_html/data/reservoirs/reservoir_storage.json')
 
