@@ -123,6 +123,21 @@ footer{padding-top:5%;
 	margin-top: 3px;
 	margin-bottom: 3px;
 }
+.links-anchor {
+	transition-duration: 0.5s; 
+}
+.links-anchor:hover {
+	border-color: #FFFFFF;
+}
+
+#links-anchor a {
+	text-decoration: none;
+}
+
+
+.links-anchor-link-filled:hover {
+	cursor: default;
+}
 
 .links-anchor-link-empty:hover {
 	cursor: pointer;
@@ -137,7 +152,7 @@ footer{padding-top:5%;
 
 .links-anchor-link-filled {
 	border: 3px solid #55DA6A;
-	background-color: #55DA6A;
+	background-color: #9ACFA2;
 	height: 20px;
 	width: 20px;
 	border-radius: 15px;

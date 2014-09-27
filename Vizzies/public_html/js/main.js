@@ -221,4 +221,6 @@ $(document).ready(function () {
 			$(e.target).switchClass(emptyClass, filledClass, 250, 'linear', function() {});
 		}
 	});
+	
+
 });
