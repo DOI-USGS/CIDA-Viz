@@ -140,6 +140,10 @@ $(document).ready(function () {
 		.setPin("#feature5")
 		.addTo(controller)
 		.addIndicators();	
+	new ScrollScene({triggerElement: "#trigger6", duration: 2000})
+		.setPin("#feature6")
+		.addTo(controller)
+		.addIndicators();	
 	
 	map.replaceLayer = function (layer, layerType) {
 		map.addLayer(layer);
