@@ -19,7 +19,7 @@ var margin = {top: 50, right: 50, bottom: 50, left: 100},
     pixelsPerCapacity = undefined,
     //this is entirely fixed
     // xScale = d3.scale.ordinal(),
-    yScale = d3.scale.linear().domain([0, 100]).range([height, 0]);
+    yScale = d3.scale.linear().domain([0, 100]).range([0, height]);
 
   var timeIndex = 0;
   var times = [];
