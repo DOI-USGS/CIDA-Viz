@@ -52,13 +52,13 @@ $(document).ready(function () {
 			layer.layer_type = 'fire';
 			return layer;
 		}
-		
+
 	};
-	
+
 	var getInitialDroughtLayer = function () {
 		return getDroughtLayer('20140916_US');
 	};
-	
+
 	var getDroughtLayer = function (timestep) {
 		if (timestep) {
 			var layer = new ol.layer.Vector({
@@ -87,7 +87,7 @@ $(document).ready(function () {
 		center: continentalCenter,
 		zoom: continentalZoom
 	});
-	
+
 	map = new ol.Map({
 		layers: [
 			new ol.layer.Tile({
@@ -118,7 +118,7 @@ $(document).ready(function () {
 	var controller = new ScrollMagic();
 	// build scenes
 	new ScrollScene({triggerElement: "#startTrigger", duration: $(window).height()})
-		.on("enter", function(e) {
+		.on("enter", function (e) {
 			$("#time-indicator").text("");
 			//panAndZoom(continentalCenter, continentalZoom);
 			map.replaceLayer(getInitialDroughtLayer(), 'drought');
@@ -153,7 +153,7 @@ $(document).ready(function () {
 			panAndZoom(caliRightCenter, caliZoom);
 		})
 		.addTo(controller)
-		.addIndicators();	
+		.addIndicators();
 	new ScrollScene({triggerElement: "#trigger6", duration: 2000})
 		.setPin("#feature6")
 		.addTo(controller)
@@ -173,7 +173,7 @@ $(document).ready(function () {
 			}
 		});
 	};
-	
+
 	var updateTimestep = function (timestep) {
 		var droughtLayer = getDroughtLayer(timestep);
 		var fireLayer = getFireLayer(timestep);
@@ -235,13 +235,28 @@ $(document).ready(function () {
 		var $target = $(e.target),
 			filledClass = 'links-anchor-link-filled',
 			emptyClass = 'links-anchor-link-empty';
-		
+
 		if ($(e.target).hasClass('links-anchor-link-filled')) {
 			e.stopImmediatePropagation();
 			return false;
 		} else {
-			$('.' + filledClass).switchClass(filledClass, emptyClass, 250, 'linear', function() {});
-			$(e.target).switchClass(emptyClass, filledClass, 250, 'linear', function() {});
+			$('.' + filledClass).switchClass(filledClass, emptyClass, 250, 'linear', function () {
+			});
+			$(e.target).switchClass(emptyClass, filledClass, 250, 'linear', function () {
+			});
+		}
+	});
+
+	smoothScroll.init({
+		speed: 1000,
+		easing: 'easeInOutCubic',
+		offset: 0,
+		updateURL: true,
+		callbackBefore: function (t, a) {
+			// Hook here
+		},
+		callbackAfter: function (t, a) {
+			// Hook here
 		}
 	});
 	
