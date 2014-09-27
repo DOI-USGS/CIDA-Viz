@@ -2,8 +2,8 @@ library(RCurl)
 library(XML)
 
 scrape_ca_storage = function(site){
-  theurl = sprintf('http://cdec.water.ca.gov/cgi-progs/queryDaily?%s&d=%s&span=5376days', 
-                   site, '20-Sep-2014')
+  theurl = sprintf('http://cdec.water.ca.gov/cgi-progs/queryDaily?%s&d=%s&span=5382days', 
+                   site, '26-Sep-2014')
   cat(theurl,'\n')
   tables = readHTMLTable(theurl)
   
