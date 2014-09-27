@@ -91,20 +91,20 @@ $(document).ready(function () {
 		view: continentalView,
 		renderer: 'canvas'
 	});
-	var flyToNewView = function (newView, zoomingIn) {
-		var duration = 2000;
+	var panAndZoom = function (newView) {
+		var duration = 1500;
 		var start = +new Date();
 		var pan = ol.animation.pan({
 			duration: duration,
 			source: /** @type {ol.Coordinate} */ (map.getView().getCenter()),
 			start: start
 		});
-		var bounce = ol.animation.bounce({
+		var zoom = ol.animation.zoom({
 			duration: duration,
-			resolution: ((zoomingIn) ? 1 : 4) * map.getView().getResolution(),
+			resolution: map.getView().getResolution(),
 			start: start
 		});
-		map.beforeRender(pan, bounce);
+		map.beforeRender(pan, zoom);
 		map.setView(newView);
 	};
 
@@ -113,7 +113,7 @@ $(document).ready(function () {
 	new ScrollScene({triggerElement: "#startTrigger", duration: $(window).height()})
 		.on("enter", function(e) {
 			$("#time-indicator").text("");
-			flyToNewView(continentalView, false);
+			panAndZoom(continentalView);
 			map.replaceLayer(getInitialDroughtLayer(), 'drought');
 		})
 		.addTo(controller)
@@ -192,7 +192,7 @@ $(document).ready(function () {
 					updateTimestep(timesArray[index]);
 				})
 				.on("enter", function (e) {
-					flyToNewView(californiaView, true);
+					panAndZoom(californiaView);
 				})
 				.addTo(controller)
 				.addIndicators();
