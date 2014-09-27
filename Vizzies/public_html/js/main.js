@@ -23,33 +23,36 @@ $(document).ready(function () {
 	var getFireStyle = function () {
 		return [new ol.style.Style({
 				stroke: new ol.style.Stroke({
-					color: 'magenta',
+					color: 'red',
 					width: 2
 				}),
 				fill: new ol.style.Fill({
-					color: 'magenta'
+					color: 'red'
 				}),
 				image: new ol.style.Circle({
 					radius: 10,
 					fill: null,
 					stroke: new ol.style.Stroke({
-						color: 'magenta'
+						color: 'red'
 					})
 				})
 			})];
 	};
 	var getFireLayer = function (timestep) {
-		var layer = new ol.layer.Vector({
-			source: new ol.source.GeoJSON({
-				url: 'data/fire_shp/FIRE_' + timestep + '.geojson',
-				projection: ol.proj.get('EPSG:3857')
-			}),
-			style: getFireStyle,
-			visible: true,
-			opacity: 1
-		});
-		layer.layer_type = 'fire';
-		return layer;
+		if (timestep) {
+			var layer = new ol.layer.Vector({
+				source: new ol.source.GeoJSON({
+					url: 'data/fire_shp/FIRE_' + timestep + '.geojson',
+					projection: ol.proj.get('EPSG:3857')
+				}),
+				style: getFireStyle,
+				visible: true,
+				opacity: 1
+			});
+			layer.layer_type = 'fire';
+			return layer;
+		}
+		
 	};
 	
 	var getInitialDroughtLayer = function () {
@@ -57,17 +60,19 @@ $(document).ready(function () {
 	};
 	
 	var getDroughtLayer = function (timestep) {
-		var layer = new ol.layer.Vector({
-			source: new ol.source.GeoJSON({
-				url: 'data/drought_shp/USDM_' + timestep + '.json',
-				projection: ol.proj.get('EPSG:3857')
-			}),
-			style: getDroughtStyle,
-			visible: true,
-			opacity: 1
-		});
-		layer.layer_type = 'drought';
-		return layer;
+		if (timestep) {
+			var layer = new ol.layer.Vector({
+				source: new ol.source.GeoJSON({
+					url: 'data/drought_shp/USDM_' + timestep + '.json',
+					projection: ol.proj.get('EPSG:3857')
+				}),
+				style: getDroughtStyle,
+				visible: true,
+				opacity: 1
+			});
+			layer.layer_type = 'drought';
+			return layer;
+		}
 	};
 	
 	var continentalView = new ol.View({
