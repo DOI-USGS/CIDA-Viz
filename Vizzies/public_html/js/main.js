@@ -228,7 +228,7 @@ $(document).ready(function () {
 	});
 	
 	new ScrollControl({
-		scrollRate: 50,
+		scrollRate: 25,
 		scrollStep: 25, 
 		parent: $(document.body)
 	});
