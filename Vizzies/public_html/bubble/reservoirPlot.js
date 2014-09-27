@@ -67,8 +67,11 @@ var reservoirPlot = new (function ReservoirPlot(chartSelector) {
 	var reservoirs = [];
 
 
-	this.getDataAtTimestep = (function getDataAtTimestep(reservoirs, date) {
-		var unfilteredReservoirs = reservoirs.map(function(d) {
+	this.getDataAtTimestep = (function getDataAtTimestep(reservoirData, date) {
+		if (!reservoirData) {
+			reservoirData = reservoirs;
+		}
+		var unfilteredReservoirs = reservoirData.map(function(d) {
 			var currentStorage = d["Storage"][date];
 			var maxStorage = d["Capacity"];
 
