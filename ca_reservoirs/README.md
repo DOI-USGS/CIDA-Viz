@@ -17,7 +17,7 @@ Final time series for daily storage data were generated using the [build_res_jso
 
 As a final data quality check, maximum qc'ed daily values were plotted against the reservoir capacities recorded in the dam metadata to make sure the data were reasonably close, considering the inexact nature of reservoir storage numbers, using [cross_check_capacity](./R/cross_check_capacity.R) 
 
-[build_res_json](./R/build_res_json) was used to generate a [GeoJSON file](../Vizzies/public_html/data/reservoirs/ca_reservoirs.geojson) for mapping reservoir locations was built based on metadata in the [final JSON data file](../Vizzies/public_html/data/reservoirs/reservoir_storage.json).
+[build_res_json](./R/build_res_json.R) was used to generate a [GeoJSON file](../Vizzies/public_html/data/reservoirs/ca_reservoirs.geojson) for mapping reservoir locations was built based on metadata in the [final JSON data file](../Vizzies/public_html/data/reservoirs/reservoir_storage.json).
 
 
 
