@@ -74,7 +74,7 @@ var setThicknessScale = function(pixelsPerCapacity){
 
 // Load the data.
 // d3.json("abbrev.reservoirs.json", function(reservoirs) {
-d3.json("../../../ca_reservoirs/storage_data/reservoir.json", function(reservoirs) {
+d3.json("../data/reservoirs/reservoir_storage.json", function(reservoirs) {
     // reservoirs = [
     //   {
     //     "Capacity" : 100,
