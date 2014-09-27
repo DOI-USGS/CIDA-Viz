@@ -1,10 +1,10 @@
-get_drought_idx <- function(date='20140812'){
+get_drought_idx <- function(layer_name){
   tot_area = 644712127449
   library('rgeos')
   library('sp')
   library('jsonlite')
   
-  vals <- fromJSON(paste0('../../Vizzies/public_html/data/drought_shp/USDM_',date,'.json'))
+  vals <- fromJSON(paste0('../../Vizzies/public_html/data/drought_shp/',layer_name))
   
   num_d = 4
   areas <- vector(length = num_d )
@@ -13,7 +13,7 @@ get_drought_idx <- function(date='20140812'){
     
   }
   
-  w0 = sum(areas)-tot_area
+  w0 = 0
   w1 = 1*areas[1]
   w2 = 2*areas[2]
   w3 = 3*areas[3]
@@ -31,7 +31,7 @@ cumulative_area <- function(vals, drought_i){
     dg = vals$features$geometry$coordinates[[drought_i]]
     
   }, error=function(err){return(list(F))})
-  if (dg[[1]] == F){
+  if (is.null(dg) || dg[[1]] == F){
     return(0)
   }
   
@@ -69,4 +69,23 @@ cumulative_area <- function(vals, drought_i){
   return(area)
 }
 
-get_drought_idx('20140812')
+nearest_drought_layer <- function(date_in){
+  
+  layers <- list.files("../../Vizzies/public_html/data/drought_shp/", pattern = ".json")
+  layers <- layers[nchar(layers)==18] # only our format of "USDM_YYYYMMDD.json"
+  dates_pos <- as.Date(substr(layers,6,13), "%Y%m%d")
+
+  use_i <- which.min(abs(dates_pos-date_in))
+  layer_name = layers[use_i]
+  return(layer_name)
+}
+
+multi_layer_vals <- function(dates){
+  
+  value_out <- vector(length = length(dates))
+  for (j in 1:length(dates)){
+    layer <- nearest_drought_layer(dates[j])
+    value_out[i] <- get_drought_idx(layer)
+  }
+  return(value_out)
+}
