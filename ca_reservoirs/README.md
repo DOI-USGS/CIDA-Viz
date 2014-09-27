@@ -13,12 +13,11 @@ Final time series for daily storage data were generated using the [build_res_jso
 2. interpolates small gaps in the data based on preceeding and following data
 3. drops reservoirs that have large gaps in daily data
 4. downsample to weekly values from daily using an average of daily values
-5. generates a [final JSON data file](../public_html/data/reservoirs/reservoir_storage.json)
+5. generates a [final JSON data file](../Vizzies/public_html/data/reservoirs/reservoir_storage.json)
 
 As a final data quality check, maximum qc'ed daily values were plotted against the reservoir capacities recorded in the dam metadata to make sure the data were reasonably close, considering the inexact nature of reservoir storage numbers, using [cross_check_capacity](./R/cross_check_capacity.R) 
 
-A GeoJSON file for mapping reservoir locations 
-
+[build_res_json](.R/build_res_json) was used to generate a [GeoJSON file](../Vizzies/public_html/data/reservoirs/ca_reservoirs.geojson) for mapping reservoir locations was built based on metadata in the [final JSON data file](../Vizzies/public_html/data/reservoirs/reservoir_storage.json).
 
 
 
