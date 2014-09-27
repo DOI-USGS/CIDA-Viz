@@ -71,7 +71,7 @@ if __name__ == '__main__':
     df_tdi = pd.read_csv(TDI_DATA, sep=',', skiprows=1, header=0, parse_dates=['Week'], comment='#', index_col='Week')
     df_severe = df_tdi[['D2-D4']]
     di_str = 'Percent of CA in Severe Drought'
-    df_tdi_2007_2014 = df_severe[(df_severe.index > '2007-01-01') & (df_severe.index < '2014-09-01')]
+    df_tdi_2007_2014 = df_severe[(df_severe.index >= '2007-01-01') & (df_severe.index < '2014-09-01')]
     df_tdi_2007_2014_rs = df_tdi_2007_2014.resample('M')
     df_tdi_2007_2014_rs['date'] = df_tdi_2007_2014_rs.index
     df_tdi_2007_2014_rs.columns = [di_str, 'date']
