@@ -7,7 +7,7 @@ ca_crop_viz <- function(username,key,plot_names,plot_colors){
   layout <- list(
     title = "Agricultural output cost data (summer)", 
     xaxis = list(
-      title = "Statewide drought index (0-4)", 
+      title = "Percent of state in severe drought (%)", 
       showgrid = FALSE, 
       zeroline = FALSE
     ), 
