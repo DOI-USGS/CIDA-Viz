@@ -74,6 +74,7 @@ snow_viz <- function(user, key){
     traceorder = "reversed", 
     font = list(size = 16), 
     yref = "paper"
+    
   ))
   response <- py$plotly(data, kwargs=list(layout=layout, filename="line-shapes", fileopt="overwrite"))
   url <- response$url
@@ -81,3 +82,4 @@ snow_viz <- function(user, key){
 }
 
 
+snow_viz('jordansread','90m4bzyins')

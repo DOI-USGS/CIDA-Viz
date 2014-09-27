@@ -27,9 +27,12 @@ build_list <- function(plot_names,plot_colors){
   
   for (i in 1:length(plot_names)){
     crop_name <- plot_names[i]
-    y_vals <- get_crop_nums(crop_name,seq(2011,2014))
+    yrs <- seq(2007,2014)
+    dates <- as.Date(paste(yrs,rep(08,length(yrs)), rep(15,length(yrs)),sep='-'))
+    y_vals <- get_crop_nums(crop_name,yrs)
+    x_vals <- multi_layer_vals(as.Date(dates))
     plot_list[[i]] <- list(
-      x = c(0.7286253 ,1.619379, 2.92937, 3.424403),
+      x = x_vals,
       y = y_vals, 
       mode = "markers", 
       name = paste(toupper(substring(crop_name, 1,1)), substring(crop_name, 2),
@@ -49,7 +52,10 @@ build_list <- function(plot_names,plot_colors){
   }
   return(plot_list)
 }
+
+source("get_crop_nums.R")
+source("get_drought_idx.R")
 plot_names = c('oranges','lemons','grapes','lettuce')
 plot_colors = c("rgb(255, 153, 0)", "rgb(255, 255, 150)", "rgb(68, 28, 82)", "rgb(0, 255, 128)")
 
-ca_crop_viz('j$$$','$$$',plot_names,plot_colors)
+ca_crop_viz('jordansread','$$$$',plot_names,plot_colors)
