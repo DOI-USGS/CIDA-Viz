@@ -43,6 +43,11 @@ ScrollControl = function() {
 		div.append(pause);
 		div.append(play);
 		
+		//help text
+		var help = $('<p>');
+		help.html("Hit \"play\"<br/>or scroll at<br/>your own<br/>pace!");
+		div.append(help);
+		
 		this.pauseBtn.hide();
 		this.parent.append(div);
 		
