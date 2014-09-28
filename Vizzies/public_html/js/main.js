@@ -38,6 +38,25 @@ $(document).ready(function () {
 				})
 			})];
 	};
+	var getReservoirStyle = function (feature) {
+		var id = feature;
+		return [new ol.style.Style({
+				stroke: new ol.style.Stroke({
+					color: 'blue',
+					width: 5
+				}),
+				fill: new ol.style.Fill({
+					color: 'blue'
+				}),
+				image: new ol.style.Circle({
+					radius: 3,
+					fill: null,
+					stroke: new ol.style.Stroke({
+						color: 'blue'
+					})
+				})
+			})];
+	};
 	var getFireLayer = function (timestep) {
 		if (timestep) {
 			var layer = new ol.layer.Vector({
@@ -234,22 +253,7 @@ $(document).ready(function () {
 			url: 'data/reservoirs/ca_reservoirs.geojson',
 			projection: ol.proj.get('EPSG:3857')
 		}),
-		style: [new ol.style.Style({
-				stroke: new ol.style.Stroke({
-					color: 'blue',
-					width: 2
-				}),
-				fill: new ol.style.Fill({
-					color: 'blue'
-				}),
-				image: new ol.style.Circle({
-					radius: 1,
-					fill: null,
-					stroke: new ol.style.Stroke({
-						color: 'blue'
-					})
-				})
-			})],
+		style: getReservoirStyle,
 		visible: true,
 		opacity: 1
 	});
