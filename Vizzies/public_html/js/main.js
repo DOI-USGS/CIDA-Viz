@@ -20,25 +20,6 @@ $(document).ready(function () {
 				})
 			})];
 	};
-	var getReservoirStyle = function (feature) {
-		var id = feature;
-		return [new ol.style.Style({
-				stroke: new ol.style.Stroke({
-					color: 'blue',
-					width: 5
-				}),
-				fill: new ol.style.Fill({
-					color: 'blue'
-				}),
-				image: new ol.style.Circle({
-					radius: 3,
-					fill: null,
-					stroke: new ol.style.Stroke({
-						color: 'blue'
-					})
-				})
-			})];
-	};
 
 	var getInitialDroughtLayer = function () {
 		return getDroughtLayer('20140916_US');
@@ -56,6 +37,46 @@ $(document).ready(function () {
 				opacity: 1
 			});
 			layer.layer_type = 'drought';
+			return layer;
+		}
+	};
+	
+	var reservoirSizes = [];
+	var getReservoirLayer = function(timestep) {
+		if (timestep) {
+			var getReservoirStyle = function (feature) {
+				var id = feature.getProperties()['Nat_ID'];
+				var matchingRes = reservoirSizes.find(function(res) {
+					return res['Nat_ID'] === id;
+				});
+				var size = 0;
+				if (matchingRes) {
+					var storage = matchingRes.Storage[timestep];
+					size = Math.log(storage);
+					size = (size > 0) ? size : 0;
+				}
+				return [new ol.style.Style({
+					image: new ol.style.Circle({
+						radius: size,
+						fill: null,
+						stroke: new ol.style.Stroke({
+							color: 'blue',
+							width: 1.5
+						})
+					})
+				})];
+			};
+
+			var layer = new ol.layer.Vector({
+				source: new ol.source.GeoJSON({
+					url: 'data/reservoirs/ca_reservoirs.geojson',
+					projection: ol.proj.get('EPSG:3857')
+				}),
+				style: getReservoirStyle,
+				visible: true,
+				opacity: 1
+			});
+			layer.layer_type = 'reservoir';
 			return layer;
 		}
 	};
@@ -200,20 +221,12 @@ $(document).ready(function () {
 
 	var updateTimestep = function (timestep) {
 		var droughtLayer = getDroughtLayer(timestep);
+		var reservoirLayer = getReservoirLayer(timestep);
 		var datestr = Date.create(timestep).format("{d} {Month} {yyyy}");
 		map.replaceLayer(droughtLayer, 'drought');
+		map.replaceLayer(reservoirLayer, 'reservoir');
 		$('#time-indicator').text(datestr);
 	};
-	var sitesLayer = new ol.layer.Vector({
-		source: new ol.source.GeoJSON({
-			url: 'data/reservoirs/ca_reservoirs.geojson',
-			projection: ol.proj.get('EPSG:3857')
-		}),
-		style: getReservoirStyle,
-		visible: true,
-		opacity: 1
-	});
-	map.addLayer(sitesLayer);
 
 	var lastIndexCalled = -1;
 	$.ajax('data/drought_shp/times.json', {
@@ -240,6 +253,12 @@ $(document).ready(function () {
 				})
 				.addTo(controller)
 				.addIndicators();
+		}
+	});
+	$.ajax("data/reservoirs/reservoir_storage.json", {
+		success: function (data) {
+			// apologies for using global scope
+			reservoirSizes = data;
 		}
 	});
 
