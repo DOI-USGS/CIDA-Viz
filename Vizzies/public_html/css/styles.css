@@ -7,13 +7,6 @@ html{height:100%;}
 
 body{height:100%;}
 
-.map-legend {
-	position: fixed;
-    top: 15px;
-    left: 15px;
-	height: 40px;
-    z-index: 10000;
-}
 
 #map{
   overflow: auto;
@@ -90,20 +83,10 @@ footer{	height:100%;
 			padding:15px 15px;
 			font-family:"Open Sans";
 			position:relative;
-			-webkit-transform: translateZ(0);
 	}
-
-#feature1 .left {
-	top: -200px;
-}
-
-#feature2 .higher {
-	position: relative;
-	top: -380px;
-}
  
 .spacer {
-	height: 15em;
+	height: 10em;
 } 
 
 .top{width:50%;
