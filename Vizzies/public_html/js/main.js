@@ -58,7 +58,9 @@ $(document).ready(function () {
 				return [new ol.style.Style({
 					image: new ol.style.Circle({
 						radius: size,
-						fill: null,
+						fill: new ol.style.Fill({
+							color: 'rgba(0, 0, 255, 0.2)'
+						}),
 						stroke: new ol.style.Stroke({
 							color: 'blue',
 							width: 1.5
