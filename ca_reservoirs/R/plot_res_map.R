@@ -36,7 +36,7 @@ create_hybrid_svg <- function(time_st = "20140916"){
     
     txt <- paste0(format(as.Date(date, "%Y%m%d"), '%Y-%m', pos = 2), '-01')
     
-    text(.8, 90, txt, cex = 2.5, col = 'grey65')
+    text(.8, 90, txt, cex = 2.5, col = 'grey45')
   }
   
   
@@ -55,15 +55,21 @@ create_hybrid_svg <- function(time_st = "20140916"){
   panels = matrix(c(1,1,1,2,2,2,2,2),nrow=1)
   layout(panels)
   par(omi = c(0,0,0,0),mai=c(0,0,0,0), mgp=c(.6,.01,0), ps = 14)
-  map('state',c('California'))
+  map('state',c('California'),resolution = 3) ## simplify
   map = readOGR(drought_json, "OGRGeoJSON")
-  plot(map, col = c(rgb(255,255,68,trans_drought,maxColorValue = 255),
-                    rgb(255,211,133,trans_drought,maxColorValue = 255),
-                    rgb(242,0,0,trans_drought,maxColorValue = 255),
-                    rgb(121,0,0,trans_drought,maxColorValue = 255)), border = 'grey30', add = T)
   
+  tryCatch({
+    map_low <- gSimplify(map,tol = .03) ## simplify
+    
+    plot(map_low, col = c(rgb(255,255,68,trans_drought,maxColorValue = 255),
+                          rgb(255,211,133,trans_drought,maxColorValue = 255),
+                          rgb(242,0,0,trans_drought,maxColorValue = 255),
+                          rgb(121,0,0,trans_drought,maxColorValue = 255)), border = 'grey30', add = T)
+  }, error=function(err){})
   
-  points(res,cex = (capacity/4552000)*10,col = 'grey30', lwd=2)
+  points(res,cex = (capacity/4552000)*10,
+         col = rgb(80,146,204,255,maxColorValue = 255), 
+         lwd=1)
   points(res,cex = (storage/4552000)*10, pch = 16,
          col = rgb(80,146,204,trans_drought,maxColorValue = 255), 
          bg = rgb(80,146,204,trans_drought,maxColorValue = 255))
