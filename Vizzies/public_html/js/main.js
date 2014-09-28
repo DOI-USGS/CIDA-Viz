@@ -140,16 +140,23 @@ $(document).ready(function () {
 		.setPin("#feature2")
 		.on("enter", function (e) {
 			panAndZoom(caliLeftCenter, caliZoom);
-			activateAnchorLink(2);
+			activateAnchorLink(3);
 		})
 		.addTo(controller)
 		.addIndicators();
-	// Scene 3 built in response to ajax
+	new ScrollScene({triggerElement: "#trigger3", duration: 2000})
+		.setPin("#feature3")
+		.on("enter", function (e) {
+			panAndZoom(caliRightCenter, caliZoom);
+			activateAnchorLink(4);
+		})
+		.addTo(controller)
+		.addIndicators();
 	new ScrollScene({triggerElement: "#trigger4", duration: 2000})
 		.setPin("#feature4")
 		.on("enter", function (e) {
 			panAndZoom(caliLeftCenter, caliZoom);
-			activateAnchorLink(4);
+			activateAnchorLink(5);
 		})
 		.addTo(controller)
 		.addIndicators();
@@ -157,7 +164,7 @@ $(document).ready(function () {
 		.setPin("#feature5")
 		.on("enter", function (e) {
 			panAndZoom(caliRightCenter, caliZoom);
-			activateAnchorLink(5);
+			activateAnchorLink(6);
 		})
 		.addTo(controller)
 		.addIndicators();
@@ -190,7 +197,7 @@ $(document).ready(function () {
 		.addTo(controller)
 		.addIndicators()
 		.on("enter", function (e) {
-			activateAnchorLink(6);
+			activateAnchorLink(7);
 		});
 
 	map.replaceLayer = function (layer, layerType) {
@@ -260,30 +267,21 @@ $(document).ready(function () {
 					var index = Math.floor((timesArray.length - 1) * e.progress);
 					if (index != lastIndexCalled) {
 						updateTimestep(timesArray[index]);
+						reservoirPlot.paintGraph(reservoirPlot.getDataAtTimestep(	undefined, timesArray[index]));
 						lastIndexCalled = index;
 					}
 				})
 				.on("enter", function (e) {
 					panAndZoom(caliCenterCenter, caliZoom);
+					$("#res-plot-container").show();
+					activateAnchorLink(2);
+				})
+				.on("leave", function (e) {
+					$("#res-plot-container").hide();
 				})
 				.addTo(controller)
 				.addIndicators();
-			new ScrollScene({triggerElement: "#trigger3", duration: 2000})
-				.setPin("#feature3")
-				.on("progress", function(e) {
-					var index = Math.floor((timesArray.length - 1) * e.progress);
-					if (index != lastIndexCalled) {
-						reservoirPlot.paintGraph(reservoirPlot.getDataAtTimestep(undefined, timesArray[index]));
-						lastIndexCalled = index;
-					}
-				})
-				.on("enter", function (e) {
-					panAndZoom(caliRightCenter, caliZoom);
-					activateAnchorLink(3);
-				})
-				.addTo(controller)
-				.addIndicators();
-				}
+		}
 	});
 
 	$('.links-anchor').on('click', function (e) {

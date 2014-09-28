@@ -26,8 +26,8 @@ var reservoirPlot = new (function ReservoirPlot(chartSelector) {
 		left: 100
 	};
 	var smallestMargin = Object.values(margin).min();
-	var width = 960 - margin.right - margin.left;
-	var height = 500 - margin.top - margin.bottom;
+	var width = 600 - margin.right - margin.left;
+	var height = 400 - margin.top - margin.bottom;
 	var padding = 3;
 	var barColor = '#5092cc';
 	//scale computed later dynamically based on available width
@@ -178,4 +178,4 @@ var reservoirPlot = new (function ReservoirPlot(chartSelector) {
 			reservoirs[i].offset = currentOffset;
 		}
 	});
-})("#reservoirPlot");
+})("#res-plot");
