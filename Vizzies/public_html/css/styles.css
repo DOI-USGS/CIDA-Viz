@@ -7,6 +7,13 @@ html{height:100%;}
 
 body{height:100%;}
 
+.map-legend {
+	position: fixed;
+    top: 15px;
+    left: 15px;
+	height: 40px;
+    z-index: 10000;
+}
 
 #map{
   overflow: auto;
@@ -54,9 +61,18 @@ footer{	height:100%;
 			font-family:"Open Sans";
 			position:relative;
 	}
+
+#feature1 .left {
+	top: -200px;
+}
+
+#feature2 .higher {
+	position:relative;
+	top: -800px;
+}
  
 .spacer {
-	height: 10em;
+	height: 15em;
 } 
 
 .top{width:50%;
