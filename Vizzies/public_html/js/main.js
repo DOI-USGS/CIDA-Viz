@@ -1,4 +1,5 @@
 var map;
+var droughtCache = {};
 $(document).ready(function () {
 
 	var getDroughtStyle = function (feature) {
@@ -126,7 +127,6 @@ $(document).ready(function () {
 	var activateAnchorLink = function(linkNum) {
 		var filledClass = 'links-anchor-link-filled',
 			emptyClass = 'links-anchor-link-empty';
-		console.log(linkNum);
 		$('.links-anchor').switchClass(filledClass, emptyClass, 250, 'linear', null),
 		$('#links-anchor-link-' + linkNum).switchClass(emptyClass, filledClass, 250, 'linear', null);
 	};
@@ -230,16 +230,51 @@ $(document).ready(function () {
 		$('#time-indicator').text(datestr);
 	};
 
+	var cacheDroughtLayers = function(args) {
+		var args = args || {},
+			timesArray = args.timesArray || [],
+			nextTimeStep = timesArray.pop(),
+			context = {
+				timesArray : timesArray,
+				timestep : nextTimeStep
+			};
+		
+		if (nextTimeStep) {
+			$.ajax('data/drought_shp/USDM_' + nextTimeStep + '.json', 
+			{
+				context : context,
+				success : function (data) {
+					droughtCache[this.timestep] = data;
+					if (timesArray.length) {
+						cacheDroughtLayers({
+							timesArray : timesArray
+						});
+					}
+				},
+				error : function (data) {
+					if (timesArray.length) {
+						cacheDroughtLayers({
+							timesArray : timesArray
+						});
+					}
+				}
+			});
+		}
+	};
+
 	var lastIndexCalled = -1;
 	$.ajax('data/drought_shp/times.json', {
 		success: function (data) {
+			// Got the array of times that we will cycle through
 			var timesArray = data.d.reverse();
+			
+			// Start the first scroll scene
 			new ScrollScene({triggerElement: "#trigger1", duration: 40000})
 				.setPin("#feature1")
 				.setTween(TweenMax.fromTo("#time-indicator", 1, {x: 0}, {x: $(window).width() - 400}))
 				.on("progress", function (e) {
 					var index = Math.floor((timesArray.length - 1) * e.progress);
-					if (index != lastIndexCalled) {
+					if (index !== lastIndexCalled) {
 						updateTimestep(timesArray[index]);
 						reservoirPlot.paintGraph(reservoirPlot.getDataAtTimestep(	undefined, timesArray[index]));
 						lastIndexCalled = index;
@@ -255,6 +290,11 @@ $(document).ready(function () {
 				})
 				.addTo(controller)
 				.addIndicators();
+			
+			// Begin caching drought layers
+			cacheDroughtLayers({
+				timesArray : timesArray
+			});
 		}
 	});
 	$.ajax("data/reservoirs/reservoir_storage.json", {
