@@ -9,10 +9,10 @@ body{height:100%;}
 
 .map-legend {
 	position: fixed;
-    top: 15px;
-    left: 15px;
+	top: 15px;
+	left: 15px;
 	height: 40px;
-    z-index: 10000;
+	z-index: 10000;
 }
 
 #map{
@@ -73,6 +73,15 @@ body{height:100%;}
 	font-family: "Open Sans";
 }
   
+#feature1 .left {
+	top: -200px;
+}
+
+#feature2 .higher {
+	position: relative;
+	top: -800px;
+}
+  
 header,
 #feature1,
 #feature2,
@@ -90,17 +99,7 @@ footer{	height:100%;
 			padding:15px 15px;
 			font-family:"Open Sans";
 			position:relative;
-			-webkit-transform: translateZ(0);
 	}
-
-#feature1 .left {
-	top: -200px;
-}
-
-#feature2 .higher {
-	position: relative;
-	top: -380px;
-}
  
 .spacer {
 	height: 15em;
