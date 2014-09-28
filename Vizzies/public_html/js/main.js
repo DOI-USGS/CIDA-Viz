@@ -174,10 +174,10 @@ $(document).ready(function () {
 		.addTo(controller)
 		.addIndicators();
 	// Scene 1 (reservoirs) built in response to ajax
-	new ScrollScene({triggerElement: "#drought2014-trigger", duration: 3000})
+	new ScrollScene({triggerElement: "#drought2014-trigger", duration: 2000})
 		.setPin("#drought2014-pin")
 		.on("enter", function (e) {
-			panAndZoom(caliLeftCenter, caliZoom);
+			panAndZoom(caliCenterCenter, caliZoom);
 			activateAnchorLink(4);
 		})
 		.addTo(controller)
