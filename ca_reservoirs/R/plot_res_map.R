@@ -50,8 +50,8 @@ create_hybrid_svg <- function(time_st = "20140916"){
   storage <- as.numeric(res_time$Storage[[time_st]])
   capacity <- res_time$Capacity
   
-  svg_nm <- paste0('res_hybrid_',time_st,'.svg')
-  svg(svg_nm, width = 7, height = 3)
+  svg_nm <- paste0('../../Vizzies/public_html/data/reservoir_drought/res_hybrid_',time_st,'.svg')
+  svg(svg_nm, width = 7, height = 3,antialias = 'none')
   panels = matrix(c(1,1,1,2,2,2,2,2),nrow=1)
   layout(panels)
   par(omi = c(0,0,0,0),mai=c(0,0,0,0), mgp=c(.6,.01,0), ps = 14)
