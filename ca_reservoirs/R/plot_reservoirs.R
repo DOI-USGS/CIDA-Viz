@@ -31,7 +31,7 @@ plot_cap <- function(capacities, perc_full, date){
 
 library(jsonlite)
 library(animation)
-file_json <- fromJSON(file = '../storage_data/reservoir.json')
+file_json <- fromJSON(file = '../../Vizzies/public_html/data/reservoirs/reservoir_storage.json')
 
 repeats = 5
 use_dates <- names(tail(file_json[[1]]$Storage, 199)) # was 194
