@@ -20,24 +20,6 @@ $(document).ready(function () {
 				})
 			})];
 	};
-	var getFireStyle = function () {
-		return [new ol.style.Style({
-				stroke: new ol.style.Stroke({
-					color: 'red',
-					width: 2
-				}),
-				fill: new ol.style.Fill({
-					color: 'red'
-				}),
-				image: new ol.style.Circle({
-					radius: 10,
-					fill: null,
-					stroke: new ol.style.Stroke({
-						color: 'red'
-					})
-				})
-			})];
-	};
 	var getReservoirStyle = function (feature) {
 		var id = feature;
 		return [new ol.style.Style({
@@ -56,22 +38,6 @@ $(document).ready(function () {
 					})
 				})
 			})];
-	};
-	var getFireLayer = function (timestep) {
-		if (timestep) {
-			var layer = new ol.layer.Vector({
-				source: new ol.source.GeoJSON({
-					url: 'data/fire_shp/FIRE_' + timestep + '.json',
-					projection: ol.proj.get('EPSG:3857')
-				}),
-				style: getFireStyle,
-				visible: true,
-				opacity: 1
-			});
-			layer.layer_type = 'fire';
-			return layer;
-		}
-
 	};
 
 	var getInitialDroughtLayer = function () {
@@ -242,10 +208,8 @@ $(document).ready(function () {
 
 	var updateTimestep = function (timestep) {
 		var droughtLayer = getDroughtLayer(timestep);
-		var fireLayer = getFireLayer(timestep);
 		var datestr = Date.create(timestep).format("{d} {Month} {yyyy}");
 		map.replaceLayer(droughtLayer, 'drought');
-		map.replaceLayer(fireLayer, 'fire');
 		$('#time-indicator').text(datestr);
 	};
 	var sitesLayer = new ol.layer.Vector({
