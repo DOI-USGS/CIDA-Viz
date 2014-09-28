@@ -59,4 +59,4 @@ source("get_drought_idx.R")
 plot_names = c('Navel_Oranges','Lemons','Lettuce')
 plot_colors = c("rgb(255, 153, 0)", "rgb(230, 230, 30)", "rgb(0, 153, 0)")
 
-ca_crop_viz('jordansread','###',plot_names,plot_colors, years_out=seq(2009,2014))
+ca_crop_viz('jordansread','90m4bzyins',plot_names,plot_colors, years_out=seq(2009,2014))
