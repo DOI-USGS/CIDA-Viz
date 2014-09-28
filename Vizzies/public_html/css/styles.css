@@ -198,7 +198,7 @@ footer{padding-top:5%;
 }
 
 .links-anchor-link-empty {
-	border: 3px solid #55DA6A;
+	border: 3px solid rgba(80,146,204,1);
 	height: 20px;
 	width: 20px;
 	border-radius: 15px;
@@ -206,8 +206,8 @@ footer{padding-top:5%;
 }
 
 .links-anchor-link-filled {
-	border: 3px solid #55DA6A;
-	background-color: #9ACFA2;
+	border: 3px solid rgba(80,146,204,1);
+	background-color: rgba(80,146,204,.6);
 	height: 20px;
 	width: 20px;
 	border-radius: 15px;
