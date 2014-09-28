@@ -50,15 +50,16 @@ $(document).ready(function () {
 				var matchingRes = reservoirSizes.find(function(res) {
 					return res['Nat_ID'] === id;
 				});
-				var size = 0;
+				var radius = 0;
 				if (matchingRes) {
 					var storage = matchingRes.Storage[timestep];
-					size = Math.log(storage);
-					size = (size > 0) ? size : 0;
+					var a = 1000;
+					radius = Math.sqrt(storage/(a*Math.PI));
+					radius = (radius > 0 || radius < 1) ? radius : 1;
 				}
 				return [new ol.style.Style({
 					image: new ol.style.Circle({
-						radius: size,
+						radius: radius,
 						fill: new ol.style.Fill({
 							color: 'rgba(0, 0, 255, 0.2)'
 						}),
