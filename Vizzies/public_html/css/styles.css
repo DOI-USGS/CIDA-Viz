@@ -37,6 +37,7 @@ body{height:100%;}
 }
 
 #res-plot-container {
+	display: none; /* start hidden */
 	position: fixed;
 	width: 600px;
 	top: 50px;

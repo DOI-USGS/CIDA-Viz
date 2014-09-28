@@ -272,7 +272,11 @@ $(document).ready(function () {
 				})
 				.on("enter", function (e) {
 					panAndZoom(caliCenterCenter, caliZoom);
+					$("#res-plot-container").show();
 					activateAnchorLink(2);
+				})
+				.on("leave", function (e) {
+					$("#res-plot-container").hide();
 				})
 				.addTo(controller)
 				.addIndicators();
