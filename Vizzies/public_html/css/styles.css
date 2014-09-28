@@ -35,6 +35,36 @@ body{height:100%;}
 	font-family: "Open Sans";
 	font-size: 2em;
 }
+
+#res-plot-container {
+	display: none; /* start hidden */
+	position: fixed;
+	width: 600px;
+	top: 50px;
+	right: 100px;
+}
+
+#res-plot{
+	height: 100%;
+	width: 100%;
+}
+
+.res-plot-row {
+	line-height: 400px;
+}
+
+.res-y-label {
+	transform: translate(80px, 0px)
+		rotate(-90deg);
+	white-space: nowrap;
+	font-family: "Open Sans";
+	width: 50px;
+}
+
+.res-x-label {
+	text-align: center;
+	font-family: "Open Sans";
+}
   
 header,
 #feature1,
