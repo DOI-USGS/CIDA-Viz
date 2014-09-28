@@ -131,16 +131,8 @@ $(document).ready(function () {
 	new ScrollScene({triggerElement: "#trigger3", duration: 2000})
 		.setPin("#feature3")
 		.on("enter", function (e) {
-			panAndZoom(caliRightCenter, caliZoom);
+			panAndZoom(caliCenterCenter, caliZoom);
 			activateAnchorLink(4);
-		})
-		.addTo(controller)
-		.addIndicators();
-	new ScrollScene({triggerElement: "#trigger4", duration: 2000})
-		.setPin("#feature4")
-		.on("enter", function (e) {
-			panAndZoom(caliLeftCenter, caliZoom);
-			activateAnchorLink(5);
 		})
 		.addTo(controller)
 		.addIndicators();

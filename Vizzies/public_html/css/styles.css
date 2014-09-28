@@ -77,9 +77,9 @@ body{height:100%;}
 	top: -200px;
 }
 
-#feature2 .higher {
+.higher {
 	position: relative;
-	top: -800px;
+	top: -500px;
 }
   
 header,
