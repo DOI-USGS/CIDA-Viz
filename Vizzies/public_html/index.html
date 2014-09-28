@@ -16,6 +16,7 @@
         <link rel="stylesheet" href="css/main.css">
         <link rel="stylesheet" href="css/styles.css">
         <link rel="stylesheet" href="css/vendor/font-awesome-4.2.0/css/font-awesome.min.css">
+		<link href="css/nv.d3.css" rel="stylesheet" type="text/css">
         <link rel="stylesheet" href="js/ScrollControl/ScrollControl.css">
     </head>
     <body>
@@ -24,19 +25,20 @@
         <![endif]-->
 		<div id="links-anchor">
 			<table>
-				<tr><td><a data-scroll href="#s1"><div id="links-anchor-link-1" class="links-anchor-link-filled links-anchor">&nbsp;</div></a></td></tr>
-				<tr><td><a data-scroll href="#s2"><div id="links-anchor-link-2" class="links-anchor-link-empty links-anchor">&nbsp;</div></a></td></tr>
-				<tr><td><a data-scroll href="#s3"><div id="links-anchor-link-3" class="links-anchor-link-empty links-anchor">&nbsp;</div></a></td></tr>
-				<tr><td><a data-scroll href="#s4"><div id="links-anchor-link-4" class="links-anchor-link-empty links-anchor">&nbsp;</div></a></td></tr>
-				<tr><td><a data-scroll href="#s5"><div id="links-anchor-link-5" class="links-anchor-link-empty links-anchor">&nbsp;</div></a></td></tr>
-				<tr><td><a data-scroll href="#s6"><div id="links-anchor-link-6" class="links-anchor-link-empty links-anchor">&nbsp;</div></a></td></tr>
-				<tr><td><a data-scroll href="#s7"><div id="links-anchor-link-7" class="links-anchor-link-empty links-anchor">&nbsp;</div></a></td></tr>
+				<tr><td><a data-scroll href="#s1"><div id="links-anchor-link-1" class="links-anchor-link-filled links-anchor" title="Description of this anchor">&nbsp;</div></a></td></tr>
+				<tr><td><a data-scroll href="#s2"><div id="links-anchor-link-2" class="links-anchor-link-empty links-anchor" title="Description of this anchor">&nbsp;</div></a></td></tr>
+				<tr><td><a data-scroll href="#s3"><div id="links-anchor-link-3" class="links-anchor-link-empty links-anchor" title="Description of this anchor">&nbsp;</div></a></td></tr>
+				<tr><td><a data-scroll href="#s4"><div id="links-anchor-link-4" class="links-anchor-link-empty links-anchor" title="Description of this anchor">&nbsp;</div></a></td></tr>
+				<tr><td><a data-scroll href="#s5"><div id="links-anchor-link-5" class="links-anchor-link-empty links-anchor" title="Description of this anchor">&nbsp;</div></a></td></tr>
+				<tr><td><a data-scroll href="#s6"><div id="links-anchor-link-6" class="links-anchor-link-empty links-anchor" title="Description of this anchor">&nbsp;</div></a></td></tr>
+				<tr><td><a data-scroll href="#s7"><div id="links-anchor-link-7" class="links-anchor-link-empty links-anchor" title="Description of this anchor">&nbsp;</div></a></td></tr>
+				<tr><td><a data-scroll href="#s8"><div id="links-anchor-link-8" class="links-anchor-link-empty links-anchor" title="Description of this anchor">&nbsp;</div></a></td></tr>
 			</table>
 		</div>
 		<div id="map" class="map"></div>
 		<div id="clearDiv"></div>
 		<div id="time-indicator"></div>
-		<header id="s1">
+		<header id="s1" class="anchor-link">
 			<div id="startTrigger" class="top">
 				<h1>Drought of California, visualized with open data</h1>
 				<p>California is experiencing its worst drought in recorded history.</p>
@@ -44,54 +46,76 @@
 			<div class="spacer s1"></div>
 		</header><!--header-->
 		<div class="spacer s0"></div>
-		<section id="s2">
+		<section id="s2" class="anchor-link">
 			<div class="spacer s2"></div>
-			<div id="trigger6"></div>
+			<div id="news-trigger"></div>
 
-			<div id="feature6">
+			<div id="news">
 				<div class="top">
 					<h1>Drought of California</h1>
 					
 				<div class="spacer s0"></div>
-				
+			</div>
+			<div class="spacer s0"></div>
+		</section>
+		<section>
+			<div id="tahoe-trigger"></div>
+			<div id="tahoe">
 				<div class="left">
 					<p><a href="http://on.rgj.com/1pfIphy" target="_blank">Drought: Tahoe will dip below its natural rim this month 
-from the Reno Gazette Journal</a><br/><em>from the Reno Gazette Journal</em></p>
+	from the Reno Gazette Journal</a><br/><em>from the Reno Gazette Journal</em></p>
 				</div>
-				
+			</div>
+			<div class="spacer s0"></div>
+		</section>
+		<section>
+			<div id="drilling-trigger"></div>
+			<div id="drilling">
 				<div class="right">
 					<p><a href="http://www.capradio.org/articles/2014/09/08/drilling-through-the-drought/" target="_blank">Drilling Through the Drought: A Look At Well Drilling Activity In The Central Valley </a><br/><em>from CA Public Radio</em></p>
-				</div>				
-					
-				<div class="spacer s0"></div>
-
+				</div>
+			</div>
+			<div class="spacer s0"></div>
+		</section>
+		<section>
+			<div id="parched-trigger"></div>
+			<div id="parched">
 				<div class="left">
 					<p><a href="http://www.latimes.com/local/lanow/la-me-ln-drought-conditions-forecast-california-20140924-story.html" target="_blank">Parched California expected to miss out on typical fall rains from the LA Times</a><br/><em>from the LA Times</em></p>
 				</div>
-				
+			</div>
+			<div class="spacer s0"></div>
+		</section>
+		<section>
+			<div id="brink-trigger"></div>
+			<div id="brink">
 				<div class="right">
 					<p><a href="http://www.latimes.com/local/la-me-critical-water-20140926-story.html#page=1" target="_blank">Drought has 14 communities on the brink of waterlessness</a><br/><em>from the LA Times</em></p>
 				</div>
-						
-				<div class="spacer s0"></div>
-
+			</div>
+			<div class="spacer s0"></div>
+		</section>
+		<section>
+			<div id="toll-trigger"></div>
+			<div id="toll">
 				<div class="left">
 					<p><a href="http://www.stanforddaily.com/2014/09/25/water-usage-at-stanford-the-quick-facts/" target="_blank">California drought continues to take heavy toll on reservoirs</a><br/><em>from Stanford Daily</em></p>
-				</div>					
-				
+				</div>
+			</div>
+			<div class="spacer s0"></div>
+		</section>
+		<section>
+			<div id="burning-trigger"></div>
+			<div id="burning">
 				<div class="right">
 					<p><a href="http://www.newyorker.com/culture/photo-booth/california-paradise-burning" target="_blank">California: Paradise Burning</a><br/><em>from the New Yorker</em></p>
 				</div>
-				
-				<div class="spacer s0"></div>
-
-				</div>
 			</div>
-			<div class="spacer s2"></div>
+			<div class="spacer s0"></div>
 		</section>
 		<div class="spacer s0"></div>
 		<div class="spacer s0"></div>
-		<section>
+		<section id="s3" class="anchor-link">
 			<div class="spacer s2"></div>
 			<div id="trigger1"></div>
 
@@ -105,7 +129,7 @@ from the Reno Gazette Journal</a><br/><em>from the Reno Gazette Journal</em></p>
 			<div class="spacer s2"></div>
 		</section>
 		<div class="spacer s0"></div>
-		<section id="s3">
+		<section id="s4" class="anchor-link">
 			<div class="spacer s0"></div>
 			<div id="trigger2"></div>
 
@@ -116,15 +140,16 @@ from the Reno Gazette Journal</a><br/><em>from the Reno Gazette Journal</em></p>
 					<p>Snowpack in California is the primary source of water to reservoirs that serve drinking water, agriculture, and hydroelectric needs.</p>
 					<p>For any given year, less wintertime snowpack results in lower reservoir levels, and less water for consumptive use.</p>
 				</div>
-				<iframe width="600" height="400" frameborder="0" seamless="seamless" scrolling="no" src="https://plot.ly/~lawinslow/3/600/400"></iframe>
+				<iframe width="600" height="400" frameborder="0" seamless="seamless" scrolling="no" src="https://plot.ly/~lawinslow/2/600/400"></iframe>
+				<svg id="usage" class="mypiechart"></svg>
 			</div>
-			
+
 
 
 			<div class="spacer s0"></div>
 		</section>
 		<div class="spacer s0"></div>
-		<section id="s4">
+		<section id="s5" class="anchor-link">
 			<div class="spacer s0"></div>
 			<div id="trigger3"></div>
 
@@ -136,20 +161,30 @@ from the Reno Gazette Journal</a><br/><em>from the Reno Gazette Journal</em></p>
 					<p>Over 80% of public drinking water supply comes from rivers, lakes, reservoirs, and other surface waters (<a href="#ref3">3</a>).</p>
 					<p>Here, the effect of drought on 91 of California's >700 reservoirs are shown through time.</p>
 				</div>
+				<table>
+					<tr>
+						<td style="">Y Title</td><td id="reservoirPlot"></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td style="text-align: center;">X Title</td>
+					</tr>
+				</table>
 			</div>
 			<div class="spacer s0"></div>
 		</section>
 		<div class="spacer s0"></div>
-		<section id="s5">
+		<section id="s6" class="anchor-link">
 			<div class="spacer s0"></div>
 			<div id="trigger4"></div>
 
 			<div id="feature4">
-				<div class="right">
+				<div class="left">
 					<h2>Drought and Fire</h2>
 
 					<p>Wildfire is a natural part of the ecosystem in California. Drought years tend to have greater frequency and intensity of wildfires. Wet years promote the buildup of fuels, which then increases the ignitability fires in dryer years (<a href="#ref4">4</a>).</p>
-					<p>&nbsp;</p>
+				</div>
+				<div class="right">
 					<p><strong>2000-2010 Average annual Impacts in California ($2011):</strong>
 					<ul>
 						<li>Number of fires: <strong>5,000</strong></li>
@@ -162,8 +197,10 @@ from the Reno Gazette Journal</a><br/><em>from the Reno Gazette Journal</em></p>
 			</div>
 			<div class="spacer s0"></div>
 		</section>
+		
 		<div class="spacer s0"></div>
-		<section id="s6">
+		
+		<section id="s7" class="anchor-link">
 			<div class="spacer s0"></div>
 			<div id="trigger5"></div>
 
@@ -179,35 +216,32 @@ from the Reno Gazette Journal</a><br/><em>from the Reno Gazette Journal</em></p>
 			<div class="spacer s0"></div>
 		</section>
 		<div class="spacer s0"></div>
-		<footer id="s7">
-
-		<footer>
+		<footer id="s8" class="anchor-link">
 			<div class="spacer s0"></div>
-			<div class="top">
-
-				<h1 id="bottom">Created by CIDA</h1>
-
-			</div><!--top-->
 
 			<div class="bottom">
-
+				<h1 id="bottom">Created by CIDA</h1>
 				<h2>Contributors</h2>
 
-
-				<p><a href="http://cida.usgs.gov/people/mhines.html" target="_blank">Megan Hines</a></p>
-				<p><a href="http://cida.usgs.gov/people/jkreft.html" target="_blank">Jim Kreft</a></p>
-				<p><a href="http://cida.usgs.gov/people/jlucido.html" target="_blank">Jessica Lucido</a></p>
-				<p><a href="http://cida.usgs.gov/people/eread.html" target="_blank">Emily Read</a></p>
-				<p><a href="http://cida.usgs.gov/people/jread.html" target="_blank">Jordan Read</a></p>
-				<p><a href="http://cida.usgs.gov/people/cschroedl.html" target="_blank">Carl Schroedl</a></p>
-				<p><a href="http://cida.usgs.gov/people/dmsibley.html" target="_blank">Dave Sibley</a></p>
-				<p><a href="http://cida.usgs.gov/people/sstephan.html" target="_blank">Shirley Stephan</a></p>
-				<p><a href="http://cida.usgs.gov/people/isuftin.html" target="_blank">Ivan Suftin</a></p>
-				<p><a href="http://cida.usgs.gov/people/thongsav.html" target="_blank">Phethala Thongsavanh</a></p>
-				<p><a href="http://cida.usgs.gov/people/jiwalker.html" target="_blank">Jordan Walker</a></p>
-				<p><a href="http://cida.usgs.gov/people/mwernimont.html" target="_blank">Marty Wernimont</a></p>
-				<p><a href="http://cida.usgs.gov/people/lwinslow.html">Luke Winslow</a></p>
-				<p><a href="http://cida.usgs.gov/people/ayan.html" target="_blank">Andrew Yan</a></p>
+				<p>
+				<a href="http://cida.usgs.gov/people/mhines.html" target="_blank">Megan Hines</a> - 
+				<a href="http://cida.usgs.gov/people/jkreft.html" target="_blank">Jim Kreft</a> - 
+				<a href="http://cida.usgs.gov/people/jlucido.html" target="_blank">Jessica Lucido</a> -
+				<a href="http://cida.usgs.gov/people/eread.html" target="_blank">Emily Read</a> - 
+				<a href="http://cida.usgs.gov/people/jread.html" target="_blank">Jordan Read</a> - 
+				<a href="http://cida.usgs.gov/people/cschroedl.html" target="_blank">Carl Schroedl</a>
+				</p>
+				<p>
+				<a href="http://cida.usgs.gov/people/dmsibley.html" target="_blank">Dave Sibley</a> -
+				<a href="http://cida.usgs.gov/people/sstephan.html" target="_blank">Shirley Stephan</a> - 
+				<a href="http://cida.usgs.gov/people/isuftin.html" target="_blank">Ivan Suftin</a> - 
+				<a href="http://cida.usgs.gov/people/thongsav.html" target="_blank">Phethala Thongsavanh</a>
+				<p>
+				<a href="http://cida.usgs.gov/people/jiwalker.html" target="_blank">Jordan Walker</a> - 
+				<a href="http://cida.usgs.gov/people/mwernimont.html" target="_blank">Marty Wernimont</a> -
+				<a href="http://cida.usgs.gov/people/lwinslow.html">Luke Winslow</a> -
+				<a href="http://cida.usgs.gov/people/ayan.html" target="_blank">Andrew Yan</a>
+				</p>
 
 				<h2>References</h2>	
 
@@ -226,7 +260,7 @@ from the Reno Gazette Journal</a><br/><em>from the Reno Gazette Journal</em></p>
 
 		</footer><!--footer-->
 		<script src="js/vendor/jquery/jquery.js"></script>
-        <script src="js/vendor/modernizr-2.6.2.min.js"></script>
+		<script src="js/vendor/modernizr-2.6.2.min.js"></script>
 		<link rel="stylesheet" href="js/vendor/jquery-ui/jquery-ui.min.css">
 		<script src="js/vendor/smoothScroll/smooth-scroll.min.js"></script>
 		<script src="js/vendor/smoothScroll/bind-polyfill.min.js"></script>
@@ -236,9 +270,18 @@ from the Reno Gazette Journal</a><br/><em>from the Reno Gazette Journal</em></p>
 		<script src="js/vendor/scrollmagic/jquery.scrollmagic.min.js" type="text/javascript"></script>
 		<script src="js/vendor/scrollmagic/jquery.scrollmagic.debug.js" type="text/javascript"></script>
 		<script src="js/vendor/sugar/sugar.min.js"></script>
+		<script src="js/vendor/d3/d3.v3.js"></script>
 		<script src="js/vendor/openlayers/ol-debug.js"></script>
-        <script src="js/plugins.js"></script>
-        <script src="js/ScrollControl/ScrollControl.js"></script>
-        <script src="js/main.js"></script>
+		<script src="js/plugins.js"></script>
+		<script src="js/ScrollControl/ScrollControl.js"></script>
+		<script src="bubble/reservoirPlot.js"></script>
+		<script src="js/main.js"></script>
+		
+		<!-- Pie Chart -->
+		<script src="js/vendor/d3/d3.v3.js"></script>
+		<script src="js/vendor/d3/nv.d3.js"></script>
+		<script src="js/pieChart.js"></script>
+		<script src="js/vendor/legend.js"></script>
+		<!-- End Pie Chart -->
     </body>
 </html>

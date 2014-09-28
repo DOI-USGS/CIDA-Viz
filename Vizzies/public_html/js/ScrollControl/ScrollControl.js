@@ -10,6 +10,7 @@ ScrollControl = function() {
 		this.parent = config.parent || document.body;
 		this.action = null;
 		this.createControlDiv();
+		this.body = $("html, body");
 	}
 	
 	control.prototype.createControlDiv = function() {
@@ -42,6 +43,11 @@ ScrollControl = function() {
 		div.append(pause);
 		div.append(play);
 		
+		//help text
+		var help = $('<p>');
+		help.html("Hit \"play\"<br/>or scroll at<br/>your own<br/>pace!");
+		div.append(help);
+		
 		this.pauseBtn.hide();
 		this.parent.append(div);
 		
@@ -53,40 +59,48 @@ ScrollControl = function() {
 	};
 	
 	control.prototype.scrollBy = function(offset, rate, expectedAction) {
-		var body = $("html, body");
-
-		body.stop();
-		var newPos = this.getScrollPos() + offset;
+		this.body.stop();
+		var curPos = this.getScrollPos();
+		var goPos = curPos + offset;
 		var _this = this;
-		body.animate({scrollTop:newPos}, rate, 'linear', function(){
-			if(_this.action == expectedAction) {
-				$.proxy(function(){_this.scrollBy(offset, rate, expectedAction)}, _this)();
-				
-				var change = Math.abs(newPos - _this.getScrollPos());
-				if(change > rate) { //this happens when something external did the scroll
+		if(goPos >= 0 && goPos <= (this.height) && _this.action == expectedAction) {
+			this.body.animate({scrollTop:goPos}, rate, 'linear', function(){
+	
+				var newPos = _this.getScrollPos();
+				var change = Math.abs(newPos - curPos);
+				if( change > rate ) { //this happens when something external did the scroll
 					_this.pause();
 				}
-			} 
-		});
+				
+				if(_this.action == expectedAction) {
+					$.proxy(function(){_this.scrollBy(offset, rate, expectedAction)}, _this)();
+				} 
+			});
+		} else {
+			_this.pause();
+		}
 	}
 	
 	control.prototype.play = function() {
 		this.pauseBtn.show();
 		this.playBtn.hide();
 		this.action = "play";
+		this.height = $(document).height() - $(window).height();
 		this.scrollBy(this.scrollStep, this.scrollRate, "play");
 	}
 	
 	control.prototype.pause = function() {
-		this.pauseBtn.hide();
-		this.playBtn.show();
+		this.body.stop();
 		this.action = null;
+		this.playBtn.show();
+		this.pauseBtn.hide();
 	}
 	
 	control.prototype.reverse = function() {
 		this.pauseBtn.show();
 		this.playBtn.hide();
 		this.action = "reverse";
+		this.height = $(document).height() - $(window).height();
 		this.scrollBy(-1 * this.scrollStep, this.scrollRate, "reverse");
 	}
 	
