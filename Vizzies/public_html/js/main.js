@@ -124,6 +124,7 @@ $(document).ready(function () {
 	};
 
 	var controller = new ScrollMagic();
+	
 	// build scenes
 	new ScrollScene({triggerElement: "#startTrigger", duration: $(window).height()})
 		.on("enter", function (e) {
