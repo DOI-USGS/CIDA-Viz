@@ -22,8 +22,8 @@ var reservoirPlot = new (function ReservoirPlot(chartSelector) {
 	var margin = {
 		top: 50,
 		right: 50,
-		bottom: 50,
-		left: 100
+		bottom: 0,
+		left: 0
 	};
 	var smallestMargin = Object.values(margin).min();
 	var width = 600 - margin.right - margin.left;
@@ -38,7 +38,7 @@ var reservoirPlot = new (function ReservoirPlot(chartSelector) {
 
 	var timeIndex = -1;
 	var times = [];
-	d3.json("../data/drought_shp/times.json", function(resp) {
+	d3.json("data/drought_shp/times.json", function(resp) {
 		times = resp.d;
 	});
 
@@ -148,7 +148,7 @@ var reservoirPlot = new (function ReservoirPlot(chartSelector) {
 
 
 	// Load the data.
-	d3.json("../data/reservoirs/reservoir_storage.json", function(jsonReservoirs) {
+	d3.json("data/reservoirs/reservoir_storage.json", function(jsonReservoirs) {
 		reservoirs = jsonReservoirs.sort(function(reservoir) {
 			return +reservoir["Elev"];
 		});

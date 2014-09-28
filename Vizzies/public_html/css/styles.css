@@ -61,11 +61,11 @@ body{height:100%;}
 }
 
 .res-y-label {
-	transform: translate(80px, 0px)
-		rotate(-90deg);
+	transform: translate(-12px, 75px) rotate(-90deg);
+	display: table-caption;
 	white-space: nowrap;
 	font-family: "Open Sans";
-	width: 50px;
+	width: 12px;
 }
 
 .res-x-label {
@@ -77,9 +77,9 @@ body{height:100%;}
 	top: -200px;
 }
 
-#feature2 .higher {
+.higher {
 	position: relative;
-	top: -800px;
+	top: -500px;
 }
   
 header,
