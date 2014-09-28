@@ -11,3 +11,7 @@
 	cursor: pointer;
 	-webkit-transform: translateZ(0);
 }
+
+.scroll-control-container p {
+    font-size: xx-small;
+}
