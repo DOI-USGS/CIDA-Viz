@@ -181,7 +181,14 @@ footer{	height:100%;
 		
 #start-trigger{
 	background:rgba(255,255,255,.7);
-	margin-top:60px;}
+	margin-top:60px;
+}
+	
+#drought{
+	background:rgba(255,255,255,.7);
+	width:30%;
+	padding:0;}
+
 			
 footer{padding-top:5%;
 		height:95%;}
