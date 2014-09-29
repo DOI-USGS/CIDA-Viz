@@ -201,7 +201,8 @@ a{
 	font-weight:bold;
 }
 
-a:hover{
+a:hover,
+a.white:hover{
 	color:#E86E00;
 	text-decoration:underline;}
 
