@@ -160,25 +160,52 @@ footer{	height:100%;
 .right h2{color:#fff;
 		margin-bottom:5px;}
 			
-.bottom{width:50%;
+.bottom{width:60%;
 		margin: auto;
   		position: absolute;
   		top: auto; left: 0; bottom: 150px; right: 0;
 		
 		}
 		
-.bottom h2{color:#fff;
+.bottom h2{color:#000;
 			display: inline:block;
 			margin-bottom:5px;
-			padding-top: 20px;
+			padding-top: 10px;
 			clear: both;
 			}
 			
-.bottom p{float:left;
+h1#bottom{
+	color:rgb(80,146,204);
+	background:rgba(255,255,255,.7);
+	padding:10px;
+}
+			
+.bottom p{
 			margin-right:10px;
 			clear: both;
 			margin: .25em;
 		}
+		
+.boxy{
+	background:rgba(255,255,255,.8);
+	min-height:150px;
+	padding:0 10px 5px 10px;}
+	
+#open{
+	padding-top:10px;
+	margin-top:20px;}
+	
+a{
+	color:rgb(80,146,204);
+	text-decoration:none;
+	font-weight:bold;
+}
+
+a:hover{
+	color:#E86E00;
+	text-decoration:underline;}
+
+a.white{color:rgb(250,250,250);}
 		
 #start-trigger{
 	background:rgba(255,255,255,.7);
