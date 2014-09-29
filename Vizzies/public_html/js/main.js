@@ -79,7 +79,8 @@ $(document).ready(function () {
 							color: 'blue',
 							width: 1.5
 						})
-					})];
+					})
+				})];
 			};
 
 			var layer = new ol.layer.Vector({
