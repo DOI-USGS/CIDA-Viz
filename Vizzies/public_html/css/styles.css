@@ -15,6 +15,7 @@ body{height:100%;}
 	z-index: 10000;
 }
 
+
 #map{
   overflow: auto;
   margin: auto;
@@ -133,7 +134,9 @@ footer{	height:100%;
 	
 .top p{color:#000;}
 	
-.top h1{font-size:3em;}
+.top h1{
+	font-size:3em;
+	margin-bottom:-5px;}
 
 .top h1#bottom{color:#fff;}
 
@@ -176,6 +179,16 @@ footer{	height:100%;
 			clear: both;
 			margin: .25em;
 		}
+		
+#start-trigger{
+	background:rgba(255,255,255,.7);
+	margin-top:60px;}
+	
+#drought{
+	background:rgba(255,255,255,.7);
+	width:30%;
+	padding:0;}
+
 			
 footer{padding-top:5%;
 		height:95%;}
