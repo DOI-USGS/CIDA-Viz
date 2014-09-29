@@ -32,7 +32,7 @@ $(document).ready(function () {
 			var geoJSON,
 				cachedTimestep = droughtCache[timestep],
 				projection = ol.proj.get('EPSG:3857');
-			if (cachedTimestep) {
+			if (false) {
 				geoJSON = new ol.source.GeoJSON({
 					text: cachedTimestep,
 					projection: projection
@@ -47,9 +47,11 @@ $(document).ready(function () {
 				source: geoJSON,
 				style: getDroughtStyle,
 				visible: true,
-				opacity: 1
+				opacity: 1,
+				name : timestep
 			});
 			layer.layer_type = 'drought';
+			layer.name = timestep;
 			return layer;
 		}
 	};
@@ -227,7 +229,7 @@ $(document).ready(function () {
 			layer.getSource().on('change', function (event) {
 				var isReady = event.target.state_ === 'ready';
 				if (isReady) {
-					var layers = map.getLayers().array_.filter(function (oldLayer) {
+					var layers = map.getLayers().getArray().filter(function (oldLayer) {
 						if (oldLayer) {
 							return oldLayer.layer_type === layerType && oldLayer !== layer;
 						} else {
@@ -236,7 +238,7 @@ $(document).ready(function () {
 
 					});
 					for (var i = 0; i < layers.length; i++) {
-						map.removeLayer(layers[i]);
+						var test = map.removeLayer(layers[i]);
 					}
 				}
 			});
