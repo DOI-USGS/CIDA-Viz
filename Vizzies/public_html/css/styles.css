@@ -85,6 +85,12 @@ svg {
   height: 400px;
   width: 550px;
 }
+
+.snowpack-container {
+	position: relative;
+	right: -55%;
+	top: -200px;
+}
   
 #feature1 .left {
 	top: -200px;

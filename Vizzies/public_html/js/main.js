@@ -200,8 +200,22 @@ $(document).ready(function () {
 	new ScrollScene({triggerElement: "#snowpack-trigger", duration: 2000})
 		.setPin("#snowpack-pin")
 		.on("enter", function (e) {
-			panAndZoom(caliCenterCenter, caliZoom);
+			panAndZoom(caliLeftCenter, caliZoom);
 			activateAnchorLink(5);
+		})
+		.addTo(controller)
+		.addIndicators();
+	new ScrollScene({triggerElement: "#snowpack-plot-trigger", duration: 2000})
+		.setPin("#snowpack-plot-pin")
+		.on("enter", function (e) {
+			panAndZoom(caliLeftCenter, caliZoom);
+		})
+		.addTo(controller)
+		.addIndicators();
+	new ScrollScene({triggerElement: "#usage-pie-trigger", duration: 2000})
+		.setPin("#usage-pie-pin")
+		.on("enter", function (e) {
+			panAndZoom(caliLeftCenter, caliZoom);
 		})
 		.addTo(controller)
 		.addIndicators();
