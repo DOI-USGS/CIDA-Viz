@@ -133,7 +133,8 @@ footer{	height:100%;
 	
 .top p{color:#000;}
 	
-.top h1{font-size:3em;}
+.top h1{font-size:3em;
+		margin-bottom:-5px;}
 
 .top h1#bottom{color:#fff;}
 
@@ -176,6 +177,9 @@ footer{	height:100%;
 			clear: both;
 			margin: .25em;
 		}
+		
+#start-trigger{background:rgba(255,255,255,.7);
+				margin-top:60px;}
 			
 footer{padding-top:5%;
 		height:95%;}
