@@ -302,7 +302,7 @@ $(document).ready(function () {
 
 	var lastIndexCalled = -1;
 	var timesArray = timesteps.reverse();
-	new ScrollScene({triggerElement: "#reservoir-trigger", duration: 40000})
+	new ScrollScene({triggerElement: "#reservoir-trigger", duration: 12000})
 		.setPin("#reservoir-pin")
 		.setTween(TweenMax.fromTo("#time-indicator", 1, {x: 0}, {x: $(window).width() - 400}))
 		.on("progress", function (e) {
