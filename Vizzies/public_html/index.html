@@ -196,7 +196,9 @@
 					<p>Of consumptive water use, agriculture represents 74% of freshwater use (<a href="#ref3">3</a>).</p>
 					<p>For the first time in history, some agricultural areas are not receiving any water for irrigation which is resulting in devastation of historically productive areas. The agricultural output for the state could fall by $3.5 billion this year (<a href="#ref1">1</a>).</p>
 				</div>
-				<iframe width="460" height="345" frameborder="0" seamless="seamless" scrolling="no" src="https://plot.ly/~jordansread/1.embed?width=460&height=345"></iframe>
+				<div id="ag-prices" class='higher'>
+					<svg></svg>
+				</div>
 			</div>
 			<div class="spacer s0"></div>
 		</section>
@@ -250,23 +252,29 @@
 		<script src="js/vendor/smoothScroll/smooth-scroll.min.js"></script>
 		<script src="js/vendor/smoothScroll/bind-polyfill.min.js"></script>
 		<script src="js/vendor/jquery-ui/jquery-ui.min.js"></script>
+		<script src="js/vendor/d3/d3.v3.js"></script>
+		<script src="js/vendor/d3/nv.d3.js"></script>
 		<!--<script src="http://openlayers.org/en/v3.0.0/build/ol.js" type="text/javascript"></script>-->
 		<script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/1.13.2/TweenMax.min.js" type="text/javascript"></script>
 		<script src="js/vendor/scrollmagic/jquery.scrollmagic.min.js" type="text/javascript"></script>
 		<script src="js/vendor/scrollmagic/jquery.scrollmagic.debug.js" type="text/javascript"></script>
 		<script src="js/vendor/sugar/sugar.min.js"></script>
-		<script src="js/vendor/d3/d3.v3.js"></script>
 		<script src="js/vendor/openlayers/ol-debug.js"></script>
 		<script src="js/plugins.js"></script>
 		<script src="js/ScrollControl/ScrollControl.js"></script>
 		<script src="bubble/reservoirPlot.js"></script>
 		<script src="js/main.js"></script>
 		
-		<!-- Pie Chart -->
-		<script src="js/vendor/d3/d3.v3.js"></script>
-		<script src="js/vendor/d3/nv.d3.js"></script>
-		<script src="js/pieChart.js"></script>
+		<!-- Scatter Plot -->
+		<script src="js/vendor/tooltip.js"></script>
+		<script src="js/vendor/utils.js"></script>
 		<script src="js/vendor/legend.js"></script>
+		<script src="js/vendor/axis.js"></script>
+		<script src="js/foodScatter.js"></script>
+		<!-- End Scatter Plot -->
+		
+		<!-- Pie Chart -->
+		<script src="js/pieChart.js"></script>
 		<!-- End Pie Chart -->
     </body>
 </html>
