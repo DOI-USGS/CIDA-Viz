@@ -31,7 +31,7 @@ nv.models.scatterChart = function() {
     , fisheye      = 0
     , pauseFisheye = false
     , tooltips     = true
-    , tooltipX     = function(key, x, y) { return '<strong>' + x + ' % drought' + '</strong>' }
+    , tooltipX     = function(key, x, y, time) { return '<strong>' + x + ' % drought' + '</strong>' }
     , tooltipY     = function(key, x, y) { return '<strong>' + '$' + y  + '</strong>' }
     , tooltip      = null
     , state = {}
@@ -477,7 +477,7 @@ nv.models.scatterChart = function() {
   chart.distX = distX;
   chart.distY = distY;
 
-  d3.rebind(chart, scatter, 'id', 'interactive', 'pointActive', 'x', 'y', 'shape', 'size', 'xScale', 'yScale', 'zScale', 'xDomain', 'yDomain', 'xRange', 'yRange', 'sizeDomain', 'sizeRange', 'forceX', 'forceY', 'forceSize', 'clipVoronoi', 'clipRadius', 'useVoronoi');
+  d3.rebind(chart, scatter, 'id', 'interactive', 'pointActive', 'x', 'y', 'shape', 'time', 'size', 'xScale', 'yScale', 'zScale', 'xDomain', 'yDomain', 'xRange', 'yRange', 'sizeDomain', 'sizeRange', 'forceX', 'forceY', 'forceSize', 'clipVoronoi', 'clipRadius', 'useVoronoi');
   chart.options = nv.utils.optionsFunc.bind(chart);
   
   chart.margin = function(_) {
