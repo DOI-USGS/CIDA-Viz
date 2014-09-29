@@ -180,7 +180,7 @@ h1#bottom{
 	padding:10px;
 }
 			
-.bottom p{float:left;
+.bottom p{
 			margin-right:10px;
 			clear: both;
 			margin: .25em;
@@ -191,12 +191,9 @@ h1#bottom{
 	min-height:150px;
 	padding:0 10px 5px 10px;}
 	
-#references{height:220px;}
-
 #open{
 	padding-top:10px;
-	margin-top:20px;
-	height:190px;}
+	margin-top:20px;}
 	
 a{
 	color:rgb(80,146,204);
