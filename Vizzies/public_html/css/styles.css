@@ -179,10 +179,15 @@ footer{	height:100%;
 			margin: .25em;
 		}
 		
+#s1{padding:0;}
+		
 #start-trigger{
-	background:rgba(255,255,255,.7);
-	margin-top:60px;
-}
+	background:rgba(255,255,255,.9);
+	width:98%;
+	margin-right:0;
+	padding-top:50px;
+	position:relative;
+	z-index:10001;}
 	
 #drought{
 	background:rgba(255,255,255,.7);
