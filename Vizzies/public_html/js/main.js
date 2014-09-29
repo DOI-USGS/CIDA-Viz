@@ -374,7 +374,7 @@ $(document).ready(function () {
 		speed: 1000,
 		easing: 'easeInOutCubic',
 		offset: 0,
-		updateURL: true,
+		updateURL: false,
 		callbackBefore: function (t, a) {
 		},
 		callbackAfter: function (t, a) {
