@@ -72,6 +72,25 @@ body{height:100%;}
 	text-align: center;
 	font-family: "Open Sans";
 }
+
+svg {
+  overflow: hidden;
+}
+
+#ag-prices {
+  margin: 20px;
+}
+
+#ag-prices svg {
+  height: 400px;
+  width: 550px;
+}
+
+.snowpack-container {
+	position: relative;
+	right: -55%;
+	top: -200px;
+}
   
 #feature1 .left {
 	top: -200px;
@@ -79,7 +98,7 @@ body{height:100%;}
 
 .higher {
 	position: relative;
-	top: -500px;
+	top: -100px;
 }
   
 header,

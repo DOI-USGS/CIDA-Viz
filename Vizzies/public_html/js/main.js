@@ -64,24 +64,25 @@ $(document).ready(function () {
 				var matchingRes = reservoirSizes.find(function (res) {
 					return res['Nat_ID'] === id;
 				});
-				var size = 0;
+				var radius = 0;
 				if (matchingRes) {
 					var storage = matchingRes.Storage[timestep];
-					size = Math.log(storage);
-					size = (size > 0) ? size : 0;
+					var a = 1000;
+					radius = Math.sqrt(storage/(a*Math.PI));
+					radius = (radius > 0 || radius < 1) ? radius : 1;
 				}
 				return [new ol.style.Style({
-						image: new ol.style.Circle({
-							radius: size,
-							fill: new ol.style.Fill({
-								color: 'rgba(0, 0, 255, 0.2)'
-							}),
-							stroke: new ol.style.Stroke({
-								color: 'blue',
-								width: 1.5
-							})
+					image: new ol.style.Circle({
+						radius: radius,
+						fill: new ol.style.Fill({
+							color: 'rgba(0, 0, 255, 0.2)'
+						}),
+						stroke: new ol.style.Stroke({
+							color: 'blue',
+							width: 1.5
 						})
-					})];
+					})
+				})];
 			};
 
 			var layer = new ol.layer.Vector({
@@ -188,10 +189,10 @@ $(document).ready(function () {
 		.addTo(controller)
 		.addIndicators();
 	// Scene 1 (reservoirs) built in response to ajax
-	new ScrollScene({triggerElement: "#drought2014-trigger", duration: 3000})
+	new ScrollScene({triggerElement: "#drought2014-trigger", duration: 2000})
 		.setPin("#drought2014-pin")
 		.on("enter", function (e) {
-			panAndZoom(caliLeftCenter, caliZoom);
+			panAndZoom(caliCenterCenter, caliZoom);
 			activateAnchorLink(4);
 		})
 		.addTo(controller)
@@ -199,8 +200,22 @@ $(document).ready(function () {
 	new ScrollScene({triggerElement: "#snowpack-trigger", duration: 2000})
 		.setPin("#snowpack-pin")
 		.on("enter", function (e) {
-			panAndZoom(caliCenterCenter, caliZoom);
+			panAndZoom(caliLeftCenter, caliZoom);
 			activateAnchorLink(5);
+		})
+		.addTo(controller)
+		.addIndicators();
+	new ScrollScene({triggerElement: "#snowpack-plot-trigger", duration: 2000})
+		.setPin("#snowpack-plot-pin")
+		.on("enter", function (e) {
+			panAndZoom(caliLeftCenter, caliZoom);
+		})
+		.addTo(controller)
+		.addIndicators();
+	new ScrollScene({triggerElement: "#usage-pie-trigger", duration: 2000})
+		.setPin("#usage-pie-pin")
+		.on("enter", function (e) {
+			panAndZoom(caliLeftCenter, caliZoom);
 		})
 		.addTo(controller)
 		.addIndicators();
@@ -287,7 +302,7 @@ $(document).ready(function () {
 
 	var lastIndexCalled = -1;
 	var timesArray = timesteps.reverse();
-	new ScrollScene({triggerElement: "#reservoir-trigger", duration: 40000})
+	new ScrollScene({triggerElement: "#reservoir-trigger", duration: 12000})
 		.setPin("#reservoir-pin")
 		.setTween(TweenMax.fromTo("#time-indicator", 1, {x: 0}, {x: $(window).width() - 400}))
 		.on("progress", function (e) {
