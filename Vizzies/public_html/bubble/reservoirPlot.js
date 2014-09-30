@@ -22,8 +22,8 @@ var reservoirPlot = new (function ReservoirPlot(chartSelector) {
 	var margin = {
 		top: 50,
 		right: 50,
-		bottom: 10,
-		left: 30
+		bottom: 0,
+		left: 0
 	};
 	var smallestMargin = Object.values(margin).min();
 	var width = 600 - margin.right - margin.left;
@@ -34,7 +34,7 @@ var reservoirPlot = new (function ReservoirPlot(chartSelector) {
 	var thicknessScale = undefined;
 	var pixelsPerCapacity = undefined;
 	// xScale = d3.scale.ordinal(),
-	var yScale = d3.scale.linear().domain([0, 100]).range([height, 0]);
+	var yScale = d3.scale.linear().domain([0, 100]).range([0, height]);
 
 	var timeIndex = -1;
 	var times = [];
@@ -42,7 +42,7 @@ var reservoirPlot = new (function ReservoirPlot(chartSelector) {
 		times = resp.d;
 	});
 
-	var yAxis = d3.svg.axis().scale(yScale).orient("left").ticks(4);
+	var yAxis = d3.svg.axis().scale(yScale).orient("left");
 
 	var svg = d3.select(chartSelector).append("svg")
 		.attr("width", width + margin.left + margin.right)
