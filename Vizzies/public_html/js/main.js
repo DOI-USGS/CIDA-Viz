@@ -32,9 +32,9 @@ $(document).ready(function () {
 			var geoJSON,
 				cachedTimestep = droughtCache[timestep],
 				projection = ol.proj.get('EPSG:3857');
-			if (false) {
+			if (cachedTimestep) {
 				geoJSON = new ol.source.GeoJSON({
-					text: cachedTimestep,
+					text: Object.clone(cachedTimestep, true),
 					projection: projection
 				});
 			} else {
@@ -239,10 +239,19 @@ $(document).ready(function () {
 
 	map.replaceLayer = function (layer, layerType) {
 		if (layer) {
-			map.addLayer(layer);
-			layer.getSource().on('change', function (event) {
+			var replaceLayerOnChange = function (event) {
 				var isReady = event.target.state_ === 'ready';
 				if (isReady) {
+					var layers = map.getLayers().getArray().findIndex(function (oldLayer) {
+						if (oldLayer) {
+							return oldLayer.layer_type === layerType && oldLayer !== layer;
+						} else {
+							return false;
+						}
+
+					});
+
+					
 					var layers = map.getLayers().getArray().filter(function (oldLayer) {
 						if (oldLayer) {
 							return oldLayer.layer_type === layerType && oldLayer !== layer;
@@ -251,11 +260,20 @@ $(document).ready(function () {
 						}
 
 					});
+
 					for (var i = 0; i < layers.length; i++) {
-						var test = map.removeLayer(layers[i]);
+						map.removeLayer(layers[i]);
 					}
 				}
-			});
+			}
+			
+			layer.getSource().on('change', replaceLayerOnChange);
+			
+			map.addLayer(layer);
+			
+			if (layer.getSource().getState() === 'ready') {
+				layer.getSource().dispatchChangeEvent();
+			}
 		}
 	};
 
@@ -281,6 +299,9 @@ $(document).ready(function () {
 			$.ajax('data/drought_shp/USDM_' + nextTimeStep + '.json',
 				{
 					context: context,
+					headers : {
+						Accept : 'application/json'
+					},
 					success: function (data) {
 						droughtCache[this.timestep] = data;
 						if (timesArray.length) {
@@ -356,7 +377,7 @@ $(document).ready(function () {
 		speed: 1000,
 		easing: 'easeInOutCubic',
 		offset: 0,
-		updateURL: true,
+		updateURL: false,
 		callbackBefore: function (t, a) {
 		},
 		callbackAfter: function (t, a) {
