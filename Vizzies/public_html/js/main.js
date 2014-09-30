@@ -285,6 +285,9 @@ $(document).ready(function () {
 			$.ajax('data/drought_shp/USDM_' + nextTimeStep + '.json',
 				{
 					context: context,
+					headers : {
+						Accept : 'application/json'
+					},
 					success: function (data) {
 						droughtCache[this.timestep] = data;
 						if (timesArray.length) {
@@ -359,7 +362,7 @@ $(document).ready(function () {
 		speed: 1000,
 		easing: 'easeInOutCubic',
 		offset: 0,
-		updateURL: true,
+		updateURL: false,
 		callbackBefore: function (t, a) {
 		},
 		callbackAfter: function (t, a) {
