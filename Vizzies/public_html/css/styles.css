@@ -216,6 +216,12 @@ a.white{color:rgb(250,250,250);}
 	background:rgba(255,255,255,.7);
 	width:30%;
 	padding:0;}
+	
+.usage-pie{
+	background:rgba(255,255,255,.8);
+	width:480px;
+	height:470px;
+	padding:10px;}
 
 			
 footer{padding-top:5%;
