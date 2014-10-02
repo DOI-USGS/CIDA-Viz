@@ -219,9 +219,30 @@ a.white{color:rgb(250,250,250);}
 	
 .usage-pie{
 	background:rgba(255,255,255,.8);
-	width:480px;
-	height:470px;
-	padding:10px;}
+	width:490px;
+	height:510px;
+	padding:5px;
+	text-align:center;}
+	
+.usage-pie h2,
+.snowpack-plot h2{
+	color:rgb(80,146,204);
+	margin:10px 0 5px 0;}
+	
+.snowpack-plot{
+	text-align:center;
+	background:#fff;
+	width:610px;
+	padding:5px;}
+	
+#graphTitle{
+	background:rgba(255,255,255,.9);
+	width:570px;
+	padding:5px;
+	text-align:center;}
+	
+#graphTitle h4{
+	color:rgb(80,146,204);}
 
 			
 footer{padding-top:5%;
