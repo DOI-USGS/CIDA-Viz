@@ -162,52 +162,52 @@ $(document).ready(function () {
 			activateAnchorLink(2);
 		})
 		.addTo(controller);
-	new ScrollScene({triggerElement: "#tahoe-trigger", duration: 1000})
+	new ScrollScene({triggerElement: "#tahoe-trigger", duration: 2000})
 		.setPin("#tahoe-pin")
 		.addTo(controller);
-	new ScrollScene({triggerElement: "#drilling-trigger", duration: 1000})
+	new ScrollScene({triggerElement: "#drilling-trigger", duration: 2000})
 		.setPin("#drilling-pin")
 		.addTo(controller);
-	new ScrollScene({triggerElement: "#parched-trigger", duration: 1000})
+	new ScrollScene({triggerElement: "#parched-trigger", duration: 2000})
 		.setPin("#parched-pin")
 		.addTo(controller);
-	new ScrollScene({triggerElement: "#brink-trigger", duration: 1000})
+	new ScrollScene({triggerElement: "#brink-trigger", duration: 2000})
 		.setPin("#brink-pin")
 		.addTo(controller);
-	new ScrollScene({triggerElement: "#toll-trigger", duration: 1000})
+	new ScrollScene({triggerElement: "#toll-trigger", duration: 2000})
 		.setPin("#toll-pin")
 		.addTo(controller);
-	new ScrollScene({triggerElement: "#burning-trigger", duration: 1000})
+	new ScrollScene({triggerElement: "#burning-trigger", duration: 2000})
 		.setPin("#burning-pin")
 		.addTo(controller);
 	// Scene 1 (reservoirs) built in response to ajax
-	new ScrollScene({triggerElement: "#drought2014-trigger", duration: 2000})
+	new ScrollScene({triggerElement: "#drought2014-trigger", duration: 5000})
 		.setPin("#drought2014-pin")
 		.on("enter", function (e) {
 			panAndZoom(caliCenterCenter, caliZoom);
 			activateAnchorLink(4);
 		})
 		.addTo(controller);
-	new ScrollScene({triggerElement: "#snowpack-trigger", duration: 2000})
+	new ScrollScene({triggerElement: "#snowpack-trigger", duration: 5000})
 		.setPin("#snowpack-pin")
 		.on("enter", function (e) {
 			panAndZoom(caliLeftCenter, caliZoom);
 			activateAnchorLink(5);
 		})
 		.addTo(controller);
-	new ScrollScene({triggerElement: "#snowpack-plot-trigger", duration: 2000})
+	new ScrollScene({triggerElement: "#snowpack-plot-trigger", duration: 2500})
 		.setPin("#snowpack-plot-pin")
 		.on("enter", function (e) {
 			panAndZoom(caliLeftCenter, caliZoom);
 		})
 		.addTo(controller);
-	new ScrollScene({triggerElement: "#usage-pie-trigger", duration: 2000})
+	new ScrollScene({triggerElement: "#usage-pie-trigger", duration: 2500})
 		.setPin("#usage-pie-pin")
 		.on("enter", function (e) {
 			panAndZoom(caliLeftCenter, caliZoom);
 		})
 		.addTo(controller);
-	new ScrollScene({triggerElement: "#food-trigger", duration: 2000})
+	new ScrollScene({triggerElement: "#food-trigger", duration: 5000})
 		.setPin("#food-pin")
 		.on("enter", function (e) {
 			panAndZoom(caliCenterCenter, caliZoom);
@@ -309,7 +309,7 @@ $(document).ready(function () {
 
 	var lastIndexCalled = -1;
 	var timesArray = timesteps.reverse();
-	new ScrollScene({triggerElement: "#reservoir-trigger", duration: 12000})
+	new ScrollScene({triggerElement: "#reservoir-trigger", duration: 8000})
 		.setPin("#reservoir-pin")
 		.setTween(TweenMax.fromTo("#time-indicator", 1, {x: 0}, {x: $(window).width() - 400}))
 		.on("progress", function (e) {
