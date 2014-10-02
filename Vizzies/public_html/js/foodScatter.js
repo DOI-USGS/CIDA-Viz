@@ -5,7 +5,7 @@
 					.showDistX(true)
 					.showDistY(true)
 					.useVoronoi(true)
-					.color(d3.scale.category10().range())
+					.color(['#D9D919','#FFA824','#66CD00'])
 					.transitionDuration(300)
 					;
 
@@ -51,7 +51,7 @@
 			v1_avg += v1[i];
 			v2_avg += v2[i];
 			v3_avg += v3[i];
-		
+
 		}
 		v1_avg = v1_avg/v1.length;
 		v2_avg = v2_avg/v2.length;
@@ -64,7 +64,7 @@
 	}
 	for (var j = 0; j < yr_num; j++) {
 		data[0].values.push({
-			x: x[j], 
+			x: x[j],
 			y: v1[j]-v1_avg,
 			size: sz,
 			color: colors[0],
@@ -72,40 +72,40 @@
 		  });
 	}
 	data[0].values.push({
-		x: null, 
+		x: null,
 		y: null,
-		r: null, 
+		r: null,
 		shape: shapes[0]
-	  });	
+	  });
 	for (var j = 0; j < yr_num; j++) {
 		data[1].values.push({
-			x: x[j], 
+			x: x[j],
 			y: v2[j]-v2_avg,
-			size: sz, 
+			size: sz,
 			color: colors[1],
 			shape: shapes[0]
 		  });
 	}
 	data[1].values.push({
-		x: null, 
+		x: null,
 		y: null,
-		r: null, 
+		r: null,
 		shape: shapes[0]
 	  });
 	for (var j = 0; j < yr_num; j++) {
 		data[2].values.push({
-			x: x[j], 
+			x: x[j],
 			y: v3[j]-v3_avg,
-			size: sz, 
+			size: sz,
 			color: colors[2],
 			shape: shapes[0]
 		  });
 	}
 
 		data[2].values.push({
-			x: null, 
+			x: null,
 			y: null,
-			r: null, 
+			r: null,
 			shape: shapes[0]
 		  });
 

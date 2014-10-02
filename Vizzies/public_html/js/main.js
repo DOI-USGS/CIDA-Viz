@@ -155,39 +155,31 @@ $(document).ready(function () {
 			map.replaceLayer(getInitialDroughtLayer(), 'drought');
 			activateAnchorLink(1);
 		})
-		.addTo(controller)
-		.addIndicators();
+		.addTo(controller);
 	new ScrollScene({triggerElement: "#news-trigger", duration: 1000})
 		.setPin("#news-pin")
 		.on("enter", function (e) {
 			activateAnchorLink(2);
 		})
-		.addTo(controller)
-		.addIndicators();
+		.addTo(controller);
 	new ScrollScene({triggerElement: "#tahoe-trigger", duration: 1000})
 		.setPin("#tahoe-pin")
-		.addTo(controller)
-		.addIndicators();
+		.addTo(controller);
 	new ScrollScene({triggerElement: "#drilling-trigger", duration: 1000})
 		.setPin("#drilling-pin")
-		.addTo(controller)
-		.addIndicators();
+		.addTo(controller);
 	new ScrollScene({triggerElement: "#parched-trigger", duration: 1000})
 		.setPin("#parched-pin")
-		.addTo(controller)
-		.addIndicators();
+		.addTo(controller);
 	new ScrollScene({triggerElement: "#brink-trigger", duration: 1000})
 		.setPin("#brink-pin")
-		.addTo(controller)
-		.addIndicators();
+		.addTo(controller);
 	new ScrollScene({triggerElement: "#toll-trigger", duration: 1000})
 		.setPin("#toll-pin")
-		.addTo(controller)
-		.addIndicators();
+		.addTo(controller);
 	new ScrollScene({triggerElement: "#burning-trigger", duration: 1000})
 		.setPin("#burning-pin")
-		.addTo(controller)
-		.addIndicators();
+		.addTo(controller);
 	// Scene 1 (reservoirs) built in response to ajax
 	new ScrollScene({triggerElement: "#drought2014-trigger", duration: 2000})
 		.setPin("#drought2014-pin")
@@ -195,38 +187,33 @@ $(document).ready(function () {
 			panAndZoom(caliCenterCenter, caliZoom);
 			activateAnchorLink(4);
 		})
-		.addTo(controller)
-		.addIndicators();
+		.addTo(controller);
 	new ScrollScene({triggerElement: "#snowpack-trigger", duration: 2000})
 		.setPin("#snowpack-pin")
 		.on("enter", function (e) {
 			panAndZoom(caliLeftCenter, caliZoom);
 			activateAnchorLink(5);
 		})
-		.addTo(controller)
-		.addIndicators();
+		.addTo(controller);
 	new ScrollScene({triggerElement: "#snowpack-plot-trigger", duration: 2000})
 		.setPin("#snowpack-plot-pin")
 		.on("enter", function (e) {
 			panAndZoom(caliLeftCenter, caliZoom);
 		})
-		.addTo(controller)
-		.addIndicators();
+		.addTo(controller);
 	new ScrollScene({triggerElement: "#usage-pie-trigger", duration: 2000})
 		.setPin("#usage-pie-pin")
 		.on("enter", function (e) {
 			panAndZoom(caliLeftCenter, caliZoom);
 		})
-		.addTo(controller)
-		.addIndicators();
+		.addTo(controller);
 	new ScrollScene({triggerElement: "#food-trigger", duration: 2000})
 		.setPin("#food-pin")
 		.on("enter", function (e) {
 			panAndZoom(caliCenterCenter, caliZoom);
 			activateAnchorLink(6);
 		})
-		.addTo(controller)
-		.addIndicators();
+		.addTo(controller);
 	new ScrollScene({triggerElement: "#credits-trigger", duration: $(window).height()})
 		.on("enter", function (e) {
 			$("#time-indicator").text("");
@@ -234,8 +221,7 @@ $(document).ready(function () {
 			map.replaceLayer(getInitialDroughtLayer(), 'drought');
 			activateAnchorLink(7);
 		})
-		.addTo(controller)
-		.addIndicators();
+		.addTo(controller);
 
 	map.replaceLayer = function (layer, layerType) {
 		if (layer) {
@@ -342,8 +328,7 @@ $(document).ready(function () {
 		.on("leave", function (e) {
 			$("#res-plot-container").hide();
 		})
-		.addTo(controller)
-		.addIndicators();
+		.addTo(controller);
 
 	// Begin caching drought layers
 	cacheDroughtLayers({
