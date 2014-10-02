@@ -234,6 +234,15 @@ a.white{color:rgb(250,250,250);}
 	background:#fff;
 	width:610px;
 	padding:5px;}
+	
+#graphTitle{
+	background:rgba(255,255,255,.9);
+	width:570px;
+	padding:5px;
+	text-align:center;}
+	
+#graphTitle h4{
+	color:rgb(80,146,204);}
 
 			
 footer{padding-top:5%;
