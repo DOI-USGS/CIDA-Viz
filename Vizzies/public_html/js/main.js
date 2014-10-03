@@ -162,9 +162,6 @@ $(document).ready(function () {
 	new ScrollScene({triggerElement: "#drilling-trigger", duration: 2000})
 		.setPin("#drilling-pin")
 		.addTo(controller);
-	new ScrollScene({triggerElement: "#toll-trigger", duration: 2000})
-		.setPin("#toll-pin")
-		.addTo(controller);
 	// Scene 1 (reservoirs) built in response to ajax
 	new ScrollScene({triggerElement: "#drought2014-trigger", duration: 5000})
 		.setPin("#drought2014-pin")
