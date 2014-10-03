@@ -209,8 +209,16 @@ a.white:hover{
 a.white{color:rgb(250,250,250);}
 		
 #start-trigger{
-	background:rgba(255,255,255,.7);
+	background:rgba(255,255,255,.8);
 	margin-top:60px;}
+	
+#instructions{
+	background:rgba(255,255,255,.8);
+	text-align:center;
+	margin:0 auto;
+	margin-top:20px;
+	padding:10px;
+	width:40%;}
 	
 #drought{
 	background:rgba(255,255,255,.7);
