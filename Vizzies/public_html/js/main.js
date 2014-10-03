@@ -156,29 +156,11 @@ $(document).ready(function () {
 			activateAnchorLink(1);
 		})
 		.addTo(controller);
-	new ScrollScene({triggerElement: "#news-trigger", duration: 1000})
-		.setPin("#news-pin")
-		.on("enter", function (e) {
-			activateAnchorLink(2);
-		})
-		.addTo(controller);
-	new ScrollScene({triggerElement: "#tahoe-trigger", duration: 2000})
+	new ScrollScene({triggerElement: "#tahoe-trigger", duration: 3400})
 		.setPin("#tahoe-pin")
 		.addTo(controller);
-	new ScrollScene({triggerElement: "#drilling-trigger", duration: 2000})
+	new ScrollScene({triggerElement: "#drilling-trigger", duration: 3400})
 		.setPin("#drilling-pin")
-		.addTo(controller);
-	new ScrollScene({triggerElement: "#parched-trigger", duration: 2000})
-		.setPin("#parched-pin")
-		.addTo(controller);
-	new ScrollScene({triggerElement: "#brink-trigger", duration: 2000})
-		.setPin("#brink-pin")
-		.addTo(controller);
-	new ScrollScene({triggerElement: "#toll-trigger", duration: 2000})
-		.setPin("#toll-pin")
-		.addTo(controller);
-	new ScrollScene({triggerElement: "#burning-trigger", duration: 2000})
-		.setPin("#burning-pin")
 		.addTo(controller);
 	// Scene 1 (reservoirs) built in response to ajax
 	new ScrollScene({triggerElement: "#drought2014-trigger", duration: 5000})

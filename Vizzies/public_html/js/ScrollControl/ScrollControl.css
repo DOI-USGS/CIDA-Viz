@@ -3,15 +3,19 @@
     top: 20px;
     right: 25px;
     z-index: 10000;
+	text-align:center;
 }
 
 .scroll-control-container i {
     z-index: 10001;
 	padding: 3px;
 	cursor: pointer;
+	font-size:1.5em;
+	color:#fff;
+	text-shadow:0 0 2px #000;
 	-webkit-transform: translateZ(0);
 }
 
 .scroll-control-container p {
-    font-size: xx-small;
+    font-size: x-small;
 }
