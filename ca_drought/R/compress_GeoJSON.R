@@ -6,7 +6,7 @@ compress_gjson <- function(time_st){
   
   drought_json = paste0('../../Vizzies/public_html/data/drought_shp/USDM_',time_st,'.json')
   map = readOGR(drought_json, "OGRGeoJSON")
-  drought_low <- paste0('../sp/USDM_',time_st,'.json')
+  drought_low <- paste0('../shp/USDM_',time_st,'.json')
   
   map_low <- gSimplify(map,tol = .03, topologyPreserve=TRUE) ## simplify
   
