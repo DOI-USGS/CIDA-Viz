@@ -1,8 +1,0 @@
-{
-"type": "FeatureCollection",
-                                                                                
-"features": [
-{ "type": "Feature", "id": 0, "properties": { "OBJECTID": 1, "DM": 0, "Shape_Leng": 74825268.0654, "Shape_Area": 1595080793600.0 }, "geometry": { "type": "Polygon", "coordinates": [ [ [ -114.65158258, 32.74646305 ], [ -114.53506515, 33.00420004 ], [ -114.468605, 32.971649 ], [ -114.526856, 32.757094 ], [ -114.65158258, 32.74646305 ] ] ] } }
-
-]
-}
