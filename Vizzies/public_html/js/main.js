@@ -183,6 +183,12 @@ $(document).ready(function () {
 			panAndZoom(caliLeftCenter, caliZoom);
 		})
 		.addTo(controller);
+	new ScrollScene({triggerElement: "#sidebar-trigger", duration: 2500})
+		.setPin("#sidebar-pin")
+		.on("enter", function (e) {
+			panAndZoom(caliLeftCenter, caliZoom);
+		})
+		.addTo(controller);
 	new ScrollScene({triggerElement: "#usage-pie-trigger", duration: 2500})
 		.setPin("#usage-pie-pin")
 		.on("enter", function (e) {
