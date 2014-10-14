@@ -116,7 +116,8 @@ if __name__ == '__main__':
     grouper_year = pd.TimeGrouper('A')
     df_avg = df_di_produce_timeframe.groupby(grouper_year).mean()
     df_avg['year'] = df_avg.index.year
-    tf_string = 'month_{0}_through_{1} (year)'.format(start_month, end_month)
+    # tf_string = 'month_{0}_through_{1} (year)'.format(start_month, end_month)
+    tf_string = 'year_str'
     df_avg[tf_string] = df_avg.apply(year_str, axis=1, year_col='year')
     pertinent_columns = ['Lemons Avg Price', 'Navel_Oranges Avg Price', 'Lettuce Avg Price', 'Grapes Avg Price', 'Tomatoes Avg Price', di_str, tf_string]
     df_tf_avg = df_avg[pertinent_columns]
