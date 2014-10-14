@@ -32,6 +32,7 @@ weekly data represention
    - Navel Oranges: http://data.bls.gov/timeseries/APU0000711311?data_tool=XGtable
    - Lettuce: http://data.bls.gov/timeseries/APU0000712211?data_tool=XGtable
    - Grapes: http://data.bls.gov/timeseries/APU0000711417?data_tool=XGtable
-   - Tomatoes: 
+   - Tomatoes: http://data.bls.gov/timeseries/APU0000712311?data_tool=XGtable
  - US Drought Monitor: http://droughtmonitor.unl.edu/MapsAndData/DataTables.aspx
  - News article on citrus grower challenges: http://www.desertsun.com/story/news/environment/2014/09/22/california-drought-persist-intensify/16078767/
+ - Useful crop sector link: http://ers.usda.gov/topics/in-the-news/california-drought-2014-farm-and-food-impacts/california-drought-2014-crop-sectors.aspx#.VD1Gj_ldVKY
