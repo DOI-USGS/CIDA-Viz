@@ -74,7 +74,7 @@ var setThicknessScale = function(pixelsPerCapacity){
 
 // Load the data.
 // d3.json("abbrev.reservoirs.json", function(reservoirs) {
-d3.json("../../../ca_reservoirs/storage_data/reservoir.json", function(reservoirs) {
+d3.json("../data/reservoirs/reservoir_storage.json", function(reservoirs) {
     // reservoirs = [
     //   {
     //     "Capacity" : 100,
@@ -146,22 +146,22 @@ svg.append("g")
     .attr("class", "y axis")
     .call(yAxis);
 
-// Add an x-axis label.
-svg.append("text")
-    .attr("class", "x label")
-    .attr("text-anchor", "end")
-    .attr("x", width)
-    .attr("y", height - 6)
-    .text("elevation (m)");
+// // Add an x-axis label.
+// svg.append("text")
+//     .attr("class", "x label")
+//     .attr("text-anchor", "end")
+//     .attr("x", width)
+//     .attr("y", height + margin.bottom / 2)
+//     .text("elevation (m)");
 
-// Add a y-axis label.
-svg.append("text")
-    .attr("class", "y label")
-    .attr("text-anchor", "end")
-    .attr("y", 6)
-    .attr("dy", ".75em")
-    .attr("transform", "rotate(-90)")
-    .text("% capacity");
+// // Add a y-axis label.
+// svg.append("text")
+//     .attr("class", "y label")
+//     .attr("text-anchor", "end")
+//     .attr("y", 6)
+//     .attr("dy", ".75em")
+//     .attr("transform", "rotate(-90)")
+//     .text("% capacity");
 
 var dots = svg.append("g")
       .attr("class", "dots")

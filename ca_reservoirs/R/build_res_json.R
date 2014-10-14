@@ -9,7 +9,7 @@ detach("package:jsonlite", unload=TRUE)
 qaqc_flags <- function(data){
   library('sensorQC')
   mad_vals <- MAD(data)
-  bad_i <- mad_vals > 3 # conservative
+  bad_i <- mad_vals > 3 | data < 0 | is.na(data)# conservative
   return(bad_i)
 }
 #This interpolates small gaps, in the middle of data
@@ -75,11 +75,16 @@ for (i in 1:num_station){
   }
   rmv_station[i] <- any(is.na(res_mat[,1])) # should be none!!
   j_id <- which(json_res$ID == station_names[i])
+  cap <- json_res[j_id, 10]
+  
+  if (is.na(cap)){
+    cap <- max(res_mat[,1])
+  }
   reservoirs[[i]] <- list("Station"=json_res$Station[j_id],"ID"=station_names[i],
                           "Elev"=json_res$Elev[j_id], "Latitude"=json_res$Latitude[j_id], "Longitude" = json_res$Longitude[j_id],
                     "County"=json_res$County[j_id], "Nat_ID"=json_res[j_id, 8],"Year_Built"=json_res[j_id, 9], 
-                    "Capacity"=json_res[j_id, 10], "Storage"=res_mat[!rmv_i,])
-  names(reservoirs[[i]]$Storage) <- strftime(week_time[!rmv_i], "%Y%m%d")
+                    "Capacity"=cap, "Storage"=res_mat[,1])
+  names(reservoirs[[i]]$Storage) <- strftime(week_time, "%Y%m%d")
 }
 
 reservoirs[rmv_station] <- NULL
