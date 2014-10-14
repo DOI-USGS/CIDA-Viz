@@ -78,9 +78,8 @@ if __name__ == '__main__':
     df_tdi_2007_2014_rs['date'] = df_tdi_2007_2014_rs.index
     df_tdi_2007_2014_rs.columns = [di_str, 'date']
     
-    
     # produce prices
-    produce_items = ['navel_oranges', 'lemons', 'lettuce']
+    produce_items = ['navel_oranges', 'lemons', 'lettuce', 'grapes', 'tomatoes']
     dfs = {}
     dfs_ri = {}
     for produce_item in produce_items:
@@ -99,34 +98,39 @@ if __name__ == '__main__':
     df_lemon = dfs_ri['lemons']
     df_orange = dfs_ri['navel_oranges']
     df_lettuce = dfs_ri['lettuce']
+    df_grapes = dfs_ri['grapes']
+    df_tomato = dfs_ri['tomatoes']
     df_lemon_orange = pd.merge(df_lemon, df_orange, how='inner', on='date')
-    df_produce = pd.merge(df_lemon_orange, df_lettuce, how='inner', on='date')
+    df_lo_grapes = pd.merge(df_lemon_orange, df_grapes, how='inner', on='date')
+    df_log_tom = pd.merge(df_lo_grapes, df_tomato, how='inner', on='date')
+    df_produce = pd.merge(df_log_tom, df_lettuce, how='inner', on='date')
     df_di = df_tdi_2007_2014_rs[['date', di_str]]
     df_di_produce = pd.merge(df_produce, df_di, how='inner', on='date')
     df_di_produce['mon_int'] = df_di_produce.apply(report_month, axis=1, date_col='date')
     df_di_produce.index = df_di_produce['date']
-    df_di_produce_summer = df_di_produce[(df_di_produce['mon_int'] >= 1) & (df_di_produce['mon_int'] <= 12)] # just get June - August for each year
-    print(df_di_produce_summer)
+    # average over identical timeframes each year
+    start_month = 6
+    end_month = 8
+    df_di_produce_timeframe = df_di_produce[(df_di_produce['mon_int'] >= start_month) & (df_di_produce['mon_int'] <= end_month)] # filter to subset months
+    print(df_di_produce_timeframe)
     grouper_year = pd.TimeGrouper('A')
-    df_avg = df_di_produce_summer.groupby(grouper_year).mean()
+    df_avg = df_di_produce_timeframe.groupby(grouper_year).mean()
     df_avg['year'] = df_avg.index.year
-    df_avg['year_str'] = df_avg.apply(year_str, axis=1, year_col='year')
-    pertinent_columns = ['Lemons Avg Price', 'Navel_Oranges Avg Price', 'Lettuce Avg Price', di_str, 'year_str']
-    df_summer_avg = df_avg[pertinent_columns]
-    df_summer_avg.plot(kind='scatter', y=['Lemons Avg Price', 'Navel_Oranges Avg Price', 'Lettuce Avg Price'], 
-                       x=[di_str]*3, color=['blue', 'red', 'green'], label=['lemon', 'orange', 'lettuce'])
-    title = 'Produce Price vs Percent Severe Drought'
-    plt.xlabel('Percent of CA experiencing severe drought')
-    plt.ylabel('Price (USD/lb)')
-    plt.legend(loc='best')
-    plt.title(title)
-    fig = gcf()
-    fig.set_size_inches(18.5, 14.5)
-    plot_name = 'price_vs_drought_index'
-    figure_name = 'plots/{0}.png'.format(plot_name)
-    fig.savefig(figure_name)
-    df_summer_avg.to_csv('data/ca_price_vs_pct_severe_di.csv', index=False)
-
-    
-    
-    
+    tf_string = 'month_{0}_through_{1} (year)'.format(start_month, end_month)
+    df_avg[tf_string] = df_avg.apply(year_str, axis=1, year_col='year')
+    pertinent_columns = ['Lemons Avg Price', 'Navel_Oranges Avg Price', 'Lettuce Avg Price', 'Grapes Avg Price', 'Tomatoes Avg Price', di_str, tf_string]
+    df_tf_avg = df_avg[pertinent_columns]
+    # df_tf_avg.plot(kind='scatter', y=['Lemons Avg Price', 'Navel_Oranges Avg Price', 'Lettuce Avg Price'], 
+    #                   x=[di_str]*3, color=['blue', 'red', 'green'], label=['lemon', 'orange', 'lettuce'])
+    # title = 'Produce Price vs Percent Severe Drought'
+    # plt.xlabel('Percent of CA experiencing severe drought')
+    # plt.ylabel('Price (USD/lb)')
+    # plt.legend(loc='best')
+    # plt.title(title)
+    # fig = gcf()
+    # fig.set_size_inches(18.5, 14.5)
+    # plot_name = 'price_vs_drought_index'
+    # figure_name = 'plots/{0}.png'.format(plot_name)
+    # fig.savefig(figure_name)
+    df_tf_avg.to_csv('data/ca_price_vs_pct_severe_di.csv', index=False)
+    print('Done!')    
