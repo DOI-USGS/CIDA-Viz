@@ -9,7 +9,8 @@ import calendar
 from datetime import date
 import pandas as pd
 import numpy as np
-from matplotlib.pylab import plt, gcf
+from plotly.graph_objs import *
+# from matplotlib.pylab import plt, gcf
 
 
 def get_month_range(series, year_col, month_col):
@@ -48,26 +49,14 @@ def report_month(series, date_col):
     date_val = series[date_col]
     month_val = date_val.strftime('%m')
     return int(month_val)
-    
+
+  
 def year_str(series, year_col):
     year_val = int(series[year_col])
     return '{0}'.format(year_val)
 
-if __name__ == '__main__':
-    """
-    # Drought Index
-    DI_DATA = 'data\\drought\\drought_index_data_ca.csv'
-    df = pd.read_csv(DI_DATA, sep=',', skiprows=2, header=0, parse_dates=['Week'], comment='#', index_col='Week')
-    di_str = 'State Avg Drought Index'
-    df_1 = df[['0', '1', '2', '3', '4']]
-    df_1[di_str] = df_1.apply(state_di_avg, axis=1, d_0='0', d_1='1', d_2='2', d_3='3', d_4='4')
-    df_1['Pct Sum'] = df_1.apply(di_pct_sum, axis=1, d_0='0', d_1='1', d_2='2', d_3='3', d_4='4')
-    df_ds = df_1.resample('M') # downsample to Months
-    df_2007 = df_ds[(df_ds.index > '2007-01-01') & (df_ds.index < '2014-09-01')]
-    df_2007['date'] = df_2007.index
-    """
-    
-    
+
+def prep_data():
     # Traditional Drought Index
     TDI_DATA = 'data\\drought\\traditional_drought_index.csv'
     df_tdi = pd.read_csv(TDI_DATA, sep=',', skiprows=1, header=0, parse_dates=['Week'], comment='#', index_col='Week')
@@ -112,7 +101,6 @@ if __name__ == '__main__':
     start_month = 6
     end_month = 8
     df_di_produce_timeframe = df_di_produce[(df_di_produce['mon_int'] >= start_month) & (df_di_produce['mon_int'] <= end_month)] # filter to subset months
-    print(df_di_produce_timeframe)
     grouper_year = pd.TimeGrouper('A')
     df_avg = df_di_produce_timeframe.groupby(grouper_year).mean()
     df_avg['year'] = df_avg.index.year
@@ -134,4 +122,47 @@ if __name__ == '__main__':
     # figure_name = 'plots/{0}.png'.format(plot_name)
     # fig.savefig(figure_name)
     df_tf_avg.to_csv('data/ca_price_vs_pct_severe_di.csv', index=False)
-    print('Done!')    
+    print('Done!') 
+    
+    return df_tf_avg
+
+
+def calc_anomoly(series, column_name, avg_value):
+    produce_value = series[column_name]
+    anomoly = produce_value - avg_value
+    return anomoly
+
+
+def convert_str_to_float(series, column_name):
+    str_value = series[column_name]
+    float_value = float(str_value)
+    return float_value
+
+
+def df_to_plotly(df, y_axis, x_axis='Percent of CA in Severe Drought'):
+    
+    x_values = df[x_axis].values
+    y_values = df[y_axis].values
+    data_dict = {
+                 'x': x_values.tolist(),
+                 'y': y_values.tolist(),
+                 'name': y_axis
+                 }
+    return data_dict
+
+
+if __name__ == '__main__':
+    """
+    # Drought Index
+    DI_DATA = 'data\\drought\\drought_index_data_ca.csv'
+    df = pd.read_csv(DI_DATA, sep=',', skiprows=2, header=0, parse_dates=['Week'], comment='#', index_col='Week')
+    di_str = 'State Avg Drought Index'
+    df_1 = df[['0', '1', '2', '3', '4']]
+    df_1[di_str] = df_1.apply(state_di_avg, axis=1, d_0='0', d_1='1', d_2='2', d_3='3', d_4='4')
+    df_1['Pct Sum'] = df_1.apply(di_pct_sum, axis=1, d_0='0', d_1='1', d_2='2', d_3='3', d_4='4')
+    df_ds = df_1.resample('M') # downsample to Months
+    df_2007 = df_ds[(df_ds.index > '2007-01-01') & (df_ds.index < '2014-09-01')]
+    df_2007['date'] = df_2007.index
+    """
+    df = prep_data()
+    print(df)
