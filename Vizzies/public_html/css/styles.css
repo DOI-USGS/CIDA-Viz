@@ -13,6 +13,7 @@ body{height:100%;}
 	left: 15px;
 	height: 33px;
 	z-index: 10000;
+	-webkit-transform: translateZ(0);
 }
 
 
