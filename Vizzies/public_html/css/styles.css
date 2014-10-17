@@ -11,8 +11,9 @@ body{height:100%;}
 	position: fixed;
 	top: 15px;
 	left: 15px;
-	height: 40px;
+	height: 33px;
 	z-index: 10000;
+	-webkit-transform: translateZ(0);
 }
 
 
