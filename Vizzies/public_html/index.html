@@ -40,6 +40,8 @@
 		<div id="time-indicator"></div>
 		<header id="s1" class="anchor-link">
 			<div id="start-trigger" class="top">
+            	<div class="logo usgs"><img src="usgs_logo.png" alt="usgs logo"/></div>
+                <div class="logo cida"><img src="cida_logo.png" alt="usgs logo"/></div>
 				<h1>California drought, visualized with open data</h1>
 				<p>California is experiencing its worst drought in recorded history.</p>
 			</div>
@@ -106,6 +108,11 @@
 						<td class="res-x-label">California reservoirs sorted by elevation</td>
 					</tr>
 				</table>
+                
+                <div id="graphinfo">
+                	<p>Reservoir volume as a percent of total volume is shown for 2011-2014. The width of bars is proportional to reservoir maximum capacity, so that bigger reservoirs have larger bars. Reservoirs are ordered from low elevation (left) to high elevation (right). Average reservoir volume decreases as the California drought persists.</p>
+                </div>
+                
 			</div>
 			<div class="spacer s2"></div>
 		</section>
@@ -142,8 +149,9 @@
 			<div id="snowpack-plot-pin">
 				<div class="snowpack-container">
 					<div class="snowpack-plot">
-                    <h2>Drought, snowpack, and reservoir storage</h2>
+                    <h3>Drought, snowpack, and reservoir storage (2011 vs 2014)</h3>
 						<iframe width="600" height="400" frameborder="0" seamless scrolling="no" src="https://plot.ly/~lawinslow/3/600/400"></iframe>
+                        <a href="https://github.com/USGS-CIDA/CIDA-Viz/blob/master/README.md#drought-data)" target="_blank"><div class="getinfo">Get the Data</div></a>
 					</div>
 				</div>
 			</div>
@@ -161,8 +169,9 @@
 			<div id="usage-pie-pin">
 				<div class="snowpack-container">
 					<div class="usage-pie">
-                    	<h2>Freshwater withdrawals in California</h2>
+                    	<h3>Freshwater withdrawals in California (2005)</h3>
 						<svg id="usage" class="mypiechart"></svg>
+                        <a href="http://pubs.er.usgs.gov/publication/cir1344" target="_blank"><div class="getinfo">Get the Data</div></a>
 					</div>
 				</div>
 			</div>
@@ -183,8 +192,9 @@
 				</div>
 				<div id="ag-prices" class='higher'>
                 	<div id="graphTitle">
-                        <h4>Drought and food price anomalies (differences from the 5-year average)</h4>
+                        <h4>Drought and food price anomalies (2011-2014 differences from the 5-year average)</h4>
                         <svg></svg>
+                        <a href="https://github.com/USGS-CIDA/CIDA-Viz/blob/master/README.md#economic-data" target="_blank"><div class="getinfo">Get the Data</div></a>
                     </div>
 				</div>
 			</div>
@@ -247,6 +257,14 @@
 				
 				<div id="open" class="boxy">
                     <p> This information is preliminary and is subject to revision. It is being provided to meet the need for timely best science. The information is provided on the condition that neither the U.S. Geological Survey nor the U.S. Government may be held liable for any damages resulting from the authorized or unauthorized use of the information.  </p>
+                
+                </div>
+                
+                <div id="open" class="boxy">
+                
+                	<div class="logo usgs"><img src="usgs_logo.png" alt="usgs logo"/></div>
+                    
+                    <div class="logo cida"><img src="cida_logo.png" alt="usgs logo"/></div>
                 
                 </div>
 
