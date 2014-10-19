@@ -36,13 +36,17 @@ body{height:100%;}
 }
 
 #time-indicator {
+	display: none; /* start hidden */
 	padding: 5px;
 	position: fixed;
 	width: 400px;
 	bottom: 20px;
+	right: 50px;
 	text-align: center;
 	font-family: "Open Sans";
-	font-size: 2em;
+	font-size: 1.75em;
+	background:rgb(80,146,204);
+	color:#fff;
 }
 
 #res-plot-container {
