@@ -299,7 +299,6 @@ $(document).ready(function () {
 	var timesArray = timesteps.reverse();
 	new ScrollScene({triggerElement: "#reservoir-trigger", duration: 8000})
 		.setPin("#reservoir-pin")
-		.setTween(TweenMax.fromTo("#time-indicator", 1, {x: 0}, {x: $(window).width() - 400}))
 		.on("progress", function (e) {
 			var index = Math.floor((timesArray.length - 1) * e.progress);
 			if (index !== lastIndexCalled) {
@@ -311,10 +310,12 @@ $(document).ready(function () {
 		.on("enter", function (e) {
 			panAndZoom(caliCenterCenter, caliZoom);
 			$("#res-plot-container").show();
+			$("#time-indicator").show();
 			activateAnchorLink(3);
 		})
 		.on("leave", function (e) {
 			$("#res-plot-container").hide();
+			$("#time-indicator").hide();
 		})
 		.addTo(controller);
 
