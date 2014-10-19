@@ -100,8 +100,9 @@ svg {
 }
 
 .landsat-container {
+	position: relative;
 	margin-left: 20px;
-	top: -200px;
+	top: -250px;
 }
 #feature1 .left {
 	top: -200px;
