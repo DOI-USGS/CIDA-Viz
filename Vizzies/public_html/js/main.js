@@ -150,7 +150,6 @@ $(document).ready(function () {
 	// build scenes
 	new ScrollScene({triggerElement: "#start-trigger", duration: $(window).height()})
 		.on("enter", function (e) {
-			$("#time-indicator").text("");
 			//panAndZoom(continentalCenter, continentalZoom);
 			map.replaceLayer(getInitialDroughtLayer(), 'drought');
 			activateAnchorLink(1);
@@ -204,7 +203,6 @@ $(document).ready(function () {
 		.addTo(controller);
 	new ScrollScene({triggerElement: "#credits-trigger", duration: $(window).height()})
 		.on("enter", function (e) {
-			$("#time-indicator").text("");
 			panAndZoom(caliRightCenter, caliZoom);
 			map.replaceLayer(getInitialDroughtLayer(), 'drought');
 			activateAnchorLink(7);
@@ -345,23 +343,6 @@ $(document).ready(function () {
 			$target.switchClass(emptyClass, filledClass, 250, 'linear', function () {
 			});
 		}
-	});
-
-	smoothScroll.init({
-		speed: 1000,
-		easing: 'easeInOutCubic',
-		offset: 0,
-		updateURL: false,
-		callbackBefore: function (t, a) {
-		},
-		callbackAfter: function (t, a) {
-		}
-	});
-
-	new ScrollControl({
-		scrollRate: 50,
-		scrollStep: 40,
-		parent: $(document.body)
 	});
 
 	$(document).tooltip({
