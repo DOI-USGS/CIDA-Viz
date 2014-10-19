@@ -150,8 +150,7 @@ $(document).ready(function () {
 	// build scenes
 	new ScrollScene({triggerElement: "#start-trigger", duration: $(window).height()})
 		.on("enter", function (e) {
-			$("#time-indicator").text("");
-			//panAndZoom(continentalCenter, continentalZoom);
+			panAndZoom(continentalCenter, continentalZoom);
 			map.replaceLayer(getInitialDroughtLayer(), 'drought');
 			activateAnchorLink(1);
 		})
@@ -163,10 +162,10 @@ $(document).ready(function () {
 		.setPin("#drilling-pin")
 		.addTo(controller);
 	// Scene 1 (reservoirs) built in response to ajax
-	new ScrollScene({triggerElement: "#drought2014-trigger", duration: 5000})
-		.setPin("#drought2014-pin")
+	new ScrollScene({triggerElement: "#landsat-trigger", duration: 5000})
+		.setPin("#landsat-pin")
 		.on("enter", function (e) {
-			panAndZoom(caliCenterCenter, caliZoom);
+			panAndZoom(caliRightCenter, caliZoom);
 			activateAnchorLink(4);
 		})
 		.addTo(controller);
@@ -204,8 +203,7 @@ $(document).ready(function () {
 		.addTo(controller);
 	new ScrollScene({triggerElement: "#credits-trigger", duration: $(window).height()})
 		.on("enter", function (e) {
-			$("#time-indicator").text("");
-			panAndZoom(caliRightCenter, caliZoom);
+			panAndZoom(continentalCenter, continentalZoom);
 			map.replaceLayer(getInitialDroughtLayer(), 'drought');
 			activateAnchorLink(7);
 		})
@@ -247,6 +245,22 @@ $(document).ready(function () {
 			
 			if (layer.getSource().getState() === 'ready') {
 				layer.getSource().dispatchChangeEvent();
+			}
+		}
+	};
+	
+	map.removeLayerOfType = function(layerType) {
+		if (layerType) {
+			var layers = map.getLayers().getArray().filter(function (oldLayer) {
+				if (oldLayer) {
+					return oldLayer.layer_type === layerType;
+				} else {
+					return false;
+				}
+			});
+
+			for (var i = 0; i < layers.length; i++) {
+				map.removeLayer(layers[i]);
 			}
 		}
 	};
@@ -316,6 +330,7 @@ $(document).ready(function () {
 		.on("leave", function (e) {
 			$("#res-plot-container").hide();
 			$("#time-indicator").hide();
+			map.removeLayerOfType("reservoir");
 		})
 		.addTo(controller);
 
@@ -345,23 +360,6 @@ $(document).ready(function () {
 			$target.switchClass(emptyClass, filledClass, 250, 'linear', function () {
 			});
 		}
-	});
-
-	smoothScroll.init({
-		speed: 1000,
-		easing: 'easeInOutCubic',
-		offset: 0,
-		updateURL: false,
-		callbackBefore: function (t, a) {
-		},
-		callbackAfter: function (t, a) {
-		}
-	});
-
-	new ScrollControl({
-		scrollRate: 50,
-		scrollStep: 40,
-		parent: $(document.body)
 	});
 
 	$(document).tooltip({
