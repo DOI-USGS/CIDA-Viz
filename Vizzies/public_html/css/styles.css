@@ -47,6 +47,7 @@ body{height:100%;}
 	font-size: 1.75em;
 	background:rgb(80,146,204);
 	color:#fff;
+	-webkit-transform: translateZ(0);
 }
 
 #res-plot-container {
@@ -61,6 +62,7 @@ body{height:100%;}
 #res-plot{
 	height: 100%;
 	width: 100%;
+	-webkit-transform: translateZ(0);
 }
 
 .res-plot-row {
@@ -95,24 +97,36 @@ svg {
   width: 550px;
 }
 
-.snowpack-container {
+#snowpack-container,
+#snowpack-plot-container,
+#snowpack-info-container,
+#usage-pie-container{
 	position: relative;
 	right: -55%;
 	top: -250px;
+	-webkit-transform: translateZ(0);
 }
 
 .landsat-container {
 	position: relative;
 	margin-left: 20px;
 	top: -250px;
+	-webkit-transform: translateZ(0);
 }
 #feature1 .left {
 	top: -200px;
 }
 
+#ag-info-container  {
+	position: relative;
+	top: -100px;
+	-webkit-transform: translateZ(0);
+}
+
 .higher {
 	position: relative;
 	top: -100px;
+	-webkit-transform: translateZ(0);
 }
   
 header,
