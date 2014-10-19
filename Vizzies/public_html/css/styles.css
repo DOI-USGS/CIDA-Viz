@@ -85,7 +85,9 @@ svg {
 }
 
 #ag-prices {
-  margin: 20px;
+	position: relative;
+	top: -250px;
+	margin: 20px;
 }
 
 #ag-prices svg {
@@ -96,7 +98,7 @@ svg {
 .snowpack-container {
 	position: relative;
 	right: -55%;
-	top: -200px;
+	top: -250px;
 }
 
 .landsat-container {
@@ -316,6 +318,7 @@ footer{padding-top:5%;
 
 /* //// */
 #links-anchor {
+	display: none;
 	position: fixed;
 	right: 5px;
 	top: 40%;

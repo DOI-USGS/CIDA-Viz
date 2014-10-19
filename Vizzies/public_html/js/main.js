@@ -155,46 +155,46 @@ $(document).ready(function () {
 			activateAnchorLink(1);
 		})
 		.addTo(controller);
-	new ScrollScene({triggerElement: "#tahoe-trigger", duration: 3400})
+	new ScrollScene({triggerElement: "#tahoe-trigger", duration: 1000})
 		.setPin("#tahoe-pin")
 		.addTo(controller);
-	new ScrollScene({triggerElement: "#drilling-trigger", duration: 3400})
+	new ScrollScene({triggerElement: "#drilling-trigger", duration: 1000})
 		.setPin("#drilling-pin")
 		.addTo(controller);
 	// Scene 1 (reservoirs) built in response to ajax
-	new ScrollScene({triggerElement: "#landsat-trigger", duration: 5000})
+	new ScrollScene({triggerElement: "#landsat-trigger", duration: 1000})
 		.setPin("#landsat-pin")
 		.on("enter", function (e) {
 			panAndZoom(caliRightCenter, caliZoom);
 			activateAnchorLink(4);
 		})
 		.addTo(controller);
-	new ScrollScene({triggerElement: "#snowpack-trigger", duration: 5000})
+	new ScrollScene({triggerElement: "#snowpack-trigger", duration: 1000})
 		.setPin("#snowpack-pin")
 		.on("enter", function (e) {
 			panAndZoom(caliLeftCenter, caliZoom);
 			activateAnchorLink(5);
 		})
 		.addTo(controller);
-	new ScrollScene({triggerElement: "#snowpack-plot-trigger", duration: 2500})
+	new ScrollScene({triggerElement: "#snowpack-plot-trigger", duration: 1000})
 		.setPin("#snowpack-plot-pin")
 		.on("enter", function (e) {
 			panAndZoom(caliLeftCenter, caliZoom);
 		})
 		.addTo(controller);
-	new ScrollScene({triggerElement: "#sidebar-trigger", duration: 2500})
+	new ScrollScene({triggerElement: "#sidebar-trigger", duration: 1000})
 		.setPin("#sidebar-pin")
 		.on("enter", function (e) {
 			panAndZoom(caliLeftCenter, caliZoom);
 		})
 		.addTo(controller);
-	new ScrollScene({triggerElement: "#usage-pie-trigger", duration: 2500})
+	new ScrollScene({triggerElement: "#usage-pie-trigger", duration: 1000})
 		.setPin("#usage-pie-pin")
 		.on("enter", function (e) {
 			panAndZoom(caliLeftCenter, caliZoom);
 		})
 		.addTo(controller);
-	new ScrollScene({triggerElement: "#food-trigger", duration: 5000})
+	new ScrollScene({triggerElement: "#food-trigger", duration: 1000})
 		.setPin("#food-pin")
 		.on("enter", function (e) {
 			panAndZoom(caliCenterCenter, caliZoom);
@@ -311,7 +311,7 @@ $(document).ready(function () {
 
 	var lastIndexCalled = -1;
 	var timesArray = timesteps.reverse();
-	new ScrollScene({triggerElement: "#reservoir-trigger", duration: 8000})
+	new ScrollScene({triggerElement: "#reservoir-trigger", duration: 10000})
 		.setPin("#reservoir-pin")
 		.on("progress", function (e) {
 			var index = Math.floor((timesArray.length - 1) * e.progress);
