@@ -98,7 +98,11 @@ svg {
 	right: -55%;
 	top: -200px;
 }
-  
+
+.landsat-container {
+	margin-left: 20px;
+	top: -200px;
+}
 #feature1 .left {
 	top: -200px;
 }
@@ -251,6 +255,14 @@ a.white{color:rgb(250,250,250);}
 	width:490px;
 	min-height:510px;
 	padding:5px 5px 10px 5px;
+	text-align:center;
+	-webkit-transform: translateZ(0);}
+
+.usage-landsat{
+	background:rgba(255,255,255,.8);
+	width:830px;
+	min-height:434px;
+	padding:15px 15px 15px 15px;
 	text-align:center;
 	-webkit-transform: translateZ(0);}
 	
