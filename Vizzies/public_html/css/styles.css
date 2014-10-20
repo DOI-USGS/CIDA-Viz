@@ -7,6 +7,9 @@ html{height:100%;}
 
 body{height:100%;}
 
+#reservoir-pin{
+	top:-375px;}
+
 .map-legend {
 	position: fixed;
 	top: 15px;
@@ -194,6 +197,19 @@ footer{	height:100%;
 		
 .right h2{color:#fff;
 		margin-bottom:5px;}
+		
+#google-pin{
+	top:320px;
+	height:720px;
+}
+	
+#google{
+	background:rgba(255,255,255,.8);
+	width:43%;
+	height:330px;
+	margin:0 auto;
+	-webkit-transform: translateZ(0);
+	}
 			
 .bottom{width:60%;
 		margin: auto;
@@ -213,6 +229,7 @@ h1#bottom{
 	color:rgb(80,146,204);
 	background:rgba(255,255,255,.7);
 	padding:10px;
+	text-align:center;
 }
 			
 .bottom p{
@@ -230,9 +247,10 @@ h1#bottom{
 	background:rgba(255,255,255,.8);
 	width:100%;
 	min-height:50px;
-	margin-top:20px;}
+	margin-top:20px;
+	padding-bottom:10px;}
 	
-#graphinfo p{padding:10px;}
+#graphinfo p{padding:10px 10px 0px 10px;}
 	
 #open{
 	padding-top:10px;
@@ -282,7 +300,10 @@ a.white{color:rgb(250,250,250);}
 	min-height:434px;
 	padding:15px 15px 15px 15px;
 	text-align:center;
+	color:rgb(80,146,204);
 	-webkit-transform: translateZ(0);}
+	
+.usage-landsat img{margin-bottom:15px;}
 	
 .usage-pie h3,
 .snowpack-plot h3{
@@ -297,8 +318,8 @@ a.white{color:rgb(250,250,250);}
 	right: 35px;
 	padding:5px 5px 10px 5px;
 	-webkit-transform: translateZ(0);
-}
-	
+	margin-top:80px;}
+
 #graphTitle{
 	background:rgba(255,255,255,.9);
 	width:570px;
