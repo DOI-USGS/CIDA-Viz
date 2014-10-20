@@ -155,48 +155,48 @@ $(document).ready(function () {
 			activateAnchorLink(1);
 		})
 		.addTo(controller);
-	new ScrollScene({triggerElement: "#tahoe-trigger", duration: 1000})
+	new ScrollScene({triggerElement: "#tahoe-trigger", duration: 500})
 		.setPin("#tahoe-pin")
 		.addTo(controller);
-	new ScrollScene({triggerElement: "#drilling-trigger", duration: 1000})
+	new ScrollScene({triggerElement: "#drilling-trigger", duration: 500})
 		.setPin("#drilling-pin")
 		.addTo(controller);
-	new ScrollScene({triggerElement: "#google-trigger", duration: 1000})
+	new ScrollScene({triggerElement: "#google-trigger", duration: 500})
 		.setPin("#google-pin")
 	// Scene 1 (reservoirs) built in response to ajax
-	new ScrollScene({triggerElement: "#landsat-trigger", duration: 1000})
+	new ScrollScene({triggerElement: "#landsat-trigger", duration: 500})
 		.setPin("#landsat-pin")
 		.on("enter", function (e) {
 			panAndZoom(caliRightCenter, caliZoom);
 			activateAnchorLink(4);
 		})
 		.addTo(controller);
-	new ScrollScene({triggerElement: "#snowpack-trigger", duration: 1000})
+	new ScrollScene({triggerElement: "#snowpack-trigger", duration: 500})
 		.setPin("#snowpack-pin")
 		.on("enter", function (e) {
 			panAndZoom(caliLeftCenter, caliZoom);
 			activateAnchorLink(5);
 		})
 		.addTo(controller);
-	new ScrollScene({triggerElement: "#snowpack-plot-trigger", duration: 1000})
+	new ScrollScene({triggerElement: "#snowpack-plot-trigger", duration: 500})
 		.setPin("#snowpack-plot-pin")
 		.on("enter", function (e) {
 			panAndZoom(caliLeftCenter, caliZoom);
 		})
 		.addTo(controller);
-	new ScrollScene({triggerElement: "#sidebar-trigger", duration: 1000})
+	new ScrollScene({triggerElement: "#sidebar-trigger", duration: 500})
 		.setPin("#sidebar-pin")
 		.on("enter", function (e) {
 			panAndZoom(caliLeftCenter, caliZoom);
 		})
 		.addTo(controller);
-	new ScrollScene({triggerElement: "#usage-pie-trigger", duration: 1000})
+	new ScrollScene({triggerElement: "#usage-pie-trigger", duration: 500})
 		.setPin("#usage-pie-pin")
 		.on("enter", function (e) {
 			panAndZoom(caliLeftCenter, caliZoom);
 		})
 		.addTo(controller);
-	new ScrollScene({triggerElement: "#food-trigger", duration: 1000})
+	new ScrollScene({triggerElement: "#food-trigger", duration: 500})
 		.setPin("#food-pin")
 		.on("enter", function (e) {
 			panAndZoom(caliCenterCenter, caliZoom);
