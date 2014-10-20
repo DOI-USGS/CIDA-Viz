@@ -9,7 +9,7 @@ body{height:100%;}
 
 #reservoir-pin{
 	top:-375px;}
-
+	
 .map-legend {
 	position: fixed;
 	top: 15px;
@@ -80,10 +80,20 @@ body{height:100%;}
 	width: 12px;
 }
 
+.dash{
+width:1px;
+border-right:3px dotted #000;
+height:350px;
+position:absolute;
+bottom:208px;
+left:6px;}
+
 .res-x-label {
 	text-align: center;
 	font-family: "Open Sans";
 }
+
+.domain{background:red;}
 
 svg {
   overflow: hidden;
@@ -334,10 +344,10 @@ a.white{color:rgb(250,250,250);}
 .getinfo{
 	border:1px solid rgb(80,146,204);
 	width:30%;
-	height:22px;
+	height:24px;
 	text-align:center;
 	font-size:1.2em;
-	padding:9px 0;
+	padding:8px 0;
 	margin:0 auto;
 	border-radius:5px;
 	color:rgb(80,146,204);
