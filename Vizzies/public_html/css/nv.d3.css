@@ -750,8 +750,8 @@ svg .title {
 
 .nvd3 .axis line, .axis path {
   fill: none;
-  stroke: #000;
   shape-rendering: crispEdges;
+  width:500px;
 }
 
 .nvd3 .axis text {
