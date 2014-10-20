@@ -56,7 +56,7 @@ body{height:100%;}
 #res-plot-container {
 	display: none; /* start hidden */
 	position: fixed;
-	width: 600px;
+	width: 650px;
 	top: 50px;
 	right: 100px;
 	-webkit-transform: translateZ(0);
@@ -78,22 +78,55 @@ body{height:100%;}
 	white-space: nowrap;
 	font-family: "Open Sans";
 	width: 12px;
+	opacity:0;
 }
 
-.dash{
+.res-y-label p{
+	}
+
+.dash-container{
 width:1px;
 border-right:3px dotted #000;
 height:350px;
 position:absolute;
-bottom:208px;
-left:6px;}
+bottom:240px;
+left:6px;
+}
+
+.dash{
+	position:relative;
+	width:1px;
+	height:350px;}
+	
+.dash p{
+	position:absolute;
+	right:5px;}
+	
+.dash p#title{
+	transform:rotate(-90deg);
+	width:170px;
+	top:150px;
+	right:-40px;
+	}
+
+P#first{
+	top:-23px;}
+	
+p#second{
+	top:100px;}
+	
+p#third{
+	top:200px;}
+	
+p#last{
+	bottom:-23px;
+	}
 
 .res-x-label {
 	text-align: center;
 	font-family: "Open Sans";
 }
 
-.domain{background:red;}
 
 svg {
   overflow: hidden;
