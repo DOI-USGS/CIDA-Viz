@@ -149,8 +149,11 @@ var reservoirPlot = new (function ReservoirPlot(chartSelector) {
 
 	// Load the data.
 	d3.json("data/reservoirs/reservoir_storage.json", function(jsonReservoirs) {
-		reservoirs = jsonReservoirs.sort(function(reservoir) {
-			return +reservoir["Elev"];
+		reservoirs = jsonReservoirs.sort(function(reservoirA, reservoirB) {
+			var reservoirAElevation = +reservoirA["Elev"];
+			var reservoirBElevation = +reservoirB["Elev"];
+			var diff = reservoirAElevation - reservoirBElevation;
+			return diff;
 		});
 		var getCapacity = function(reservoir) {
 			var capacity = +reservoir["Capacity"];
