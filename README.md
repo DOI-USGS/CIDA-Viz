@@ -14,13 +14,10 @@ weekly data represention
  - Reservoir Capacities (State of CA Jurisdiction): http://www.water.ca.gov/damsafety/docs/Jurisdictional2014.pdf
  - Reservoir Capacities (Federal Jurisdiction): http://www.water.ca.gov/damsafety/docs/Federal2010.pdf
  - Reservoir time series data: http://cdec.water.ca.gov/cgi-progs/queryDaily
+ - Reservoir area: Map depicts change in water area at Trinity Lake and Shasta Lake is based on Landsat satellite imagery collected on August 8, 2011, and August 16, 2014. Imagery were processed using algorithms presented in Xu (2007): http://info.asprs.org/publications/pers/2007journal/december/2007_dec_1381-1391.pdf. Map produced by Dr. Jamon Van Den Hoek (jamon.vandenhoek@nasa.gov) at the NASA Goddard Space Flight Center.
 
 ###Drought data
  - Site data and shapefiles: http://droughtatlas.unl.edu/Services/DroughtMonitor/Timeseries/
-
-###Fire data
- - Active Fire & Burned Area data from MODIS products retrieved from University of Maryland: http://modis-fire.umd.edu/BA_getdata.html
-
 
 ###Economic Data
  - Agricultural Employment Stats: http://www.labormarketinfo.edd.ca.gov/LMID/Agricultural_Employment_in_California.html

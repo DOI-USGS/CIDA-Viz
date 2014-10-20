@@ -150,49 +150,51 @@ $(document).ready(function () {
 	// build scenes
 	new ScrollScene({triggerElement: "#start-trigger", duration: $(window).height()})
 		.on("enter", function (e) {
-			$("#time-indicator").text("");
-			//panAndZoom(continentalCenter, continentalZoom);
+			panAndZoom(continentalCenter, continentalZoom);
 			map.replaceLayer(getInitialDroughtLayer(), 'drought');
 			activateAnchorLink(1);
 		})
 		.addTo(controller);
-	new ScrollScene({triggerElement: "#drilling-trigger", duration: 0})
+	new ScrollScene({triggerElement: "#tahoe-trigger", duration: 1000})
+		.setPin("#tahoe-pin")
+		.addTo(controller);
+	new ScrollScene({triggerElement: "#drilling-trigger", duration: 1000})
 		.setPin("#drilling-pin")
 		.addTo(controller);
 	// Scene 1 (reservoirs) built in response to ajax
-	new ScrollScene({triggerElement: "#drought2014-trigger", duration: 1})
-		.setPin("#drought2014-pin")
+	new ScrollScene({triggerElement: "#landsat-trigger", duration: 1000})
+		.setPin("#landsat-pin")
 		.on("enter", function (e) {
-			panAndZoom(caliCenterCenter, caliZoom);
+			panAndZoom(caliRightCenter, caliZoom);
 			activateAnchorLink(4);
 		})
 		.addTo(controller);
-	new ScrollScene({triggerElement: "#snowpack-trigger", duration: 1})
+	new ScrollScene({triggerElement: "#snowpack-trigger", duration: 1000})
 		.setPin("#snowpack-pin")
 		.on("enter", function (e) {
 			panAndZoom(caliLeftCenter, caliZoom);
 			activateAnchorLink(5);
 		})
 		.addTo(controller);
-	new ScrollScene({triggerElement: "#snowpack-plot-trigger", duration: 1})
+	new ScrollScene({triggerElement: "#snowpack-plot-trigger", duration: 1000})
 		.setPin("#snowpack-plot-pin")
 		.on("enter", function (e) {
 			panAndZoom(caliLeftCenter, caliZoom);
 		})
 		.addTo(controller);
-	new ScrollScene({triggerElement: "#sidebar-trigger", duration: 1})
+	new ScrollScene({triggerElement: "#sidebar-trigger", duration: 1000})
 		.setPin("#sidebar-pin")
 		.on("enter", function (e) {
 			panAndZoom(caliLeftCenter, caliZoom);
 		})
 		.addTo(controller);
-	new ScrollScene({triggerElement: "#usage-pie-trigger", duration: 1})
+	new ScrollScene({triggerElement: "#usage-pie-trigger", duration: 1000})
 		.setPin("#usage-pie-pin")
 		.on("enter", function (e) {
 			panAndZoom(caliLeftCenter, caliZoom);
 		})
 		.addTo(controller);
-	new ScrollScene({triggerElement: "#food-trigger", duration: 1})
+	new ScrollScene({triggerElement: "#food-trigger", duration: 1000})
 		.setPin("#food-pin")
 		.on("enter", function (e) {
 			panAndZoom(caliCenterCenter, caliZoom);
@@ -201,8 +203,7 @@ $(document).ready(function () {
 		.addTo(controller);
 	new ScrollScene({triggerElement: "#credits-trigger", duration: $(window).height()})
 		.on("enter", function (e) {
-			$("#time-indicator").text("");
-			panAndZoom(caliRightCenter, caliZoom);
+			panAndZoom(continentalCenter, continentalZoom);
 			map.replaceLayer(getInitialDroughtLayer(), 'drought');
 			activateAnchorLink(7);
 		})
@@ -244,6 +245,22 @@ $(document).ready(function () {
 			
 			if (layer.getSource().getState() === 'ready') {
 				layer.getSource().dispatchChangeEvent();
+			}
+		}
+	};
+	
+	map.removeLayerOfType = function(layerType) {
+		if (layerType) {
+			var layers = map.getLayers().getArray().filter(function (oldLayer) {
+				if (oldLayer) {
+					return oldLayer.layer_type === layerType;
+				} else {
+					return false;
+				}
+			});
+
+			for (var i = 0; i < layers.length; i++) {
+				map.removeLayer(layers[i]);
 			}
 		}
 	};
@@ -294,9 +311,8 @@ $(document).ready(function () {
 
 	var lastIndexCalled = -1;
 	var timesArray = timesteps.reverse();
-	new ScrollScene({triggerElement: "#reservoir-trigger", duration: 8000})
+	new ScrollScene({triggerElement: "#reservoir-trigger", duration: 10000})
 		.setPin("#reservoir-pin")
-		.setTween(TweenMax.fromTo("#time-indicator", 1, {x: 0}, {x: $(window).width() - 400}))
 		.on("progress", function (e) {
 			var index = Math.floor((timesArray.length - 1) * e.progress);
 			if (index !== lastIndexCalled) {
@@ -308,10 +324,13 @@ $(document).ready(function () {
 		.on("enter", function (e) {
 			panAndZoom(caliCenterCenter, caliZoom);
 			$("#res-plot-container").show();
+			$("#time-indicator").show();
 			activateAnchorLink(3);
 		})
 		.on("leave", function (e) {
 			$("#res-plot-container").hide();
+			$("#time-indicator").hide();
+			map.removeLayerOfType("reservoir");
 		})
 		.addTo(controller);
 
@@ -341,23 +360,6 @@ $(document).ready(function () {
 			$target.switchClass(emptyClass, filledClass, 250, 'linear', function () {
 			});
 		}
-	});
-
-	smoothScroll.init({
-		speed: 1000,
-		easing: 'easeInOutCubic',
-		offset: 0,
-		updateURL: false,
-		callbackBefore: function (t, a) {
-		},
-		callbackAfter: function (t, a) {
-		}
-	});
-
-	new ScrollControl({
-		scrollRate: 50,
-		scrollStep: 40,
-		parent: $(document.body)
 	});
 
 	$(document).tooltip({

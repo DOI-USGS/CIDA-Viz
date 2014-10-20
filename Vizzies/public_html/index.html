@@ -48,12 +48,40 @@
             
             <div id="instructions">
             
-            	<p>Hit play in the upper right of the screen or scroll at your own pace to view the website</p>	
+            	<p>Please scroll to learn more</p>	
             
             </div>
 			<div class="spacer s1"></div>
 		</header><!--header-->
 		<div class="spacer s0"></div>
+
+		<section id="s2" class="anchor-link">
+			<div id="tahoe-trigger"></div>
+			<div id="tahoe-pin">
+				<div class="left">
+					<p><a href="http://on.rgj.com/1pfIphy" target="_blank">Drought: Tahoe will dip below its natural rim this month </a><br/><em>from the Reno Gazette Journal</em></p>
+                    
+                    <p><a href="http://www.latimes.com/local/lanow/la-me-ln-drought-conditions-forecast-california-20140924-story.html" target="_blank">Parched California expected to miss out on typical fall rains</a><br/><em>from the LA Times</em></p>
+                    
+                    <p><a href="http://www.stanforddaily.com/2014/09/25/water-usage-at-stanford-the-quick-facts/" target="_blank">California drought continues to take heavy toll on reservoirs</a><br/><em>from Stanford Daily</em></p>
+                    
+				</div>
+			</div>
+			<div class="spacer s0"></div>
+		</section>
+		<section>
+			<div id="drilling-trigger"></div>
+			<div id="drilling-pin">
+				<div class="right">
+					<p><a class="white" href="http://www.capradio.org/articles/2014/09/08/drilling-through-the-drought/" target="_blank">Drilling Through the Drought: A Look At Well Drilling Activity In The Central Valley </a><br/><em>from CA Public Radio</em></p>
+                    
+                    <p><a class="white" href= "http://www.latimes.com/local/la-me-critical-water-20140926-story.html#page=1" target="_blank">Drought has 14 communities on the brink of waterlessness</a><br/><em>from the LA Times</em></p>
+                    
+                    <p><a class="white" href="http://www.newyorker.com/culture/photo-booth/california-paradise-burning" target="_blank">California: Paradise Burning</a><br/><em>from the New Yorker</em></p>
+				</div>
+			</div>
+			<div class="spacer s0"></div>
+		</section>
 		
 		<div class="spacer s0"></div>
 		<div class="spacer s0"></div>
@@ -95,17 +123,16 @@
 		<div class="spacer s0"></div>
 		<section id="s4" class="anchor-link">
 			<div class="spacer s0"></div>
-			<div id="drought2014-trigger"></div>
-
-			<div id="drought2014-pin">
-				<div class="right">
-					<h2>2014 California Drought</h2>
-
-					<p>In 2014, California has received only 20% of its normal precipitation and had only 18% of its normal snow pack, and has faced a devastating three years of drought (<a class="white"  href="#ref2">2</a>). Right now, 100% of California faces severe drought conditions (<a class="white"  href="#ref3">3</a>).</p>
+			<div id="landsat-trigger"></div>
+			<div id="landsat-pin">
+				<div class="landsat-container">
+                                    <div class="usage-landsat">
+                                        <h3>Loss in reservoir surface area as seen by Landsat satellite imagery</h3>
+					<img src="lake_perimeter.png" alt="landsat reservoir imagery" style="width:800px"/>
+                                        <a href="http://earthexplorer.usgs.gov/" target="_blank"><div class="getinfo">Get the Data</div></a>
+                                    </div>
 				</div>
-				
 			</div>
-
 			<div class="spacer s0"></div>
 		</section>
 		<div class="spacer s0"></div>
@@ -113,37 +140,51 @@
 			<div class="spacer s0"></div>
 			<div id="snowpack-trigger"></div>
 			<div id="snowpack-pin">
-				<div class="right snowpack-container">
+				<div id="snowpack-container">
+					<div class="right">
 					<h2>Drought, snowpack, and reservoir storage</h2>
 
 					<p>Snowpack in California is the primary source of water to reservoirs that serve drinking water, agriculture, and hydroelectric needs.</p>
 					<p>For any given year, less wintertime snowpack results in lower reservoir levels, and less water for consumptive use.</p>
+                                        <p>In 2014, California has received only 20% of its normal precipitation and had only 18% of its normal snow pack, and has faced a devastating three years of drought (<a class="white"  href="#ref2">2</a>). Right now, 100% of California faces severe drought conditions (<a class="white"  href="#ref3">3</a>).</p>
+					</div>
 				</div>
 			</div>
 			<div class="spacer s0"></div>
+			<div class="spacer s0"></div>
+			<div class="spacer s0"></div>
+		</section>
+		<section>
+			<div class="spacer s0"></div>
+			<div class="spacer s0"></div>
 			<div id="snowpack-plot-trigger"></div>
 			<div id="snowpack-plot-pin">
-				<div class="snowpack-container">
+				<div id="snowpack-plot-container">
 					<div class="snowpack-plot">
-                    <h3>Drought, snowpack, and reservoir storage (2011 vs 2014)</h3>
+                    <h3>Drought, snowpack, and reservoir storage (2010 vs 2014)</h3>
 						<iframe width="600" height="400" frameborder="0" seamless scrolling="no" src="https://plot.ly/~lawinslow/3/600/400"></iframe>
                         <a href="https://github.com/USGS-CIDA/CIDA-Viz/blob/master/README.md#drought-data)" target="_blank"><div class="getinfo">Get the Data</div></a>
 					</div>
 				</div>
 			</div>
-            
             <div class="spacer s0"></div>
+
+		</section>
+		<section>
+			<div class="spacer s0"></div>
             <div id="sidebar-trigger"></div>
             <div id="sidebar-pin">
-				<div class="right snowpack-container">
+				<div id="snowpack-info-container">
+					<div class="right">
 					<p>Irrigation, public supply, and domestic freshwater withdrawals are the biggest uses of freshwater in California (<a class="white" href="#ref1">1</a>)</p>
+					</div>
 				</div>
 			</div>
             
 			<div class="spacer s0"></div>
 			<div id="usage-pie-trigger"></div>
 			<div id="usage-pie-pin">
-				<div class="snowpack-container">
+				<div id="usage-pie-container">
 					<div class="usage-pie">
                     	<h3>Freshwater withdrawals in California (2005)</h3>
 						<svg id="usage" class="mypiechart"></svg>
@@ -160,11 +201,13 @@
 			<div id="food-trigger"></div>
 
 			<div id="food-pin">
-				<div class="right higher" style="z-index:99999">
-					<h2>Drought and Food Prices</h2>
+				<div id="ag-info-container" style="z-index:99999">
+					<div class="right">
+						<h2>Drought and Food Prices</h2>
 
-					<p>Agriculture represents the largest fraction of freshwater withdrawals(<a class="white"  href="#ref1">1</a>).</p>
-					<p>For the first time in history, some agricultural areas are not receiving any water for irrigation which is resulting in devastation of historically productive areas. The agricultural output for the state could fall by $3.5 billion this year (<a class="white"  href="#ref3">3</a>).</p>
+						<p>Agriculture represents the largest fraction of freshwater withdrawals(<a class="white"  href="#ref1">1</a>).</p>
+						<p>For the first time in history, some agricultural areas are not receiving any water for irrigation which is resulting in devastation of historically productive areas. The agricultural output for the state could fall by $3.5 billion this year (<a class="white"  href="#ref3">3</a>).</p>
+					</div>
 				</div>
 				<div id="ag-prices" class='higher'>
                 	<div id="graphTitle">
@@ -201,6 +244,7 @@
                     <a href="http://cida.usgs.gov/people/isuftin.html" target="_blank">Ivan Suftin</a> - 
                     <a href="http://cida.usgs.gov/people/thongsav.html" target="_blank">Phethala Thongsavanh</a></p>
                     <p>
+                    <a href="http://sciience.tumblr.com/" target="_blank">Jamon Van Den Hoek</a> - 
                     <a href="http://cida.usgs.gov/people/jiwalker.html" target="_blank">Jordan Walker</a> - 
                     <a href="http://cida.usgs.gov/people/mwernimont.html" target="_blank">Marty Wernimont</a> -
                     <a href="http://cida.usgs.gov/people/lwinslow.html" target="_blank">Luke Winslow</a> -
@@ -216,7 +260,7 @@
                     <p><a id="ref2"></a>2. <a href="http://www.nytimes.com/video/us/100000002980095/californias-extreme-drought-explained.html?module=Search&mabReward=relbias%3Aw%2C%7B%222%22%3A%22RI%3A12%22%7D" target="_blank">New York Times, California's Drought Explained</a></p>
                     <p><a id="ref3"></a>3. <a href="http://droughtmonitor.unl.edu/" target="_blank">US Drought Monitor - The National Drought Mitigation Center</a></p>
                     
-                    <p>Data Sources: <a href="https://github.com/USGS-CIDA/CIDA-Viz/blob/master/README.md#drought-data)" target="_blank">Drought</a>, <a href="https://github.com/USGS-CIDA/CIDA-Viz/blob/master/README.md#reservoir-data" target="_blank">reservoir</a>, <a href="https://github.com/USGS-CIDA/CIDA-Viz/blob/master/README.md#snow-data" target="_blank">snow</a>, <a href="http://pubs.er.usgs.gov/publication/cir1344" target="_blank">withdrawal</a>, <a href="https://github.com/USGS-CIDA/CIDA-Viz/blob/master/README.md#economic-data" target="_blank">food prices</a></p>
+                    <p>Data Sources: <a href="https://github.com/USGS-CIDA/CIDA-Viz/blob/master/README.md#drought-data)" target="_blank">Drought</a>, <a href="https://github.com/USGS-CIDA/CIDA-Viz/blob/master/README.md#reservoir-data" target="_blank">reservoir</a>, <a href="https://github.com/USGS-CIDA/CIDA-Viz/blob/master/README.md#snow-data" target="_blank">snow</a>, <a href="http://pubs.er.usgs.gov/publication/cir1344" target="_blank">withdrawal</a>, <a href="https://github.com/USGS-CIDA/CIDA-Viz/blob/master/README.md#economic-data" target="_blank">food prices</a>, <a href="http://earthexplorer.usgs.gov/" target="_blank">Landsat imagery</a></p>
                     <p>&nbsp;&nbsp;</p>
                     
                     </div>
@@ -224,8 +268,14 @@
                    <div id="open" class="boxy">
                    
                     <p><strong>Open data and tools were used to create these drought visualizations.</strong></p>
-                    <p>You can access the data, methods, tools, and code used to create this, and contribute, by visiting <a href="https://github.com/USGS-CIDA/CIDA-Viz" target="_blank">https://github.com/USGS-CIDA/CIDA-Viz</a></p>
-                    <p><strong>Fork it and expand the story!</strong></p>
+					<p>All data, methods, tools, and code used to create this are open and available <a href="https://github.com/USGS-CIDA/CIDA-Viz" target="_blank">here, on Github.</a>
+					<br />Github allows anyone to access, make a personal copy, and edit any open project. This process of open sharing and collaboration is called forking.</p>
+                    <p><center><strong>Fork it and expand the story!</strong></center></p>
+                    
+                
+                </div>
+				
+				<div id="open" class="boxy">
                     <p> This information is preliminary and is subject to revision. It is being provided to meet the need for timely best science. The information is provided on the condition that neither the U.S. Geological Survey nor the U.S. Government may be held liable for any damages resulting from the authorized or unauthorized use of the information.  </p>
                 
                 </div>

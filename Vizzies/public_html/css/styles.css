@@ -39,13 +39,18 @@ body{height:100%;}
 }
 
 #time-indicator {
+	display: none; /* start hidden */
 	padding: 5px;
 	position: fixed;
 	width: 400px;
 	bottom: 20px;
+	right: 50px;
 	text-align: center;
 	font-family: "Open Sans";
-	font-size: 2em;
+	font-size: 1.75em;
+	background:rgb(80,146,204);
+	color:#fff;
+	-webkit-transform: translateZ(0);
 }
 
 #res-plot-container {
@@ -60,6 +65,7 @@ body{height:100%;}
 #res-plot{
 	height: 100%;
 	width: 100%;
+	-webkit-transform: translateZ(0);
 }
 
 .res-plot-row {
@@ -84,7 +90,9 @@ svg {
 }
 
 #ag-prices {
-  margin: 20px;
+	position: relative;
+	top: -250px;
+	margin: 20px;
 }
 
 #ag-prices svg {
@@ -92,19 +100,35 @@ svg {
   width: 550px;
 }
 
-.snowpack-container {
+#snowpack-container,
+#snowpack-plot-container,
+#snowpack-info-container,
+#usage-pie-container{
 	position: relative;
-	right: -55%;
-	top: -200px;
+	top: -250px;
+	-webkit-transform: translateZ(0);
 }
-  
+
+.landsat-container {
+	position: relative;
+	margin-left: 20px;
+	top: -250px;
+	-webkit-transform: translateZ(0);
+}
 #feature1 .left {
 	top: -200px;
+}
+
+#ag-info-container  {
+	position: relative;
+	top: -100px;
+	-webkit-transform: translateZ(0);
 }
 
 .higher {
 	position: relative;
 	top: -100px;
+	-webkit-transform: translateZ(0);
 }
   
 header,
@@ -253,10 +277,20 @@ a.white{color:rgb(250,250,250);}
 	padding:0;}
 	
 .usage-pie{
+	position: absolute;
 	background:rgba(255,255,255,.8);
 	width:490px;
 	min-height:510px;
 	padding:5px 5px 10px 5px;
+	right: 35px;
+	text-align:center;
+	-webkit-transform: translateZ(0);}
+
+.usage-landsat{
+	background:rgba(255,255,255,.8);
+	width:830px;
+	min-height:434px;
+	padding:15px 15px 15px 15px;
 	text-align:center;
 	-webkit-transform: translateZ(0);}
 	
@@ -266,13 +300,15 @@ a.white{color:rgb(250,250,250);}
 	margin:10px 0 5px 0;}
 	
 .snowpack-plot{
+	position: absolute;
 	text-align:center;
 	background:#fff;
 	width:610px;
+	right: 35px;
 	padding:5px 5px 10px 5px;
 	-webkit-transform: translateZ(0);
 	margin-top:80px;}
-	
+
 #graphTitle{
 	background:rgba(255,255,255,.9);
 	width:570px;
@@ -310,6 +346,7 @@ footer{padding-top:5%;
 
 /* //// */
 #links-anchor {
+	display: none;
 	position: fixed;
 	right: 5px;
 	top: 40%;

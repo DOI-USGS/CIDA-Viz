@@ -1,5 +1,5 @@
 library(rjson)
-week_time <- seq.POSIXt(as.POSIXlt('2011-01-04'), as.POSIXlt('2014-09-20'), by = 'week')
+week_time <- seq.POSIXt(as.POSIXlt('2011-01-04'), as.POSIXlt(Sys.time()), by = 'week')
 library(jsonlite)
 json_res <- jsonlite::fromJSON('../Data/ca_reservoirs.json')
 #yes, this is goofy
