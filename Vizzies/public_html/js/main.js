@@ -156,46 +156,43 @@ $(document).ready(function () {
 			activateAnchorLink(1);
 		})
 		.addTo(controller);
-	new ScrollScene({triggerElement: "#tahoe-trigger", duration: 3400})
-		.setPin("#tahoe-pin")
-		.addTo(controller);
-	new ScrollScene({triggerElement: "#drilling-trigger", duration: 3400})
+	new ScrollScene({triggerElement: "#drilling-trigger", duration: 0})
 		.setPin("#drilling-pin")
 		.addTo(controller);
 	// Scene 1 (reservoirs) built in response to ajax
-	new ScrollScene({triggerElement: "#drought2014-trigger", duration: 5000})
+	new ScrollScene({triggerElement: "#drought2014-trigger", duration: 1})
 		.setPin("#drought2014-pin")
 		.on("enter", function (e) {
 			panAndZoom(caliCenterCenter, caliZoom);
 			activateAnchorLink(4);
 		})
 		.addTo(controller);
-	new ScrollScene({triggerElement: "#snowpack-trigger", duration: 5000})
+	new ScrollScene({triggerElement: "#snowpack-trigger", duration: 1})
 		.setPin("#snowpack-pin")
 		.on("enter", function (e) {
 			panAndZoom(caliLeftCenter, caliZoom);
 			activateAnchorLink(5);
 		})
 		.addTo(controller);
-	new ScrollScene({triggerElement: "#snowpack-plot-trigger", duration: 2500})
+	new ScrollScene({triggerElement: "#snowpack-plot-trigger", duration: 1})
 		.setPin("#snowpack-plot-pin")
 		.on("enter", function (e) {
 			panAndZoom(caliLeftCenter, caliZoom);
 		})
 		.addTo(controller);
-	new ScrollScene({triggerElement: "#sidebar-trigger", duration: 2500})
+	new ScrollScene({triggerElement: "#sidebar-trigger", duration: 1})
 		.setPin("#sidebar-pin")
 		.on("enter", function (e) {
 			panAndZoom(caliLeftCenter, caliZoom);
 		})
 		.addTo(controller);
-	new ScrollScene({triggerElement: "#usage-pie-trigger", duration: 2500})
+	new ScrollScene({triggerElement: "#usage-pie-trigger", duration: 1})
 		.setPin("#usage-pie-pin")
 		.on("enter", function (e) {
 			panAndZoom(caliLeftCenter, caliZoom);
 		})
 		.addTo(controller);
-	new ScrollScene({triggerElement: "#food-trigger", duration: 5000})
+	new ScrollScene({triggerElement: "#food-trigger", duration: 1})
 		.setPin("#food-pin")
 		.on("enter", function (e) {
 			panAndZoom(caliCenterCenter, caliZoom);

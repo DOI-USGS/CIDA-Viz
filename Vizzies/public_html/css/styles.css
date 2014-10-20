@@ -7,6 +7,9 @@ html{height:100%;}
 
 body{height:100%;}
 
+#reservoir-pin{
+	top:-375px;}
+
 .map-legend {
 	position: fixed;
 	top: 15px;
@@ -170,6 +173,12 @@ footer{	height:100%;
 		
 .right h2{color:#fff;
 		margin-bottom:5px;}
+		
+#google{
+	background:rgba(255,255,255,.8);
+	width:31%;
+	margin:33px;
+	}
 			
 .bottom{width:60%;
 		margin: auto;
@@ -189,6 +198,7 @@ h1#bottom{
 	color:rgb(80,146,204);
 	background:rgba(255,255,255,.7);
 	padding:10px;
+	text-align:center;
 }
 			
 .bottom p{
@@ -260,7 +270,8 @@ a.white{color:rgb(250,250,250);}
 	background:#fff;
 	width:610px;
 	padding:5px 5px 10px 5px;
-	-webkit-transform: translateZ(0);}
+	-webkit-transform: translateZ(0);
+	margin-top:80px;}
 	
 #graphTitle{
 	background:rgba(255,255,255,.9);
