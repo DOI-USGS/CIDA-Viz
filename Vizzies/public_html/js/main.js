@@ -374,35 +374,35 @@ $(document).ready(function () {
 	var ca_consume = [
 		{
 			key: "Public supply",
-			y: 21.25
+			y: 16.6
 		},
 		{
 			key: "Domestic",
-			y: 1.48
+			y: 0.5
 		},
 		{
 			key: "Irrigation",
-			y: 74.18
+			y: 60.7
 		},
 		{
 			key: "Livestock",
-			y: 0.6
+			y: 0.5
 		},
 		{
 			key: "Aquaculture",
-			y: 1.96
+			y: 2.6
 		},
 		{
 			key: "Industrial",
-			y: 0.22
+			y: 1.0
 		},
 		{
 			key: "Mining",
-			y: 0.16
+			y: 0.7
 		},
 		{
 			key: "Thermoelectric",
-			y: 0.15
+			y: 17.4
 		}
 	];
 
