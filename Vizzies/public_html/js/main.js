@@ -196,13 +196,13 @@ $(document).ready(function () {
 			panAndZoom(caliLeftCenter, caliZoom);
 		})
 		.addTo(controller);
-	new ScrollScene({triggerElement: "#food-trigger", duration: 500})
-		.setPin("#food-pin")
-		.on("enter", function (e) {
-			panAndZoom(caliCenterCenter, caliZoom);
-			activateAnchorLink(6);
-		})
-		.addTo(controller);
+	// new ScrollScene({triggerElement: "#food-trigger", duration: 500})
+	// 	.setPin("#food-pin")
+	// 	.on("enter", function (e) {
+	// 		panAndZoom(caliCenterCenter, caliZoom);
+	// 		activateAnchorLink(6);
+	// 	})
+	// 	.addTo(controller);
 	new ScrollScene({triggerElement: "#credits-trigger", duration: $(window).height()})
 		.on("enter", function (e) {
 			panAndZoom(continentalCenter, continentalZoom);
