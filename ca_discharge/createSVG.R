@@ -18,7 +18,7 @@ add_CA <- function(g_id){
   return(g_id)
 }
 
-createSVG <- function(points){
+createSVG <- function(points, file_nm){
   
   #points has
   
@@ -106,5 +106,5 @@ createSVG <- function(points){
   doc <- addChildren(root_nd,c(g_id, tt))
   
   
-  saveXML(doc, file = '/Users/jread/Desktop/test_svg.svg')
+  saveXML(doc, file = file_nm)
 }
