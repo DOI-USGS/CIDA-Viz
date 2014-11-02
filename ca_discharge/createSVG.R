@@ -74,8 +74,8 @@ text{
                   
                   function ShowTooltip(evt, mouseovertext)
 {
-                  tooltip.setAttributeNS(null,"x",evt.clientX+11);
-                  tooltip.setAttributeNS(null,"y",evt.clientY+27);
+                  tooltip.setAttributeNS(null,"x",evt.clientX+8);
+                  tooltip.setAttributeNS(null,"y",evt.clientY+4);
                   tooltip.firstChild.data = mouseovertext;
                   tooltip.setAttributeNS(null,"visibility","visible");
 }
@@ -138,14 +138,26 @@ text{
   bel_ave <- newXMLNode("text", newXMLTextNode('Below average flow'),
                         attrs = c('text-anchor'="middle", transform="translate(283,283)rotate(315)"))
   
-  x_ax <- newXMLNode("text", newXMLTextNode('Historical average flow (m^3/day)'),
-                     attrs = c('text-anchor'="middle", transform="translate(265,538)"))
+  txt_n <- newXMLNode("tspan",newXMLTextNode('Historical average streamflow (m'))
+  txt_sp <- newXMLNode("tspan", newXMLTextNode('3'), attrs = c('baseline-shift' = "super"))
+  txt_n <- addChildren(txt_n, txt_sp)
+  txt_c <- newXMLTextNode('/day{check units!})')
   
-  y_ax <- newXMLNode("text", newXMLTextNode('Current flow (m^3/day)'),
+  x_ax <- newXMLNode("text",
+                     attrs = c('text-anchor'="middle", transform="translate(265,538)"))
+  x_ax <- addChildren(x_ax,txt_n, txt_c)
+  txt_n <- newXMLNode("tspan",newXMLTextNode('Current streamflow (m'))
+  txt_sp <- newXMLNode("tspan", newXMLTextNode('3'), attrs = c('baseline-shift' = "super"))
+  txt_n <- addChildren(txt_n, txt_sp)
+  txt_c <- newXMLTextNode('/day{check units!})')
+  
+  y_ax <- newXMLNode("text",
                      attrs = c('text-anchor'="middle", transform="translate(13,265)rotate(270)"))
+  y_ax <- addChildren(y_ax, txt_n, txt_c)
   
   tt <- newXMLNode("text", newXMLTextNode('Tooltip'), parent = root_nd, 
-                   attrs = c(class="label", id="tooltip", x="0", y="0", visibility="hidden"))
+                   attrs = c(class="label", id="tooltip", x="0", y="0", 
+                             visibility="hidden"))
                    
   doc <- addChildren(root_nd,c(g_id, tt, abv_ave, bel_ave, x_ax, y_ax))
   
