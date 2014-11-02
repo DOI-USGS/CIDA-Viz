@@ -1,10 +1,8 @@
-add_CA <- function(g_id, points){
-  source('drought_UTM.R')
-  source('get_CA_paths.R')
+add_CA <- function(g_id, points, x_crd, y_crd){
   time_st = "20140916"
   lyr_info <- drought_UTM(time_st)
   
-  g_id <- get_CA_paths(g_id, lyr_info, x_crd=NULL, y_crd=NULL)
+  g_id <- get_CA_paths(g_id, lyr_info, x_crd, y_crd)
   
   for (i in 1:length(points[[1]])){
     site_id <- paste0('site_',points$id[[i]])
@@ -13,6 +11,9 @@ add_CA <- function(g_id, points){
     nwis_mo <- paste0('nwis_',points$id[[i]],'.mouseover')
     nwis_me <- paste0('nwis_',points$id[[i]],'.mouseout')
     mouse_move_txt <- paste0("ShowTooltip(evt, '", points$text[[i]], "')")
+    WGS_pnt <- c(-118, 34)#points$sitex[[i]], points$sitey[[i]])
+    rel_pnt <- WGS84_to_svg(WGS_pnt, lyr_info)
+    #####
     pth <- newXMLNode("circle", attrs = c(id = site_id, 
                                           cx=points$sitex[[i]], cy=points$sitey[[i]], r = "3",
                                           style = "fill:rgb(40%,40%,40%); fill-opacity: 0.2",
@@ -37,8 +38,9 @@ add_usgs <- function(g_id){
 }
 
 createSVG <- function(points, file_nm){
-  
-  #points has
+  source('surface_init.R')
+  source('drought_UTM.R')
+  source('get_CA_paths.R')
   fig_w = '550'
   fig_h = '550'
   l_mar = '23'
@@ -58,80 +60,28 @@ createSVG <- function(points, file_nm){
   inset_spc_x = as.character(as.numeric(inset_spc)+as.numeric(l_mar))
   def_opacity = "0.3"
   library(XML)
-  
-  doc <- xmlParse(paste0('<?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" onload="init(evt)" width="',fig_w,'" height="',fig_h,'">
-                  <style>
 
-text{
-                  font-size: 16px;
-                  cursor: default;
-                  font-family: Tahoma, Geneva, sans-serif;
-                  }
-      .tooltip{
-		font-size: 12px;
-}
-                  .caption{
-                  font-size: 12px;
-                  font-family: Tahoma, Geneva, sans-serif;
-                  }
-                  </style>
-                  
-                  <script type="text/ecmascript">
-                  <![CDATA[
-                  
-                  function init(evt)
-{
-                  if ( window.svgDocument == null )
-{
-                  svgDocument = evt.target.ownerDocument;
-}
-                  
-                  tooltip = svgDocument.getElementById("tooltip");
-}
-                  
-                  function ShowTooltip(evt, mouseovertext)
-{
-                  tooltip.setAttributeNS(null,"x",evt.clientX+8);
-                  tooltip.setAttributeNS(null,"y",evt.clientY+4);
-                  tooltip.firstChild.data = mouseovertext;
-                  tooltip.setAttributeNS(null,"visibility","visible");
-}
-                  
-                  function HideTooltip(evt)
-{
-                  tooltip.setAttributeNS(null,"visibility","hidden");
-}
-                  function MakeTransparent(evt) {
-                  evt.target.setAttributeNS(null,"opacity","', def_opacity,'");
-                  }
-                  
-                  function MakeOpaque(evt) {
-                  evt.target.setAttributeNS(null,"opacity","1");
-                  }
-                  
-                  ]]>
-                  </script></svg>'))
-  
-  root_nd <- xmlRoot(doc)
-  
-  g_id <- newXMLNode("g",parent=root_nd, attrs = c(id="surface0"))
-  
-  
+  g_id <- surface_init(fig_w,fig_h, def_opacity)
 
+  root_nd <- xmlRoot(g_id)
   rect_1 <- newXMLNode("rect",parent=g_id, attrs = c(id="box1", x=l_mar, y=t_mar, 
-                                                     width=main_dim, height=main_dim, 
-                                                     style="fill: rgb(100%,100%,100%);fill-opacity: 1; stroke: none;"))
+                        width=main_dim, height=main_dim, 
+                        style="fill: rgb(100%,100%,100%);fill-opacity: 1; stroke: none;"))
   rect_2 <- newXMLNode("rect",parent=g_id, attrs = c(id="box2", x=l_mar, y=t_mar, 
-                                                     width=main_dim, height=main_dim, 
-                                                     style="stroke: black; fill: none;"))
+                        width=main_dim, height=main_dim, 
+                        style="stroke: black; fill: none;"))
   rect_3 <- newXMLNode("rect",parent=g_id, attrs = c(id="box3", x=inset_spc_x, y=inset_spc_y, 
-                                                     width=inset_dim, height=inset_dim, 
-                                                     style="stroke: grey; fill: none; stroke-opacity:0.3;"))
+                        width=inset_dim, height=inset_dim, 
+                        style="stroke: grey; fill: none; stroke-opacity:0.3;"))
   tri <- newXMLNode("polygon", parent=g_id, attrs = c(points=tri_pts,
                         style="fill:grey;stroke:none;fill-opacity:0.1;"))
+  
   addChildren(g_id,c(rect_1,rect_2, rect_3, tri))
-  g_id <- add_CA(g_id, points)
+  
+  x_crd <- c(as.numeric(inset_spc_x), as.numeric(inset_spc_x)+as.numeric(inset_dim))
+  y_crd <- c(as.numeric(inset_spc_y), as.numeric(inset_spc_y)+as.numeric(inset_dim))
+  
+  g_id <- add_CA(g_id, points, x_crd, y_crd)
   
   for (i in 1:length(points[[1]])){
     
@@ -140,13 +90,16 @@ text{
     site_me <- paste0('site_',points$id[[i]],'.mouseout')
     
     mouse_move_txt <- paste0("ShowTooltip(evt, '", points$text[[i]], "')")
-    pnt <- newXMLNode("circle", parent=g_id, attrs = c(id = nwis_id, cx=points$cx[[i]], cy=points$cy[[i]],
-                                                       r=points$r[[i]], fill="#4169E1", opacity=def_opacity,
+    pnt <- newXMLNode("circle", parent=g_id, attrs = c(id = nwis_id, cx=points$cx[[i]], 
+                                                       cy=points$cy[[i]],
+                                                       r=points$r[[i]], fill="#4169E1", 
+                                                       opacity=def_opacity,
                                                        onmouseover="MakeOpaque(evt)",
                                                        onmousemove=mouse_move_txt,
                                                        onmouseout="MakeTransparent(evt); HideTooltip(evt)"))
     setter <- newXMLNode('set', attrs = c(
-      attributeName="opacity", to="1", begin=site_mo,  end=site_me))
+              attributeName="opacity", to="1", 
+              begin=site_mo,  end=site_me))
     pnt <- addChildren(pnt, c(setter))
     addChildren(g_id,c(pnt))
   }
