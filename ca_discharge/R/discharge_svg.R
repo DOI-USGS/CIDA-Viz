@@ -1,19 +1,10 @@
 add_CA <- function(g_id, points){
-  pth_1 <- newXMLNode("path", attrs = c(style="fill:none;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;", 
-                               d="M 160.636719 148.492188 L 85.765625 78.800781 L 83.960938 77.363281 L 83.796875 23.273438 ", transform="translate(10,10)"))
-  pth_2 <- newXMLNode("path", attrs = c(style="fill:none;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;",
-                                        d="M 160.636719 148.492188 L 85.765625 78.800781 L 83.960938 77.363281 L 83.796875 23.273438 ", transform="translate(10,10)"))
-  pth_3 <- newXMLNode("path", attrs = c(style="fill:none;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;",
-                                        d="M 160.636719 148.492188 L 167.03125 162.347656 L 162.027344 170.660156 L 162.273438 171.582031 L 159.570312 182.257812 L 162.847656 184.722656 L 159.242188 189.441406 ", transform="translate(10,10)"))
-  pth_4 <- newXMLNode("path", attrs = c(style="fill:none;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;",
-                                        d="M 159.242188 189.441406 L 125.046875 191.085938 L 117.582031 176.40625 L 106.921875 168.300781 L 92.574219 160.191406 L 75.023438 155.46875 L 73.628906 145.71875 L 56.574219 121.1875 L 57.640625 113.902344 L 49.6875 108.359375 L 48.375 98.917969 L 50.34375 98.917969 L 53.949219 103.945312 L 51.324219 97.789062 L 51.734375 94.195312 L 49.933594 91.9375 L 48.703125 96.042969 L 43.371094 94.605469 L 41.8125 92.554688 L 32.792969 80.238281 L 30.085938 67.097656 L 22.296875 54.578125 L 24.757812 37.539062 L 24.019531 23.375 ", transform="translate(10,10)"))
-  pth_5 <- newXMLNode("path", attrs = c(style="fill:none;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;",
-                                        d="M 83.796875 23.273438 L 37.550781 23.273438 L 24.019531 23.375 ", transform="translate(10,10)"))
-  pth_6 <- newXMLNode("path", attrs = c(style="fill-rule:nonzero;fill:rgb(100%,82.745098%,52.156863%);fill-opacity:0.588235;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke:rgb(30.196078%,30.196078%,30.196078%);stroke-opacity:1;stroke-miterlimit:10;",
-                                        d="M 157.261719 145.480469 L 149.464844 150.140625 L 148.332031 151.480469 L 146.953125 156.382812 L 148.261719 161.128906 L 151.523438 165.761719 L 153.320312 169.929688 L 152.585938 178.488281 L 155.949219 184.621094 L 154.96875 188.644531 L 154.515625 189.832031 L 139.824219 191.402344 L 131.957031 160.921875 L 125.769531 152.257812 L 124.320312 147.902344 L 123.816406 141.390625 L 124.3125 137.238281 L 126 132.242188 L 129.527344 127.351562 L 135.167969 124.078125 Z ", transform="translate(10,10)"))
-  pth_7 <- newXMLNode("path", attrs = c(style="fill-rule:nonzero;fill:rgb(100%,100%,26.666667%);fill-opacity:0.588235;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke:rgb(30.196078%,30.196078%,30.196078%);stroke-opacity:1;stroke-miterlimit:10;",
-                                        d="M 154.515625 189.832031 L 155.949219 184.621094 L 152.585938 178.488281 L 153.320312 169.929688 L 151.523438 165.761719 L 148.261719 161.128906 L 146.953125 156.382812 L 148.332031 151.480469 L 149.464844 150.140625 L 157.261719 145.480469 L 160.691406 148.800781 L 160.679688 151.109375 L 163.023438 154.003906 L 164.222656 158.542969 L 167.878906 162.039062 L 163.542969 165.183594 L 162.089844 167.9375 L 162.253906 174.753906 L 159.378906 177.40625 L 159.644531 183.082031 L 163.050781 185.167969 L 162.21875 189.011719 Z ", transform="translate(10,10)"))
-  g_id <- addChildren(g_id,c(pth_1, pth_2, pth_3, pth_4, pth_5, pth_6, pth_7))
+  source('drought_UTM.R')
+  source('get_CA_paths.R')
+  time_st = "20140916"
+  lyr_info <- drought_UTM(time_st)
+  
+  g_id <- get_CA_paths(g_id, lyr_info, x_crd=NULL, y_crd=NULL)
   
   for (i in 1:length(points[[1]])){
     site_id <- paste0('site_',points$id[[i]])
