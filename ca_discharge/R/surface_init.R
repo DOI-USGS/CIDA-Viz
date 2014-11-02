@@ -58,6 +58,7 @@ surface_init <- function(fig_w,fig_h, def_opacity){
   root_nd <- xmlRoot(doc)
   
   g_id <- newXMLNode("g",parent=root_nd, attrs = c(id="surface0"))
+
   
   return(g_id)
 }
