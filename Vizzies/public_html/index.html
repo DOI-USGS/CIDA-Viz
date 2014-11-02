@@ -78,7 +78,7 @@
             <div class="dash-container">
             
             	<div class="dash">
-                	<p id="title">Reservoir Capacity (%)</p>
+                	<p id="title">Reservoir volume as % of total capacity</p>
                 	<p id="first">100</p>
                     <p id="second">50</p>
                     <p id="third">25</p>
@@ -97,8 +97,7 @@
 				</table>
                 
                 <div id="graphinfo">
-                    <p>Reservoir volume as a percent of total capactiy is shown for 2011-2014. Bar widths are proportional to reservoir maximum capacity. Reservoirs are ordered from low elevation (left) to high elevation (right).</p>
-                    <p>Drought data source: <a  class="blue" href="http://droughtmonitor.unl.edu/" target="_blank">U.S. Drought Monitor</a>. Reservoir data sources: <a  class="blue" href="http://www.usbr.gov/" target="_blank">U.S. Bureau of Reclamation</a>, <a  class="blue" href="http://www.usbr.gov/" target="_blank">U.S. Army Corps of Engineers</a>, <a  class="blue" href="http://www.water.ca.gov/" target="_blank">California Department of Water Resources</a>, and <a  class="blue" href="https://github.com/USGS-CIDA/CIDA-Viz/blob/master/ca_reservoirs/Data/ca_reservoirs.json" target="_blank">more</a>, accessed from the <a  class="blue" href="http://cdec.water.ca.gov/" target="_blank">California Data Exchange<a/>.</p>
+                    <p>Reservoir volume as a percent of total capactiy is shown for 2011-2014. Bar widths are proportional to reservoir maximum capacity. Reservoirs are ordered from low elevation (left) to high elevation (right). On the left, reservoirs locations are mapped. The area of the circles shown is proportional to reservoir volume at that date. Drought data providers: <a  class="blue" href="http://droughtmonitor.unl.edu/" target="_blank">U.S. Drought Monitor</a>. Reservoir data providers: <a  class="blue" href="http://www.usbr.gov/" target="_blank">U.S. Bureau of Reclamation</a>, <a  class="blue" href="http://www.usbr.gov/" target="_blank">U.S. Army Corps of Engineers</a>, <a  class="blue" href="http://www.water.ca.gov/" target="_blank">California Department of Water Resources</a>, and <a  class="blue" href="https://github.com/USGS-CIDA/CIDA-Viz/blob/master/ca_reservoirs/Data/ca_reservoirs.json" target="_blank">more</a>; data accessed from the <a  class="blue" href="http://cdec.water.ca.gov/" target="_blank">California Data Exchange<a/>.</p>
                     
                     <a href="https://github.com/USGS-CIDA/CIDA-Viz/blob/master/README.md#reservoir-data" target="_blank"><div class="getinfo">Get the Data</div></a>
                 </div>
@@ -133,7 +132,7 @@
 
 					<p>Snowpack in California is the primary source of water to reservoirs that serve drinking water, agriculture, and hydroelectric needs.</p>
 					<p>For any given year, less wintertime snowpack results in lower reservoir levels, and less water for consumptive use.</p>
-                                        <p>In 2014, California has received only 20% of its normal precipitation and had only 18% of its normal snow pack, and has faced a devastating three years of drought (<a class="white"  href="http://www.water.ca.gov/news/newsreleases/2014/050114.pdf">California Department of Water Resources</a>). Right now, 100% of California faces severe drought conditions (<a class="white"  href="http://droughtmonitor.unl.edu/">U.S. Drought Monitor</a>).</p>
+                                        <p>In 2014, California has received only 20% of its normal precipitation and had only 18% of its normal snow pack, with the state now facing three years of devastating drought (<a class="white"  href="http://www.water.ca.gov/news/newsreleases/2014/050114.pdf">California Department of Water Resources</a>). Currently, more than 95% of California is experiencing severe drought conditions (<a class="white"  href="http://droughtmonitor.unl.edu/">U.S. Drought Monitor</a>).</p>
 					</div>
 				</div>
 			</div>
@@ -165,7 +164,7 @@
 				<div id="snowpack-info-container">
 					<div class="right">
                     <h2>Withdrawal</h2>
-					<p>Irrigation, public supply, and thermoelectric withdrawals are the biggest uses of freshwater in California (<a class="white" href="#ref1">U.S. Geological Survey</a>).</p>
+					<p>Irrigation, thermoelectric power supply, and public supply withdrawals are the biggest uses of freshwater in California (<a class="white" href="#ref1">U.S. Geological Survey</a>).</p>
 					</div>
 				</div>
 			</div>
@@ -176,6 +175,7 @@
 				<div id="usage-pie-container">
 					<div class="usage-pie">
                     	<h3>Water withdrawals in California (2010)</h3>
+                        <h5>Data provider: <a href="http://ca.water.usgs.gov/water_use/2010-california-water-use.html" target="_blank">U.S. Geological Survey</a></h5>
 						<svg id="usage" class="mypiechart"></svg>
                         <a href="http://ca.water.usgs.gov/water_use/2010-california-water-use.html" target="_blank"><div class="getinfo">Get the Data</div></a>
 					</div>
