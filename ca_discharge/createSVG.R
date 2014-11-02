@@ -46,8 +46,10 @@ createSVG <- function(points, file_nm){
   doc <- xmlParse(paste0('<?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" onload="init(evt)" width="550" height="550">
                   <style>
+
 text{
                   font-size: 16px;
+                  cursor: default;
                   font-family: Tahoma, Geneva, sans-serif;
                   }
       .tooltip{
@@ -133,9 +135,9 @@ text{
     addChildren(g_id,c(pnt))
   }
   
-  abv_ave <- newXMLNode("text", newXMLTextNode('Above average flow'),
+  abv_ave <- newXMLNode("text", newXMLTextNode('Above average streamflow'),
                         attrs = c('text-anchor'="middle", transform="translate(263,263)rotate(315)"))
-  bel_ave <- newXMLNode("text", newXMLTextNode('Below average flow'),
+  bel_ave <- newXMLNode("text", newXMLTextNode('Below average streamflow'),
                         attrs = c('text-anchor'="middle", transform="translate(283,283)rotate(315)"))
   
   txt_n <- newXMLNode("tspan",newXMLTextNode('Historical average streamflow (m'))
