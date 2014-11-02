@@ -39,12 +39,28 @@ add_usgs <- function(g_id){
 createSVG <- function(points, file_nm){
   
   #points has
-  
+  fig_w = '550'
+  fig_h = '550'
+  l_mar = '23'
+  t_mar = '0'
+  b_mar = '23'
+  r_mar = '0'
+  inset_dim = '150'
+  main_dim = '500'
+  tri_pts <- paste0(l_mar,',',
+                    as.character(as.numeric(t_mar)+as.numeric(main_dim)),',',
+                    as.character(as.numeric(l_mar)+as.numeric(main_dim)),',',
+                    t_mar,',',
+                    as.character(as.numeric(l_mar)+as.numeric(main_dim)),',',
+                    as.character(as.numeric(t_mar)+as.numeric(main_dim)))
+  inset_spc = '10' # from edge of main axis
+  inset_spc_y = as.character(as.numeric(inset_spc)+as.numeric(t_mar))
+  inset_spc_x = as.character(as.numeric(inset_spc)+as.numeric(l_mar))
   def_opacity = "0.3"
   library(XML)
   
   doc <- xmlParse(paste0('<?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" onload="init(evt)" width="550" height="550">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" onload="init(evt)" width="',fig_w,'" height="',fig_h,'">
                   <style>
 
 text{
@@ -103,16 +119,16 @@ text{
   
   
 
-  rect_1 <- newXMLNode("rect",parent=g_id, attrs = c(id="box1", x="18", y="18", 
-                                                     width="504", height="504", 
+  rect_1 <- newXMLNode("rect",parent=g_id, attrs = c(id="box1", x=l_mar, y=t_mar, 
+                                                     width=main_dim, height=main_dim, 
                                                      style="fill: rgb(100%,100%,100%);fill-opacity: 1; stroke: none;"))
-  rect_2 <- newXMLNode("rect",parent=g_id, attrs = c(id="box2", x="18", y="18", 
-                                                     width="504", height="504", 
+  rect_2 <- newXMLNode("rect",parent=g_id, attrs = c(id="box2", x=l_mar, y=t_mar, 
+                                                     width=main_dim, height=main_dim, 
                                                      style="stroke: black; fill: none;"))
-  rect_3 <- newXMLNode("rect",parent=g_id, attrs = c(id="box3", x="25", y="25", 
-                                                     width="165", height="185", 
+  rect_3 <- newXMLNode("rect",parent=g_id, attrs = c(id="box3", x=inset_spc_x, y=inset_spc_y, 
+                                                     width=inset_dim, height=inset_dim, 
                                                      style="stroke: grey; fill: none; stroke-opacity:0.3;"))
-  tri <- newXMLNode("polygon", parent=g_id, attrs = c(points="18,522,522,18,522,522",
+  tri <- newXMLNode("polygon", parent=g_id, attrs = c(points=tri_pts,
                         style="fill:grey;stroke:none;fill-opacity:0.1;"))
   addChildren(g_id,c(rect_1,rect_2, rect_3, tri))
   g_id <- add_CA(g_id, points)
@@ -156,7 +172,7 @@ text{
   txt_c <- newXMLTextNode('/day{check units!})')
   
   y_ax <- newXMLNode("text",
-                     attrs = c('text-anchor'="middle", transform="translate(13,265)rotate(270)"))
+                     attrs = c('text-anchor'="middle", transform=paste0("translate(",l_mar,",265)rotate(270)")))
   y_ax <- addChildren(y_ax, txt_n, txt_c)
   
   tt <- newXMLNode("text", newXMLTextNode('Tooltip'), parent = root_nd, 
