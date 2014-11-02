@@ -43,55 +43,23 @@
             	<div class="logo usgs"><img src="usgs_logo.png" alt="usgs logo"/></div>
                 <div class="logo cida"><img src="cida_logo.png" alt="usgs logo"/></div>
 				<h1>California drought, visualized with open data</h1>
-				<p>California is experiencing its worst drought in recorded history.</p>
+				<p>Scroll down to learn more.</p>
 			</div>
             
             <div id="instructions">
             
-            	<p>Please scroll to learn more</p>	
+            <p>The State of California is experiencing one of the most severe droughts on record, and the drought has implications for citizens of California and beyond. Many state, federal, and tribal agencies make routine observations of the water cycle. These data can be visualized to help understand the effect of drought on rivers, streams, lakes, and reservoirs. Below, learn more about water use and changes in the water cycle due to the current drought in California.
+            
+            <p>The data presented here are drawn from free and publicly accessible sources. In addition, the analytical, graphical, and software tools used are open-source and available for public re-use.</p>
+            
+            <p>For more information about drought and science-based decision making in California, visit the <a href="http://ca.water.usgs.gov/data/drought/" target="_blank">USGS California Water Science Center webpage</a>.
             
             </div>
 			<div class="spacer s1"></div>
 		</header><!--header-->
 		<div class="spacer s0"></div>
-
-		<section id="s2" class="anchor-link">
-			<div id="tahoe-trigger"></div>
-			<div id="tahoe-pin">
-				<div class="left">
-					<p><a href="http://on.rgj.com/1pfIphy" target="_blank">Drought: Tahoe will dip below its natural rim this month </a><br/><em>from the Reno Gazette Journal</em></p>
-                    
-                    <p><a href="http://www.latimes.com/local/lanow/la-me-ln-drought-conditions-forecast-california-20140924-story.html" target="_blank">Parched California expected to miss out on typical fall rains</a><br/><em>from the LA Times</em></p>
-                    
-                    <p><a href="http://www.stanforddaily.com/2014/09/25/water-usage-at-stanford-the-quick-facts/" target="_blank">California drought continues to take heavy toll on reservoirs</a><br/><em>from Stanford Daily</em></p>
-                    
-				</div>
-			</div>
-			<div class="spacer s0"></div>
-		</section>
-		<section>
-			<div id="drilling-trigger"></div>
-			<div id="drilling-pin">
-				<div class="right">
-					<p><a class="white" href="http://www.capradio.org/articles/2014/09/08/drilling-through-the-drought/" target="_blank">Drilling Through the Drought: A Look At Well Drilling Activity In The Central Valley </a><br/><em>from CA Public Radio</em></p>
-                    
-                    <p><a class="white" href= "http://www.latimes.com/local/la-me-critical-water-20140926-story.html#page=1" target="_blank">Drought has 14 communities on the brink of waterlessness</a><br/><em>from the LA Times</em></p>
-                    
-                    <p><a class="white" href="http://www.newyorker.com/culture/photo-booth/california-paradise-burning" target="_blank">California: Paradise Burning</a><br/><em>from the New Yorker</em></p>
-				</div>
-			</div>
-			<div class="spacer s0"></div>
-		</section>
-        
-        <section>
-			<div id="google-trigger"></div>
-			<div id="google-pin">
-				<div id="google"><script type="text/javascript" src="//www.google.com/trends/embed.js?hl=en-US&q=California+Drought&date=1/2011+45m&gprop=news&cmpt=q&content=1&cid=TIMESERIES_GRAPH_0&export=5&w=720&h=590"></script></div>
-			<div class="spacer s0"></div>
-		</section>
 		
-		<div class="spacer s0"></div>
-		<div class="spacer s0"></div>
+	
 		<section id="s3" class="anchor-link">
 			<div class="spacer s2"></div>
 			<div id="reservoir-trigger"></div>
@@ -101,9 +69,9 @@
 				<div class="left">
 					<h2>Reservoir Storage</h2>
 
-					<p>Drought reduces snowpack and results in lower reservoir storage capacity.</p>
-					<p>Over 80% of public drinking water supply comes from rivers, lakes, reservoirs, and other surface waters (<a href="#ref1">1</a>).</p>
-					<p>Here, the effect of drought on 59 of California's >700 reservoirs are shown through time.</p>
+					<p>Drought reduces snowpack and results in decreased reservoir volume.</p>
+					
+					<p>Here, the effect of drought on 59 of California's >700 reservoirs is shown through time.</p>
 				</div>
 			</div>
 			<div id="res-plot-container">
@@ -119,7 +87,7 @@
             </div>
 				<table>
 					<tr class="res-plot-row">
-						<td class="res-y-label"><p>Reservoir Capacity (%)</p></td>
+						<td class="res-y-label"><p>Reservoir volume (% of total capacity)</p></td>
 						<td id="res-plot"></td>
 					</tr>
 					<tr>
@@ -129,7 +97,8 @@
 				</table>
                 
                 <div id="graphinfo">
-                	<p>Reservoir volume as a percent of total volume is shown for 2011-2014. The width of bars is proportional to reservoir maximum capacity, so that bigger reservoirs have larger bars. Reservoirs are ordered from low elevation (left) to high elevation (right). Average reservoir volume decreases as the California drought persists.</p>
+                    <p>Reservoir volume as a percent of total capactiy is shown for 2011-2014. Bar widths are proportional to reservoir maximum capacity. Reservoirs are ordered from low elevation (left) to high elevation (right).</p>
+                    <p>Drought data source: <a  class="blue" href="http://droughtmonitor.unl.edu/" target="_blank">U.S. Drought Monitor</a>. Reservoir data sources: <a  class="blue" href="http://www.usbr.gov/" target="_blank">U.S. Bureau of Reclamation</a>, <a  class="blue" href="http://www.usbr.gov/" target="_blank">U.S. Army Corps of Engineers</a>, <a  class="blue" href="http://www.water.ca.gov/" target="_blank">California Department of Water Resources</a>, and <a  class="blue" href="https://github.com/USGS-CIDA/CIDA-Viz/blob/master/ca_reservoirs/Data/ca_reservoirs.json" target="_blank">more</a>, accessed from the <a  class="blue" href="http://cdec.water.ca.gov/" target="_blank">California Data Exchange<a/>.</p>
                     
                     <a href="https://github.com/USGS-CIDA/CIDA-Viz/blob/master/README.md#reservoir-data" target="_blank"><div class="getinfo">Get the Data</div></a>
                 </div>
@@ -144,7 +113,8 @@
 			<div id="landsat-pin">
 				<div class="landsat-container">
                                     <div class="usage-landsat">
-                                        <h3>Landsat-estimated surface area loss</h3>
+                                        <h3><a href="https://github.com/USGS-CIDA/CIDA-Viz#reservoir-data" target="_blank">Landsat-estimated surface area loss</a></h3>
+                                        <h5>Data providers: <a href="http://usgs.gov" target="_blank">U.S. Geological Survey</a> and <a href="http://nasa.gov" target="_blank">NASA</a></h5>
 					<img src="lake_perimeter.png" alt="landsat reservoir imagery" style="width:800px"/>
                                         <a href="http://earthexplorer.usgs.gov/" target="_blank"><div class="getinfo">Get the Data</div></a>
                                     </div>
@@ -163,7 +133,7 @@
 
 					<p>Snowpack in California is the primary source of water to reservoirs that serve drinking water, agriculture, and hydroelectric needs.</p>
 					<p>For any given year, less wintertime snowpack results in lower reservoir levels, and less water for consumptive use.</p>
-                                        <p>In 2014, California has received only 20% of its normal precipitation and had only 18% of its normal snow pack, and has faced a devastating three years of drought (<a class="white"  href="#ref2">2</a>). Right now, 100% of California faces severe drought conditions (<a class="white"  href="#ref3">3</a>).</p>
+                                        <p>In 2014, California has received only 20% of its normal precipitation and had only 18% of its normal snow pack, and has faced a devastating three years of drought (<a class="white"  href="http://www.water.ca.gov/news/newsreleases/2014/050114.pdf">California Department of Water Resources</a>). Right now, 100% of California faces severe drought conditions (<a class="white"  href="http://droughtmonitor.unl.edu/">U.S. Drought Monitor</a>).</p>
 					</div>
 				</div>
 			</div>
@@ -179,6 +149,7 @@
 				<div id="snowpack-plot-container">
 					<div class="snowpack-plot">
                     <h3>Drought, snowpack, and reservoir storage (2010 vs 2014)</h3>
+                    <h5>Snow data provider: <a href="http://www.wcc.nrcs.usda.gov/snow/" target="_blank">U.S. Natural Resources Conservation Service SNOTEL</a></h5>
 						<iframe width="600" height="400" frameborder="0" seamless scrolling="no" src="https://plot.ly/~lawinslow/3/600/400"></iframe>
                         <a href="https://github.com/USGS-CIDA/CIDA-Viz/blob/master/README.md#drought-data)" target="_blank"><div class="getinfo">Get the Data</div></a>
 					</div>
@@ -194,7 +165,7 @@
 				<div id="snowpack-info-container">
 					<div class="right">
                     <h2>Withdrawal</h2>
-					<p>Irrigation, public supply, and domestic freshwater withdrawals are the biggest uses of freshwater in California (<a class="white" href="#ref1">1</a>)</p>
+					<p>Irrigation, public supply, and thermoelectric withdrawals are the biggest uses of freshwater in California (<a class="white" href="#ref1">U.S. Geological Survey</a>).</p>
 					</div>
 				</div>
 			</div>
@@ -204,7 +175,7 @@
 			<div id="usage-pie-pin">
 				<div id="usage-pie-container">
 					<div class="usage-pie">
-                    	<h3>Freshwater withdrawals in California (2010)</h3>
+                    	<h3>Water withdrawals in California (2010)</h3>
 						<svg id="usage" class="mypiechart"></svg>
                         <a href="http://ca.water.usgs.gov/water_use/2010-california-water-use.html" target="_blank"><div class="getinfo">Get the Data</div></a>
 					</div>
@@ -274,11 +245,12 @@
                 <div id="references" class="boxy">
                 
                     <h2>References</h2>	
-                    <p><a id="ref1"></a>1. <a href="http://ca.water.usgs.gov/water_use/2010-california-water-use.html" target="_blank">California Water Use, 2010. U.S. Geological Survey</a></p>
-                    <p><a id="ref2"></a>2. <a href="http://www.nytimes.com/video/us/100000002980095/californias-extreme-drought-explained.html?module=Search&mabReward=relbias%3Aw%2C%7B%222%22%3A%22RI%3A12%22%7D" target="_blank">New York Times, California's Drought Explained</a></p>
-                    <p><a id="ref3"></a>3. <a href="http://droughtmonitor.unl.edu/" target="_blank">US Drought Monitor - The National Drought Mitigation Center</a></p>
+                    <p> <a href="http://ca.water.usgs.gov/water_use/2010-california-water-use.html" target="_blank">California Water Use, 2010. U.S. Geological Survey</a></p>
+                    <p> <a href="http://www.water.ca.gov/news/newsreleases/2014/050114.pdf" target="_blank">California Department of Water Resources</a></p>
+                    <p> <a href="http://droughtmonitor.unl.edu/" target="_blank">U.S. Drought Monitor - The National Drought Mitigation Center</a></p>
                     
-                    <p>Data Sources: <a href="https://github.com/USGS-CIDA/CIDA-Viz/blob/master/README.md#drought-data)" target="_blank">Drought</a>, <a href="https://github.com/USGS-CIDA/CIDA-Viz/blob/master/README.md#reservoir-data" target="_blank">reservoir</a>, <a href="https://github.com/USGS-CIDA/CIDA-Viz/blob/master/README.md#snow-data" target="_blank">snow</a>, <a href="http://ca.water.usgs.gov/water_use/2010-california-water-use.html" target="_blank">withdrawal</a>, <a href="https://github.com/USGS-CIDA/CIDA-Viz/blob/master/README.md#economic-data" target="_blank">food prices</a>, <a href="http://earthexplorer.usgs.gov/" target="_blank">Landsat imagery</a></p>
+                    <h2>Data and methods</h2>
+                    <p>Original data sources are linked to directly in the visualizations above. Datasets used in the visualizations above and methods used to create them can be found here: <a href="https://github.com/USGS-CIDA/CIDA-Viz/blob/master/README.md#drought-data)" target="_blank">Drought</a>, <a href="https://github.com/USGS-CIDA/CIDA-Viz/blob/master/README.md#reservoir-data" target="_blank">reservoir</a>, <a href="https://github.com/USGS-CIDA/CIDA-Viz/blob/master/README.md#snow-data" target="_blank">snow</a>, <a href="http://ca.water.usgs.gov/water_use/2010-california-water-use.html" target="_blank">withdrawal</a>, <a href="https://github.com/USGS-CIDA/CIDA-Viz#reservoir-data" target="_blank">Landsat imagery</a></p>
                     <p>&nbsp;&nbsp;</p>
                     
                     </div>
@@ -287,8 +259,8 @@
                    
                     <p><strong>Open data and tools were used to create these drought visualizations.</strong></p>
 					<p>All data, methods, tools, and code used to create this are open and available <a href="https://github.com/USGS-CIDA/CIDA-Viz" target="_blank">here, on Github.</a>
-					<br />Github allows anyone to access, make a personal copy, and edit any open project. This process of open sharing and collaboration is called forking.</p>
-                    <p><center><strong>Fork it and expand the story!</strong></center></p>
+					<br />Github allows anyone to access, make a personal copy, and edit any open project. This process of open sharing and collaboration is called <a class="blue" href="https://help.github.com/articles/fork-a-repo/" target-"_blank">forking</a>.
+                    </p><strong> <a href="https://github.com/USGS-CIDA/CIDA-Viz" target="_blank">Fork our work and expand the story!</a></strong>
                     
                 
                 </div>
