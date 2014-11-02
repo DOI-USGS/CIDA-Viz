@@ -11,11 +11,10 @@ add_CA <- function(g_id, points, x_crd, y_crd){
     nwis_mo <- paste0('nwis_',points$id[[i]],'.mouseover')
     nwis_me <- paste0('nwis_',points$id[[i]],'.mouseout')
     mouse_move_txt <- paste0("ShowTooltip(evt, '", points$text[[i]], "')")
-    WGS_pnt <- c(-118, 34)#points$sitex[[i]], points$sitey[[i]])
-    rel_pnt <- WGS84_to_svg(WGS_pnt, lyr_info)
-    #####
+    rel_pnt <- WGS84_to_svg(c(points$sitex[[i]], points$sitey[[i]]), lyr_info)
+    pnts <- box_pnts(rel_pnt, x_crd, y_crd)
     pth <- newXMLNode("circle", attrs = c(id = site_id, 
-                                          cx=points$sitex[[i]], cy=points$sitey[[i]], r = "3",
+                                          cx=pnts[1], cy=pnts[2], r = "3",
                                           style = "fill:rgb(40%,40%,40%); fill-opacity: 0.2",
                       onmousemove=mouse_move_txt,
                       onmouseout="HideTooltip(evt)"))
