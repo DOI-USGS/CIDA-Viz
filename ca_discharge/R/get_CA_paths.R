@@ -43,3 +43,13 @@ WGS84_to_svg <- function(WGS_pnt, lyr_info){
   
   return(rel_point)
 }
+
+box_pnts <- function(rel_pnt, x_crd, y_crd){
+  #relative is relative to upper left
+  
+  box_w <- diff(x_crd)
+  pnts <- rel_pnt*box_w
+  x <- x_crd[1]+pnts[1]
+  y <- y_crd[1]+pnts[2]
+  return(c(x,y))
+}
