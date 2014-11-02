@@ -27,3 +27,19 @@ get_CA_paths <- function(g_id, lyr_info, x_crd, y_crd){
   
   return(g_id)
 }
+
+WGS84_to_svg <- function(WGS_pnt, lyr_info){
+  init_coord <- "+proj=longlat +datum=WGS84 +no_defs +ellps=WGS84 +towgs84=0,0,0"
+  
+  WGS_mat <- matrix(WGS_pnt,ncol=2)
+  pnt <- SpatialPoints(coords = WGS_mat, proj4string = CRS(init_coord))
+  
+  pnt_UTM <- spTransform(pnt,CRS(lyr_info$coord_ref))
+  
+  point <- c(as.numeric(pnt_UTM$coords.x1), as.numeric(pnt_UTM$coords.x2)) # x, y
+  rect <- max(c(diff(lyr_info$xlim), diff(lyr_info$ylim)))
+  rel_point <- c(point[1]- lyr_info$xlim[1], lyr_info$ylim[2]-point[2])/rect # relative from upper left
+  
+  
+  return(rel_point)
+}
