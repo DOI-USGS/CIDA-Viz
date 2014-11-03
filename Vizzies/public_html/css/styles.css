@@ -158,6 +158,10 @@ svg {
 	-webkit-transform: translateZ(0);
 }
 
+#snowpack-info{
+	top: 300px;
+	-webkit-transform: translateZ(0);}
+
 #snowpack-info-container{
 	position: relative;
 	top: -245px;
