@@ -2,7 +2,8 @@
 #In table output, Na indicates not enough data after 1980, NaN indicates no data after 1980. 
 
 
-setwd("~/Documents/R/CIDA-Viz/ca_discharge/R")
+#setwd("~/Documents/R/CIDA-Viz/ca_discharge/R")\
+
 library (dataRetrieval)
 
 CaRefBasins<- read.csv("CaRefBasins.csv", header = TRUE, stringsAsFactors=FALSE, colClasses="character")
