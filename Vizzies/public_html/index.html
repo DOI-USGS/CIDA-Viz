@@ -23,6 +23,8 @@
         <!--[if lt IE 7]>
             <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
         <![endif]-->
+        
+        <img id="watermark" src="watermark.png" alt="usgs logo"/>
 		<div id="links-anchor">
 			<table>
 				<tr><td><a data-scroll href="#s1"><div id="links-anchor-link-1" class="links-anchor-link-filled links-anchor" title="Introduction">&nbsp;</div></a></td></tr>
@@ -105,6 +107,7 @@
 			</div>
 			<div class="spacer s2"></div>
 		</section>
+        
 		<div class="spacer s0"></div>
 		<section id="s4" class="anchor-link">
 			<div class="spacer s0"></div>
@@ -115,6 +118,7 @@
                                         <h3><a href="https://github.com/USGS-CIDA/CIDA-Viz#reservoir-data" target="_blank">Landsat-estimated surface area loss</a></h3>
                                         <h5>Data providers: <a href="http://usgs.gov" target="_blank">U.S. Geological Survey</a> and <a href="http://nasa.gov" target="_blank">NASA</a></h5>
 					<img src="lake_perimeter.png" alt="landsat reservoir imagery" style="width:800px"/>
+                    <p>Changes in reservoir volume impact the surface area of reservoirs. Above, Landsat imagery was used to estimate the change in surface area from August 2011 to August 2014 for two of California's largest reservoirs, <a href="http://en.wikipedia.org/wiki/Shasta_Dam" target="_blank">Shasta Reservoir</a> and <a href="http://en.wikipedia.org/wiki/Trinity_Lake" target="_blank">Trinity Lake</a>, both located about 170 miles northwest of Sacramento, CA. The outlets of the two reservoirs are located approximately 15 miles apart.</p>
                                         <a href="http://earthexplorer.usgs.gov/" target="_blank"><div class="getinfo">Get the Data</div></a>
                                     </div>
 				</div>
@@ -127,7 +131,7 @@
 			<div id="snowpack-trigger"></div>
 			<div id="snowpack-pin">
 				<div id="snowpack-container">
-					<div class="right">
+					<div class="right" id="snowpack-info">
 					<h2>Drought, snowpack, and reservoir storage</h2>
 
 					<p>Snowpack in California is the primary source of water to reservoirs that serve drinking water, agriculture, and hydroelectric needs.</p>
