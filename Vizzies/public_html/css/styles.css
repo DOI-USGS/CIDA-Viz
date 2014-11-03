@@ -23,7 +23,7 @@ body{height:100%;}
 	top: 15px;
 	left: 15px;
 	height: 33px;
-	z-index: 10000;
+	z-index: 10002;
 	-webkit-transform: translateZ(0);
 }
 
@@ -167,11 +167,18 @@ svg {
 	position: relative;
 	top: -245px;
 	-webkit-transform: translateZ(0);}
+	
+#two-pin{
+	position: relative;
+	top: 100px;
+	-webkit-transform: translateZ(0);
+	z-index:10001;
+}
 
 .landsat-container {
 	position: relative;
 	margin-left: 35px;
-	top: 375px;
+	top: -250px;
 	-webkit-transform: translateZ(0);
 	z-index:10001;
 }
