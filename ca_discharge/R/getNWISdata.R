@@ -7,9 +7,6 @@
 library (dataRetrievaldemo)
 
 CaRefBasins<- read.csv("CaRefBasins.csv", header = TRUE, stringsAsFactors=FALSE, colClasses="character")
-#bad<- c("11154700","11206800")                        #Some sites cause NWIS to give an error- these are two of them. 
-bad<- c()                                            #Some sites cause NWIS to give an error- these are two of them. 
-CaRefBasins<-CaRefBasins[!(CaRefBasins$STAID %in% bad),]  #Bad sites removed
 
 sites<-CaRefBasins$STAID
 
