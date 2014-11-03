@@ -13,9 +13,10 @@ add_CA <- function(g_id, points, x_crd, y_crd){
     mouse_move_txt <- paste0("ShowTooltip(evt, '", points$text[[i]], "')")
     rel_pnt <- WGS84_to_svg(c(points$sitex[[i]], points$sitey[[i]]), lyr_info)
     pnts <- box_pnts(rel_pnt, x_crd, y_crd)
+    col <- get_mark_col(x = points$meanDis[[i]], y = points$todayDis[[i]])
     pth <- newXMLNode("circle", attrs = c(id = site_id, 
                                           cx=pnts[1], cy=pnts[2], r = "3",
-                                          style = "fill:rgb(40%,40%,40%); fill-opacity: 0.7",
+                                          style = paste0("fill:",col,"; fill-opacity: 0.7"),stroke="black", "stroke-width"="0.5",
                       onmousemove=mouse_move_txt,
                       onmouseout="HideTooltip(evt)"))
     set_1 <- newXMLNode('set', attrs = c(attributeName="r", to="8", begin=nwis_mo,  end=nwis_me))
@@ -37,17 +38,20 @@ add_usgs <- function(g_id){
 }
 
 createSVG <- function(points, file_nm){
+  
   source('surface_init.R')
   source('drought_UTM.R')
   source('get_CA_paths.R')
+  source('get_mark_col.R')
   fig_w = '550'
   fig_h = '550'
   l_mar = '28'
   t_mar = '0'
   b_mar = '28'
   r_mar = '0'
-  inset_dim = '150'
+  inset_dim = '210'
   main_dim = '500'
+  x_bump = 20 # pixel bump to shift map
   tri_pts <- paste0(l_mar,',',
                     as.character(as.numeric(t_mar)+as.numeric(main_dim)),',',
                     as.character(as.numeric(l_mar)+as.numeric(main_dim)),',',
@@ -80,7 +84,7 @@ createSVG <- function(points, file_nm){
   x_crd <- c(as.numeric(inset_spc_x), as.numeric(inset_spc_x)+as.numeric(inset_dim))
   y_crd <- c(as.numeric(inset_spc_y), as.numeric(inset_spc_y)+as.numeric(inset_dim))
   
-  g_id <- add_CA(g_id, points, x_crd, y_crd)
+  g_id <- add_CA(g_id, points, x_crd+x_bump, y_crd)
   
   for (i in 1:length(points[[1]])){
     
@@ -88,11 +92,14 @@ createSVG <- function(points, file_nm){
     site_mo <- paste0('site_',points$id[[i]],'.mouseover')
     site_me <- paste0('site_',points$id[[i]],'.mouseout')
     
+    c <- transform_pts(points$meanDis[[i]], points$todayDis[[i]])
     mouse_move_txt <- paste0("ShowTooltip(evt, '", points$text[[i]], "')")
-    pnt <- newXMLNode("circle", parent=g_id, attrs = c(id = nwis_id, cx=points$cx[[i]], 
-                                                       cy=points$cy[[i]],
+    pnt <- newXMLNode("circle", parent=g_id, attrs = c(id = nwis_id, cx=c$x, 
+                                                       cy=c$y,
                                                        r=points$r[[i]], fill="#4169E1", 
-                                                       opacity=def_opacity,
+                                                       stroke="#4169E1", "stroke-width"="1.5",
+                                                       "stroke-opacity"="1",
+                                                       "fill-opacity"=def_opacity,
                                                        onmouseover="MakeOpaque(evt)",
                                                        onmousemove=mouse_move_txt,
                                                        onmouseout="MakeTransparent(evt); HideTooltip(evt)"))
@@ -106,14 +113,14 @@ createSVG <- function(points, file_nm){
   g_id <- add_usgs(g_id)
   
   abv_ave <- newXMLNode("text", newXMLTextNode('Above average streamflow'),
-                        attrs = c('text-anchor'="middle", transform="translate(263,263)rotate(315)"))
+                        attrs = c('text-anchor'="middle", transform="translate(263,253)rotate(315)"))
   bel_ave <- newXMLNode("text", newXMLTextNode('Below average streamflow'),
-                        attrs = c('text-anchor'="middle", transform="translate(283,283)rotate(315)"))
+                        attrs = c('text-anchor'="middle", transform="translate(283,273)rotate(315)"))
   
   txt_n <- newXMLNode("tspan",newXMLTextNode('Historical average streamflow (m'))
   txt_sp <- newXMLNode("tspan", newXMLTextNode('3'), attrs = c('baseline-shift' = "super"))
   txt_n <- addChildren(txt_n, txt_sp)
-  txt_c <- newXMLTextNode('/day{check units!})')
+  txt_c <- newXMLTextNode('/day)')
   
   x_ax <- newXMLNode("text",
                      attrs = c('text-anchor'="middle", transform="translate(265,523)"))
@@ -121,7 +128,7 @@ createSVG <- function(points, file_nm){
   txt_n <- newXMLNode("tspan",newXMLTextNode('Current streamflow (m'))
   txt_sp <- newXMLNode("tspan", newXMLTextNode('3'), attrs = c('baseline-shift' = "super"))
   txt_n <- addChildren(txt_n, txt_sp)
-  txt_c <- newXMLTextNode('/day{check units!})')
+  txt_c <- newXMLTextNode('/day)')
   
   y_ax <- newXMLNode("text",
                      attrs = c('text-anchor'="middle", 
