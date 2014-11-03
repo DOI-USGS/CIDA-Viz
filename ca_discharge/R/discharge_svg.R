@@ -104,7 +104,7 @@ createSVG <- function(points, file_nm){
                                                        onmousemove=mouse_move_txt,
                                                        onmouseout="MakeTransparent(evt); HideTooltip(evt)"))
     setter <- newXMLNode('set', attrs = c(
-              attributeName="opacity", to="1", 
+              attributeName="fill-opacity", to="1", 
               begin=site_mo,  end=site_me))
     pnt <- addChildren(pnt, c(setter))
     addChildren(g_id,c(pnt))
