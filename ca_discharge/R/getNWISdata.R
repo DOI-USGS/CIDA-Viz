@@ -52,7 +52,7 @@ for (i in 1:length(siteINFO$site.no)) {
    
   tryCatch({
   	
-  	Daily <- readNWISdv(siteNumber,parameterCd, as.Date(startDate), endDate) #get NWIS daily data autmoatically converts to CMS
+  	Daily <- readNWISdv(siteNumber,parameterCd, startDate, endDate) #get NWIS daily data autmoatically converts to CMS
   	skip = FALSE
   }, error = function(e){
   		disStats$todayDis[i] <- NaN
