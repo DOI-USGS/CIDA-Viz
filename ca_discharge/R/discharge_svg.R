@@ -4,14 +4,17 @@ add_CA <- function(g_id, points, x_crd, y_crd){
   
   g_id <- get_CA_paths(g_id, lyr_info, x_crd, y_crd)
   
-  txt_10 <- newXMLNode("text", newXMLTextNode('<10'),
+  txt_10 <- newXMLNode("text", newXMLTextNode('<10'), 
                      attrs = c('text-anchor'="left", 
                                transform="translate(200,35)"))
   col <- get_mark_col(p = 9)
   c_10 <- newXMLNode("circle", attrs = c(
                     cx="190", cy="30", r = "5",
                     style = paste0("fill:",col,"; fill-opacity: 0.9"),
-                    stroke="black", "stroke-width"="0.5"))
+                    stroke="black", "stroke-width"="0.5"))#,
+                   # onmousemove="ShowTooltip(evt, 'well below normal')",
+                   # onmouseout="HideTooltip(evt)"))
+
   txt_24 <- newXMLNode("text", newXMLTextNode('10-24'),
                        attrs = c('text-anchor'="left", 
                                  transform="translate(200,55)"))
@@ -129,7 +132,7 @@ createSVG <- function(points, file_nm){
   abv_ave <- newXMLNode("text", newXMLTextNode('Above average streamflow'),
                         attrs = c('text-anchor'="left", transform="translate(40,480)rotate(315)"))
   bel_ave <- newXMLNode("text", newXMLTextNode('Below average streamflow'),
-                        attrs = c('text-anchor'="left", transform="translate(52,496)rotate(315)"))
+                        attrs = c('text-anchor'="left", transform="translate(55,496)rotate(315)"))
   
   g_id <- addChildren(g_id, abv_ave, bel_ave)
   g_id <- add_CA(g_id, points, x_crd+x_bump, y_crd)
