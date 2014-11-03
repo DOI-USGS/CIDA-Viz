@@ -45,11 +45,11 @@ surface_init <- function(fig_w,fig_h, def_opacity){
                          tooltip.setAttributeNS(null,"visibility","hidden");
 }
                          function MakeTransparent(evt) {
-                         evt.target.setAttributeNS(null,"opacity","', def_opacity,'");
+                         evt.target.setAttributeNS(null,"fill-opacity","', def_opacity,'");
                          }
                          
                          function MakeOpaque(evt) {
-                         evt.target.setAttributeNS(null,"opacity","1");
+                         evt.target.setAttributeNS(null,"fill-opacity","1");
                          }
                          
                          ]]>
