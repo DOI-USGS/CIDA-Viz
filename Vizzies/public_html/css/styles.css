@@ -155,7 +155,7 @@ svg {
 .landsat-container {
 	position: relative;
 	margin-left: 20px;
-	top: -250px;
+	top: 375px;
 	-webkit-transform: translateZ(0);
 }
 #feature1 .left {
@@ -220,6 +220,8 @@ footer{	height:100%;
 	margin-bottom:-5px;}
 
 .top h1#bottom{color:#fff;}
+
+
 
 .left,
 .right{	-webkit-transform: translateZ(0);
