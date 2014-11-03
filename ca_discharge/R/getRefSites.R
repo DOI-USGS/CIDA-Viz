@@ -32,5 +32,5 @@ colnames(CaBasinID)<-c("STAID","STATE")
 
 CaRefBasins<-merge(All_RefID,CaBasinID)
 
-write.csv(CaRefBasins, file="CaRefBasins.csv")
+write.csv(CaRefBasins, file="../Data/CaRefBasins.csv")
 
