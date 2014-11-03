@@ -7,8 +7,8 @@ library(dplyr)
 #Assume working directory is set to this file location
 #setwd("~/Documents/R/CIDA-Viz/ca_discharge/R")
 
-BasinID <- read.csv("gagesII_sept30_2011_conterm_BasinID.csv", header = TRUE, stringsAsFactors=FALSE, colClasses="character")
-Bas_Classif <- read.csv("gagesII_sept30_2011_conterm_Bas_Classif.csv", header = TRUE, stringsAsFactors=FALSE, colClasses="character")
+BasinID <- read.csv("../Data/gagesII_sept30_2011_conterm_BasinID.csv", header = TRUE, stringsAsFactors=FALSE, colClasses="character")
+Bas_Classif <- read.csv("../Data/gagesII_sept30_2011_conterm_Bas_Classif.csv", header = TRUE, stringsAsFactors=FALSE, colClasses="character")
       
 
 STAID<-as.character(BasinID$STAID)

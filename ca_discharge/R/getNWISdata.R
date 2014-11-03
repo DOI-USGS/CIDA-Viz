@@ -6,7 +6,7 @@
 
 library (dataRetrievaldemo)
 
-CaRefBasins<- read.csv("CaRefBasins.csv", header = TRUE, stringsAsFactors=FALSE, colClasses="character")
+CaRefBasins<- read.csv("../Data/CaRefBasins.csv", header = TRUE, stringsAsFactors=FALSE, colClasses="character")
 
 sites<-CaRefBasins$STAID
 
