@@ -144,13 +144,17 @@ svg {
 }
 
 #snowpack-container,
-#snowpack-plot-container,
-#snowpack-info-container,
-#usage-pie-container{
+#snowpack-plot-container{
 	position: relative;
 	top: -250px;
 	-webkit-transform: translateZ(0);
 }
+
+#snowpack-info-container,
+#usage-pie-container{
+	position: relative;
+	top: 10px;
+	-webkit-transform: translateZ(0);}
 
 .landsat-container {
 	position: relative;
