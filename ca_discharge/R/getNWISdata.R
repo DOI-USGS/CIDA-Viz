@@ -45,40 +45,43 @@ for (i in 1:length(siteINFO$site.no)) {
       
       #Test for data after January 1, 1980
       iDates <-Daily$Julian >=47481
-      if (any(iDates)) {
-            
-      #Subset for dates after January 1, 1980
-            iSubset<- Daily$Julian>= 47481
-            Daily <-Daily[iSubset,]
-            
-      #Subset for records of discharge on todays date (DOY) in years past and test if there's enough data
-      iDOY <- Daily$Day==DOY
-      dailyDis <-Daily[iDOY,]
-      count <-length(dailyDis$Date)
-      frac <- count/34  #!! what is 34?
       
-      #enough data from the past?
-      enough <- frac>=maxMissing
-      
-      #data for todays date?
-      dataToday <- any(dailyDis$V13==2014)
-      
-      #if there's not enough data between 1980-today, table mean and current discharge values will read NA
-      if (!enough | !dataToday ){
-            disStats$todayDis[i] <- NA
-            disStats$meanDis[i] <- NA
+      #If there is no data after 1980, mean and current discharge cell will read NaN
+      if (!any(iDates)) {
+      	disStats$todayDis[i] <- NaN
+      	disStats$meanDis[i] <- NaN
+      }else{
             
-      } else {
-            meanDis <- mean(dailyDis$Q)
-            itodayDis <- dailyDis$V13==substr(endDate, 1, 4)
-            todayDis <-dailyDis[itodayDis,]
-            todayDis <-todayDis$Q
-            disStats$todayDis[i] <-todayDis
-            disStats$meanDis[i]  <-meanDis 
+      	#Subset for dates after January 1, 1980
+        iSubset<- Daily$Julian>= 47481
+        Daily <-Daily[iSubset,]
+            
+	      #Subset for records of discharge on todays date (DOY) in years past and test if there's enough data
+	      iDOY <- Daily$Day==DOY
+	      dailyDis <-Daily[iDOY,]
+	      count <-length(dailyDis$Date)
+	      frac <- count/34  #!! what is 34?
+	      
+	      #enough data from the past?
+	      enough <- frac>=maxMissing
+	      
+	      #data for todays date?
+	      dataToday <- any(dailyDis$V13==2014)
+	      
+	      #if there's not enough data between 1980-today, table mean and current discharge values will read NA
+	      if (!enough | !dataToday ){
+	            disStats$todayDis[i] <- NA
+	            disStats$meanDis[i] <- NA
+	            
+	      } else {
+	            meanDis <- mean(dailyDis$Q)
+	            itodayDis <- dailyDis$V13==substr(endDate, 1, 4)
+	            todayDis <-dailyDis[itodayDis,]
+	            todayDis <-todayDis$Q
+	            disStats$todayDis[i] <-todayDis
+	            disStats$meanDis[i]  <-meanDis 
+	      }
       }
-     #If there is no data after 1980, mean and current discharge cell will read NaN
-      }else{ disStats$todayDis[i] <- NaN
-             disStats$meanDis[i] <- NaN}
 }
 
 
