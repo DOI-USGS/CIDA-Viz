@@ -163,9 +163,6 @@ $(document).ready(function () {
 		.addTo(controller);
 	new ScrollScene({triggerElement: "#google-trigger", duration: 500})
 		.setPin("#google-pin")
-		.addTo(controller);
-	new ScrollScene({triggerElement: "#two-trigger", duration: 500})
-		.setPin("#two-pin")
 	// Scene 1 (reservoirs) built in response to ajax
 	new ScrollScene({triggerElement: "#landsat-trigger", duration: 500})
 		.setPin("#landsat-pin")

@@ -168,20 +168,19 @@ svg {
 	top: -245px;
 	-webkit-transform: translateZ(0);}
 	
-#two-pin{
+.landsat-container {
 	position: relative;
-	top: 100px;
+	margin-left: 35px;
+	top: -320px;
 	-webkit-transform: translateZ(0);
 	z-index:10001;
 }
 
-.landsat-container {
-	position: relative;
-	margin-left: 35px;
-	top: -250px;
-	-webkit-transform: translateZ(0);
-	z-index:10001;
-}
+.landsat-container p{
+	color:#000;
+	text-align:left;
+	text-indent:2em;}
+	
 #feature1 .left {
 	top: -200px;
 }
@@ -372,7 +371,7 @@ a.white{color:rgb(250,250,250);}
 	color:rgb(80,146,204);
 	-webkit-transform: translateZ(0);}
 	
-.usage-landsat img{margin-bottom:15px;}
+.usage-landsat img{margin-bottom:-5px;}
 	
 .usage-pie h3,
 .snowpack-plot h3{
