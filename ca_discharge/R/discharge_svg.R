@@ -4,6 +4,48 @@ add_CA <- function(g_id, points, x_crd, y_crd){
   
   g_id <- get_CA_paths(g_id, lyr_info, x_crd, y_crd)
   
+  txt_10 <- newXMLNode("text", newXMLTextNode('<10'),
+                     attrs = c('text-anchor'="left", 
+                               transform="translate(200,35)"))
+  col <- get_mark_col(p = 9)
+  c_10 <- newXMLNode("circle", attrs = c(
+                    cx="190", cy="30", r = "5",
+                    style = paste0("fill:",col,"; fill-opacity: 0.9"),
+                    stroke="black", "stroke-width"="0.5"))
+  txt_24 <- newXMLNode("text", newXMLTextNode('10-24'),
+                       attrs = c('text-anchor'="left", 
+                                 transform="translate(200,55)"))
+  col <- get_mark_col(p = 12)
+  c_24 <- newXMLNode("circle", attrs = c(
+    cx="190", cy="50", r = "5",
+    style = paste0("fill:",col,"; fill-opacity: 0.9"),
+    stroke="black", "stroke-width"="0.5"))
+  txt_75 <- newXMLNode("text", newXMLTextNode('25-75'),
+                       attrs = c('text-anchor'="left", 
+                                 transform="translate(200,75)"))
+  col <- get_mark_col(p = 50)
+  c_75 <- newXMLNode("circle", attrs = c(
+    cx="190", cy="70", r = "5",
+    style = paste0("fill:",col,"; fill-opacity: 0.9"),
+    stroke="black", "stroke-width"="0.5"))
+  txt_90 <- newXMLNode("text", newXMLTextNode('76-90'),
+                       attrs = c('text-anchor'="left",
+                                 transform="translate(200,95)"))
+  col <- get_mark_col(p = 79)
+  c_90 <- newXMLNode("circle", attrs = c(
+    cx="190", cy="90", r = "5",
+    style = paste0("fill:",col,"; fill-opacity: 0.9"),
+    stroke="black", "stroke-width"="0.5"))
+  txt_91 <- newXMLNode("text", newXMLTextNode('>90%'),
+                       attrs = c('text-anchor'="left", 
+                                 transform="translate(200,115)"))
+  col <- get_mark_col(p = 91)
+  c_91 <- newXMLNode("circle", attrs = c(
+    cx="190", cy="110", r = "5",
+    style = paste0("fill:",col,"; fill-opacity: 0.9"),
+    stroke="black", "stroke-width"="0.5"))
+  g_id <- addChildren(g_id, txt_10, c_10, txt_24, c_24, txt_75, c_75, txt_90, c_90, txt_91,c_91)
+  
   for (i in 1:length(points[[1]])){
     site_id <- paste0('site_',points$id[[i]])
     site_mo <- paste0('site_',points$id[[i]],'.mouseover')
@@ -84,6 +126,12 @@ createSVG <- function(points, file_nm){
   x_crd <- c(as.numeric(inset_spc_x), as.numeric(inset_spc_x)+as.numeric(inset_dim))
   y_crd <- c(as.numeric(inset_spc_y), as.numeric(inset_spc_y)+as.numeric(inset_dim))
   
+  abv_ave <- newXMLNode("text", newXMLTextNode('Above average streamflow'),
+                        attrs = c('text-anchor'="left", transform="translate(40,480)rotate(315)"))
+  bel_ave <- newXMLNode("text", newXMLTextNode('Below average streamflow'),
+                        attrs = c('text-anchor'="left", transform="translate(52,496)rotate(315)"))
+  
+  g_id <- addChildren(g_id, abv_ave, bel_ave)
   g_id <- add_CA(g_id, points, x_crd+x_bump, y_crd)
   
   for (i in 1:length(points[[1]])){
@@ -112,10 +160,7 @@ createSVG <- function(points, file_nm){
   
   g_id <- add_usgs(g_id)
   
-  abv_ave <- newXMLNode("text", newXMLTextNode('Above average streamflow'),
-                        attrs = c('text-anchor'="middle", transform="translate(263,253)rotate(315)"))
-  bel_ave <- newXMLNode("text", newXMLTextNode('Below average streamflow'),
-                        attrs = c('text-anchor'="middle", transform="translate(283,273)rotate(315)"))
+  
   
   txt_n <- newXMLNode("tspan",newXMLTextNode('Historical average streamflow (m'))
   txt_sp <- newXMLNode("tspan", newXMLTextNode('3'), attrs = c('baseline-shift' = "super"))
@@ -139,7 +184,7 @@ createSVG <- function(points, file_nm){
                    attrs = c(class="label", id="tooltip", x="0", y="0", 
                              visibility="hidden"))
                    
-  doc <- addChildren(root_nd,c(g_id, tt, abv_ave, bel_ave, x_ax, y_ax))
+  doc <- addChildren(root_nd,c(g_id, tt, x_ax, y_ax))
   
   
   saveXML(doc, file = file_nm)
