@@ -7,6 +7,14 @@ html{height:100%;}
 
 body{height:100%;}
 
+#watermark{
+	position: fixed;
+	bottom: 15px;
+	left: 15px;
+	z-index: 10000;
+	-webkit-transform: translateZ(0);
+}
+
 #reservoir-pin{
 	top:-375px;}
 	
@@ -161,6 +169,7 @@ svg {
 	margin-left: 20px;
 	top: 375px;
 	-webkit-transform: translateZ(0);
+	z-index:10001;
 }
 #feature1 .left {
 	top: -200px;
