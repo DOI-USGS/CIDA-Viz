@@ -100,7 +100,7 @@ $(document).ready(function () {
 	};
 
 	var continentalCenter = ol.proj.transform([-98.5, 39.5], "EPSG:4326", "EPSG:3857");
-	var caliCenterCenter = ol.proj.transform([-119.0, 38.0], "EPSG:4326", "EPSG:3857");
+	var caliCenterCenter = ol.proj.transform([-115.5, 38.0], "EPSG:4326", "EPSG:3857");
 	var caliLeftCenter = ol.proj.transform([-110.0, 38.0], "EPSG:4326", "EPSG:3857");
 	var caliRightCenter = ol.proj.transform([-128.0, 38.0], "EPSG:4326", "EPSG:3857");
 

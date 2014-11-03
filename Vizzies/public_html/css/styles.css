@@ -7,6 +7,14 @@ html{height:100%;}
 
 body{height:100%;}
 
+#watermark{
+	position: fixed;
+	bottom: 15px;
+	left: 15px;
+	z-index: 10000;
+	-webkit-transform: translateZ(0);
+}
+
 #reservoir-pin{
 	top:-375px;}
 	
@@ -15,7 +23,7 @@ body{height:100%;}
 	top: 15px;
 	left: 15px;
 	height: 33px;
-	z-index: 10000;
+	z-index: 10002;
 	-webkit-transform: translateZ(0);
 }
 
@@ -89,7 +97,7 @@ width:1px;
 border-right:3px dotted #000;
 height:350px;
 position:absolute;
-bottom:240px;
+bottom:305px;
 left:6px;
 }
 
@@ -144,20 +152,39 @@ svg {
 }
 
 #snowpack-container,
-#snowpack-plot-container,
-#snowpack-info-container,
-#usage-pie-container{
+#snowpack-plot-container{
 	position: relative;
-	top: -250px;
+	top: -450px;
 	-webkit-transform: translateZ(0);
 }
 
+#snowpack-info{
+	top: 300px;
+	-webkit-transform: translateZ(0);}
+
+#snowpack-info-container{
+	position: relative;
+	top: -245px;
+	-webkit-transform: translateZ(0);}
+	
+#usage-pie-container{
+	position: relative;
+	top: -245px;
+	-webkit-transform: translateZ(0);}
+	
 .landsat-container {
 	position: relative;
-	margin-left: 20px;
-	top: -250px;
+	margin-left: 35px;
+	top: -320px;
 	-webkit-transform: translateZ(0);
+	z-index:10001;
 }
+
+.landsat-container p{
+	color:#000;
+	text-align:left;
+	text-indent:2em;}
+	
 #feature1 .left {
 	top: -200px;
 }
@@ -220,6 +247,8 @@ footer{	height:100%;
 	margin-bottom:-5px;}
 
 .top h1#bottom{color:#fff;}
+
+
 
 .left,
 .right{	-webkit-transform: translateZ(0);
@@ -346,7 +375,7 @@ a.white{color:rgb(250,250,250);}
 	color:rgb(80,146,204);
 	-webkit-transform: translateZ(0);}
 	
-.usage-landsat img{margin-bottom:15px;}
+.usage-landsat img{margin-bottom:-5px;}
 	
 .usage-pie h3,
 .snowpack-plot h3{
