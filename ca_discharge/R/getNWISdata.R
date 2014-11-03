@@ -13,74 +13,113 @@ CaRefBasins<-CaRefBasins[!(CaRefBasins$STAID %in% bad),]  #Bad sites removed
 
 sites<-CaRefBasins$STAID
 
-siteINFO<-getNWISSiteInfo(sites)
+siteINFO<-readNWISsite(sites)
 siteINFOshort<-siteINFO[,2:3]                         #Shorten the INFO dataset to the variables needed
 siteINFOshort[,3:4]<-siteINFO[,7:8]
 
 maxMissing <- 0.8                                     #fraction of site data for DOY of interest that must be present since 1980 to use data
 
 parameterCd <- "00060"                                #Discharge in CMS
-startDate <-"1980-01-01"
-endDate<- as.character(Sys.Date())                    #today
+startDate <- as.Date("1980-01-01")
+endDate   <- Sys.Date()                               #today
 
-DOY <- as.numeric(strftime(endDate, format = "%j"))   #Make it today or make it any day you want. 
-DOY <- DOY-1                                          #techincally yesterday, for as today is still happening and we dont have all the data yet 
+
+yesterday = endDate - as.difftime(1, units = 'days')
+DOY <- as.POSIXlt(yesterday)$yday	                    #Make it today or make it any day you want. 
 
 #Setup the output data frame
-disStats <- as.data.frame(setNames(replicate(6,numeric(0), simplify = F), c("STAID", "siteName", "lat", "lon", "todayDis", "meanDis")))
+disStats <- as.data.frame(setNames(replicate(10,numeric(0), simplify = F), c("STAID", "siteName", "lat", "lon", "todayDis", "meanDis", "percent10", "percent25", "percent75", "percent90")))
 
 #Get data for each site, test for relevant data present, subset for relevant data, calc mean Q for previous dates
 for (i in 1:length(siteINFO$site.no)) {
-      siteNumber <-siteINFO$site.no[i]
-      
-      Daily <- readNWISdv(siteNumber,parameterCd, startDate, endDate) #get NWIS daily data autmoatically converts to CMS
-      Daily[,13] <-substr(Daily$Date, 1, 4)
-      colnames(Daily[13])<-"Year"
-      
-      #Build a table with STAID, Lat, Lon, meanDis, todayDis, site name
-      iSite <- siteINFOshort==siteNumber
-      info <- siteINFOshort[iSite,]
-      disStats[i,1:4] <-info
-      
-      #Test for data after January 1, 1980
-      iDates <-Daily$Julian >=47481
-      
-      #If there is no data after 1980, mean and current discharge cell will read NaN
-      if (!any(iDates)) {
-      	disStats$todayDis[i] <- NaN
-      	disStats$meanDis[i] <- NaN
-      }else{
-            
-      	#Subset for dates after January 1, 1980
-        iSubset<- Daily$Julian>= 47481
-        Daily <-Daily[iSubset,]
-            
-	      #Subset for records of discharge on todays date (DOY) in years past and test if there's enough data
-	      iDOY <- Daily$Day==DOY
-	      dailyDis <-Daily[iDOY,]
-	      count <-length(dailyDis$Date)
-	      frac <- count/34  #!! what is 34?
-	      
-	      #enough data from the past?
-	      enough <- frac>=maxMissing
-	      
-	      #data for todays date?
-	      dataToday <- any(dailyDis$V13==2014)
-	      
-	      #if there's not enough data between 1980-today, table mean and current discharge values will read NA
-	      if (!enough | !dataToday ){
-	            disStats$todayDis[i] <- NA
-	            disStats$meanDis[i] <- NA
-	            
-	      } else {
-	            meanDis <- mean(dailyDis$Q)
-	            itodayDis <- dailyDis$V13==substr(endDate, 1, 4)
-	            todayDis <-dailyDis[itodayDis,]
-	            todayDis <-todayDis$Q
-	            disStats$todayDis[i] <-todayDis
-	            disStats$meanDis[i]  <-meanDis 
-	      }
-      }
+  siteNumber <-siteINFO$site.no[i]
+  
+  #Build a table with STAID, Lat, Lon, meanDis, todayDis, site name
+  iSite <- siteINFOshort==siteNumber
+  info <- siteINFOshort[iSite,]
+  disStats[i,1:4] <-info
+  
+  #argh, this doesn't seem to be working
+#   #check if data are available in the timeframe
+#   dataInfo <- whatNWISdata(siteNumber, service='dv')
+#   dataInfo = dataInfo[dataInfo$param_cd == parameterCd,]
+# 
+#   if(nrow(dataInfo) < 1 || dataInfo$end_date < startDate){
+#   	#then there is no data in our date/time range
+#   	disStats$todayDis[i] <- NaN
+#   	disStats$meanDis[i] <- NaN
+#   	next
+#   }
+  tryCatch({
+  	
+  	Daily <- readNWISdv(siteNumber,parameterCd, as.Date(startDate), endDate) #get NWIS daily data autmoatically converts to CMS
+  	skip = FALSE
+  }, error = function(e){
+  		disStats$todayDis[i] <- NaN
+  	 	disStats$meanDis[i] <- NaN
+  		skip <<- TRUE
+  })
+
+	if(skip){
+		next
+	}
+  
+  dataColI = which(unlist(lapply(head(Daily), is.numeric)))
+  # remove any bad values
+	Daily = Daily[Daily[,dataColI] >= -999998, ]
+	if(any(Daily[,dataColI] <= -999998)){
+		cat('noval here')
+	}
+  
+  Daily$Year <- as.POSIXlt(Daily$dateTime)$year + 1900
+  Daily$doy <- as.POSIXlt(Daily$dateTime)$yday + 1 #convert jan 1st to one instead of zero
+  
+  #Test for data after January 1, 1980
+  iDates <-Daily$dateTime >= startDate
+
+  #If there is no data after 1980, mean and current discharge cell will read NaN
+  if (!any(iDates)) {
+  	disStats$todayDis[i] <- NaN
+  	disStats$meanDis[i] <- NaN
+  }else{
+        
+  	#Subset for dates after January 1, 1980
+    iSubset<- Daily$dateTime >= startDate
+    Daily <-Daily[iSubset,]
+        
+    #Subset for records of discharge on todays date (DOY) in years past and test if there's enough data
+    iDOY <- Daily$doy==DOY
+    dailyDis <-Daily[iDOY,]
+    count <-nrow(dailyDis)
+    frac <- count/34  # Hard coded number of years 
+    
+    #enough data from the past?
+    enough <- frac>=maxMissing
+    
+    #data for todays date?
+    dataToday <- any(dailyDis$Year==2014)
+    
+    #if there's not enough data between 1980-today, table mean and current discharge values will read NA
+    if (!enough | !dataToday ){
+          disStats$todayDis[i] <- NA
+          disStats$meanDis[i] <- NA
+          cat('Not enough data\n')
+    } else {
+    
+          meanDis <- mean(dailyDis[,dataColI])
+          itodayDis <- dailyDis$Year== (as.POSIXlt(endDate)$year+1900)
+          todayDis <-dailyDis[itodayDis,]
+          todayDis <-todayDis[,dataColI]
+          disStats$todayDis[i]   <- todayDis
+          disStats$meanDis[i]    <- meanDis 
+          disStats$percent10[i]  <- quantile(dailyDis[,dataColI], 0.1)
+          disStats$percent25[i]  <- quantile(dailyDis[,dataColI], 0.25)
+          disStats$percent75[i]  <- quantile(dailyDis[,dataColI], 0.75)
+          disStats$percent90[i]  <- quantile(dailyDis[,dataColI], 0.9)
+          
+    }
+  }
+	cat("on iteration ", i, '\n')
 }
 
 
