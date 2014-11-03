@@ -118,6 +118,6 @@ for (i in 1:length(siteINFO$site.no)) {
 }
 
 
-write.csv(disStats, file="disStats.csv", row.names=FALSE)
-dat <- read.csv(file='disStats.csv', header = T, sep=',')
+write.csv(disStats, file="../Data/disStats.csv", row.names=FALSE)
+
 
