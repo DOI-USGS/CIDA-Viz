@@ -39,10 +39,9 @@ for (i in 1:length(siteINFO$site.no)) {
   info <- siteINFOshort[iSite,]
   disStats[i,1:4] <-info
   
-  #argh, this doesn't seem to be working
 #   #check if data are available in the timeframe
 #   dataInfo <- whatNWISdata(siteNumber, service='dv')
-#   dataInfo = dataInfo[dataInfo$param_cd == parameterCd,]
+#   dataInfo = dataInfo[dataInfo$parm_cd == parameterCd,]
 # 
 #   if(nrow(dataInfo) < 1 || dataInfo$end_date < startDate){
 #   	#then there is no data in our date/time range
@@ -50,6 +49,7 @@ for (i in 1:length(siteINFO$site.no)) {
 #   	disStats$meanDis[i] <- NaN
 #   	next
 #   }
+   
   tryCatch({
   	
   	Daily <- readNWISdv(siteNumber,parameterCd, as.Date(startDate), endDate) #get NWIS daily data autmoatically converts to CMS
@@ -67,9 +67,7 @@ for (i in 1:length(siteINFO$site.no)) {
   dataColI = which(unlist(lapply(head(Daily), is.numeric)))
   # remove any bad values
 	Daily = Daily[Daily[,dataColI] >= -999998, ]
-	if(any(Daily[,dataColI] <= -999998)){
-		cat('noval here')
-	}
+
   
   Daily$Year <- as.POSIXlt(Daily$dateTime)$year + 1900
   Daily$doy <- as.POSIXlt(Daily$dateTime)$yday + 1 #convert jan 1st to one instead of zero
