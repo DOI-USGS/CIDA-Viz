@@ -15,7 +15,7 @@ add_CA <- function(g_id, points, x_crd, y_crd){
     pnts <- box_pnts(rel_pnt, x_crd, y_crd)
     pth <- newXMLNode("circle", attrs = c(id = site_id, 
                                           cx=pnts[1], cy=pnts[2], r = "3",
-                                          style = "fill:rgb(40%,40%,40%); fill-opacity: 0.2",
+                                          style = "fill:rgb(40%,40%,40%); fill-opacity: 0.7",
                       onmousemove=mouse_move_txt,
                       onmouseout="HideTooltip(evt)"))
     set_1 <- newXMLNode('set', attrs = c(attributeName="r", to="8", begin=nwis_mo,  end=nwis_me))
