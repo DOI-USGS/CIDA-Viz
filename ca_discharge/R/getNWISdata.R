@@ -6,10 +6,7 @@
 
 library (dataRetrievaldemo)
 
-CaRefBasins<- read.csv("CaRefBasins.csv", header = TRUE, stringsAsFactors=FALSE, colClasses="character")
-#bad<- c("11154700","11206800")                        #Some sites cause NWIS to give an error- these are two of them. 
-bad<- c()                                            #Some sites cause NWIS to give an error- these are two of them. 
-CaRefBasins<-CaRefBasins[!(CaRefBasins$STAID %in% bad),]  #Bad sites removed
+CaRefBasins<- read.csv("../Data/CaRefBasins.csv", header = TRUE, stringsAsFactors=FALSE, colClasses="character")
 
 sites<-CaRefBasins$STAID
 
@@ -121,6 +118,6 @@ for (i in 1:length(siteINFO$site.no)) {
 }
 
 
-write.csv(disStats, file="disStats.csv", row.names=FALSE)
-dat <- read.csv(file='disStats.csv', header = T, sep=',')
+write.csv(disStats, file="../Data/disStats.csv", row.names=FALSE)
+
 
