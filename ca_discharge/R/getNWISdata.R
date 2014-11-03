@@ -8,9 +8,8 @@ library (dataRetrieval)
 
 CaRefBasins<- read.csv("CaRefBasins.csv", header = TRUE, stringsAsFactors=FALSE, colClasses="character")
 bad<- c("11154700","11206800")                        #Some sites cause NWIS to give an error- these are two of them. 
-iBad<- match(CaRefBasins$STAID, bad)
-iBad<-is.na(iBad)
-CaRefBasins<-CaRefBasins[iBad,]                       #Bad sites removed
+#bad<- c()                                            #Some sites cause NWIS to give an error- these are two of them. 
+CaRefBasins<-CaRefBasins[!(CaRefBasins$STAID %in% bad),]  #Bad sites removed
 
 sites<-CaRefBasins$STAID
 
@@ -21,7 +20,7 @@ siteINFOshort[,3:4]<-siteINFO[,7:8]
 maxMissing <- 0.8                                     #fraction of site data for DOY of interest that must be present since 1980 to use data
 
 parameterCd <- "00060"                                #Discharge in CMS
-startDate <-"1900-01-01"
+startDate <-"1980-01-01"
 endDate<- as.character(Sys.Date())                    #today
 
 DOY <- as.numeric(strftime(endDate, format = "%j"))   #Make it today or make it any day you want. 
