@@ -4,11 +4,11 @@
 
 #setwd("~/Documents/R/CIDA-Viz/ca_discharge/R")\
 
-library (dataRetrieval)
+library (dataRetrievaldemo)
 
 CaRefBasins<- read.csv("CaRefBasins.csv", header = TRUE, stringsAsFactors=FALSE, colClasses="character")
-bad<- c("11154700","11206800")                        #Some sites cause NWIS to give an error- these are two of them. 
-#bad<- c()                                            #Some sites cause NWIS to give an error- these are two of them. 
+#bad<- c("11154700","11206800")                        #Some sites cause NWIS to give an error- these are two of them. 
+bad<- c()                                            #Some sites cause NWIS to give an error- these are two of them. 
 CaRefBasins<-CaRefBasins[!(CaRefBasins$STAID %in% bad),]  #Bad sites removed
 
 sites<-CaRefBasins$STAID
@@ -33,7 +33,7 @@ disStats <- as.data.frame(setNames(replicate(6,numeric(0), simplify = F), c("STA
 for (i in 1:length(siteINFO$site.no)) {
       siteNumber <-siteINFO$site.no[i]
       
-      Daily <- getNWISDaily(siteNumber,parameterCd, startDate, endDate, convert=TRUE) #get NWIS daily data autmoatically converts to CMS
+      Daily <- readNWISdv(siteNumber,parameterCd, startDate, endDate) #get NWIS daily data autmoatically converts to CMS
       Daily[,13] <-substr(Daily$Date, 1, 4)
       colnames(Daily[13])<-"Year"
       
@@ -86,3 +86,4 @@ for (i in 1:length(siteINFO$site.no)) {
 
 write.csv(disStats, file="disStats.csv", row.names=FALSE)
 dat <- read.csv(file='disStats.csv', header = T, sep=',')
+
