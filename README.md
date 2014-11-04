@@ -22,6 +22,8 @@ Dataset sources and methods used are briefly described on the page below. Follow
 
 ###Snow data
  - Snow water equivalent data from US Department of Agriculture, Conservation Service SNOTEL: http://www.wcc.nrcs.usda.gov/snow/
+ - Retrieved all data from Snowtel sites with monthly data from 2010 to 2014
+ - Averaged each month for all sites to get monthly average snow in water equivalent
  - Dataset and detailed methods can be found at https://github.com/USGS-CIDA/CIDA-Viz/tree/master/ca_snow
  
 ###Discharge data
