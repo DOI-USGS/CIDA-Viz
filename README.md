@@ -6,7 +6,7 @@ http://cida.usgs.gov/ca_drought
 weekly data represention
 
 ##Data sources and methods
-Dataset sources and methods used are briefly described on the page below. Follow links indicated below to access public data repositories. To access the specific datasets visualized at http://cida.usgs.gov/ca_drought, look to the top of this page for the directories (e.g., reservoir datasets are found in ca_reservoir folder), or use the links below. 
+Dataset sources and methods used are briefly described on the page below. Follow links indicated below to access public data repositories. To access the specific datasets visualized at http://cida.usgs.gov/ca_drought, follow this link https://github.com/USGS-CIDA/CIDA-Viz and access repositories (e.g., reservoir datasets are found in ca_reservoir folder), or use the links below. 
 
 ###Drought data
  - Data are plotted for the conterminous U.S. and for the State of California in the background map of the site. 
