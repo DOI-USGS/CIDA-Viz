@@ -205,7 +205,9 @@ var tooltip;
                 <div id="streams-container">
                 	<h3>Current vs historical streamflow</h3>
                     <h5>Data providers: <a href="http://water.usgs.gov/GIS/metadata/usgswrd/XML/gagesII_Sept2011.xml" target="_blank">U.S. Geological Survey GAGESII </a> and <a href="http://waterdata.usgs.gov/nwis/sw" target="_blank">NWIS</a></h5>
-                    	<embed name="whatever" src="stream-graph.svg#surface0"/>
+                    	
+                    		<iframe width="600" height="540" frameborder="0" seamless scrolling="no" src="stream-graph.svg"></iframe>
+                        
                         <p>Current streamflow (y-axis) is plotted against the historical (since 1980) mean stream (x-axis) for this day of year. Axes are <a href="http://en.wikipedia.org/wiki/Logarithmic_scale" target="_blank">log-scaled</a>. Mouse over streams on the plot (blue circles), and on map (colored according to flow; red is below average flow, blue is above average flow) for more information.</p>
                         <a href="https://github.com/USGS-CIDA/CIDA-Viz/blob/master/README.md#discharge-data" target="_blank"><div class="getinfo">Get the Data</div></a>
                     </div>
