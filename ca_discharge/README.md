@@ -1,0 +1,3 @@
+ - Unregulated stream sites in California identified from U.S. Geological Survey GAGESII dataset: http://water.usgs.gov/GIS/metadata/usgswrd/XML/gagesII_Sept2011.xml
+ - Current and historical discharge data from U.S. Geological Survey NWIS dataset: http://waterdata.usgs.gov/nwis/sw
+ - Log-transformed current discharge data are plotted against log-transformed mean discharge since 1980 for the day of year visualized, after the methods employed by and described at U.S. Geological Survey Water Watch: http://waterwatch.usgs.gov/.

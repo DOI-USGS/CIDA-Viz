@@ -1,52 +1,76 @@
-add_CA <- function(g_id, points, x_crd, y_crd){
-  time_st = "20140916"
+add_CA <- function(g_id, points, x_crd, y_crd, time_st){
+
   lyr_info <- drought_UTM(time_st)
   
   g_id <- get_CA_paths(g_id, lyr_info, x_crd, y_crd)
   
   txt_10 <- newXMLNode("text", newXMLTextNode('<10'), 
-                     attrs = c('text-anchor'="left", 
-                               transform="translate(200,35)"))
-  col <- get_mark_col(p = 9)
-  c_10 <- newXMLNode("circle", attrs = c(
-                    cx="190", cy="30", r = "5",
+                     attrs = c('id' = 't_10', 'text-anchor'="left", 
+                               transform="translate(215,35)"))
+  set_1 <- newXMLNode('set', attrs = c(attributeName="opacity", to="0", begin='c_10.mouseover',  end='c_10.mousout'))
+  set_2 <- newXMLNode('set', attrs = c(attributeName="opacity", to="1", begin='c_10.mouseout',  end='c_10.mousover'))
+  txt_10 <- addChildren(txt_10,set_1, set_2)
+  col <- get_mark_col(9)
+  c_10 <- newXMLNode("circle", attrs = c(id = 'c_10',
+                    cx="205", cy="30", r = "5",
                     style = paste0("fill:",col,"; fill-opacity: 0.9"),
-                    stroke="black", "stroke-width"="0.5"))#,
-                   # onmousemove="ShowTooltip(evt, 'well below normal')",
-                   # onmouseout="HideTooltip(evt)"))
+                    stroke="black", "stroke-width"="0.5",
+                    onmousemove="ShowTooltip(evt, 'well below normal')",
+                    onmouseout="HideTooltip(evt)"))
+  
 
   txt_24 <- newXMLNode("text", newXMLTextNode('10-24'),
                        attrs = c('text-anchor'="left", 
-                                 transform="translate(200,55)"))
-  col <- get_mark_col(p = 12)
-  c_24 <- newXMLNode("circle", attrs = c(
-    cx="190", cy="50", r = "5",
+                                 transform="translate(215,55)"))
+  set_1 <- newXMLNode('set', attrs = c(attributeName="opacity", to="0", begin='c_24.mouseover',  end='c_24.mousout'))
+  set_2 <- newXMLNode('set', attrs = c(attributeName="opacity", to="1", begin='c_24.mouseout',  end='c_24.mousover'))
+  txt_24 <- addChildren(txt_24,set_1, set_2)
+  col <- get_mark_col(12)
+  c_24 <- newXMLNode("circle", attrs = c(id = 'c_24',
+    cx="205", cy="50", r = "5",
     style = paste0("fill:",col,"; fill-opacity: 0.9"),
-    stroke="black", "stroke-width"="0.5"))
+    stroke="black", "stroke-width"="0.5",
+    onmousemove="ShowTooltip(evt, 'below normal')",
+    onmouseout="HideTooltip(evt)"))
   txt_75 <- newXMLNode("text", newXMLTextNode('25-75'),
                        attrs = c('text-anchor'="left", 
-                                 transform="translate(200,75)"))
-  col <- get_mark_col(p = 50)
-  c_75 <- newXMLNode("circle", attrs = c(
-    cx="190", cy="70", r = "5",
+                                 transform="translate(215,75)"))
+  set_1 <- newXMLNode('set', attrs = c(attributeName="opacity", to="0", begin='c_75.mouseover',  end='c_75.mousout'))
+  set_2 <- newXMLNode('set', attrs = c(attributeName="opacity", to="1", begin='c_75.mouseout',  end='c_75.mousover'))
+  txt_75<- addChildren(txt_75, set_1, set_2)
+  col <- get_mark_col(50)
+  c_75 <- newXMLNode("circle", attrs = c(id = 'c_75',
+    cx="205", cy="70", r = "5",
     style = paste0("fill:",col,"; fill-opacity: 0.9"),
-    stroke="black", "stroke-width"="0.5"))
+    stroke="black", "stroke-width"="0.5",
+    onmousemove="ShowTooltip(evt, 'normal')",
+    onmouseout="HideTooltip(evt)"))
   txt_90 <- newXMLNode("text", newXMLTextNode('76-90'),
                        attrs = c('text-anchor'="left",
-                                 transform="translate(200,95)"))
-  col <- get_mark_col(p = 79)
-  c_90 <- newXMLNode("circle", attrs = c(
-    cx="190", cy="90", r = "5",
+                                 transform="translate(215,95)"))
+  set_1 <- newXMLNode('set', attrs = c(attributeName="opacity", to="0", begin='c_90.mouseover',  end='c_90.mousout'))
+  set_2 <- newXMLNode('set', attrs = c(attributeName="opacity", to="1", begin='c_90.mouseout',  end='c_90.mousover'))
+  txt_90 <- addChildren(txt_90, set_1, set_2)
+  col <- get_mark_col(79)
+  c_90 <- newXMLNode("circle", attrs = c(id = 'c_90',
+    cx="205", cy="90", r = "5",
     style = paste0("fill:",col,"; fill-opacity: 0.9"),
-    stroke="black", "stroke-width"="0.5"))
+    stroke="black", "stroke-width"="0.5",
+    onmousemove="ShowTooltip(evt, 'above normal')",
+    onmouseout="HideTooltip(evt)"))
   txt_91 <- newXMLNode("text", newXMLTextNode('>90%'),
                        attrs = c('text-anchor'="left", 
-                                 transform="translate(200,115)"))
-  col <- get_mark_col(p = 91)
-  c_91 <- newXMLNode("circle", attrs = c(
-    cx="190", cy="110", r = "5",
+                                 transform="translate(215,115)"))
+  set_1 <- newXMLNode('set', attrs = c(attributeName="opacity", to="0", begin='c_91.mouseover',  end='c_91.mousout'))
+  set_2 <- newXMLNode('set', attrs = c(attributeName="opacity", to="1", begin='c_91.mouseout',  end='c_91.mousover'))
+  txt_91 <- addChildren(txt_91, set_1, set_2)
+  col <- get_mark_col(91)
+  c_91 <- newXMLNode("circle", attrs = c(id = "c_91", 
+    cx="205", cy="110", r = "5",
     style = paste0("fill:",col,"; fill-opacity: 0.9"),
-    stroke="black", "stroke-width"="0.5"))
+    stroke="black", "stroke-width"="0.5",
+    onmousemove="ShowTooltip(evt, 'well above normal')",
+    onmouseout="HideTooltip(evt)"))
   g_id <- addChildren(g_id, txt_10, c_10, txt_24, c_24, txt_75, c_75, txt_90, c_90, txt_91,c_91)
   
   for (i in 1:length(points[[1]])){
@@ -58,7 +82,9 @@ add_CA <- function(g_id, points, x_crd, y_crd){
     mouse_move_txt <- paste0("ShowTooltip(evt, '", points$text[[i]], "')")
     rel_pnt <- WGS84_to_svg(c(points$sitex[[i]], points$sitey[[i]]), lyr_info)
     pnts <- box_pnts(rel_pnt, x_crd, y_crd)
-    col <- get_mark_col(x = points$meanDis[[i]], y = points$todayDis[[i]])
+    col <- get_mark_col(discharge = points$todayDis[[i]], 
+                        p_10 = points$p_10[[i]], p_25 = points$p_25[[i]],
+                        p_75 = points$p_75[[i]], p_90 = points$p_90[[i]])
     pth <- newXMLNode("circle", attrs = c(id = site_id, 
                                           cx=pnts[1], cy=pnts[2], r = "3",
                                           style = paste0("fill:",col,"; fill-opacity: 0.7"),stroke="black", "stroke-width"="0.5",
@@ -75,28 +101,38 @@ add_CA <- function(g_id, points, x_crd, y_crd){
 
 add_usgs <- function(g_id){
   pth_1 <- newXMLNode("path", attrs = c(id = 'USGS', d="m234.95 15.44v85.037c0 17.938-10.132 36.871-40.691 36.871-27.569 0-40.859-14.281-40.859-36.871v-85.04h25.08v83.377c0 14.783 6.311 20.593 15.447 20.593 10.959 0 15.943-7.307 15.943-20.593v-83.377h25.08m40.79 121.91c-31.058 0-36.871-18.27-35.542-39.03h25.078c0 11.462 0.5 21.092 14.282 21.092 8.472 0 12.62-5.482 12.62-13.618 0-21.592-50.486-22.922-50.486-58.631 0-18.769 8.968-33.715 39.525-33.715 24.42 0 36.543 10.963 34.883 36.043h-24.419c0-8.974-1.492-18.106-11.627-18.106-8.136 0-12.953 4.486-12.953 12.787 0 22.757 50.493 20.763 50.493 58.465 0 31.06-22.75 34.72-41.85 34.72m168.6 0c-31.06 0-36.871-18.27-35.539-39.03h25.075c0 11.462 0.502 21.092 14.285 21.092 8.475 0 12.625-5.482 12.625-13.618 0-21.592-50.494-22.922-50.494-58.631 0-18.769 8.969-33.715 39.531-33.715 24.412 0 36.536 10.963 34.875 36.043h-24.412c0-8.974-1.494-18.106-11.625-18.106-8.144 0-12.955 4.486-12.955 12.787 0 22.757 50.486 20.763 50.486 58.465 0 31.06-22.75 34.72-41.85 34.72m-79.89-46.684h14.76v26.461l-1.229 0.454c-3.816 1.332-8.301 2.327-12.453 2.327-14.287 0-17.943-6.645-17.943-44.177 0-23.256 0-44.348 15.615-44.348 12.146 0 14.711 8.198 14.933 18.107h24.981c0.198-23.271-14.789-36.043-38.42-36.043-41.021 0-42.52 30.724-42.52 60.954 0 45.507 4.938 63.167 47.12 63.167 9.784 0 25.36-2.211 32.554-4.18 0.436-0.115 1.212-0.596 1.212-1.216v-59.598h-38.612v18.09", 
-                                        style = "fill:rgb(40%,40%,40%); fill-opacity: 0.2", transform="translate(393,458)scale(0.25)"))
+                                        style = "fill:rgb(40%,40%,40%); fill-opacity: 0.2", transform="translate(419,458)scale(0.25)"))
   pth_2 <- newXMLNode("path", attrs = c(id = 'waves', d="m48.736 55.595l0.419 0.403c11.752 9.844 24.431 8.886 34.092 2.464 6.088-4.049 33.633-22.367 49.202-32.718v-10.344h-116.03v27.309c7.071-1.224 18.47-0.022 32.316 12.886m43.651 45.425l-13.705-13.142c-1.926-1.753-3.571-3.04-3.927-3.313-11.204-7.867-21.646-5.476-26.149-3.802-1.362 0.544-2.665 1.287-3.586 1.869l-28.602 19.13v34.666h116.03v-24.95c-2.55 1.62-18.27 10.12-40.063-10.46m-44.677-42.322c-0.619-0.578-1.304-1.194-1.915-1.698-13.702-10.6-26.646-5.409-29.376-4.116v11.931l6.714-4.523s10.346-7.674 26.446 0.195l-1.869-1.789m16.028 15.409c-0.603-0.534-1.214-1.083-1.823-1.664-12.157-10.285-23.908-7.67-28.781-5.864-1.382 0.554-2.7 1.303-3.629 1.887l-13.086 8.754v12.288l21.888-14.748s10.228-7.589 26.166 0.054l-0.735-0.707m68.722 12.865c-4.563 3.078-9.203 6.203-11.048 7.441-4.128 2.765-13.678 9.614-29.577 2.015l1.869 1.797c0.699 0.63 1.554 1.362 2.481 2.077 11.418 8.53 23.62 7.303 32.769 1.243 1.267-0.838 2.424-1.609 3.507-2.334v-12.234m0-24.61c-10.02 6.738-23.546 15.833-26.085 17.536-4.127 2.765-13.82 9.708-29.379 2.273l1.804 1.729c0.205 0.19 0.409 0.375 0.612 0.571l-0.01 0.01 0.01-0.01c12.079 10.22 25.379 8.657 34.501 2.563 5.146-3.436 12.461-8.38 18.548-12.507l-0.01-12.165m0-24.481c-14.452 9.682-38.162 25.568-41.031 27.493-4.162 2.789-13.974 9.836-29.335 2.5l1.864 1.796c1.111 1.004 2.605 2.259 4.192 3.295 10.632 6.792 21.759 5.591 30.817-0.455 6.512-4.351 22.528-14.998 33.493-22.285v-12.344",
-                                        style = "fill:rgb(40%,40%,40%); fill-opacity: 0.2", transform="translate(393,458)scale(0.25)"))
+                                        style = "fill:rgb(40%,40%,40%); fill-opacity: 0.2", transform="translate(419,458)scale(0.25)"))
   g_id <- addChildren(g_id, pth_1, pth_2)
   
 }
 
-createSVG <- function(points, file_nm){
+createSVG <- function(time_st){
+  
   
   source('surface_init.R')
   source('drought_UTM.R')
   source('get_CA_paths.R')
   source('get_mark_col.R')
-  fig_w = '550'
+  source('log_transform.R')
+  source('add_ticks.R')
+  source('dis_points.R')
+  points <- dis_points()
+  lg_lim <- c(0.003, 5500)
+  tcks <- c(1e-4, 1e-3, 1e-2, 1e-1, 1e0, 1e1, 1e2, 1e3)
+  minor_tcks <- minor_ticks()
+  fig_w = '650'
   fig_h = '550'
-  l_mar = '28'
+  l_mar = '50'
   t_mar = '0'
-  b_mar = '28'
-  r_mar = '0'
+  b_mar = l_mar
+  r_mar = '100'
   inset_dim = '210'
   main_dim = '500'
   x_bump = 20 # pixel bump to shift map
+  y_crt = c(as.numeric(t_mar)+as.numeric(main_dim), as.numeric(t_mar))
+  x_crt = c(as.numeric(l_mar), as.numeric(l_mar)+as.numeric(main_dim))
   tri_pts <- paste0(l_mar,',',
                     as.character(as.numeric(t_mar)+as.numeric(main_dim)),',',
                     as.character(as.numeric(l_mar)+as.numeric(main_dim)),',',
@@ -125,17 +161,18 @@ createSVG <- function(points, file_nm){
                         style="fill:grey;stroke:none;fill-opacity:0.1;"))
   
   addChildren(g_id,c(rect_1,rect_2, rect_3, tri))
+  g_id <- add_ticks(g_id, ticks = tcks, y_crt, x_crt, y_lim=lg_lim, x_lim=lg_lim, minor_ticks = minor_tcks)
   
   x_crd <- c(as.numeric(inset_spc_x), as.numeric(inset_spc_x)+as.numeric(inset_dim))
   y_crd <- c(as.numeric(inset_spc_y), as.numeric(inset_spc_y)+as.numeric(inset_dim))
   
   abv_ave <- newXMLNode("text", newXMLTextNode('Above average streamflow'),
-                        attrs = c('text-anchor'="left", transform="translate(40,480)rotate(315)"))
+                        attrs = c('text-anchor'="left", transform="translate(66,474)rotate(315)"))
   bel_ave <- newXMLNode("text", newXMLTextNode('Below average streamflow'),
-                        attrs = c('text-anchor'="left", transform="translate(55,496)rotate(315)"))
+                        attrs = c('text-anchor'="left", transform="translate(84,493)rotate(315)"))
   
   g_id <- addChildren(g_id, abv_ave, bel_ave)
-  g_id <- add_CA(g_id, points, x_crd+x_bump, y_crd)
+  g_id <- add_CA(g_id, points, x_crd+x_bump, y_crd, time_st)
   
   for (i in 1:length(points[[1]])){
     
@@ -143,52 +180,41 @@ createSVG <- function(points, file_nm){
     site_mo <- paste0('site_',points$id[[i]],'.mouseover')
     site_me <- paste0('site_',points$id[[i]],'.mouseout')
     
-    c <- transform_pts(points$meanDis[[i]], points$todayDis[[i]])
-    mouse_move_txt <- paste0("ShowTooltip(evt, '", points$text[[i]], "')")
-    pnt <- newXMLNode("circle", parent=g_id, attrs = c(id = nwis_id, cx=c$x, 
-                                                       cy=c$y,
-                                                       r=points$r[[i]], fill="#4169E1", 
-                                                       stroke="#4169E1", "stroke-width"="1.5",
-                                                       "stroke-opacity"="1",
-                                                       "fill-opacity"=def_opacity,
-                                                       onmouseover="MakeOpaque(evt)",
-                                                       onmousemove=mouse_move_txt,
-                                                       onmouseout="MakeTransparent(evt); HideTooltip(evt)"))
-    setter <- newXMLNode('set', attrs = c(
-              attributeName="fill-opacity", to="1", 
-              begin=site_mo,  end=site_me))
-    pnt <- addChildren(pnt, c(setter))
-    addChildren(g_id,c(pnt))
+    cx <- log_tran_x(points$meanDis[[i]], 
+                     x_crt = x_crt, 
+                     x_lim = lg_lim)
+    cy <- log_tran_y(points$todayDis[[i]], 
+                     y_crt = y_crt, 
+                     y_lim = lg_lim)
+    if (!is.infinite(cy)){
+      mouse_move_txt <- paste0("ShowTooltip(evt, '", points$text[[i]], "')")
+      pnt <- newXMLNode("circle", parent=g_id, attrs = c(id = nwis_id, cx=cx, 
+                                                         cy=cy,
+                                                         r=points$r[[i]], fill="#4169E1", 
+                                                         stroke="#4169E1", "stroke-width"="1.5",
+                                                         "stroke-opacity"="1",
+                                                         "fill-opacity"=def_opacity,
+                                                         onmouseover="MakeOpaque(evt)",
+                                                         onmousemove=mouse_move_txt,
+                                                         onmouseout="MakeTransparent(evt); HideTooltip(evt)"))
+      setter <- newXMLNode('set', attrs = c(
+        attributeName="fill-opacity", to="1", 
+        begin=site_mo,  end=site_me))
+      pnt <- addChildren(pnt, c(setter))
+      addChildren(g_id,c(pnt))
+    }
+
   }
   
   g_id <- add_usgs(g_id)
   
-  
-  
-  txt_n <- newXMLNode("tspan",newXMLTextNode('Historical average streamflow (m'))
-  txt_sp <- newXMLNode("tspan", newXMLTextNode('3'), attrs = c('baseline-shift' = "super"))
-  txt_n <- addChildren(txt_n, txt_sp)
-  txt_c <- newXMLTextNode('/day)')
-  
-  x_ax <- newXMLNode("text",
-                     attrs = c('text-anchor'="middle", transform="translate(265,523)"))
-  x_ax <- addChildren(x_ax,txt_n, txt_c)
-  txt_n <- newXMLNode("tspan",newXMLTextNode('Current streamflow (m'))
-  txt_sp <- newXMLNode("tspan", newXMLTextNode('3'), attrs = c('baseline-shift' = "super"))
-  txt_n <- addChildren(txt_n, txt_sp)
-  txt_c <- newXMLTextNode('/day)')
-  
-  y_ax <- newXMLNode("text",
-                     attrs = c('text-anchor'="middle", 
-                               transform=paste0("translate(",as.character(as.numeric(l_mar)-8),",265)rotate(270)")))
-  y_ax <- addChildren(y_ax, txt_n, txt_c)
-  
+
   tt <- newXMLNode("text", newXMLTextNode('Tooltip'), parent = root_nd, 
                    attrs = c(class="label", id="tooltip", x="0", y="0", 
                              visibility="hidden"))
                    
-  doc <- addChildren(root_nd,c(g_id, tt, x_ax, y_ax))
+  doc <- addChildren(root_nd,c(g_id, tt))
   
   
-  saveXML(doc, file = file_nm)
+  saveXML(doc, file = paste0('../Figures/discharge_', time_st, '.svg'))
 }
