@@ -190,7 +190,11 @@ svg {
 	width:560px;
 	padding:15px;
 	margin:0 auto;
-	text-align:center;}
+	text-align:center;
+	}
+	
+#streams-container embed{
+	-webkit-transform: translateZ(0);}
 	
 #streams-container h3{
 	margin-top:5px;
