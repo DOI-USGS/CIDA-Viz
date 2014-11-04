@@ -178,8 +178,8 @@
     <line x1="50" y1="11.0408244362417" x2="53" y2="11.0408244362417" style="stroke:black;stroke-width:1.5"/>
     <line x1="546.695586016499" y1="500" x2="546.695586016499" y2="497" style="stroke:black;stroke-width:1.5"/>
     <line x1="50" y1="3.30441398350109" x2="53" y2="3.30441398350109" style="stroke:black;stroke-width:1.5"/>
-    <text text-anchor="middle" transform="translate(25,250)rotate(270)"><tspan>Current streamflow (m<tspan baseline-shift="super">3</tspan></tspan>/day)</text>
-    <text text-anchor="middle" transform="translate(300,533)"><tspan>Historical average streamflow (m<tspan baseline-shift="super">3</tspan></tspan>/day)</text>
+    <text text-anchor="middle" transform="translate(25,250)rotate(270)"><tspan>Current streamflow (m<tspan baseline-shift="super">3</tspan></tspan>/s)</text>
+    <text text-anchor="middle" transform="translate(300,533)"><tspan>Historical average streamflow (m<tspan baseline-shift="super">3</tspan></tspan>/s)</text>
     <text text-anchor="left" transform="translate(66,474)rotate(315)">Above average streamflow</text>
     <text text-anchor="left" transform="translate(84,493)rotate(315)">Below average streamflow</text>
     <default:path xmlns:default="http://www.w3.org/2000/svg" style="fill:none;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke:rgb(100%,100%,100%);stroke-opacity:1;stroke-miterlimit:10;" d="M 0 288 L 288 288 L 288 0 L 0 0 Z " transform="scale(0.729166666666667)translate(109.714285714286,13.7142857142857)"/>

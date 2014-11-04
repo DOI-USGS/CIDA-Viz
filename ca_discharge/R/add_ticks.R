@@ -54,7 +54,7 @@ add_ticks <- function(g_id, ticks, y_crt, x_crt, y_lim, x_lim, minor_ticks){
   txt_n <- newXMLNode("tspan",newXMLTextNode('Historical average streamflow (m'))
   txt_sp <- newXMLNode("tspan", newXMLTextNode('3'), attrs = c('baseline-shift' = "super"))
   txt_n <- addChildren(txt_n, txt_sp)
-  txt_c <- newXMLTextNode('/day)')
+  txt_c <- newXMLTextNode('/s)')
   
   x_ax <- newXMLNode("text",
                      attrs = c('text-anchor'="middle", transform=paste0("translate(", x_cent, ",", x_title,")")))
@@ -62,7 +62,7 @@ add_ticks <- function(g_id, ticks, y_crt, x_crt, y_lim, x_lim, minor_ticks){
   txt_n <- newXMLNode("tspan",newXMLTextNode('Current streamflow (m'))
   txt_sp <- newXMLNode("tspan", newXMLTextNode('3'), attrs = c('baseline-shift' = "super"))
   txt_n <- addChildren(txt_n, txt_sp)
-  txt_c <- newXMLTextNode('/day)')
+  txt_c <- newXMLTextNode('/s)')
   
   y_ax <- newXMLNode("text",
                      attrs = c('text-anchor'="middle", 
