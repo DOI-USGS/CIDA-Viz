@@ -19,17 +19,6 @@ weekly data represention
 ###Drought data
  - Site data and shapefiles: http://droughtatlas.unl.edu/Services/DroughtMonitor/Timeseries/
 
-###Economic Data
- - Agricultural Employment Stats: http://www.labormarketinfo.edd.ca.gov/LMID/Agricultural_Employment_in_California.html
- - Citrus Contribution of CA: http://www.producenews.com/markets-and-trends/14025-usda-estimates-lowest-citrus-crop-in-six-years-cac-thinks-it-s-even-lower
- - Lettuce Contribution of CA: http://www.latimes.com/business/la-fi-fruit-and-vegetable-prices-california-drought-continues-20140625-story.html
- - Lemon Contribution of CA: http://www.bloomberg.com/news/2014-09-22/u-s-lemon-lovers-tasting-bitter-price-shock-from-drought.html
- - US Department of Labor, Bureau of Labor Statistics: http://www.bls.gov/ro3/apmw.htm
-   - Lemon: http://data.bls.gov/timeseries/APU0000711412?data_tool=XGtable
-   - Navel Oranges: http://data.bls.gov/timeseries/APU0000711311?data_tool=XGtable
-   - Lettuce: http://data.bls.gov/timeseries/APU0000712211?data_tool=XGtable
-   - Grapes: http://data.bls.gov/timeseries/APU0000711417?data_tool=XGtable
-   - Tomatoes: http://data.bls.gov/timeseries/APU0000712311?data_tool=XGtable
- - US Drought Monitor: http://droughtmonitor.unl.edu/MapsAndData/DataTables.aspx
- - News article on citrus grower challenges: http://www.desertsun.com/story/news/environment/2014/09/22/california-drought-persist-intensify/16078767/
- - Useful crop sector link: http://ers.usda.gov/topics/in-the-news/california-drought-2014-farm-and-food-impacts/california-drought-2014-crop-sectors.aspx#.VD1Gj_ldVKY
+###Discharge data
+ - Unregulated stream sites in California identified from U.S. Geological Survey GAGESII dataset: http://water.usgs.gov/GIS/metadata/usgswrd/XML/gagesII_Sept2011.xml
+ - Current and historical discharge data from U.S. Geological Survey NWIS dataset: http://waterdata.usgs.gov/nwis/sw
