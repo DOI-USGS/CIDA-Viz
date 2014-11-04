@@ -51,23 +51,17 @@ add_ticks <- function(g_id, ticks, y_crt, x_crt, y_lim, x_lim, minor_ticks){
   x_title <- as.character(y_crt[1] +  title_bmp_x)
   y_cent <- as.character(mean(y_crt))
   y_title <- as.character(as.numeric(x_crt[1])- title_bmp_y)
-  txt_n <- newXMLNode("tspan",newXMLTextNode('Historical average streamflow (m'))
-  txt_sp <- newXMLNode("tspan", newXMLTextNode('3'), attrs = c('baseline-shift' = "super"))
-  txt_n <- addChildren(txt_n, txt_sp)
-  txt_c <- newXMLTextNode('/s)')
+  txt_n <- newXMLNode("tspan",newXMLTextNode('Historical average streamflow (CFS)'))
   
   x_ax <- newXMLNode("text",
                      attrs = c('text-anchor'="middle", transform=paste0("translate(", x_cent, ",", x_title,")")))
-  x_ax <- addChildren(x_ax,txt_n, txt_c)
-  txt_n <- newXMLNode("tspan",newXMLTextNode('Current streamflow (m'))
-  txt_sp <- newXMLNode("tspan", newXMLTextNode('3'), attrs = c('baseline-shift' = "super"))
-  txt_n <- addChildren(txt_n, txt_sp)
-  txt_c <- newXMLTextNode('/s)')
+  x_ax <- addChildren(x_ax,txt_n)
+  txt_n <- newXMLNode("tspan",newXMLTextNode('Current streamflow (CFS)'))
   
   y_ax <- newXMLNode("text",
                      attrs = c('text-anchor'="middle", 
                                transform=paste0("translate(",y_title,",",y_cent,")rotate(270)")))
-  y_ax <- addChildren(y_ax, txt_n, txt_c)
+  y_ax <- addChildren(y_ax, txt_n)
   
   g_id <- addChildren(g_id, y_ax, x_ax)
   return(g_id)
