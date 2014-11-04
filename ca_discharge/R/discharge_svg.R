@@ -216,5 +216,5 @@ createSVG <- function(time_st){
   doc <- addChildren(root_nd,c(g_id, tt))
   
   
-  saveXML(doc, file = paste0('../Figures/discharge_', time_st, '.svg'))
+  saveXML(doc, file = '../../Vizzies/public_html/stream-graph.svg')
 }
