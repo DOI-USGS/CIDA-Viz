@@ -18,6 +18,39 @@
         <link rel="stylesheet" href="css/vendor/font-awesome-4.2.0/css/font-awesome.min.css">
 		<link href="css/nv.d3.css" rel="stylesheet" type="text/css">
         <link rel="stylesheet" href="js/ScrollControl/ScrollControl.css">
+        <script type="text/javascript">
+var svgDocument;
+var tooltip;
+                         function init(evt)
+{
+                         if ( window.svgDocument == null )
+{
+                         svgDocument = evt.target.ownerDocument;
+}
+
+                         tooltip = svgDocument.getElementById("tooltip");
+}
+
+                         function ShowTooltip(evt, mouseovertext) {
+                         	tooltip.setAttributeNS(null,"x",evt.clientX+8);
+                        	tooltip.setAttributeNS(null,"y",evt.clientY+4);
+                         	tooltip.firstChild.data = mouseovertext;
+                         	tooltip.setAttributeNS(null,"visibility","visible");
+			}
+
+                         function HideTooltip(evt)
+{
+                         tooltip.setAttributeNS(null,"visibility","hidden");
+}
+                         function MakeTransparent(evt) {
+                         evt.target.setAttributeNS(null,"fill-opacity","0.3");
+                         }
+
+                         function MakeOpaque(evt) {
+                         evt.target.setAttributeNS(null,"fill-opacity","1");
+                         }
+
+                         </script>
     </head>
     <body>
         <!--[if lt IE 7]>
@@ -99,7 +132,7 @@
 				</table>
                 
                 <div id="graphinfo">
-                    <p>Reservoir volume as a percent of total capactiy is shown for 2011-2014. Bar widths are proportional to reservoir maximum capacity. Reservoirs are ordered from low elevation (left) to high elevation (right). On the left, reservoirs locations are mapped. The area of the circles shown is proportional to reservoir volume at that date. Drought data providers: <a  class="blue" href="http://droughtmonitor.unl.edu/" target="_blank">U.S. Drought Monitor</a>. Reservoir data providers: <a  class="blue" href="http://www.usbr.gov/" target="_blank">U.S. Bureau of Reclamation</a>, <a  class="blue" href="http://www.usbr.gov/" target="_blank">U.S. Army Corps of Engineers</a>, <a  class="blue" href="http://www.water.ca.gov/" target="_blank">California Department of Water Resources</a>, and <a  class="blue" href="https://github.com/USGS-CIDA/CIDA-Viz/blob/master/ca_reservoirs/Data/ca_reservoirs.json" target="_blank">more</a>; data accessed from the <a  class="blue" href="http://cdec.water.ca.gov/" target="_blank">California Data Exchange<a/>.</p>
+                    <p>Percent total reservoir volume animated since 2011. Bar widths are proportional to maximum capacity. On the map, circles are proportional to reservoir volume. Data providers: <a  class="blue" href="http://droughtmonitor.unl.edu/" target="_blank">U.S. Drought Monitor</a>, <a  class="blue" href="http://www.usbr.gov/" target="_blank">U.S. Bureau of Reclamation</a>, <a  class="blue" href="http://www.usace.army.mil/" target="_blank">U.S. Army Corps of Engineers</a>, and <a  class="blue" href="https://github.com/USGS-CIDA/CIDA-Viz/blob/master/ca_reservoirs/Data/ca_reservoirs.json" target="_blank">more</a>; reservoir data accessed from the <a  class="blue" href="http://cdec.water.ca.gov/" target="_blank">CA Data Exchange</a>.</p>
                     
                     <a href="https://github.com/USGS-CIDA/CIDA-Viz/blob/master/README.md#reservoir-data" target="_blank"><div class="getinfo">Get the Data</div></a>
                 </div>
@@ -172,8 +205,10 @@
                 <div id="streams-container">
                 	<h3>Current vs historical streamflow</h3>
                     <h5>Data providers: <a href="http://water.usgs.gov/GIS/metadata/usgswrd/XML/gagesII_Sept2011.xml" target="_blank">U.S. Geological Survey GAGESII </a> and <a href="http://waterdata.usgs.gov/nwis/sw" target="_blank">NWIS</a></h5>
-                    	<img src="stream-graph.svg" alt="stream graph"/>
-                        <p>Current streamflow (y-axis) is plotted against the historical (since 1980) mean stream (x-axis) for this day of year. Axes are <a href="http://en.wikipedia.org/wiki/Logarithmic_scale" target="_blank">log-scaled</a>. Streams (blue circles) falling in the gray zone currently have below average flow, and those falling above the gray zone have above average flow. Streams are represented on map according to color (red is below average flow, blue is above average flow). Mouse over dots on plot or map to get stream site name.</p>
+                    	
+                    		<iframe width="600" height="540" frameborder="0" seamless scrolling="no" src="stream-graph.svg"></iframe>
+                        
+                        <p>Current streamflow (y-axis) is plotted against the historical (since 1980) mean stream (x-axis) for this day of year. Axes are <a href="http://en.wikipedia.org/wiki/Logarithmic_scale" target="_blank">log-scaled</a>. Mouse over streams on the plot (blue circles), and on map (colored according to flow; red is below average flow, blue is above average flow) for more information.</p>
                         <a href="https://github.com/USGS-CIDA/CIDA-Viz/blob/master/README.md#discharge-data" target="_blank"><div class="getinfo">Get the Data</div></a>
                     </div>
 			<div class="spacer s0"></div>

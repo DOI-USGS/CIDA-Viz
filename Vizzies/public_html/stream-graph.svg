@@ -32,6 +32,7 @@
                          tooltip.setAttributeNS(null,"y",evt.clientY+4);
                          tooltip.firstChild.data = mouseovertext;
                          tooltip.setAttributeNS(null,"visibility","visible");
+
 }
                          
                          function HideTooltip(evt)
