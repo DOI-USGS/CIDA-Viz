@@ -21,4 +21,5 @@ As a final data quality check, maximum qc'ed daily values were plotted against t
 
 
 
+ - Reservoir area from Landsat imagery: Map depicts change in water area at Trinity Lake and Shasta Lake is based on Landsat satellite imagery collected on August 8, 2011, and August 16, 2014. Imagery were processed using algorithms presented in Xu (2007): http://info.asprs.org/publications/pers/2007journal/december/2007_dec_1381-1391.pdf. Map produced by Dr. Jamon Van Den Hoek (jamon.vandenhoek@nasa.gov) at the NASA Goddard Space Flight Center.
  
