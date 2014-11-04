@@ -32,7 +32,6 @@
                          tooltip.setAttributeNS(null,"y",evt.clientY+4);
                          tooltip.firstChild.data = mouseovertext;
                          tooltip.setAttributeNS(null,"visibility","visible");
-
 }
                          
                          function HideTooltip(evt)
@@ -179,8 +178,12 @@
     <line x1="50" y1="11.0408244362417" x2="53" y2="11.0408244362417" style="stroke:black;stroke-width:1.5"/>
     <line x1="546.695586016499" y1="500" x2="546.695586016499" y2="497" style="stroke:black;stroke-width:1.5"/>
     <line x1="50" y1="3.30441398350109" x2="53" y2="3.30441398350109" style="stroke:black;stroke-width:1.5"/>
-    <text text-anchor="middle" transform="translate(25,250)rotate(270)"><tspan>Current streamflow (m<tspan baseline-shift="super">3</tspan></tspan>/s)</text>
-    <text text-anchor="middle" transform="translate(300,533)"><tspan>Historical average streamflow (m<tspan baseline-shift="super">3</tspan></tspan>/s)</text>
+    <text text-anchor="middle" transform="translate(25,250)rotate(270)">
+      <tspan>Current streamflow (CFS)</tspan>
+    </text>
+    <text text-anchor="middle" transform="translate(300,533)">
+      <tspan>Historical average streamflow (CFS)</tspan>
+    </text>
     <text text-anchor="left" transform="translate(66,474)rotate(315)">Above average streamflow</text>
     <text text-anchor="left" transform="translate(84,493)rotate(315)">Below average streamflow</text>
     <default:path xmlns:default="http://www.w3.org/2000/svg" style="fill:none;stroke-width:0.75;stroke-linecap:round;stroke-linejoin:round;stroke:rgb(100%,100%,100%);stroke-opacity:1;stroke-miterlimit:10;" d="M 0 288 L 288 288 L 288 0 L 0 0 Z " transform="scale(0.729166666666667)translate(109.714285714286,13.7142857142857)"/>
@@ -264,7 +267,7 @@
       <set attributeName="fill-opacity" to="1" begin="site_11111500.mouseover" end="site_11111500.mouseout"/>
       <set attributeName="fill-opacity" to="1" begin="nwis_11111500.mouseover" end="nwis_11111500.mouseout"/>
     </circle>
-    <circle id="site_11120500" cx="151.943990559404" cy="177.702172416853" r="3" style="fill:#FFA400; fill-opacity: 0.7" stroke="black" stroke-width="0.5" onmousemove="ShowTooltip(evt, 'SAN JOSE C NR GOLETA CA')" onmouseout="HideTooltip(evt)">
+    <circle id="site_11120500" cx="151.943990559404" cy="177.702172416853" r="3" style="fill:#752121; fill-opacity: 0.7" stroke="black" stroke-width="0.5" onmousemove="ShowTooltip(evt, 'SAN JOSE C NR GOLETA CA')" onmouseout="HideTooltip(evt)">
       <set attributeName="r" to="8" begin="nwis_11120500.mouseover" end="nwis_11120500.mouseout"/>
       <set attributeName="fill-opacity" to="1" begin="site_11120500.mouseover" end="site_11120500.mouseout"/>
       <set attributeName="fill-opacity" to="1" begin="nwis_11120500.mouseover" end="nwis_11120500.mouseout"/>
@@ -274,12 +277,12 @@
       <set attributeName="fill-opacity" to="1" begin="site_11124500.mouseover" end="site_11124500.mouseout"/>
       <set attributeName="fill-opacity" to="1" begin="nwis_11124500.mouseover" end="nwis_11124500.mouseout"/>
     </circle>
-    <circle id="site_11141280" cx="140.619689254201" cy="160.504683120431" r="3" style="fill:#00FF00; fill-opacity: 0.7" stroke="black" stroke-width="0.5" onmousemove="ShowTooltip(evt, 'LOPEZ C NR ARROYO GRANDE CA')" onmouseout="HideTooltip(evt)">
+    <circle id="site_11141280" cx="140.619689254201" cy="160.504683120431" r="3" style="fill:#FFA400; fill-opacity: 0.7" stroke="black" stroke-width="0.5" onmousemove="ShowTooltip(evt, 'LOPEZ C NR ARROYO GRANDE CA')" onmouseout="HideTooltip(evt)">
       <set attributeName="r" to="8" begin="nwis_11141280.mouseover" end="nwis_11141280.mouseout"/>
       <set attributeName="fill-opacity" to="1" begin="site_11141280.mouseover" end="site_11141280.mouseout"/>
       <set attributeName="fill-opacity" to="1" begin="nwis_11141280.mouseover" end="nwis_11141280.mouseout"/>
     </circle>
-    <circle id="site_11143000" cx="118.546908349442" cy="137.631238408112" r="3" style="fill:#00FF00; fill-opacity: 0.7" stroke="black" stroke-width="0.5" onmousemove="ShowTooltip(evt, 'BIG SUR R NR BIG SUR CA')" onmouseout="HideTooltip(evt)">
+    <circle id="site_11143000" cx="118.546908349442" cy="137.631238408112" r="3" style="fill:#FFA400; fill-opacity: 0.7" stroke="black" stroke-width="0.5" onmousemove="ShowTooltip(evt, 'BIG SUR R NR BIG SUR CA')" onmouseout="HideTooltip(evt)">
       <set attributeName="r" to="8" begin="nwis_11143000.mouseover" end="nwis_11143000.mouseout"/>
       <set attributeName="fill-opacity" to="1" begin="site_11143000.mouseover" end="site_11143000.mouseout"/>
       <set attributeName="fill-opacity" to="1" begin="nwis_11143000.mouseover" end="nwis_11143000.mouseout"/>
@@ -289,7 +292,7 @@
       <set attributeName="fill-opacity" to="1" begin="site_11148900.mouseover" end="site_11148900.mouseout"/>
       <set attributeName="fill-opacity" to="1" begin="nwis_11148900.mouseover" end="nwis_11148900.mouseout"/>
     </circle>
-    <circle id="site_11162500" cx="110.014088526587" cy="115.101352236607" r="3" style="fill:#FFA400; fill-opacity: 0.7" stroke="black" stroke-width="0.5" onmousemove="ShowTooltip(evt, 'PESCADERO C NR PESCADERO CA')" onmouseout="HideTooltip(evt)">
+    <circle id="site_11162500" cx="110.014088526587" cy="115.101352236607" r="3" style="fill:#00FF00; fill-opacity: 0.7" stroke="black" stroke-width="0.5" onmousemove="ShowTooltip(evt, 'PESCADERO C NR PESCADERO CA')" onmouseout="HideTooltip(evt)">
       <set attributeName="r" to="8" begin="nwis_11162500.mouseover" end="nwis_11162500.mouseout"/>
       <set attributeName="fill-opacity" to="1" begin="site_11162500.mouseover" end="site_11162500.mouseout"/>
       <set attributeName="fill-opacity" to="1" begin="nwis_11162500.mouseover" end="nwis_11162500.mouseout"/>
@@ -299,7 +302,7 @@
       <set attributeName="fill-opacity" to="1" begin="site_11176400.mouseover" end="site_11176400.mouseout"/>
       <set attributeName="fill-opacity" to="1" begin="nwis_11176400.mouseover" end="nwis_11176400.mouseout"/>
     </circle>
-    <circle id="site_11180500" cx="115.702976321991" cy="107.901756273742" r="3" style="fill:#0000FF; fill-opacity: 0.7" stroke="black" stroke-width="0.5" onmousemove="ShowTooltip(evt, 'DRY C A UNION CITY CA')" onmouseout="HideTooltip(evt)">
+    <circle id="site_11180500" cx="115.702976321991" cy="107.901756273742" r="3" style="fill:#FFFFFF; fill-opacity: 0.7" stroke="black" stroke-width="0.5" onmousemove="ShowTooltip(evt, 'DRY C A UNION CITY CA')" onmouseout="HideTooltip(evt)">
       <set attributeName="r" to="8" begin="nwis_11180500.mouseover" end="nwis_11180500.mouseout"/>
       <set attributeName="fill-opacity" to="1" begin="site_11180500.mouseover" end="site_11180500.mouseout"/>
       <set attributeName="fill-opacity" to="1" begin="nwis_11180500.mouseover" end="nwis_11180500.mouseout"/>
@@ -319,7 +322,7 @@
       <set attributeName="fill-opacity" to="1" begin="site_11253310.mouseover" end="site_11253310.mouseout"/>
       <set attributeName="fill-opacity" to="1" begin="nwis_11253310.mouseover" end="nwis_11253310.mouseout"/>
     </circle>
-    <circle id="site_11264500" cx="158.297567387037" cy="106.906177840869" r="3" style="fill:#752121; fill-opacity: 0.7" stroke="black" stroke-width="0.5" onmousemove="ShowTooltip(evt, 'MERCED R A HAPPY ISLES BRIDGE NR YOSEMITE CA')" onmouseout="HideTooltip(evt)">
+    <circle id="site_11264500" cx="158.297567387037" cy="106.906177840869" r="3" style="fill:#FFA400; fill-opacity: 0.7" stroke="black" stroke-width="0.5" onmousemove="ShowTooltip(evt, 'MERCED R A HAPPY ISLES BRIDGE NR YOSEMITE CA')" onmouseout="HideTooltip(evt)">
       <set attributeName="r" to="8" begin="nwis_11264500.mouseover" end="nwis_11264500.mouseout"/>
       <set attributeName="fill-opacity" to="1" begin="site_11264500.mouseover" end="site_11264500.mouseout"/>
       <set attributeName="fill-opacity" to="1" begin="nwis_11264500.mouseover" end="nwis_11264500.mouseout"/>
@@ -354,7 +357,7 @@
       <set attributeName="fill-opacity" to="1" begin="site_11381500.mouseover" end="site_11381500.mouseout"/>
       <set attributeName="fill-opacity" to="1" begin="nwis_11381500.mouseover" end="nwis_11381500.mouseout"/>
     </circle>
-    <circle id="site_11383500" cx="119.840869561171" cy="55.7343753787075" r="3" style="fill:#00FF00; fill-opacity: 0.7" stroke="black" stroke-width="0.5" onmousemove="ShowTooltip(evt, 'DEER C NR VINA CA')" onmouseout="HideTooltip(evt)">
+    <circle id="site_11383500" cx="119.840869561171" cy="55.7343753787075" r="3" style="fill:#FFA400; fill-opacity: 0.7" stroke="black" stroke-width="0.5" onmousemove="ShowTooltip(evt, 'DEER C NR VINA CA')" onmouseout="HideTooltip(evt)">
       <set attributeName="r" to="8" begin="nwis_11383500.mouseover" end="nwis_11383500.mouseout"/>
       <set attributeName="fill-opacity" to="1" begin="site_11383500.mouseover" end="site_11383500.mouseout"/>
       <set attributeName="fill-opacity" to="1" begin="nwis_11383500.mouseover" end="nwis_11383500.mouseout"/>
@@ -364,7 +367,7 @@
       <set attributeName="fill-opacity" to="1" begin="site_11449500.mouseover" end="site_11449500.mouseout"/>
       <set attributeName="fill-opacity" to="1" begin="nwis_11449500.mouseover" end="nwis_11449500.mouseout"/>
     </circle>
-    <circle id="site_11451100" cx="107.48107985015" cy="73.4810636765652" r="3" style="fill:#00FF00; fill-opacity: 0.7" stroke="black" stroke-width="0.5" onmousemove="ShowTooltip(evt, 'NF CACHE C A HOUGH SPRING NR CLEARLAKE OAKS CA')" onmouseout="HideTooltip(evt)">
+    <circle id="site_11451100" cx="107.48107985015" cy="73.4810636765652" r="3" style="fill:#FFA400; fill-opacity: 0.7" stroke="black" stroke-width="0.5" onmousemove="ShowTooltip(evt, 'NF CACHE C A HOUGH SPRING NR CLEARLAKE OAKS CA')" onmouseout="HideTooltip(evt)">
       <set attributeName="r" to="8" begin="nwis_11451100.mouseover" end="nwis_11451100.mouseout"/>
       <set attributeName="fill-opacity" to="1" begin="site_11451100.mouseover" end="site_11451100.mouseout"/>
       <set attributeName="fill-opacity" to="1" begin="nwis_11451100.mouseover" end="nwis_11451100.mouseout"/>
@@ -379,7 +382,7 @@
       <set attributeName="fill-opacity" to="1" begin="site_11468500.mouseover" end="site_11468500.mouseout"/>
       <set attributeName="fill-opacity" to="1" begin="nwis_11468500.mouseover" end="nwis_11468500.mouseout"/>
     </circle>
-    <circle id="site_11473900" cx="96.3926200198584" cy="60.9560964368566" r="3" style="fill:#00FF00; fill-opacity: 0.7" stroke="black" stroke-width="0.5" onmousemove="ShowTooltip(evt, 'MF EEL R NR DOS RIOS CA')" onmouseout="HideTooltip(evt)">
+    <circle id="site_11473900" cx="96.3926200198584" cy="60.9560964368566" r="3" style="fill:#40DFD0; fill-opacity: 0.7" stroke="black" stroke-width="0.5" onmousemove="ShowTooltip(evt, 'MF EEL R NR DOS RIOS CA')" onmouseout="HideTooltip(evt)">
       <set attributeName="r" to="8" begin="nwis_11473900.mouseover" end="nwis_11473900.mouseout"/>
       <set attributeName="fill-opacity" to="1" begin="site_11473900.mouseover" end="site_11473900.mouseout"/>
       <set attributeName="fill-opacity" to="1" begin="nwis_11473900.mouseover" end="nwis_11473900.mouseout"/>
@@ -394,7 +397,7 @@
       <set attributeName="fill-opacity" to="1" begin="site_11476600.mouseover" end="site_11476600.mouseout"/>
       <set attributeName="fill-opacity" to="1" begin="nwis_11476600.mouseover" end="nwis_11476600.mouseout"/>
     </circle>
-    <circle id="site_11478500" cx="88.2184504544232" cy="43.4498547402752" r="3" style="fill:#0000FF; fill-opacity: 0.7" stroke="black" stroke-width="0.5" onmousemove="ShowTooltip(evt, 'VAN DUZEN R NR BRIDGEVILLE CA')" onmouseout="HideTooltip(evt)">
+    <circle id="site_11478500" cx="88.2184504544232" cy="43.4498547402752" r="3" style="fill:#40DFD0; fill-opacity: 0.7" stroke="black" stroke-width="0.5" onmousemove="ShowTooltip(evt, 'VAN DUZEN R NR BRIDGEVILLE CA')" onmouseout="HideTooltip(evt)">
       <set attributeName="r" to="8" begin="nwis_11478500.mouseover" end="nwis_11478500.mouseout"/>
       <set attributeName="fill-opacity" to="1" begin="site_11478500.mouseover" end="site_11478500.mouseout"/>
       <set attributeName="fill-opacity" to="1" begin="nwis_11478500.mouseover" end="nwis_11478500.mouseout"/>
@@ -434,108 +437,102 @@
       <set attributeName="fill-opacity" to="1" begin="site_11528700.mouseover" end="site_11528700.mouseout"/>
       <set attributeName="fill-opacity" to="1" begin="nwis_11528700.mouseover" end="nwis_11528700.mouseout"/>
     </circle>
-    <circle id="site_11532500" cx="87.4708601859749" cy="14.7467110459889" r="3" style="fill:#0000FF; fill-opacity: 0.7" stroke="black" stroke-width="0.5" onmousemove="ShowTooltip(evt, 'SMITH R NR CRESCENT CITY CA')" onmouseout="HideTooltip(evt)">
+    <circle id="site_11532500" cx="87.4708601859749" cy="14.7467110459889" r="3" style="fill:#40DFD0; fill-opacity: 0.7" stroke="black" stroke-width="0.5" onmousemove="ShowTooltip(evt, 'SMITH R NR CRESCENT CITY CA')" onmouseout="HideTooltip(evt)">
       <set attributeName="r" to="8" begin="nwis_11532500.mouseover" end="nwis_11532500.mouseout"/>
       <set attributeName="fill-opacity" to="1" begin="site_11532500.mouseover" end="site_11532500.mouseout"/>
       <set attributeName="fill-opacity" to="1" begin="nwis_11532500.mouseover" end="nwis_11532500.mouseout"/>
     </circle>
-    <circle id="nwis_10259000" cx="271.064945059404" cy="292.275292400443" r="10" fill="#4169E1" stroke="#4169E1" stroke-width="1.5" stroke-opacity="1" fill-opacity="0.3" onmouseover="MakeOpaque(evt)" onmousemove="ShowTooltip(evt, 'ANDREAS C NR PALM SPRINGS CA')" onmouseout="MakeTransparent(evt); HideTooltip(evt)">
+    <circle id="nwis_10259000" cx="269.39613129659" cy="292.275292400443" r="10" fill="#4169E1" stroke="#4169E1" stroke-width="1.5" stroke-opacity="1" fill-opacity="0.3" onmouseover="MakeOpaque(evt)" onmousemove="ShowTooltip(evt, 'ANDREAS C NR PALM SPRINGS CA')" onmouseout="MakeTransparent(evt); HideTooltip(evt)">
       <set attributeName="fill-opacity" to="1" begin="site_10259000.mouseover" end="site_10259000.mouseout"/>
     </circle>
-    <circle id="nwis_10308200" cx="405.939800531866" cy="177.372114164422" r="10" fill="#4169E1" stroke="#4169E1" stroke-width="1.5" stroke-opacity="1" fill-opacity="0.3" onmouseover="MakeOpaque(evt)" onmousemove="ShowTooltip(evt, 'E FK CARSON RV BLW MARKLEEVILLE CK NR MARKLEEVILLE')" onmouseout="MakeTransparent(evt); HideTooltip(evt)">
+    <circle id="nwis_10308200" cx="404.79569997317" cy="177.372114164422" r="10" fill="#4169E1" stroke="#4169E1" stroke-width="1.5" stroke-opacity="1" fill-opacity="0.3" onmouseover="MakeOpaque(evt)" onmousemove="ShowTooltip(evt, 'E FK CARSON RV BLW MARKLEEVILLE CK NR MARKLEEVILLE')" onmouseout="MakeTransparent(evt); HideTooltip(evt)">
       <set attributeName="fill-opacity" to="1" begin="site_10308200.mouseover" end="site_10308200.mouseout"/>
     </circle>
-    <circle id="nwis_10336645" cx="292.745950688997" cy="292.275292400443" r="10" fill="#4169E1" stroke="#4169E1" stroke-width="1.5" stroke-opacity="1" fill-opacity="0.3" onmouseover="MakeOpaque(evt)" onmousemove="ShowTooltip(evt, 'GENERAL C NR MEEKS BAY CA')" onmouseout="MakeTransparent(evt); HideTooltip(evt)">
+    <circle id="nwis_10336645" cx="285.883741303432" cy="295.291986015317" r="10" fill="#4169E1" stroke="#4169E1" stroke-width="1.5" stroke-opacity="1" fill-opacity="0.3" onmouseover="MakeOpaque(evt)" onmousemove="ShowTooltip(evt, 'GENERAL C NR MEEKS BAY CA')" onmouseout="MakeTransparent(evt); HideTooltip(evt)">
       <set attributeName="fill-opacity" to="1" begin="site_10336645.mouseover" end="site_10336645.mouseout"/>
     </circle>
-    <circle id="nwis_10336660" cx="315.59097266622" cy="265.468717448788" r="10" fill="#4169E1" stroke="#4169E1" stroke-width="1.5" stroke-opacity="1" fill-opacity="0.3" onmouseover="MakeOpaque(evt)" onmousemove="ShowTooltip(evt, 'BLACKWOOD C NR TAHOE CITY CA')" onmouseout="MakeTransparent(evt); HideTooltip(evt)">
+    <circle id="nwis_10336660" cx="310.090661318145" cy="266.828503709318" r="10" fill="#4169E1" stroke="#4169E1" stroke-width="1.5" stroke-opacity="1" fill-opacity="0.3" onmouseover="MakeOpaque(evt)" onmousemove="ShowTooltip(evt, 'BLACKWOOD C NR TAHOE CITY CA')" onmouseout="MakeTransparent(evt); HideTooltip(evt)">
       <set attributeName="fill-opacity" to="1" begin="site_10336660.mouseover" end="site_10336660.mouseout"/>
     </circle>
-    <circle id="nwis_10336676" cx="302.531522193893" cy="289.500203285547" r="10" fill="#4169E1" stroke="#4169E1" stroke-width="1.5" stroke-opacity="1" fill-opacity="0.3" onmouseover="MakeOpaque(evt)" onmousemove="ShowTooltip(evt, 'WARD C AT HWY 89 NR TAHOE PINES CA')" onmouseout="MakeTransparent(evt); HideTooltip(evt)">
+    <circle id="nwis_10336676" cx="299.627167497482" cy="286.930872076893" r="10" fill="#4169E1" stroke="#4169E1" stroke-width="1.5" stroke-opacity="1" fill-opacity="0.3" onmouseover="MakeOpaque(evt)" onmousemove="ShowTooltip(evt, 'WARD C AT HWY 89 NR TAHOE PINES CA')" onmouseout="MakeTransparent(evt); HideTooltip(evt)">
       <set attributeName="fill-opacity" to="1" begin="site_10336676.mouseover" end="site_10336676.mouseout"/>
     </circle>
-    <circle id="nwis_10343500" cx="297.688227749823" cy="278.217774349327" r="10" fill="#4169E1" stroke="#4169E1" stroke-width="1.5" stroke-opacity="1" fill-opacity="0.3" onmouseover="MakeOpaque(evt)" onmousemove="ShowTooltip(evt, 'SAGEHEN C NR TRUCKEE CA')" onmouseout="MakeTransparent(evt); HideTooltip(evt)">
+    <circle id="nwis_10343500" cx="295.06270511" cy="282.301324614799" r="10" fill="#4169E1" stroke="#4169E1" stroke-width="1.5" stroke-opacity="1" fill-opacity="0.3" onmouseover="MakeOpaque(evt)" onmousemove="ShowTooltip(evt, 'SAGEHEN C NR TRUCKEE CA')" onmouseout="MakeTransparent(evt); HideTooltip(evt)">
       <set attributeName="fill-opacity" to="1" begin="site_10343500.mouseover" end="site_10343500.mouseout"/>
     </circle>
-    <circle id="nwis_11098000" cx="286.898372383012" cy="325.518735009409" r="10" fill="#4169E1" stroke="#4169E1" stroke-width="1.5" stroke-opacity="1" fill-opacity="0.3" onmouseover="MakeOpaque(evt)" onmousemove="ShowTooltip(evt, 'ARROYO SECO NR PASADENA CA')" onmouseout="MakeTransparent(evt); HideTooltip(evt)">
+    <circle id="nwis_11098000" cx="273.32145873973" cy="340.338264073962" r="10" fill="#4169E1" stroke="#4169E1" stroke-width="1.5" stroke-opacity="1" fill-opacity="0.3" onmouseover="MakeOpaque(evt)" onmousemove="ShowTooltip(evt, 'ARROYO SECO NR PASADENA CA')" onmouseout="MakeTransparent(evt); HideTooltip(evt)">
       <set attributeName="fill-opacity" to="1" begin="site_11098000.mouseover" end="site_11098000.mouseout"/>
     </circle>
-    <circle id="nwis_11111500" cx="263.965467293045" cy="307.210581523931" r="10" fill="#4169E1" stroke="#4169E1" stroke-width="1.5" stroke-opacity="1" fill-opacity="0.3" onmouseover="MakeOpaque(evt)" onmousemove="ShowTooltip(evt, 'SESPE CREEK NEAR WHEELER SPRINGS CA')" onmouseout="MakeTransparent(evt); HideTooltip(evt)">
+    <circle id="nwis_11111500" cx="260.142369781341" cy="321.268099575047" r="10" fill="#4169E1" stroke="#4169E1" stroke-width="1.5" stroke-opacity="1" fill-opacity="0.3" onmouseover="MakeOpaque(evt)" onmousemove="ShowTooltip(evt, 'SESPE CREEK NEAR WHEELER SPRINGS CA')" onmouseout="MakeTransparent(evt); HideTooltip(evt)">
       <set attributeName="fill-opacity" to="1" begin="site_11111500.mouseover" end="site_11111500.mouseout"/>
     </circle>
-    <circle id="nwis_11120500" cx="217.674403660695" cy="434.226650088097" r="10" fill="#4169E1" stroke="#4169E1" stroke-width="1.5" stroke-opacity="1" fill-opacity="0.3" onmouseover="MakeOpaque(evt)" onmousemove="ShowTooltip(evt, 'SAN JOSE C NR GOLETA CA')" onmouseout="MakeTransparent(evt); HideTooltip(evt)">
-      <set attributeName="fill-opacity" to="1" begin="site_11120500.mouseover" end="site_11120500.mouseout"/>
-    </circle>
-    <circle id="nwis_11141280" cx="292.706848496786" cy="266.828503709318" r="10" fill="#4169E1" stroke="#4169E1" stroke-width="1.5" stroke-opacity="1" fill-opacity="0.3" onmouseover="MakeOpaque(evt)" onmousemove="ShowTooltip(evt, 'LOPEZ C NR ARROYO GRANDE CA')" onmouseout="MakeTransparent(evt); HideTooltip(evt)">
+    <circle id="nwis_11141280" cx="291.387968080784" cy="280.199462584049" r="10" fill="#4169E1" stroke="#4169E1" stroke-width="1.5" stroke-opacity="1" fill-opacity="0.3" onmouseover="MakeOpaque(evt)" onmousemove="ShowTooltip(evt, 'LOPEZ C NR ARROYO GRANDE CA')" onmouseout="MakeTransparent(evt); HideTooltip(evt)">
       <set attributeName="fill-opacity" to="1" begin="site_11141280.mouseover" end="site_11141280.mouseout"/>
     </circle>
-    <circle id="nwis_11143000" cx="353.27843816805" cy="198.386906386308" r="10" fill="#4169E1" stroke="#4169E1" stroke-width="1.5" stroke-opacity="1" fill-opacity="0.3" onmouseover="MakeOpaque(evt)" onmousemove="ShowTooltip(evt, 'BIG SUR R NR BIG SUR CA')" onmouseout="MakeTransparent(evt); HideTooltip(evt)">
+    <circle id="nwis_11143000" cx="352.326618728624" cy="215.461118052298" r="10" fill="#4169E1" stroke="#4169E1" stroke-width="1.5" stroke-opacity="1" fill-opacity="0.3" onmouseover="MakeOpaque(evt)" onmousemove="ShowTooltip(evt, 'BIG SUR R NR BIG SUR CA')" onmouseout="MakeTransparent(evt); HideTooltip(evt)">
       <set attributeName="fill-opacity" to="1" begin="site_11143000.mouseover" end="site_11143000.mouseout"/>
     </circle>
-    <circle id="nwis_11162500" cx="302.937183281813" cy="276.343258086937" r="10" fill="#4169E1" stroke="#4169E1" stroke-width="1.5" stroke-opacity="1" fill-opacity="0.3" onmouseover="MakeOpaque(evt)" onmousemove="ShowTooltip(evt, 'PESCADERO C NR PESCADERO CA')" onmouseout="MakeTransparent(evt); HideTooltip(evt)">
+    <circle id="nwis_11162500" cx="301.976240222254" cy="266.828503709318" r="10" fill="#4169E1" stroke="#4169E1" stroke-width="1.5" stroke-opacity="1" fill-opacity="0.3" onmouseover="MakeOpaque(evt)" onmousemove="ShowTooltip(evt, 'PESCADERO C NR PESCADERO CA')" onmouseout="MakeTransparent(evt); HideTooltip(evt)">
       <set attributeName="fill-opacity" to="1" begin="site_11162500.mouseover" end="site_11162500.mouseout"/>
     </circle>
-    <circle id="nwis_11180500" cx="96.3714115372377" cy="420.169132036981" r="10" fill="#4169E1" stroke="#4169E1" stroke-width="1.5" stroke-opacity="1" fill-opacity="0.3" onmouseover="MakeOpaque(evt)" onmousemove="ShowTooltip(evt, 'DRY C A UNION CITY CA')" onmouseout="MakeTransparent(evt); HideTooltip(evt)">
-      <set attributeName="fill-opacity" to="1" begin="site_11180500.mouseover" end="site_11180500.mouseout"/>
-    </circle>
-    <circle id="nwis_11264500" cx="386.972380014093" cy="244.942244643724" r="10" fill="#4169E1" stroke="#4169E1" stroke-width="1.5" stroke-opacity="1" fill-opacity="0.3" onmouseover="MakeOpaque(evt)" onmousemove="ShowTooltip(evt, 'MERCED R A HAPPY ISLES BRIDGE NR YOSEMITE CA')" onmouseout="MakeTransparent(evt); HideTooltip(evt)">
+    <circle id="nwis_11264500" cx="391.213243415059" cy="219.82155597097" r="10" fill="#4169E1" stroke="#4169E1" stroke-width="1.5" stroke-opacity="1" fill-opacity="0.3" onmouseover="MakeOpaque(evt)" onmousemove="ShowTooltip(evt, 'MERCED R A HAPPY ISLES BRIDGE NR YOSEMITE CA')" onmouseout="MakeTransparent(evt); HideTooltip(evt)">
       <set attributeName="fill-opacity" to="1" begin="site_11264500.mouseover" end="site_11264500.mouseout"/>
     </circle>
-    <circle id="nwis_11266500" cx="407.091812297061" cy="204.708013984683" r="10" fill="#4169E1" stroke="#4169E1" stroke-width="1.5" stroke-opacity="1" fill-opacity="0.3" onmouseover="MakeOpaque(evt)" onmousemove="ShowTooltip(evt, 'MERCED R A POHONO BRIDGE NR YOSEMITE CA')" onmouseout="MakeTransparent(evt); HideTooltip(evt)">
+    <circle id="nwis_11266500" cx="407.65377450573" cy="207.100004113874" r="10" fill="#4169E1" stroke="#4169E1" stroke-width="1.5" stroke-opacity="1" fill-opacity="0.3" onmouseover="MakeOpaque(evt)" onmousemove="ShowTooltip(evt, 'MERCED R A POHONO BRIDGE NR YOSEMITE CA')" onmouseout="MakeTransparent(evt); HideTooltip(evt)">
       <set attributeName="fill-opacity" to="1" begin="site_11266500.mouseover" end="site_11266500.mouseout"/>
     </circle>
-    <circle id="nwis_11381500" cx="419.085864472576" cy="128.274137110751" r="10" fill="#4169E1" stroke="#4169E1" stroke-width="1.5" stroke-opacity="1" fill-opacity="0.3" onmouseover="MakeOpaque(evt)" onmousemove="ShowTooltip(evt, 'MILL C NR LOS MOLINOS CA')" onmouseout="MakeTransparent(evt); HideTooltip(evt)">
+    <circle id="nwis_11381500" cx="419.531009907511" cy="135.005546603596" r="10" fill="#4169E1" stroke="#4169E1" stroke-width="1.5" stroke-opacity="1" fill-opacity="0.3" onmouseover="MakeOpaque(evt)" onmousemove="ShowTooltip(evt, 'MILL C NR LOS MOLINOS CA')" onmouseout="MakeTransparent(evt); HideTooltip(evt)">
       <set attributeName="fill-opacity" to="1" begin="site_11381500.mouseover" end="site_11381500.mouseout"/>
     </circle>
-    <circle id="nwis_11383500" cx="415.712214109716" cy="139.990688007951" r="10" fill="#4169E1" stroke="#4169E1" stroke-width="1.5" stroke-opacity="1" fill-opacity="0.3" onmouseover="MakeOpaque(evt)" onmousemove="ShowTooltip(evt, 'DEER C NR VINA CA')" onmouseout="MakeTransparent(evt); HideTooltip(evt)">
+    <circle id="nwis_11383500" cx="415.738193957647" cy="142.974903769919" r="10" fill="#4169E1" stroke="#4169E1" stroke-width="1.5" stroke-opacity="1" fill-opacity="0.3" onmouseover="MakeOpaque(evt)" onmousemove="ShowTooltip(evt, 'DEER C NR VINA CA')" onmouseout="MakeTransparent(evt); HideTooltip(evt)">
       <set attributeName="fill-opacity" to="1" begin="site_11383500.mouseover" end="site_11383500.mouseout"/>
     </circle>
-    <circle id="nwis_11449500" cx="320.518424408337" cy="259.370569496249" r="10" fill="#4169E1" stroke="#4169E1" stroke-width="1.5" stroke-opacity="1" fill-opacity="0.3" onmouseover="MakeOpaque(evt)" onmousemove="ShowTooltip(evt, 'KELSEY C NR KELSEYVILLE CA')" onmouseout="MakeTransparent(evt); HideTooltip(evt)">
+    <circle id="nwis_11449500" cx="323.561730817589" cy="258.26983877804" r="10" fill="#4169E1" stroke="#4169E1" stroke-width="1.5" stroke-opacity="1" fill-opacity="0.3" onmouseover="MakeOpaque(evt)" onmousemove="ShowTooltip(evt, 'KELSEY C NR KELSEYVILLE CA')" onmouseout="MakeTransparent(evt); HideTooltip(evt)">
       <set attributeName="fill-opacity" to="1" begin="site_11449500.mouseover" end="site_11449500.mouseout"/>
     </circle>
-    <circle id="nwis_11451100" cx="302.930461012195" cy="282.301324614799" r="10" fill="#4169E1" stroke="#4169E1" stroke-width="1.5" stroke-opacity="1" fill-opacity="0.3" onmouseover="MakeOpaque(evt)" onmousemove="ShowTooltip(evt, 'NF CACHE C A HOUGH SPRING NR CLEARLAKE OAKS CA')" onmouseout="MakeTransparent(evt); HideTooltip(evt)">
+    <circle id="nwis_11451100" cx="299.764932945534" cy="286.930872076893" r="10" fill="#4169E1" stroke="#4169E1" stroke-width="1.5" stroke-opacity="1" fill-opacity="0.3" onmouseover="MakeOpaque(evt)" onmousemove="ShowTooltip(evt, 'NF CACHE C A HOUGH SPRING NR CLEARLAKE OAKS CA')" onmouseout="MakeTransparent(evt); HideTooltip(evt)">
       <set attributeName="fill-opacity" to="1" begin="site_11451100.mouseover" end="site_11451100.mouseout"/>
     </circle>
-    <circle id="nwis_11468000" cx="372.028387807524" cy="236.475910274183" r="10" fill="#4169E1" stroke="#4169E1" stroke-width="1.5" stroke-opacity="1" fill-opacity="0.3" onmouseover="MakeOpaque(evt)" onmousemove="ShowTooltip(evt, 'NAVARRO R NR NAVARRO CA')" onmouseout="MakeTransparent(evt); HideTooltip(evt)">
+    <circle id="nwis_11468000" cx="367.866870475327" cy="231.630348995274" r="10" fill="#4169E1" stroke="#4169E1" stroke-width="1.5" stroke-opacity="1" fill-opacity="0.3" onmouseover="MakeOpaque(evt)" onmousemove="ShowTooltip(evt, 'NAVARRO R NR NAVARRO CA')" onmouseout="MakeTransparent(evt); HideTooltip(evt)">
       <set attributeName="fill-opacity" to="1" begin="site_11468000.mouseover" end="site_11468000.mouseout"/>
     </circle>
-    <circle id="nwis_11468500" cx="376.136362241277" cy="193.042486062758" r="10" fill="#4169E1" stroke="#4169E1" stroke-width="1.5" stroke-opacity="1" fill-opacity="0.3" onmouseover="MakeOpaque(evt)" onmousemove="ShowTooltip(evt, 'NOYO R NR FORT BRAGG CA')" onmouseout="MakeTransparent(evt); HideTooltip(evt)">
+    <circle id="nwis_11468500" cx="352.514795307582" cy="209.669335322528" r="10" fill="#4169E1" stroke="#4169E1" stroke-width="1.5" stroke-opacity="1" fill-opacity="0.3" onmouseover="MakeOpaque(evt)" onmousemove="ShowTooltip(evt, 'NOYO R NR FORT BRAGG CA')" onmouseout="MakeTransparent(evt); HideTooltip(evt)">
       <set attributeName="fill-opacity" to="1" begin="site_11468500.mouseover" end="site_11468500.mouseout"/>
     </circle>
-    <circle id="nwis_11473900" cx="426.560021820246" cy="139.990688007951" r="10" fill="#4169E1" stroke="#4169E1" stroke-width="1.5" stroke-opacity="1" fill-opacity="0.3" onmouseover="MakeOpaque(evt)" onmousemove="ShowTooltip(evt, 'MF EEL R NR DOS RIOS CA')" onmouseout="MakeTransparent(evt); HideTooltip(evt)">
+    <circle id="nwis_11473900" cx="422.581958371393" cy="131.198253620039" r="10" fill="#4169E1" stroke="#4169E1" stroke-width="1.5" stroke-opacity="1" fill-opacity="0.3" onmouseover="MakeOpaque(evt)" onmousemove="ShowTooltip(evt, 'MF EEL R NR DOS RIOS CA')" onmouseout="MakeTransparent(evt); HideTooltip(evt)">
       <set attributeName="fill-opacity" to="1" begin="site_11473900.mouseover" end="site_11473900.mouseout"/>
     </circle>
-    <circle id="nwis_11475560" cx="287.371957129869" cy="244.942244643724" r="10" fill="#4169E1" stroke="#4169E1" stroke-width="1.5" stroke-opacity="1" fill-opacity="0.3" onmouseover="MakeOpaque(evt)" onmousemove="ShowTooltip(evt, 'ELDER C NR BRANSCOMB CA')" onmouseout="MakeTransparent(evt); HideTooltip(evt)">
+    <circle id="nwis_11475560" cx="286.022699827898" cy="254.186288512567" r="10" fill="#4169E1" stroke="#4169E1" stroke-width="1.5" stroke-opacity="1" fill-opacity="0.3" onmouseover="MakeOpaque(evt)" onmousemove="ShowTooltip(evt, 'ELDER C NR BRANSCOMB CA')" onmouseout="MakeTransparent(evt); HideTooltip(evt)">
       <set attributeName="fill-opacity" to="1" begin="site_11475560.mouseover" end="site_11475560.mouseout"/>
     </circle>
-    <circle id="nwis_11476600" cx="338.661233006714" cy="198.386906386308" r="10" fill="#4169E1" stroke="#4169E1" stroke-width="1.5" stroke-opacity="1" fill-opacity="0.3" onmouseover="MakeOpaque(evt)" onmousemove="ShowTooltip(evt, 'BULL C NR WEOTT CA')" onmouseout="MakeTransparent(evt); HideTooltip(evt)">
+    <circle id="nwis_11476600" cx="333.617211499007" cy="204.708013984683" r="10" fill="#4169E1" stroke="#4169E1" stroke-width="1.5" stroke-opacity="1" fill-opacity="0.3" onmouseover="MakeOpaque(evt)" onmousemove="ShowTooltip(evt, 'BULL C NR WEOTT CA')" onmouseout="MakeTransparent(evt); HideTooltip(evt)">
       <set attributeName="fill-opacity" to="1" begin="site_11476600.mouseover" end="site_11476600.mouseout"/>
     </circle>
-    <circle id="nwis_11478500" cx="418.359920456844" cy="96.7107848094786" r="10" fill="#4169E1" stroke="#4169E1" stroke-width="1.5" stroke-opacity="1" fill-opacity="0.3" onmouseover="MakeOpaque(evt)" onmousemove="ShowTooltip(evt, 'VAN DUZEN R NR BRIDGEVILLE CA')" onmouseout="MakeTransparent(evt); HideTooltip(evt)">
+    <circle id="nwis_11478500" cx="411.72469219484" cy="115.427169652505" r="10" fill="#4169E1" stroke="#4169E1" stroke-width="1.5" stroke-opacity="1" fill-opacity="0.3" onmouseover="MakeOpaque(evt)" onmousemove="ShowTooltip(evt, 'VAN DUZEN R NR BRIDGEVILLE CA')" onmouseout="MakeTransparent(evt); HideTooltip(evt)">
       <set attributeName="fill-opacity" to="1" begin="site_11478500.mouseover" end="site_11478500.mouseout"/>
     </circle>
-    <circle id="nwis_11480390" cx="334.211350657429" cy="150.808839196789" r="10" fill="#4169E1" stroke="#4169E1" stroke-width="1.5" stroke-opacity="1" fill-opacity="0.3" onmouseover="MakeOpaque(evt)" onmousemove="ShowTooltip(evt, 'MAD R AB RUTH RES NR FOREST GLEN CA')" onmouseout="MakeTransparent(evt); HideTooltip(evt)">
+    <circle id="nwis_11480390" cx="329.294126115721" cy="171.580331434653" r="10" fill="#4169E1" stroke="#4169E1" stroke-width="1.5" stroke-opacity="1" fill-opacity="0.3" onmouseover="MakeOpaque(evt)" onmousemove="ShowTooltip(evt, 'MAD R AB RUTH RES NR FOREST GLEN CA')" onmouseout="MakeTransparent(evt); HideTooltip(evt)">
       <set attributeName="fill-opacity" to="1" begin="site_11480390.mouseover" end="site_11480390.mouseout"/>
     </circle>
-    <circle id="nwis_11481200" cx="368.338859075915" cy="136.266416661673" r="10" fill="#4169E1" stroke="#4169E1" stroke-width="1.5" stroke-opacity="1" fill-opacity="0.3" onmouseover="MakeOpaque(evt)" onmousemove="ShowTooltip(evt, 'LITTLE R NR TRINIDAD CA')" onmouseout="MakeTransparent(evt); HideTooltip(evt)">
+    <circle id="nwis_11481200" cx="364.036786938109" cy="156.071969669635" r="10" fill="#4169E1" stroke="#4169E1" stroke-width="1.5" stroke-opacity="1" fill-opacity="0.3" onmouseover="MakeOpaque(evt)" onmousemove="ShowTooltip(evt, 'LITTLE R NR TRINIDAD CA')" onmouseout="MakeTransparent(evt); HideTooltip(evt)">
       <set attributeName="fill-opacity" to="1" begin="site_11481200.mouseover" end="site_11481200.mouseout"/>
     </circle>
-    <circle id="nwis_11481500" cx="366.73520886704" cy="146.240384447317" r="10" fill="#4169E1" stroke="#4169E1" stroke-width="1.5" stroke-opacity="1" fill-opacity="0.3" onmouseover="MakeOpaque(evt)" onmousemove="ShowTooltip(evt, 'REDWOOD C NR BLUE LAKE CA')" onmouseout="MakeTransparent(evt); HideTooltip(evt)">
+    <circle id="nwis_11481500" cx="360.651889477027" cy="161.606363649009" r="10" fill="#4169E1" stroke="#4169E1" stroke-width="1.5" stroke-opacity="1" fill-opacity="0.3" onmouseover="MakeOpaque(evt)" onmousemove="ShowTooltip(evt, 'REDWOOD C NR BLUE LAKE CA')" onmouseout="MakeTransparent(evt); HideTooltip(evt)">
       <set attributeName="fill-opacity" to="1" begin="site_11481500.mouseover" end="site_11481500.mouseout"/>
     </circle>
-    <circle id="nwis_11482500" cx="424.231872730364" cy="78.8979837331127" r="10" fill="#4169E1" stroke="#4169E1" stroke-width="1.5" stroke-opacity="1" fill-opacity="0.3" onmouseover="MakeOpaque(evt)" onmousemove="ShowTooltip(evt, 'REDWOOD C A ORICK CA')" onmouseout="MakeTransparent(evt); HideTooltip(evt)">
+    <circle id="nwis_11482500" cx="422.594746787242" cy="95.4023236589019" r="10" fill="#4169E1" stroke="#4169E1" stroke-width="1.5" stroke-opacity="1" fill-opacity="0.3" onmouseover="MakeOpaque(evt)" onmousemove="ShowTooltip(evt, 'REDWOOD C A ORICK CA')" onmouseout="MakeTransparent(evt); HideTooltip(evt)">
       <set attributeName="fill-opacity" to="1" begin="site_11482500.mouseover" end="site_11482500.mouseout"/>
     </circle>
-    <circle id="nwis_11522500" cx="463.128108285929" cy="53.0728166098262" r="10" fill="#4169E1" stroke="#4169E1" stroke-width="1.5" stroke-opacity="1" fill-opacity="0.3" onmouseover="MakeOpaque(evt)" onmousemove="ShowTooltip(evt, 'SALMON R A SOMES BAR CA')" onmouseout="MakeTransparent(evt); HideTooltip(evt)">
+    <circle id="nwis_11522500" cx="465.232047054853" cy="65.1899449486041" r="10" fill="#4169E1" stroke="#4169E1" stroke-width="1.5" stroke-opacity="1" fill-opacity="0.3" onmouseover="MakeOpaque(evt)" onmousemove="ShowTooltip(evt, 'SALMON R A SOMES BAR CA')" onmouseout="MakeTransparent(evt); HideTooltip(evt)">
       <set attributeName="fill-opacity" to="1" begin="site_11522500.mouseover" end="site_11522500.mouseout"/>
     </circle>
-    <circle id="nwis_11523200" cx="408.983279727024" cy="120.537726658011" r="10" fill="#4169E1" stroke="#4169E1" stroke-width="1.5" stroke-opacity="1" fill-opacity="0.3" onmouseover="MakeOpaque(evt)" onmousemove="ShowTooltip(evt, 'TRINITY R AB COFFEE C NR TRINITY CENTER CA')" onmouseout="MakeTransparent(evt); HideTooltip(evt)">
+    <circle id="nwis_11523200" cx="410.7068824769" cy="132.040483832875" r="10" fill="#4169E1" stroke="#4169E1" stroke-width="1.5" stroke-opacity="1" fill-opacity="0.3" onmouseover="MakeOpaque(evt)" onmousemove="ShowTooltip(evt, 'TRINITY R AB COFFEE C NR TRINITY CENTER CA')" onmouseout="MakeTransparent(evt); HideTooltip(evt)">
       <set attributeName="fill-opacity" to="1" begin="site_11523200.mouseover" end="site_11523200.mouseout"/>
     </circle>
-    <circle id="nwis_11528700" cx="425.938658804648" cy="129.572794753432" r="10" fill="#4169E1" stroke="#4169E1" stroke-width="1.5" stroke-opacity="1" fill-opacity="0.3" onmouseover="MakeOpaque(evt)" onmousemove="ShowTooltip(evt, 'SF TRINITY R BL HYAMPOM CA')" onmouseout="MakeTransparent(evt); HideTooltip(evt)">
+    <circle id="nwis_11528700" cx="424.083846046177" cy="125.814232943307" r="10" fill="#4169E1" stroke="#4169E1" stroke-width="1.5" stroke-opacity="1" fill-opacity="0.3" onmouseover="MakeOpaque(evt)" onmousemove="ShowTooltip(evt, 'SF TRINITY R BL HYAMPOM CA')" onmouseout="MakeTransparent(evt); HideTooltip(evt)">
       <set attributeName="fill-opacity" to="1" begin="site_11528700.mouseover" end="site_11528700.mouseout"/>
     </circle>
-    <circle id="nwis_11532500" cx="496.690805832639" cy="13.0021244872289" r="10" fill="#4169E1" stroke="#4169E1" stroke-width="1.5" stroke-opacity="1" fill-opacity="0.3" onmouseover="MakeOpaque(evt)" onmousemove="ShowTooltip(evt, 'SMITH R NR CRESCENT CITY CA')" onmouseout="MakeTransparent(evt); HideTooltip(evt)">
+    <circle id="nwis_11532500" cx="501.046047078509" cy="27.4748583447266" r="10" fill="#4169E1" stroke="#4169E1" stroke-width="1.5" stroke-opacity="1" fill-opacity="0.3" onmouseover="MakeOpaque(evt)" onmousemove="ShowTooltip(evt, 'SMITH R NR CRESCENT CITY CA')" onmouseout="MakeTransparent(evt); HideTooltip(evt)">
       <set attributeName="fill-opacity" to="1" begin="site_11532500.mouseover" end="site_11532500.mouseout"/>
     </circle>
     <path id="USGS" d="m234.95 15.44v85.037c0 17.938-10.132 36.871-40.691 36.871-27.569 0-40.859-14.281-40.859-36.871v-85.04h25.08v83.377c0 14.783 6.311 20.593 15.447 20.593 10.959 0 15.943-7.307 15.943-20.593v-83.377h25.08m40.79 121.91c-31.058 0-36.871-18.27-35.542-39.03h25.078c0 11.462 0.5 21.092 14.282 21.092 8.472 0 12.62-5.482 12.62-13.618 0-21.592-50.486-22.922-50.486-58.631 0-18.769 8.968-33.715 39.525-33.715 24.42 0 36.543 10.963 34.883 36.043h-24.419c0-8.974-1.492-18.106-11.627-18.106-8.136 0-12.953 4.486-12.953 12.787 0 22.757 50.493 20.763 50.493 58.465 0 31.06-22.75 34.72-41.85 34.72m168.6 0c-31.06 0-36.871-18.27-35.539-39.03h25.075c0 11.462 0.502 21.092 14.285 21.092 8.475 0 12.625-5.482 12.625-13.618 0-21.592-50.494-22.922-50.494-58.631 0-18.769 8.969-33.715 39.531-33.715 24.412 0 36.536 10.963 34.875 36.043h-24.412c0-8.974-1.494-18.106-11.625-18.106-8.144 0-12.955 4.486-12.955 12.787 0 22.757 50.486 20.763 50.486 58.465 0 31.06-22.75 34.72-41.85 34.72m-79.89-46.684h14.76v26.461l-1.229 0.454c-3.816 1.332-8.301 2.327-12.453 2.327-14.287 0-17.943-6.645-17.943-44.177 0-23.256 0-44.348 15.615-44.348 12.146 0 14.711 8.198 14.933 18.107h24.981c0.198-23.271-14.789-36.043-38.42-36.043-41.021 0-42.52 30.724-42.52 60.954 0 45.507 4.938 63.167 47.12 63.167 9.784 0 25.36-2.211 32.554-4.18 0.436-0.115 1.212-0.596 1.212-1.216v-59.598h-38.612v18.09" style="fill:rgb(40%,40%,40%); fill-opacity: 0.2" transform="translate(419,458)scale(0.25)"/>
