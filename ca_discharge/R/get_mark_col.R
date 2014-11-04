@@ -1,9 +1,6 @@
-get_mark_col <- function(x,y, p){
+get_mark_col <- function(discharge, p_10 = 10, p_25 = 25, p_75 = 75, p_90 = 90){
   
-  if (missing(p)){
-    p = y/x*50 # temporary junk. Will give actually p
-  }
-  
+  q = discharge
   
   red = "#752121"
   orange = "#FFA400"
@@ -11,14 +8,18 @@ get_mark_col <- function(x,y, p){
   l_blue = "#40DFD0"
   blue = "#0000FF"
   
+  if (sum(discharge == c(p_10, p_25, p_75, p_90)) > 1){
+    return("#FFFFFF")
+    # not ranked
+  }
   
-  if (p < 10){
+  if (q < p_10){
     col = red
-  } else if (p >= 10 & p < 25){
+  } else if (q >= p_10 && q < p_25){
     col = orange
-  } else if (p >= 25 & p <= 75){
+  } else if (q >= p_25 && q <= p_75){
     col = green
-  } else if (p > 75 & p <= 90){
+  } else if (q > p_75 && q <= p_90){
     col = l_blue
   } else {
     col = blue
