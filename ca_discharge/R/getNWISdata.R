@@ -25,7 +25,7 @@ yesterday = endDate - as.difftime(1, units = 'days')
 DOY <- as.POSIXlt(yesterday)$yday	                    #Make it today or make it any day you want. 
 
 #Setup the output data frame
-disStats <- as.data.frame(setNames(replicate(10,numeric(0), simplify = F), c("STAID", "siteName", "lat", "lon", "todayDis", "meanDis", "percent10", "percent25", "percent75", "percent90")))
+disStats <- as.data.frame(setNames(replicate(11,numeric(0), simplify = F), c("STAID", "siteName", "lat", "lon", "todayDis", "meanDis", "percent10", "percent25", "percent50", "percent75", "percent90")))
 
 #Get data for each site, test for relevant data present, subset for relevant data, calc mean Q for previous dates
 for (i in 1:length(siteINFO$site.no)) {
@@ -109,6 +109,7 @@ for (i in 1:length(siteINFO$site.no)) {
           disStats$meanDis[i]    <- meanDis 
           disStats$percent10[i]  <- quantile(dailyDis[,dataColI], 0.1)
           disStats$percent25[i]  <- quantile(dailyDis[,dataColI], 0.25)
+          disStats$percent50[i]  <- quantile(dailyDis[,dataColI], 0.5)
           disStats$percent75[i]  <- quantile(dailyDis[,dataColI], 0.75)
           disStats$percent90[i]  <- quantile(dailyDis[,dataColI], 0.9)
           
