@@ -1,0 +1,3 @@
+ - Data are plotted for the conterminous U.S. and for the State of California in the background map of the site. 
+ - Site data and shapefiles from U.S. Drought Monitor: http://droughtatlas.unl.edu/Services/DroughtMonitor/Timeseries/
+ - Data presented and detailed methods can be found at https://github.com/USGS-CIDA/CIDA-Viz/tree/master/ca_drought
