@@ -185,6 +185,25 @@ svg {
 	text-align:left;
 	text-indent:2em;}
 	
+#streams-container{
+	background:rgba(255,255,255,.8);
+	width:560px;
+	padding:15px;
+	margin:0 auto;
+	text-align:center;}
+	
+#streams-container h3{
+	margin-top:5px;
+	margin-bottom:-10px;
+	color:rgb(80,146,204);}
+	
+#streams-container p{
+	text-align:left;
+	text-indent:2em;}
+	
+#streams-container img{
+	margin-bottom:-10px;}
+	
 #feature1 .left {
 	top: -200px;
 }

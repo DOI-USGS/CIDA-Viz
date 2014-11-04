@@ -184,6 +184,9 @@ $(document).ready(function () {
 			panAndZoom(caliLeftCenter, caliZoom);
 		})
 		.addTo(controller);
+	new ScrollScene({triggerElement: "#streams-trigger", duration: 500})
+		.setPin("#streams-pin")
+		.addTo(controller);
 	new ScrollScene({triggerElement: "#sidebar-trigger", duration: 500})
 		.setPin("#sidebar-pin")
 		.on("enter", function (e) {
