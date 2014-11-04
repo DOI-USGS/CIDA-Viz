@@ -14,8 +14,8 @@ Dataset sources and methods used are briefly described on the page below. Follow
  - Dataset and detailed methods can be found at https://github.com/USGS-CIDA/CIDA-Viz/tree/master/ca_drought
 
 ###Reservoir data
- - Reservoir Capacities (State of CA Jurisdiction): http://www.water.ca.gov/damsafety/docs/Jurisdictional2014.pdf
- - Reservoir Capacities (Federal Jurisdiction): http://www.water.ca.gov/damsafety/docs/Federal2010.pdf
+ - Reservoir capacities (State of California jurisdiction): http://www.water.ca.gov/damsafety/docs/Jurisdictional2014.pdf
+ - Reservoir capacities (Federal jurisdiction): http://www.water.ca.gov/damsafety/docs/Federal2010.pdf
  - Reservoir time series data: http://cdec.water.ca.gov/cgi-progs/queryDaily. Reservoirs with daily observational data in the State of California are visualized; weekly averaged reservoir storage as a percent of total storage capacity is plotted through time. 
  - Reservoir area: Map depicts change in water area at Trinity Lake and Shasta Lake is based on Landsat satellite imagery collected on August 8, 2011, and August 16, 2014. Imagery were processed using algorithms presented in Xu (2007): http://info.asprs.org/publications/pers/2007journal/december/2007_dec_1381-1391.pdf. Map produced by Dr. Jamon Van Den Hoek (jamon.vandenhoek@nasa.gov) at the NASA Goddard Space Flight Center.
  - Datasets and detailed methods can be found at https://github.com/USGS-CIDA/CIDA-Viz/tree/master/ca_reservoir
