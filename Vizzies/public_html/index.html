@@ -51,12 +51,18 @@ var tooltip;
                          }
 
                          </script>
+                         
+                         <![if IE ]>
+                         <link href="css/ie-fix.css" rel="stylesheet" type="text/css">
+        	<div id="block">
+            <p>You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+            </div>
+        <![endif]>
+        
     </head>
     <body>
-        <!--[if lt IE 7]>
-            <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
-        <![endif]-->
         
+    <div id="app-container">
         <img id="watermark" src="watermark.png" alt="usgs logo"/>
 		<div id="links-anchor">
 			<table>
@@ -89,7 +95,7 @@ var tooltip;
             
             <p>For more information about drought and science-based decision making in California, visit the <a href="http://ca.water.usgs.gov/data/drought/" target="_blank">USGS California Water Science Center webpage</a>.
             
-            <p>Google Chrome is recommended for the best viewing experience</p>
+            <p>Firefox is recommended for the best viewing experience</p>
             
             </div>
 			<div class="spacer s1"></div>
@@ -339,6 +345,7 @@ var tooltip;
 			</div><!--bottom-->
 
 		</footer><!--footer-->
+        </div><!--app-container-->
 		<script src="js/vendor/jquery/jquery.js"></script>
 		<script src="js/vendor/modernizr-2.6.2.min.js"></script>
 		<link rel="stylesheet" href="js/vendor/jquery-ui/jquery-ui.min.css">

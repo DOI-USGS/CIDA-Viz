@@ -1,0 +1,12 @@
+@charset "UTF-8";
+/* CSS Document */
+
+#app-container{display:none;}
+
+#block{
+	background:#eee;
+	width:600px;
+	min-height:10px;
+	margin:0 auto;
+	margin-top:20px;
+	padding:15px;}
