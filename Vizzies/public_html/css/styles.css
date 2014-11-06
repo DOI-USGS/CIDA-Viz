@@ -1,10 +1,24 @@
 @charset "UTF-8";
 /* CSS Document */
 
+
 *{margin:0; padding:0;}
 
 html{height:100%;}
 
+html[data-useragent*='MSIE'] #app-container{display:none;}
+
+#block{display:none;}
+
+html[data-useragent*='MSIE'] #block{
+	background:#eee;
+	width:600px;
+	min-height:10px;
+	margin:0 auto;
+	margin-top:20px;
+	padding:15px;
+	display:block;}
+	
 body{height:100%;}
 
 #watermark{
