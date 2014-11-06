@@ -51,14 +51,18 @@ var tooltip;
                          }
 
                          </script>
+                         
+                         <![if IE ]>
+                         <link href="css/ie-fix.css" rel="stylesheet" type="text/css">
+        	<div id="block">
+            <p>You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+            </div>
+        <![endif]>
+        
     </head>
     <body>
-        <!--[if IE ]>
-        	<div style="background:#eee;width:600px;min-height:400px;margin:0 auto;">
-            <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
-            </div>
-        <![endif]-->
         
+    <div id="app-container">
         <img id="watermark" src="watermark.png" alt="usgs logo"/>
 		<div id="links-anchor">
 			<table>
@@ -341,6 +345,7 @@ var tooltip;
 			</div><!--bottom-->
 
 		</footer><!--footer-->
+        </div><!--app-container-->
 		<script src="js/vendor/jquery/jquery.js"></script>
 		<script src="js/vendor/modernizr-2.6.2.min.js"></script>
 		<link rel="stylesheet" href="js/vendor/jquery-ui/jquery-ui.min.css">
