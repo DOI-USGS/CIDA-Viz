@@ -141,6 +141,9 @@
 { "type": "Feature", "id": 69, "properties": { "Station": "WARM SPRINGS (USACE)", "ID": "WRS", "Elev": 440.0, "County": "SONOMA", "Nat_ID": "CA10303", "Year_Built": 1982.0, "Capacity": 381000.0 }, "geometry": { "type": "Point", "coordinates": [ -123.01, 38.723 ] } }
 ,
 { "type": "Feature", "id": 70, "properties": { "Station": "WISHON", "ID": "WSN", "Elev": 6560.0, "County": "FRESNO", "Nat_ID": "CA00411", "Year_Built": 1958.0, "Capacity": 118000.0 }, "geometry": { "type": "Point", "coordinates": [ -118.969, 37.005 ] } }
-
+,
+{ "type": "Feature", "id": 71, "properties": { "Station": "CASTAIC", "ID": "CAS", "Elev": 1535, "County": "LOS ANGELES", "Nat_ID": "CA00044", "Year_Built": 1973, "Capacity": 323700 }, "geometry": { "type": "Point", "coordinates": [ -118.6101, 34.5152 ] } }
+,
+{ "type": "Feature", "id": 72, "properties": { "Station": "PYRAMID", "ID": "PYM", "Elev": 2606, "County": "LOS ANGELES", "Nat_ID": "999", "Year_Built": 1973, "Capacity": 15122 }, "geometry": { "type": "Point", "coordinates": [ -118.75, 34.633 ] } },
 ]
 }
