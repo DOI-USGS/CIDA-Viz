@@ -151,10 +151,13 @@ svg {
   width: 550px;
 }
 
+#snowpack-container{top:-450px;}
+
+#snowpack-plot-container{top:-350px;}
+
 #snowpack-container,
 #snowpack-plot-container{
 	position: relative;
-	top: -450px;
 	-webkit-transform: translateZ(0);
 }
 
@@ -191,10 +194,10 @@ svg {
 	padding:15px;
 	margin:0 auto;
 	text-align:center;
+	position: relative;
+	-webkit-transform: translateZ(0);
+	top:-390px;
 	}
-	
-#streams-container embed{
-	-webkit-transform: translateZ(0);}
 	
 #streams-container h3{
 	margin-top:5px;
@@ -207,6 +210,8 @@ svg {
 	
 #streams-container img{
 	margin-bottom:-10px;}
+	
+.sidebar{top:-390px;}
 	
 #feature1 .left {
 	top: -200px;
