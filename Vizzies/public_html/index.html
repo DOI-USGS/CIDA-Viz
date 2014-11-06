@@ -18,6 +18,33 @@
         <link rel="stylesheet" href="css/vendor/font-awesome-4.2.0/css/font-awesome.min.css">
 		<link href="css/nv.d3.css" rel="stylesheet" type="text/css">
         <link rel="stylesheet" href="js/ScrollControl/ScrollControl.css">
+        <script>
+          function getInternetExplorerVersion()
+{
+  var rv = -1;
+  if (navigator.appName == 'Microsoft Internet Explorer')
+  {
+    var ua = navigator.userAgent;
+    var re  = new RegExp("MSIE ([0-9]{1,}[\.0-9]{0,})");
+    if (re.exec(ua) != null)
+      rv = parseFloat( RegExp.$1 );
+  }
+  else if (navigator.appName == 'Netscape')
+  {
+    var ua = navigator.userAgent;
+    var re  = new RegExp("Trident/.*rv:([0-9]{1,}[\.0-9]{0,})");
+    if (re.exec(ua) != null)
+      rv = parseFloat( RegExp.$1 );
+  }
+  return rv;
+}               
+if(getInternetExplorerVersion()!==-1){
+	var doc = document.documentElement;
+doc.setAttribute('data-useragent', "MSIE");
+	}
+
+                         
+                         </script>
         <script type="text/javascript">
 var svgDocument;
 var tooltip;
@@ -51,12 +78,17 @@ var tooltip;
                          }
 
                          </script>
+                         
+                         
+      
     </head>
     <body>
-        <!--[if lt IE 7]>
-            <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
-        <![endif]-->
+    
+   <div id="block">
+            <p>You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+            </div> 
         
+    <div id="app-container">
         <img id="watermark" src="watermark.png" alt="usgs logo"/>
 		<div id="links-anchor">
 			<table>
@@ -89,7 +121,7 @@ var tooltip;
             
             <p>For more information about drought and science-based decision making in California, visit the <a href="http://ca.water.usgs.gov/data/drought/" target="_blank">USGS California Water Science Center webpage</a>.
             
-            <p>Google Chrome is recommended for the best viewing experience</p>
+            <p>Firefox is recommended for the best viewing experience</p>
             
             </div>
 			<div class="spacer s1"></div>
@@ -176,11 +208,9 @@ var tooltip;
 				</div>
 			</div>
 			<div class="spacer s0"></div>
-			<div class="spacer s0"></div>
-			<div class="spacer s0"></div>
 		</section>
 		<section>
-			<div class="spacer s0"></div>
+         <div class="spacer s0"></div>
 			<div class="spacer s0"></div>
 			<div id="snowpack-plot-trigger"></div>
 			<div id="snowpack-plot-pin">
@@ -194,28 +224,29 @@ var tooltip;
 				</div>
 			</div>
             <div class="spacer s0"></div>
-
+            <div class="spacer s0"></div>
 		</section>
         <section>
-			<div class="spacer s0"></div>
-            <div id="streams-trigger"></div>
-            <div id="streams-pin">
-				<div class="right">
+         <div class="spacer s0"></div>
+         <div id="streams-trigger"></div>
+			<div id="streams-pin">
+            	<div class="right sidebar">
                 	<h2>Drought also affects flow in streams and rivers</h2>
                     <p>The current and historical streamflow in unregulated rivers and streams (those without upstream reservoirs or control structures) is shown in the graph.</p>
                 </div>
                 <div id="streams-container">
                 	<h3>Current vs historical streamflow</h3>
                     <h5>Data providers: <a href="http://water.usgs.gov/GIS/metadata/usgswrd/XML/gagesII_Sept2011.xml" target="_blank">U.S. Geological Survey GAGESII </a> and <a href="http://waterdata.usgs.gov/nwis/sw" target="_blank">NWIS</a></h5>
-                    	
-                    		<iframe width="600" height="540" frameborder="0" seamless scrolling="no" src="stream-graph.svg"></iframe>
+                    <iframe width="600" height="540" frameborder="0" seamless scrolling="no" src="stream-graph.svg"></iframe>
                         
                         <p>Current streamflow (y-axis) is plotted against the historical (since 1980) mean stream (x-axis) for this day of year. Axes are <a href="http://en.wikipedia.org/wiki/Logarithmic_scale" target="_blank">log-scaled</a>. Mouse over streams on the plot (blue circles), and on map (colored according to flow; red is below average flow, blue is above average flow) for more information.</p>
                         <a href="https://github.com/USGS-CIDA/CIDA-Viz/blob/master/README.md#discharge-data" target="_blank"><div class="getinfo">Get the Data</div></a>
-                    </div>
-			<div class="spacer s0"></div>
-		</section>
+                </div>
+            </div>
+            <div class="spacer s0"></div>
+        </section>
 		<section>
+        <div class="spacer s0"></div>
 			<div class="spacer s0"></div>
             <div id="sidebar-trigger"></div>
             <div id="sidebar-pin">
@@ -226,7 +257,9 @@ var tooltip;
 					</div>
 				</div>
 			</div>
-            
+            <div class="spacer s0"></div>
+            </section>
+            <section>
 			<div class="spacer s0"></div>
 			<div id="usage-pie-trigger"></div>
 			<div id="usage-pie-pin">
@@ -339,6 +372,7 @@ var tooltip;
 			</div><!--bottom-->
 
 		</footer><!--footer-->
+        </div><!--app-container-->
 		<script src="js/vendor/jquery/jquery.js"></script>
 		<script src="js/vendor/modernizr-2.6.2.min.js"></script>
 		<link rel="stylesheet" href="js/vendor/jquery-ui/jquery-ui.min.css">
