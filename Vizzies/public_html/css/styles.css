@@ -1,10 +1,24 @@
 @charset "UTF-8";
 /* CSS Document */
 
+
 *{margin:0; padding:0;}
 
 html{height:100%;}
 
+html[data-useragent*='MSIE'] #app-container{display:none;}
+
+#block{display:none;}
+
+html[data-useragent*='MSIE'] #block{
+	background:#eee;
+	width:600px;
+	min-height:10px;
+	margin:0 auto;
+	margin-top:20px;
+	padding:15px;
+	display:block;}
+	
 body{height:100%;}
 
 #watermark{
@@ -151,10 +165,13 @@ svg {
   width: 550px;
 }
 
+#snowpack-container{top:-450px;}
+
+#snowpack-plot-container{top:-350px;}
+
 #snowpack-container,
 #snowpack-plot-container{
 	position: relative;
-	top: -450px;
 	-webkit-transform: translateZ(0);
 }
 
@@ -191,10 +208,10 @@ svg {
 	padding:15px;
 	margin:0 auto;
 	text-align:center;
+	position: relative;
+	-webkit-transform: translateZ(0);
+	top:-390px;
 	}
-	
-#streams-container embed{
-	-webkit-transform: translateZ(0);}
 	
 #streams-container h3{
 	margin-top:5px;
@@ -207,6 +224,8 @@ svg {
 	
 #streams-container img{
 	margin-bottom:-10px;}
+	
+.sidebar{top:-390px;}
 	
 #feature1 .left {
 	top: -200px;
