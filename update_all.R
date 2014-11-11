@@ -32,8 +32,8 @@ source('getNWISdata.R')
 
 source('discharge_svg.R')
 createSVG(max(times_json$d))
-file.rename(paste0('../Figures/discharge_', max(times_json$d), '.svg'),
-						'../../Vizzies/public_html/stream-graph.svg')
+#file.rename(paste0('../Figures/discharge_', max(times_json$d), '.svg'),
+#						'../../Vizzies/public_html/stream-graph.svg')
 
 ##Manual step, update dates in main.js
 setwd(origin) #Done!
