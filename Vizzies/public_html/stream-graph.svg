@@ -54,7 +54,7 @@
     <rect id="box1" x="50" y="0" width="500" height="500" style="fill: rgb(100%,100%,100%);fill-opacity: 1; stroke: none;"/>
     <rect id="box2" x="50" y="0" width="500" height="500" style="stroke: black; fill: none;"/>
     <rect id="box3" x="60" y="10" width="210" height="210" style="stroke: grey; fill: none; stroke-opacity:0.3;"/>
-    <polygon points="50,500,550,0,550,500" style="fill:grey;stroke:none;fill-opacity:0.1;"/>
+    <polygon points="50,500,550,0,550,500" style="fill:grey;stroke:none;fill-opacity:0.2;"/>
     <line x1="91.7418640751437" y1="500" x2="91.7418640751437" y2="493" style="stroke:black;stroke-width:1.5"/>
     <line x1="50" y1="458.258135924856" x2="57" y2="458.258135924856" style="stroke:black;stroke-width:1.5"/>
     <text text-anchor="middle" transform="translate(91.7418640751437,516)">0.01</text>
@@ -182,10 +182,10 @@
     <line x1="546.695586016499" y1="500" x2="546.695586016499" y2="497" style="stroke:black;stroke-width:1.5"/>
     <line x1="50" y1="3.30441398350109" x2="53" y2="3.30441398350109" style="stroke:black;stroke-width:1.5"/>
     <text text-anchor="middle" transform="translate(25,250)rotate(270)">
-      <tspan>Current streamflow (CFS)</tspan>
+      <tspan>Current streamflow (cubic feet per second)</tspan>
     </text>
     <text text-anchor="middle" transform="translate(300,533)">
-      <tspan>Historical average streamflow (CFS)</tspan>
+      <tspan>Historical average streamflow (cubic feet per second)</tspan>
     </text>
     <text text-anchor="left" transform="translate(66,474)rotate(315)">Above average streamflow</text>
     <text text-anchor="left" transform="translate(84,493)rotate(315)">Below average streamflow</text>
