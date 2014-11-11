@@ -158,7 +158,7 @@ createSVG <- function(time_st){
                         width=inset_dim, height=inset_dim, 
                         style="stroke: grey; fill: none; stroke-opacity:0.3;"))
   tri <- newXMLNode("polygon", parent=g_id, attrs = c(points=tri_pts,
-                        style="fill:grey;stroke:none;fill-opacity:0.1;"))
+                        style="fill:grey;stroke:none;fill-opacity:0.2;"))
   
   addChildren(g_id,c(rect_1,rect_2, rect_3, tri))
   g_id <- add_ticks(g_id, ticks = tcks, y_crt, x_crt, y_lim=lg_lim, x_lim=lg_lim, minor_ticks = minor_tcks)

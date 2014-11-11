@@ -51,12 +51,12 @@ add_ticks <- function(g_id, ticks, y_crt, x_crt, y_lim, x_lim, minor_ticks){
   x_title <- as.character(y_crt[1] +  title_bmp_x)
   y_cent <- as.character(mean(y_crt))
   y_title <- as.character(as.numeric(x_crt[1])- title_bmp_y)
-  txt_n <- newXMLNode("tspan",newXMLTextNode('Historical average streamflow (CFS)'))
+  txt_n <- newXMLNode("tspan",newXMLTextNode('Historical average streamflow (cubic feet per second)'))
   
   x_ax <- newXMLNode("text",
                      attrs = c('text-anchor'="middle", transform=paste0("translate(", x_cent, ",", x_title,")")))
   x_ax <- addChildren(x_ax,txt_n)
-  txt_n <- newXMLNode("tspan",newXMLTextNode('Current streamflow (CFS)'))
+  txt_n <- newXMLNode("tspan",newXMLTextNode('Current streamflow (cubic feet per second)'))
   
   y_ax <- newXMLNode("text",
                      attrs = c('text-anchor'="middle", 
