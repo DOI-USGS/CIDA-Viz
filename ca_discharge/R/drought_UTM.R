@@ -1,13 +1,19 @@
 drought_UTM <- function(time_st = "20140916"){
   coord_ref <- " +proj=utm +zone=11 +ellps=WGS84 +datum=WGS84 +units=m +no_defs +towgs84=0,0,0"
   
+  trans_drought <- 150
+  drought_cols <- list(DM0 = rgb(255,255,68,trans_drought,maxColorValue = 255),
+                             DM1 = rgb(255,211,133,trans_drought,maxColorValue = 255),
+                             DM2 = rgb(255,170,0,trans_drought,maxColorValue = 255),
+                             DM3 = rgb(242,0,0,trans_drought,maxColorValue = 255),
+                             DM4 = rgb(121,0,0,trans_drought,maxColorValue = 255))
   
   library('jsonlite')
   library('rgeos')
   library('rgdal')
   library('maps')
   library('maptools')
-  trans_drought <- 150
+  
   
   drought_json = paste0('../../Vizzies/public_html/data/drought_shp/USDM_',time_st,'.json')
   
@@ -34,11 +40,13 @@ drought_UTM <- function(time_st = "20140916"){
   
   plot(ca_UTM, xlim = x_lim, ylim = y_lim, xaxs="i",yaxs="i",asp=1)
   
-  plot(lyr_UTM, col = c(rgb(255,255,68,trans_drought,maxColorValue = 255),
-                    rgb(255,211,133,trans_drought,maxColorValue = 255),
-                    rgb(242,0,0,trans_drought,maxColorValue = 255),
-                    rgb(121,0,0,trans_drought,maxColorValue = 255)), border = 'grey30', add = T, 
-       xlim = x_lim, ylim = y_lim, xaxs="i",yaxs="i", asp=1)
+  plot(lyr_UTM[lyr_UTM$DM==0,], col = drought_cols$DM0,border = 'grey30', add = T)
+  plot(lyr_UTM[lyr_UTM$DM==1,], col = drought_cols$DM1,border = 'grey30', add = T)
+  plot(lyr_UTM[lyr_UTM$DM==2,], col = drought_cols$DM2,border = 'grey30', add = T)
+  plot(lyr_UTM[lyr_UTM$DM==3,], col = drought_cols$DM3,border = 'grey30', add = T)
+  plot(lyr_UTM[lyr_UTM$DM==4,], col = drought_cols$DM4,border = 'grey30', add = T)
+
+  
   dev.off()
   lyr_info <- list('coord_ref' = coord_ref, 'ylim'=y_lim, 'xlim'=x_lim, 'file_nm' = svg_nm )
   return(lyr_info)

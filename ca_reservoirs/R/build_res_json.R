@@ -1,5 +1,7 @@
 library(rjson)
-week_time <- seq.POSIXt(as.POSIXlt('2011-01-04'), as.POSIXlt(Sys.time()), by = 'week')
+
+first_date <- as.POSIXlt('2011-01-04')
+week_time <- seq.POSIXt(first_date, as.POSIXlt(Sys.time()), by = 'week')
 library(jsonlite)
 json_res <- jsonlite::fromJSON('../Data/ca_reservoirs.json')
 #yes, this is goofy
@@ -14,17 +16,19 @@ qaqc_flags <- function(data){
 }
 #This interpolates small gaps, in the middle of data
 # and then returns the original 
-interp.storage = function (dates, data){
+interp.storage = function (dates, data, first_date){
   max.gap = 21*24 # days * hours
   bad.data <- qaqc_flags(data)
-	snip.dates = dates[!bad.data]
-	snip.data = data[!bad.data]
+  date_use <- dates >= first_date
+	snip.dates = dates[!bad.data & date_use]
+	snip.data = data[!bad.data & date_use]
   gaps <- as.numeric(diff(snip.dates))
-  if (any(gaps > max.gap)){
-    return(NA)
+  if (any(gaps > max.gap) | sum(!is.na(snip.data)) < 3){
+    return(data.frame(x=NA,y=NA))
   } else {
-    fixed.data = approx(snip.dates, snip.data, dates)
-    return(fixed.data$y)
+    fixed.data = approx(snip.dates, snip.data, dates[date_use])
+    
+    return(fixed.data)
   }
 }
 
@@ -45,9 +49,14 @@ for (i in 1:num_station){
     dat <- read.csv(file = file_nm)
     dates <- as.POSIXct(dat[,1])
     storage <- dat[, 2]
-    new.storage = interp.storage(dates, storage)
-    stations_all[[i]] <- data.frame('dates'=dates, 'storage'=new.storage)
+    new.storage = interp.storage(dates, storage, first_date)
+    
+    stations_all[[i]] <- data.frame('dates'=new.storage$x, 'storage'=new.storage$y)
     station_names[i] <- sites$ID[i]
+    if (length(new.storage$x) == 1){
+      # single value returned as NA
+      rmv_i[i] <- TRUE
+    }
   } else {
     rmv_i[i] <- TRUE
   }
@@ -59,7 +68,7 @@ num_station <- length(stations_all)
 reservoirs <- vector('list', length = num_station )
 rmv_station <- vector(length = num_station )
 for (i in 1:num_station){
-  
+  print(i)
   res_mat <- matrix(nrow = num_steps, ncol = 1)
   for (j in 1:num_steps){
     period <- c(trunc(week_time[j]-3*86400, 'days'), trunc(week_time[j]+4*86400, 'days'))
@@ -73,6 +82,7 @@ for (i in 1:num_station){
       
     }
   }
+
   rmv_station[i] <- any(is.na(res_mat[,1])) # should be none!!
   j_id <- which(json_res$ID == station_names[i])
   cap <- json_res[j_id, 10]
