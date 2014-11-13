@@ -9,7 +9,8 @@ if(basename(origin) != 'CIDA-Viz'){
 ## Update the drought layer
 setwd('ca_drought/R')
 
-## this will probably fail
+## this will probably fail (id doesn't handle how far in the future it should go, 
+#   just goes to the point where it fails)
 source('update.R')
 
 setwd(origin)
