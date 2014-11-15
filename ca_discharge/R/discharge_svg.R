@@ -1,4 +1,4 @@
-add_CA <- function(g_id, points, x_crd, y_crd, time_st){
+add_CA <- function(g_id, points, x_crd, y_crd, time_st, def_opacity){
 
   lyr_info <- drought_UTM(time_st)
   
@@ -12,24 +12,22 @@ add_CA <- function(g_id, points, x_crd, y_crd, time_st){
   
   for (i in 1:length(points[[1]])){
     site_id <- paste0('site_',points$id[[i]])
-    site_mo <- paste0('site_',points$id[[i]],'.mouseover')
-    site_me <- paste0('site_',points$id[[i]],'.mouseout')
-    nwis_mo <- paste0('nwis_',points$id[[i]],'.mouseover')
-    nwis_me <- paste0('nwis_',points$id[[i]],'.mouseout')
+    nwis_id <- paste0('nwis_',points$id[[i]])
     mouse_move_txt <- paste0("ShowTooltip(evt, '", points$text[[i]], "')")
     rel_pnt <- WGS84_to_svg(c(points$sitex[[i]], points$sitey[[i]]), lyr_info)
     pnts <- box_pnts(rel_pnt, x_crd, y_crd)
     col <- get_mark_col(discharge = points$todayDis[[i]], 
                         p_10 = points$p_10[[i]], p_25 = points$p_25[[i]],
                         p_75 = points$p_75[[i]], p_90 = points$p_90[[i]])
-    pth <- newXMLNode("circle", attrs = c(id = site_id, 
-                                          cx=pnts[1], cy=pnts[2], r = "3",
-                                          style = paste0("fill:",col,"; fill-opacity: 0.7"),stroke="black", "stroke-width"="0.5",
-                      onmousemove=mouse_move_txt,
-                      onmouseout="HideTooltip(evt)"))
-    set_2 <- newXMLNode('set', attrs = c(attributeName="fill-opacity", to="1", begin=site_mo,  end=site_me))
-    set_3 <- newXMLNode('set', attrs = c(attributeName="fill-opacity", to="1", begin=nwis_mo,  end=nwis_me))
-    pth <- addChildren(pth, c(set_2, set_3))
+    pth <- newXMLNode("circle", 
+                      attrs = c(id = site_id, 
+                                cx=pnts[1], cy=pnts[2], r = "3",
+                                fill=col,'fill-opacity' = "0.7",stroke="black", "stroke-width"="0.5",
+                                onmouseover=paste0("MakeOpaque(evt); document.getElementById('",nwis_id,"').setAttribute('fill-opacity', '1')"),
+                                onmousemove=mouse_move_txt,
+                                onmouseout=paste0("HideTooltip(evt);evt.target.setAttribute('fill-opacity', '0.7');document.getElementById('",
+                                                  nwis_id,"').setAttribute('fill-opacity','",def_opacity,"')")))
+
     g_id <- addChildren(g_id, pth)
   }
   return(g_id)
@@ -109,7 +107,7 @@ createSVG <- function(time_st){
                         attrs = c('text-anchor'="left", transform="translate(84,493)rotate(315)"))
   
   g_id <- addChildren(g_id, abv_ave, bel_ave)
-  g_id <- add_CA(g_id, points, x_crd+x_bump, y_crd, time_st)
+  g_id <- add_CA(g_id, points, x_crd+x_bump, y_crd, time_st, def_opacity)
   
   for (i in 1:length(points[[1]])){
     
@@ -132,7 +130,7 @@ createSVG <- function(time_st){
                                                          stroke="#4169E1", "stroke-width"="1.5",
                                                          "stroke-opacity"="1",
                                                          "fill-opacity"=def_opacity,
-                                                         onmouseover=paste0("MakeOpaque(evt); document.getElementById('",site_id,"').setAttribute('r', '8')"),
+                                                         onmouseover=paste0("MakeOpaque(evt); document.getElementById('",site_id,"').setAttribute('r', '8');document.getElementById('",site_id,"').setAttribute('fill-opacity', '1')"),
                                                          onmousemove=mouse_move_txt,
                                                          onmouseout=paste0("MakeTransparent(evt); HideTooltip(evt);document.getElementById('",site_id,"').setAttribute('r', '3')")))
       setter <- newXMLNode('set', attrs = c(
