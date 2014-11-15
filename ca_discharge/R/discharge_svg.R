@@ -4,53 +4,52 @@ add_CA <- function(g_id, points, x_crd, y_crd, time_st){
   
   g_id <- get_CA_paths(g_id, lyr_info, x_crd, y_crd)
   
+  
+  add_legend(g_id, col_vec, num_txt, desc_txt)
+  
   txt_10 <- newXMLNode("text", newXMLTextNode('<10'), 
                      attrs = c('id' = 't_10', 'text-anchor'="left", 
                                transform="translate(215,35)"))
-  set_1 <- newXMLNode('set', attrs = c(attributeName="opacity", to="0", begin='c_10.mouseover',  end='c_10.mousout'))
-  set_2 <- newXMLNode('set', attrs = c(attributeName="opacity", to="1", begin='c_10.mouseout',  end='c_10.mousover'))
-  txt_10 <- addChildren(txt_10,set_1, set_2)
-  col <- get_mark_col(9)
-  c_10 <- newXMLNode("circle", attrs = c(id = 'c_10',
-                    cx="205", cy="30", r = "5",
-                    style = paste0("fill:",col,"; fill-opacity: 0.9"),
-                    stroke="black", "stroke-width"="0.5",
-                    onmousemove="ShowTooltip(evt, 'well below normal')",
-                    onmouseout="HideTooltip(evt)"))
-  
-
   txt_24 <- newXMLNode("text", newXMLTextNode('10-24'),
-                       attrs = c('text-anchor'="left", 
+                       attrs = c('id' = 't_24', 'text-anchor'="left", 
                                  transform="translate(215,55)"))
-  set_1 <- newXMLNode('set', attrs = c(attributeName="opacity", to="0", begin='c_24.mouseover',  end='c_24.mousout'))
-  set_2 <- newXMLNode('set', attrs = c(attributeName="opacity", to="1", begin='c_24.mouseout',  end='c_24.mousover'))
-  txt_24 <- addChildren(txt_24,set_1, set_2)
-  col <- get_mark_col(12)
-  c_24 <- newXMLNode("circle", attrs = c(id = 'c_24',
-    cx="205", cy="50", r = "5",
-    style = paste0("fill:",col,"; fill-opacity: 0.9"),
-    stroke="black", "stroke-width"="0.5",
-    onmousemove="ShowTooltip(evt, 'below normal')",
-    onmouseout="HideTooltip(evt)"))
   txt_75 <- newXMLNode("text", newXMLTextNode('25-75'),
-                       attrs = c('text-anchor'="left", 
+                       attrs = c('id' = 't_75','text-anchor'="left", 
                                  transform="translate(215,75)"))
-  set_1 <- newXMLNode('set', attrs = c(attributeName="opacity", to="0", begin='c_75.mouseover',  end='c_75.mousout'))
-  set_2 <- newXMLNode('set', attrs = c(attributeName="opacity", to="1", begin='c_75.mouseout',  end='c_75.mousover'))
-  txt_75<- addChildren(txt_75, set_1, set_2)
-  col <- get_mark_col(50)
-  c_75 <- newXMLNode("circle", attrs = c(id = 'c_75',
-    cx="205", cy="70", r = "5",
-    style = paste0("fill:",col,"; fill-opacity: 0.9"),
-    stroke="black", "stroke-width"="0.5",
-    onmousemove="ShowTooltip(evt, 'normal')",
-    onmouseout="HideTooltip(evt)"))
   txt_90 <- newXMLNode("text", newXMLTextNode('76-90'),
-                       attrs = c('text-anchor'="left",
+                       attrs = c('id' = 't_90','text-anchor'="left",
                                  transform="translate(215,95)"))
-  set_1 <- newXMLNode('set', attrs = c(attributeName="opacity", to="0", begin='c_90.mouseover',  end='c_90.mousout'))
-  set_2 <- newXMLNode('set', attrs = c(attributeName="opacity", to="1", begin='c_90.mouseout',  end='c_90.mousover'))
-  txt_90 <- addChildren(txt_90, set_1, set_2)
+  txt_91 <- newXMLNode("text", newXMLTextNode('>90%'),
+                       attrs = c('id' = 't_91','text-anchor'="left", 
+                                 transform="translate(215,115)"))
+  
+  col <- get_mark_col(9)
+  c_10 <- newXMLNode("circle", 
+                     attrs = c(id = 'c_10',
+                               cx="205", cy="30", r = "5",
+                               style = paste0("fill:",col,"; fill-opacity: 0.9"),
+                               stroke="black", "stroke-width"="0.5",
+                               onmousemove="ShowTooltip(evt, 'well below normal');document.getElementById('t_10').setAttribute('opacity', '0');",
+                               onmouseout="HideTooltip(evt);document.getElementById('t_10').setAttribute('opacity', '1');"))
+  
+  col <- get_mark_col(12)
+  c_24 <- newXMLNode("circle", 
+                     attrs = c(id = 'c_24',
+                              cx="205", cy="50", r = "5",
+                              style = paste0("fill:",col,"; fill-opacity: 0.9"),
+                              stroke="black", "stroke-width"="0.5",
+                              onmousemove="ShowTooltip(evt, 'below normal');document.getElementById('t_24').setAttribute('opacity', '0');",
+                              onmouseout="HideTooltip(evt);document.getElementById('t_24').setAttribute('opacity', '1');"))
+  
+  col <- get_mark_col(50)
+  c_75 <- newXMLNode("circle", 
+                     attrs = c(id = 'c_75',
+                               cx="205", cy="70", r = "5",
+                               style = paste0("fill:",col,"; fill-opacity: 0.9"),
+                               stroke="black", "stroke-width"="0.5",
+                               onmousemove="ShowTooltip(evt, 'normal');document.getElementById('t_75').setAttribute('opacity', '0');",
+                               onmouseout="HideTooltip(evt);document.getElementById('t_75').setAttribute('opacity', '1');"))
+  
   col <- get_mark_col(79)
   c_90 <- newXMLNode("circle", attrs = c(id = 'c_90',
     cx="205", cy="90", r = "5",
@@ -58,12 +57,7 @@ add_CA <- function(g_id, points, x_crd, y_crd, time_st){
     stroke="black", "stroke-width"="0.5",
     onmousemove="ShowTooltip(evt, 'above normal')",
     onmouseout="HideTooltip(evt)"))
-  txt_91 <- newXMLNode("text", newXMLTextNode('>90%'),
-                       attrs = c('text-anchor'="left", 
-                                 transform="translate(215,115)"))
-  set_1 <- newXMLNode('set', attrs = c(attributeName="opacity", to="0", begin='c_91.mouseover',  end='c_91.mousout'))
-  set_2 <- newXMLNode('set', attrs = c(attributeName="opacity", to="1", begin='c_91.mouseout',  end='c_91.mousover'))
-  txt_91 <- addChildren(txt_91, set_1, set_2)
+  
   col <- get_mark_col(91)
   c_91 <- newXMLNode("circle", attrs = c(id = "c_91", 
     cx="205", cy="110", r = "5",
@@ -71,7 +65,7 @@ add_CA <- function(g_id, points, x_crd, y_crd, time_st){
     stroke="black", "stroke-width"="0.5",
     onmousemove="ShowTooltip(evt, 'well above normal')",
     onmouseout="HideTooltip(evt)"))
-  g_id <- addChildren(g_id, txt_10, c_10, txt_24, c_24, txt_75, c_75, txt_90, c_90, txt_91,c_91)
+  g_id <- addChildren(g_id, txt_10, txt_24, txt_75, txt_90, txt_91, c_10, c_24, c_75, c_90, c_91)
   
   for (i in 1:length(points[[1]])){
     site_id <- paste0('site_',points$id[[i]])
