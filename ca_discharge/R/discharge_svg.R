@@ -4,68 +4,11 @@ add_CA <- function(g_id, points, x_crd, y_crd, time_st){
   
   g_id <- get_CA_paths(g_id, lyr_info, x_crd, y_crd)
   
+  col_vec = c(9, 12, 50, 79, 91)
+  num_txt = c('<10', '10-24', '25-75', '76-90', '>90%')
+  desc_txt = c('well below normal', 'below normal', 'normal', 'above normal', 'well above normal')
+  g_id <- add_legend(g_id, col_vec, num_txt, desc_txt)
   
-  add_legend(g_id, col_vec, num_txt, desc_txt)
-  
-  txt_10 <- newXMLNode("text", newXMLTextNode('<10'), 
-                     attrs = c('id' = 't_10', 'text-anchor'="left", 
-                               transform="translate(215,35)"))
-  txt_24 <- newXMLNode("text", newXMLTextNode('10-24'),
-                       attrs = c('id' = 't_24', 'text-anchor'="left", 
-                                 transform="translate(215,55)"))
-  txt_75 <- newXMLNode("text", newXMLTextNode('25-75'),
-                       attrs = c('id' = 't_75','text-anchor'="left", 
-                                 transform="translate(215,75)"))
-  txt_90 <- newXMLNode("text", newXMLTextNode('76-90'),
-                       attrs = c('id' = 't_90','text-anchor'="left",
-                                 transform="translate(215,95)"))
-  txt_91 <- newXMLNode("text", newXMLTextNode('>90%'),
-                       attrs = c('id' = 't_91','text-anchor'="left", 
-                                 transform="translate(215,115)"))
-  
-  col <- get_mark_col(9)
-  c_10 <- newXMLNode("circle", 
-                     attrs = c(id = 'c_10',
-                               cx="205", cy="30", r = "5",
-                               style = paste0("fill:",col,"; fill-opacity: 0.9"),
-                               stroke="black", "stroke-width"="0.5",
-                               onmousemove="ShowTooltip(evt, 'well below normal');document.getElementById('t_10').setAttribute('opacity', '0');",
-                               onmouseout="HideTooltip(evt);document.getElementById('t_10').setAttribute('opacity', '1');"))
-  
-  col <- get_mark_col(12)
-  c_24 <- newXMLNode("circle", 
-                     attrs = c(id = 'c_24',
-                              cx="205", cy="50", r = "5",
-                              style = paste0("fill:",col,"; fill-opacity: 0.9"),
-                              stroke="black", "stroke-width"="0.5",
-                              onmousemove="ShowTooltip(evt, 'below normal');document.getElementById('t_24').setAttribute('opacity', '0');",
-                              onmouseout="HideTooltip(evt);document.getElementById('t_24').setAttribute('opacity', '1');"))
-  
-  col <- get_mark_col(50)
-  c_75 <- newXMLNode("circle", 
-                     attrs = c(id = 'c_75',
-                               cx="205", cy="70", r = "5",
-                               style = paste0("fill:",col,"; fill-opacity: 0.9"),
-                               stroke="black", "stroke-width"="0.5",
-                               onmousemove="ShowTooltip(evt, 'normal');document.getElementById('t_75').setAttribute('opacity', '0');",
-                               onmouseout="HideTooltip(evt);document.getElementById('t_75').setAttribute('opacity', '1');"))
-  
-  col <- get_mark_col(79)
-  c_90 <- newXMLNode("circle", attrs = c(id = 'c_90',
-    cx="205", cy="90", r = "5",
-    style = paste0("fill:",col,"; fill-opacity: 0.9"),
-    stroke="black", "stroke-width"="0.5",
-    onmousemove="ShowTooltip(evt, 'above normal')",
-    onmouseout="HideTooltip(evt)"))
-  
-  col <- get_mark_col(91)
-  c_91 <- newXMLNode("circle", attrs = c(id = "c_91", 
-    cx="205", cy="110", r = "5",
-    style = paste0("fill:",col,"; fill-opacity: 0.9"),
-    stroke="black", "stroke-width"="0.5",
-    onmousemove="ShowTooltip(evt, 'well above normal')",
-    onmouseout="HideTooltip(evt)"))
-  g_id <- addChildren(g_id, txt_10, txt_24, txt_75, txt_90, txt_91, c_10, c_24, c_75, c_90, c_91)
   
   for (i in 1:length(points[[1]])){
     site_id <- paste0('site_',points$id[[i]])
@@ -106,6 +49,7 @@ createSVG <- function(time_st){
   
   
   source('surface_init.R')
+  source('add_legend.R')
   source('drought_UTM.R')
   source('get_CA_paths.R')
   source('get_mark_col.R')
