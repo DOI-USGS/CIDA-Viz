@@ -27,10 +27,9 @@ add_CA <- function(g_id, points, x_crd, y_crd, time_st){
                                           style = paste0("fill:",col,"; fill-opacity: 0.7"),stroke="black", "stroke-width"="0.5",
                       onmousemove=mouse_move_txt,
                       onmouseout="HideTooltip(evt)"))
-    set_1 <- newXMLNode('set', attrs = c(attributeName="r", to="8", begin=nwis_mo,  end=nwis_me))
     set_2 <- newXMLNode('set', attrs = c(attributeName="fill-opacity", to="1", begin=site_mo,  end=site_me))
     set_3 <- newXMLNode('set', attrs = c(attributeName="fill-opacity", to="1", begin=nwis_mo,  end=nwis_me))
-    pth <- addChildren(pth, c(set_1, set_2, set_3))
+    pth <- addChildren(pth, c(set_2, set_3))
     g_id <- addChildren(g_id, pth)
   }
   return(g_id)
@@ -115,6 +114,7 @@ createSVG <- function(time_st){
   for (i in 1:length(points[[1]])){
     
     nwis_id <- paste0('nwis_',points$id[[i]])
+    site_id <- paste0('site_',points$id[[i]])
     site_mo <- paste0('site_',points$id[[i]],'.mouseover')
     site_me <- paste0('site_',points$id[[i]],'.mouseout')
     
@@ -132,9 +132,9 @@ createSVG <- function(time_st){
                                                          stroke="#4169E1", "stroke-width"="1.5",
                                                          "stroke-opacity"="1",
                                                          "fill-opacity"=def_opacity,
-                                                         onmouseover="MakeOpaque(evt)",
+                                                         onmouseover=paste0("MakeOpaque(evt); document.getElementById('",site_id,"').setAttribute('r', '8')"),
                                                          onmousemove=mouse_move_txt,
-                                                         onmouseout="MakeTransparent(evt); HideTooltip(evt)"))
+                                                         onmouseout=paste0("MakeTransparent(evt); HideTooltip(evt);document.getElementById('",site_id,"').setAttribute('r', '3')")))
       setter <- newXMLNode('set', attrs = c(
         attributeName="fill-opacity", to="1", 
         begin=site_mo,  end=site_me))
