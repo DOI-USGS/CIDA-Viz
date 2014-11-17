@@ -10,6 +10,9 @@ surface_init <- function(fig_w,fig_h, def_opacity){
                          cursor: default;
                          font-family: Tahoma, Geneva, sans-serif;
                          }
+                         .dater{
+                         font-size: 21px;
+                         }
                          .tooltip{
                          font-size: 12px;
                          }
