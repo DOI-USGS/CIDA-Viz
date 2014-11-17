@@ -156,7 +156,7 @@ createSVG <- function(time_st){
   
   dt_txt <- paste0(substr(time_st,1,4), '-',substr(time_st,5,6),'-', substr(time_st, 7,8))
   dt <- newXMLNode("text", newXMLTextNode(dt_txt), parent = root_nd, 
-                   attrs = c(class="label", id="date", x="120", y="480"))
+                   attrs = c(class="dater", x="285", y="30"))
   doc <- addChildren(root_nd,c(g_id, tt, dt))
   
   
