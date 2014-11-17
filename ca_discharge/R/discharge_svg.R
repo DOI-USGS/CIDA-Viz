@@ -103,9 +103,9 @@ createSVG <- function(time_st){
   x_crd <- c(as.numeric(inset_spc_x), as.numeric(inset_spc_x)+as.numeric(inset_dim))
   y_crd <- c(as.numeric(inset_spc_y), as.numeric(inset_spc_y)+as.numeric(inset_dim))
   
-  abv_ave <- newXMLNode("text", newXMLTextNode('Above average streamflow'),
+  abv_ave <- newXMLNode("text", newXMLTextNode('Above median streamflow'),
                         attrs = c('text-anchor'="left", transform="translate(66,474)rotate(315)"))
-  bel_ave <- newXMLNode("text", newXMLTextNode('Below average streamflow'),
+  bel_ave <- newXMLNode("text", newXMLTextNode('Below median streamflow'),
                         attrs = c('text-anchor'="left", transform="translate(84,493)rotate(315)"))
   
   g_id <- addChildren(g_id, abv_ave, bel_ave)
@@ -119,7 +119,7 @@ createSVG <- function(time_st){
     site_me <- paste0('site_',points$id[[i]],'.mouseout')
     link_site <- paste0("window.open('http://waterdata.usgs.gov/ca/nwis/uv?site_no=",points$id[[i]],"','_blank')")
     
-    cx <- log_tran_x(points$meanDis[[i]], 
+    cx <- log_tran_x(points$p_50[[i]], 
                      x_crt = x_crt, 
                      x_lim = lg_lim)
     cy <- log_tran_y(points$todayDis[[i]], 
