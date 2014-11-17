@@ -13,6 +13,7 @@ add_CA <- function(g_id, points, x_crd, y_crd, time_st, def_opacity){
   for (i in 1:length(points[[1]])){
     site_id <- paste0('site_',points$id[[i]])
     nwis_id <- paste0('nwis_',points$id[[i]])
+    link_site <- paste0("window.open('http://waterdata.usgs.gov/ca/nwis/uv?site_no=",points$id[[i]],"','_blank')")
     mouse_move_txt <- paste0("ShowTooltip(evt, '", points$text[[i]], "')")
     rel_pnt <- WGS84_to_svg(c(points$sitex[[i]], points$sitey[[i]]), lyr_info)
     pnts <- box_pnts(rel_pnt, x_crd, y_crd)
@@ -25,6 +26,7 @@ add_CA <- function(g_id, points, x_crd, y_crd, time_st, def_opacity){
                                 fill=col,'fill-opacity' = "0.7",stroke="black", "stroke-width"="0.5",
                                 onmouseover=paste0("MakeOpaque(evt); document.getElementById('",nwis_id,"').setAttribute('fill-opacity', '1')"),
                                 onmousemove=mouse_move_txt,
+                                onclick=link_site,
                                 onmouseout=paste0("HideTooltip(evt);evt.target.setAttribute('fill-opacity', '0.7');document.getElementById('",
                                                   nwis_id,"').setAttribute('fill-opacity','",def_opacity,"')")))
 
@@ -101,9 +103,9 @@ createSVG <- function(time_st){
   x_crd <- c(as.numeric(inset_spc_x), as.numeric(inset_spc_x)+as.numeric(inset_dim))
   y_crd <- c(as.numeric(inset_spc_y), as.numeric(inset_spc_y)+as.numeric(inset_dim))
   
-  abv_ave <- newXMLNode("text", newXMLTextNode('Above average streamflow'),
+  abv_ave <- newXMLNode("text", newXMLTextNode('Above median streamflow'),
                         attrs = c('text-anchor'="left", transform="translate(66,474)rotate(315)"))
-  bel_ave <- newXMLNode("text", newXMLTextNode('Below average streamflow'),
+  bel_ave <- newXMLNode("text", newXMLTextNode('Below median streamflow'),
                         attrs = c('text-anchor'="left", transform="translate(84,493)rotate(315)"))
   
   g_id <- addChildren(g_id, abv_ave, bel_ave)
@@ -115,8 +117,9 @@ createSVG <- function(time_st){
     site_id <- paste0('site_',points$id[[i]])
     site_mo <- paste0('site_',points$id[[i]],'.mouseover')
     site_me <- paste0('site_',points$id[[i]],'.mouseout')
+    link_site <- paste0("window.open('http://waterdata.usgs.gov/ca/nwis/uv?site_no=",points$id[[i]],"','_blank')")
     
-    cx <- log_tran_x(points$meanDis[[i]], 
+    cx <- log_tran_x(points$p_50[[i]], 
                      x_crt = x_crt, 
                      x_lim = lg_lim)
     cy <- log_tran_y(points$todayDis[[i]], 
@@ -132,12 +135,14 @@ createSVG <- function(time_st){
                                                          "fill-opacity"=def_opacity,
                                                          onmouseover=paste0("MakeOpaque(evt); document.getElementById('",site_id,"').setAttribute('r', '8');document.getElementById('",site_id,"').setAttribute('fill-opacity', '1')"),
                                                          onmousemove=mouse_move_txt,
+                                                         onclick=link_site,
                                                          onmouseout=paste0("MakeTransparent(evt); HideTooltip(evt);document.getElementById('",site_id,"').setAttribute('r', '3')")))
       setter <- newXMLNode('set', attrs = c(
         attributeName="fill-opacity", to="1", 
         begin=site_mo,  end=site_me))
       pnt <- addChildren(pnt, c(setter))
-      addChildren(g_id,c(pnt))
+      
+      addChildren(g_id,pnt)
     }
 
   }
@@ -151,7 +156,7 @@ createSVG <- function(time_st){
   
   dt_txt <- paste0(substr(time_st,1,4), '-',substr(time_st,5,6),'-', substr(time_st, 7,8))
   dt <- newXMLNode("text", newXMLTextNode(dt_txt), parent = root_nd, 
-                   attrs = c(class="label", id="tooltip", x="120", y="480"))
+                   attrs = c(class="label", id="date", x="120", y="480"))
   doc <- addChildren(root_nd,c(g_id, tt, dt))
   
   
