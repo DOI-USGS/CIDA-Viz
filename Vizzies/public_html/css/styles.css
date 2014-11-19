@@ -52,6 +52,41 @@ body{height:100%;}
 	-webkit-transform: translateZ(0);
 }
 
+usgsfooter {
+  width: 100%;
+  min-height: 110px;
+  margin-top: 10px;
+  clear: both;
+}
+#middle {
+  width: 100%;
+  height: 20px;
+  background: #666666;
+}
+#middle a {
+  color: #ffffff;
+  font-size: .8em;
+  margin-right: 15px;
+}
+#middle a:first-child {
+  margin-left: 5px;
+}
+#usgsfooter #bottom {
+	background:#fff;
+  font-family: Scada;
+  font-size: .9em;
+  padding: 5px 0 5px 5px;
+  position: relative;
+}
+#usgsfooter #bottom a {
+  color: #0f416f;
+}
+
+img#usa{
+	position:absolute;
+	top:10px;
+	right:10px;}
+
 #reservoir-pin{
 	top:-375px;}
 	
