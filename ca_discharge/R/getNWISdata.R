@@ -4,7 +4,7 @@
 
 #setwd("~/Documents/R/CIDA-Viz/ca_discharge/R")\
 
-library (dataRetrievaldemo)
+library (dataRetrieval)
 
 CaRefBasins<- read.csv("../Data/CaRefBasins.csv", header = TRUE, stringsAsFactors=FALSE, colClasses="character")
 
@@ -29,10 +29,10 @@ disStats <- as.data.frame(setNames(replicate(11,numeric(0), simplify = F), c("ST
 
 #Get data for each site, test for relevant data present, subset for relevant data, calc mean Q for previous dates
 for (i in 1:length(siteINFO$site.no)) {
-  siteNumber <-siteINFO$site.no[i]
+  siteNumber <-siteINFO$site_no[i]
   
   #Build a table with STAID, Lat, Lon, meanDis, todayDis, site name
-  iSite <- siteINFOshort==siteNumber
+  iSite <- siteINFOshort$site_no==siteNumber
   info <- siteINFOshort[iSite,]
   disStats[i,1:4] <-info
   
