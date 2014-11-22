@@ -4,7 +4,7 @@
 
 #setwd("~/Documents/R/CIDA-Viz/ca_discharge/R")\
 
-library (dataRetrievaldemo)
+library (dataRetrieval)
 
 CaRefBasins<- read.csv("../Data/CaRefBasins.csv", header = TRUE, stringsAsFactors=FALSE, colClasses="character")
 
@@ -28,11 +28,11 @@ DOY <- as.POSIXlt(yesterday)$yday	                    #Make it today or make it 
 disStats <- as.data.frame(setNames(replicate(11,numeric(0), simplify = F), c("STAID", "siteName", "lat", "lon", "todayDis", "meanDis", "percent10", "percent25", "percent50", "percent75", "percent90")))
 
 #Get data for each site, test for relevant data present, subset for relevant data, calc mean Q for previous dates
-for (i in 1:length(siteINFO$site.no)) {
-  siteNumber <-siteINFO$site.no[i]
+for (i in 1:length(siteINFO$site_no)) {
+  siteNumber <-siteINFO$site_no[i]
   
   #Build a table with STAID, Lat, Lon, meanDis, todayDis, site name
-  iSite <- siteINFOshort==siteNumber
+  iSite <- siteINFOshort$site_no==siteNumber
   info <- siteINFOshort[iSite,]
   disStats[i,1:4] <-info
   
@@ -63,7 +63,7 @@ for (i in 1:length(siteINFO$site.no)) {
   
   dataColI = which(unlist(lapply(head(Daily), is.numeric)))
   # remove any bad values
-	Daily = Daily[Daily[,dataColI] >= -999998, ]
+	Daily = Daily[Daily[,dataColI] >= -999998 & !is.na(Daily[,dataColI]), ]
 
   
   Daily$Year <- as.POSIXlt(Daily$dateTime)$year + 1900
