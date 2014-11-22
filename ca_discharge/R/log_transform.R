@@ -6,6 +6,9 @@ log_tran_x <- function(val, x_crt, x_lim){
   if (missing(x_lim)){
     x_lim = c(0.01, 200)
   }
+  if (val < x_lim[1] | val > x_lim[2]){
+    return(Inf)
+  }
   log_val <- log10(val)
   log_lim <- log10(x_lim)
   log_rng <- diff(log_lim)
@@ -27,6 +30,11 @@ log_tran_y <- function(val, y_crt, y_lim){
   if (missing(y_lim)){
     y_lim = c(0.01, 200)
   }
+  
+  if (val < y_lim[1] | val > y_lim[2]){
+    return(Inf)
+  }
+  
   log_val <- log10(val)
   log_lim <- log10(y_lim)
   log_rng <- diff(log_lim)
