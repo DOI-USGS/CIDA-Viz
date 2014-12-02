@@ -56,6 +56,7 @@ createSVG <- function(time_st){
   source('add_ticks.R')
   source('dis_points.R')
   points <- dis_points()
+  
   lg_lim <- c(0.003, 5500)
   tcks <- c(1e-4, 1e-3, 1e-2, 1e-1, 1e0, 1e1, 1e2, 1e3)
   minor_tcks <- minor_ticks()
@@ -113,6 +114,7 @@ createSVG <- function(time_st){
   
   for (i in 1:length(points[[1]])){
     
+
     nwis_id <- paste0('nwis_',points$id[[i]])
     site_id <- paste0('site_',points$id[[i]])
     site_mo <- paste0('site_',points$id[[i]],'.mouseover')
@@ -125,7 +127,7 @@ createSVG <- function(time_st){
     cy <- log_tran_y(points$todayDis[[i]], 
                      y_crt = y_crt, 
                      y_lim = lg_lim)
-    if (!is.infinite(cy)){
+    if (!is.infinite(cy) & !is.infinite(cx)){
       mouse_move_txt <- paste0("ShowTooltip(evt, '", points$text[[i]], "')")
       pnt <- newXMLNode("circle", parent=g_id, attrs = c(id = nwis_id, cx=cx, 
                                                          cy=cy,
