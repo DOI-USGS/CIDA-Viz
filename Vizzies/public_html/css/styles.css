@@ -21,28 +21,58 @@ html[data-useragent*='MSIE'] #block{
 	
 body{height:100%;}
 
-#usgsheader{
+#usgscolorband {
+	font: 14px Verdana, Arial, Helvetica, sans-serif;
+	width: 100%;
+	height: 5.14em;
+	min-height: 72px;
 	background:#000;
-	width:100%;
-	height:73px;
 	position:relative;
-	z-index:20000;}
+	z-index:20002;
+}
+#usgsbanner {
+	width: 100%;
+	height: 72px;	
+}
+#usgsidentifier {
+	background-color: black;
+	width: 178px;
+	height: 5.14em;
+	float: left;
+}
+#usgsidentifier img {
+	border: none;
+}
 	
-#headernav ul{
-	margin:3px 0 0 0;
-	list-style:none;
-	}
-	
-#headernav ul a{
-	color:#fff;}
-	
-#headernav ul a:hover{
-	text-decoration:underline;}
-	
-#headernav{
-	width:155px;
-	height:73px;
-	float:right;}
+#usgsccsabox {
+	float: right;
+	background-color: #000000;
+	min-height: 72px;
+}
+#usgsccsa {
+	font:  1em/.5em Verdana, Arial, Helvetica, sans-serif;
+	height: 65px;
+	width: 10.5em;
+	padding-top:7px;
+}
+#usgsccsa a:link, #usgsccsa a:visited { 
+	font: bold 1em/1.3em Verdana, Arial, Helvetica, sans-serif; 
+	color: #ffffff; 
+	margin-left: 4px; 
+	text-decoration: none; 
+} 
+#usgsccsa a:hover { 
+	font: bold 1em/1.3em Verdana, Arial, Helvetica, sans-serif; 
+	color: #ffffff; 
+	text-decoration: underline; 
+	margin-left: 4px; 
+} 
+#usgsccsa a:active { 
+	font: bold 1em/1.3em Verdana, Arial, Helvetica, sans-serif; 
+	color: #ffffff; 
+	margin-left: 4px; 
+	text-decoration: none; 
+}
 
 #watermark{
 	position: fixed;
@@ -52,40 +82,43 @@ body{height:100%;}
 	-webkit-transform: translateZ(0);
 }
 
-usgsfooter {
-  width: 100%;
-  min-height: 110px;
-  margin-top: 10px;
-  clear: both;
-}
-#middle {
-  width: 100%;
-  height: 20px;
-  background: #666666;
-}
-#middle a {
-  color: #ffffff;
-  font-size: .8em;
-  margin-right: 15px;
-}
-#middle a:first-child {
-  margin-left: 5px;
-}
-#usgsfooter #bottom {
+#usgsfooter {
 	background:#fff;
-  font-family: Scada;
-  font-size: .9em;
-  padding: 5px 0 5px 5px;
-  position: relative;
+	padding-bottom:5px;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: small;
+	clear: both;
+	margin: 0;
 }
-#usgsfooter #bottom a {
-  color: #0f416f;
+#usgsfooterbar {
+	background-color: #666666;
+	padding: 4px;
+	margin: 0;
 }
-
-img#usa{
-	position:absolute;
-	top:10px;
-	right:10px;}
+#usgsfooterbar a:link, #usgsfooterbar a:visited {
+	margin-right: 40px;
+	color: #ffffff;
+	text-decoration: none;
+}
+#usgsfooterbar a:hover {
+	margin-right: 40px;
+	color: #ffffff;
+	text-decoration: underline;
+}
+#usgsfooterbar a:active {
+	margin-right: 40px;
+	color: #ffffff;
+	text-decoration: none;
+}
+#usgsfootertext {
+	padding: 4px;
+	margin: 0;
+}
+#usgsfootertext img {
+	border: none;
+	float: right;
+	margin-right: 5px;
+}
 
 #reservoir-pin{
 	top:-375px;}

@@ -79,27 +79,38 @@ var tooltip;
 
                          </script>
                          
-                          
+ <script type="text/javascript" src="http://www.usgs.gov/scripts/analytics/usgs-analytics.js"></script>                         
     </head>
     <body>
     
-    <div id="usgsheader">
+ <!-- BEGIN USGS Header Template --> 
+ 
+    <div id="usgscolorband">
     
-    	<a href="http://www.usgs.gov/" target="_blank"><img src="usgslogo.jpg" alt="usgslogo"/></a>
+    	<div id="usgsheader">
+        
+            <div id="usgsidentifier">
+            <a href="http://www.usgs.gov/" target="_blank"><img src="usgslogo.jpg" alt="USGS - science for a changing world" title="U.S. Geological Survey Home Page"/></a>
+            </div><!--usgsidentifier-->
+            
         <img src="banner.png" alt="banner"/>
         
-        <div id="headernav">
+        <div id="usgsccsabox">
         
-        	<ul>
-            	<a href="http://www.usgs.gov/" target="_blank"><li>USGS Home</li></a>
-                <a href="http://answers.usgs.gov/cgi-bin/gsanswers?tmplt=2/" target="_blank"><li>Contact USGS</li></a>
-                <a href="http://search.usgs.gov/" target="_blank"><li>Search USGS</li></a>  
-            </ul>
-        
-        </div>
+            <div id="usgsccsa">
+                <a href="http://www.usgs.gov/">USGS Home</a>
+                <br /><a href="http://answers.usgs.gov/cgi-bin/gsanswers?tmplt=2">Contact USGS</a>
+                <br /><a href="http://search.usgs.gov/">Search USGS</a>
+                <br />
+            </div><!--usgsccsa-->
+            
+        </div><!--usgsccsabox-->
     
-    </div>
+    </div><!--usgsheader-->
+    </div><!--colorband-->
     
+<!-- END USGS Header Template -->
+   
    <div id="block">
        <p>You are using an <strong>outdated or unsupported</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or download a <a href="https://www.mozilla.org/en-US/firefox/new/">supported browser</a> to improve your viewing experience.</p>
             </div> 
@@ -379,40 +390,42 @@ var tooltip;
 			</div><!--bottom-->
 
 		</footer><!--footer-->
-        
+ 
+<!-- BEGIN USGS Footer Template -->
+       
         <div id="usgsfooter">
         
-        	<div id="middle">
-    <a href="http://www.usgs.gov/laws/accessibility.html" target="_blank">Accessibility</a>
-    <a href="http://www.usgs.gov/foia/" target="_blank">FOIA</a>
-    <a href="http://www.usgs.gov/laws/privacy.html" target="_blank">Privacy</a>
-    <a href="http://www.usgs.gov/laws/policies_notices.html" target="_blank">Policies and Notices</a>
-</div><!--middle-->
+        	<p id="usgsfooterbar">
+                <a href="http://www.usgs.gov/laws/accessibility.html" title="Accessibility Policy (Section 508)" target="_blank">Accessibility</a>
+                <a href="http://www.usgs.gov/foia/" title="Freedom of Information Act" target="_blank">FOIA</a>
+                <a href="http://www.usgs.gov/laws/privacy.html" title="Privacy policies of the U.S. Geological Survey." target="_blank">Privacy</a>
+                <a href="http://www.usgs.gov/laws/policies_notices.html" title="Policies and notices that govern information posted on USGS Web sites." target="_blank">Policies and Notices</a>
+                
+			</p><!--usgsfooterbar-->
     
     
-<div id="bottom">
-    	
-    <a href="http://www.doi.gov/index.cfm" target="_blank">U.S. Department of the Interior</a> | <a href="http://www.usgs.gov/" target="_blank">U.S. Geological Survey</a>
-    
-    <p>URL: http//cida.usgs.gov/ca_drought</p>
-    
-    
-    
-    <p>Contact Information: <a href="mailto:cida_webmaster@usgs.gov?Subject=Hello%20again" target="_top">gs-cida_ca_drought_cida_app@usgs.gov</a></p>
-    
-    <p>Page last modified: <script>
-document.write(document.lastModified);
-</script></p>
-
-<div id="usa_gov">
-
-	<a href="http://www.usa.gov/" target="_blank"><img id="usa" src="usa_gov.png" alt="usa_gov pic"/></a>
-    
-</div>
-
-</div><!--bottom-->
-
+		<p id="usgsfootertext">
         
+    		<a href="http://www.usa.gov/" alt="USA.gov logo" title="USAGov: Government Made Easy" width="90" height="26" target="_blank"><img id="usa" src="usa_gov.png" alt="usa_gov pic"/></a>
+            
+    		<a href="http://www.doi.gov/" target="_blank">U.S. Department of the Interior</a> |
+            
+			<a href="http://www.usgs.gov/" target="_blank">U.S. Geological Survey</a> |
+            
+			<a href="http://www.doioig.gov/" target="_blank">DOI Inspector General</a>
+    
+    		<p style="margin: 5px 0 5px 0; padding-left: 5px;">URL: http//cida.usgs.gov/ca_drought</p>
+            
+            <p style="margin: 5px 0 5px 0; padding-left: 5px;">Contact Information: <a href="mailto:cida_webmaster@usgs.gov?Subject=Hello%20again" target="_top">gs-cida_ca_drought_cida_app@usgs.gov</a></p>
+    
+    		<p style="margin: 5px 0 5px 0; padding-left: 5px;">Page last modified: <script>document.write(document.lastModified);</script></p>
+    
+    	</p><!--usgsfootertext-->
+
+</div><!--usgsfooter-->
+
+<!-- END USGS Footer Template -->​
+       
         </div>
         </div><!--app-container-->
 		<script src="js/vendor/jquery/jquery.js"></script>
