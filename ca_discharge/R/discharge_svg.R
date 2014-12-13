@@ -57,8 +57,8 @@ createSVG <- function(time_st){
   source('dis_points.R')
   points <- dis_points()
   
-  lg_lim <- c(0.003, 5500)
-  tcks <- c(1e-4, 1e-3, 1e-2, 1e-1, 1e0, 1e1, 1e2, 1e3)
+  lg_lim <- c(0.003, 47500)
+  tcks <- c(1e-4, 1e-3, 1e-2, 1e-1, 1e0, 1e1, 1e2, 1e3, 1e4)
   minor_tcks <- minor_ticks()
   fig_w = '650'
   fig_h = '550'
