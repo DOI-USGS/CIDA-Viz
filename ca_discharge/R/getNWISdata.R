@@ -51,6 +51,7 @@ for (i in 1:length(siteINFO$site_no)) {
   	
   	Daily <- readNWISdv(siteNumber,parameterCd, startDate, endDate) #get NWIS daily data autmoatically converts to CMS
   	skip = FALSE
+    if(ncol(Daily) == 0){skip = TRUE}
   }, error = function(e){
   		disStats$todayDis[i] <- NaN
   	 	disStats$meanDis[i] <- NaN
@@ -66,11 +67,11 @@ for (i in 1:length(siteINFO$site_no)) {
 	Daily = Daily[Daily[,dataColI] >= -999998 & !is.na(Daily[,dataColI]), ]
 
   
-  Daily$Year <- as.POSIXlt(Daily$dateTime)$year + 1900
-  Daily$doy <- as.POSIXlt(Daily$dateTime)$yday + 1 #convert jan 1st to one instead of zero
+  Daily$Year <- as.POSIXlt(Daily$Date)$year + 1900
+  Daily$doy <- as.POSIXlt(Daily$Date)$yday + 1 #convert jan 1st to one instead of zero
   
   #Test for data after January 1, 1980
-  iDates <-Daily$dateTime >= startDate
+  iDates <-Daily$Date >= startDate
 
   #If there is no data after 1980, mean and current discharge cell will read NaN
   if (!any(iDates)) {
@@ -79,7 +80,7 @@ for (i in 1:length(siteINFO$site_no)) {
   }else{
         
   	#Subset for dates after January 1, 1980
-    iSubset<- Daily$dateTime >= startDate
+    iSubset<- Daily$Date >= startDate
     Daily <-Daily[iSubset,]
         
     #Subset for records of discharge on todays date (DOY) in years past and test if there's enough data
