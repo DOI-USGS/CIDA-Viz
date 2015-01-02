@@ -22,7 +22,7 @@ endDate   <- Sys.Date()                               #today
 
 
 yesterday = endDate - as.difftime(1, units = 'days')
-DOY <- as.POSIXlt(yesterday)$yday	                    #Make it today or make it any day you want. 
+DOY <- as.POSIXlt(yesterday)$yday	+ 1                    #Make it today or make it any day you want. 
 
 #Setup the output data frame
 disStats <- as.data.frame(setNames(replicate(11,numeric(0), simplify = F), c("STAID", "siteName", "lat", "lon", "todayDis", "meanDis", "percent10", "percent25", "percent50", "percent75", "percent90")))
@@ -93,7 +93,7 @@ for (i in 1:length(siteINFO$site_no)) {
     enough <- frac>=maxMissing
     
     #data for todays date?
-    dataToday <- any(dailyDis$Year==2014)
+    dataToday <- any(dailyDis$Year==2015) 
     
     #if there's not enough data between 1980-today, table mean and current discharge values will read NA
     if (!enough | !dataToday ){
