@@ -26,7 +26,8 @@ unpack_clip_save_geojson = function(date){
 	unzip(zipfile, exdir='../shp')
 	
 	data = readOGR('../shp', paste0('USDM_', fmt_date))
-	clipped.data = crop(data, ca_outline, byid=TRUE)
+  data_0buff <- gBuffer(data, byid=TRUE, width=0)
+	clipped.data = crop(data_0buff, ca_outline, byid=TRUE)
 	clipped.simp = gSimplify(clipped.data, tol = .03, topologyPreserve=TRUE)
 	to.save = SpatialPolygonsDataFrame(clipped.simp, clipped.data@data)
 	
