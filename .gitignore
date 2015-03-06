@@ -4,3 +4,5 @@
 **.DS_Store
 **.Rproj
 **.RData
+ca_drought/shp/*
+ca_discharge/Figures/*
