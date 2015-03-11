@@ -173,6 +173,8 @@ body{height:100%;}
 	top: 50px;
 	right: 100px;
 	-webkit-transform: translateZ(0);
+	padding-left:65px;
+	background-color:rgba(255,255,255,0.7);
 }
 
 #res-plot{
@@ -203,7 +205,7 @@ border-right:3px dotted #000;
 height:350px;
 position:absolute;
 bottom:240px;
-left:6px;
+left:70px;
 }
 
 .dash{
