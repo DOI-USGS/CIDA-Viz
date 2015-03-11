@@ -226,13 +226,14 @@ P#first{
 	top:-23px;}
 	
 p#second{
-	top:100px;}
+	top:64.5px;}
 	
 p#third{
-	top:200px;}
-	
+	top:152px;}
+p#fourth{
+	top:239.5px;}
 p#last{
-	bottom:-23px;
+	top:327px;
 	}
 
 .res-x-label {
