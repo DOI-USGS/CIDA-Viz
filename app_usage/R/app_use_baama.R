@@ -17,7 +17,7 @@ add_axes <- function(xlim, ylim, ylabel = pretty(ylim,10), xlabel = NA, skip_top
   prc_x = 0.1 # position for text relative to axes
   prc_y = 0.07
   tick_len <- 0.15
-  ext_x <- c(xlim[1]-86400, pretty(xlim,3), xlim[2]+86400)
+  ext_x <- seq(as.Date('2014-08-01'),as.Date('2015-12-01'), by = 'months')
   ext_y <- c(ylim[1]-10, ylabel, ylim[2]+10)
   ylab <- c("",ylabel,"")
   if (is.na(ylabel[1])) ylab = NA
@@ -36,7 +36,7 @@ add_axes <- function(xlim, ylim, ylabel = pretty(ylim,10), xlabel = NA, skip_top
 width = 5 
 height = 4
 l_mar = 0.35
-b_mar = 0.3
+b_mar = 0.2
 t_mar = 0.02
 r_mar= 0.15
 gapper = 0.15 # space between panels
@@ -52,7 +52,7 @@ ylim_3 <- c(0,170)
 png('../img/usage_fig.png', res=200, width=width, height=height, units = 'in')
 
 layout(matrix(c(1,1,2,2,2,2,3,3,3,3),ncol=1)) # 55% on the left panel
-par(mai=c(0,l_mar,t_mar,0), omi = c(0,0,0,r_mar),xpd=FALSE,
+par(mai=c(0.01,l_mar,t_mar,0), omi = c(0,0,0,r_mar),xpd=FALSE,
     mgp = c(1.15,.05,0))
 
 # -- plot 1 --
@@ -104,7 +104,7 @@ plot(c(0,NA),c(0,NA), type='l',
      xlab='',
      xlim=xlim[1:2])
 
-add_axes(xlim, ylim_3, ylabel = seq(0,200,50))
+add_axes(xlim, ylim_3, ylabel = seq(0,200,50), xlabel = strftime(seq(as.Date('2014-08-01'),as.Date('2015-12-01'), by = 'months'), '%b'))
 for (i in 1:n_wk){
   x = gh_data$Date[i]
   y = gh_data$commits[i]
