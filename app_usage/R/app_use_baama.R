@@ -90,9 +90,9 @@ plot(c(0,NA),c(0,NA), type='l',
      xlab='',
      xlim=xlim[1:2], cex = 2)
 
-add_axes(xlim, ylim_2, ylabel = seq(0,400,50), skip_top = T)
-lines(ga_data, col = 'dodgerblue',lwd = 3)
 
+lines(ga_data, col = 'dodgerblue',lwd = 3)
+add_axes(xlim, ylim_2, ylabel = seq(0,400,50), skip_top = T)
 
 # -- plot 3 --
 par(mai=c(b_mar,l_mar,0.1,0))
@@ -104,10 +104,11 @@ plot(c(0,NA),c(0,NA), type='l',
      xlab='',
      xlim=xlim[1:2])
 
-add_axes(xlim, ylim_3, ylabel = seq(0,200,50), xlabel = strftime(seq(as.Date('2014-08-01'),as.Date('2015-12-01'), by = 'months'), '%b'))
+
 for (i in 1:n_wk){
   x = gh_data$Date[i]
   y = gh_data$commits[i]
   polygon(c(x-3, x+3, x+3, x-3), c(0,0,y,y), col='firebrick', border = NA)
 }
+add_axes(xlim, ylim_3, ylabel = seq(0,200,50), xlabel = strftime(seq(as.Date('2014-08-01'),as.Date('2015-12-01'), by = 'months'), '%b'))
 dev.off()
