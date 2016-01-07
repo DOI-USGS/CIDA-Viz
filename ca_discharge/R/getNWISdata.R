@@ -93,7 +93,7 @@ for (i in 1:length(siteINFO$site_no)) {
     enough <- frac>=maxMissing
     
     #data for todays date?
-    dataToday <- any(dailyDis$Year==2015) 
+    dataToday <- any(dailyDis$Year==2016) 
     
     #if there's not enough data between 1980-today, table mean and current discharge values will read NA
     if (!enough | !dataToday ){
