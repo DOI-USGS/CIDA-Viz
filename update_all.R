@@ -38,4 +38,4 @@ createSVG(max(times_json$d))
 
 ##Manual step, update dates in main.js
 setwd(origin) #Done!
-
+lt bug fix
