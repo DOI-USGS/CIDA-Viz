@@ -51,13 +51,13 @@ add_date_to_indx = function(date){
 	cat(json_txt, file='../../Vizzies/public_html/data/drought_shp/times.json')
 }
 
-add_date_to_mainJS = function(date){
+update_mainJS = function(){
   library(whisker)
   times_json = jsonlite::fromJSON('../../Vizzies/public_html/data/drought_shp/times.json')$d
   timesteps = jsonlite::toJSON(times_json)
   template <- paste(readLines('../data/main.js.mustache'),'collapse'='\n')
   main.js.text <- whisker::whisker.render(template, data = list(timesteps=timesteps))
-  cat(json_txt, file='../../Vizzies/public_html/js/main.js')
+  cat(main.js.text, file='../../Vizzies/public_html/js/main.js')
 }
 
 start = as.Date('2011-01-04')
@@ -69,7 +69,7 @@ for(i in 1:length(all_dates)){
 	if(download_shp(all_dates[i])){
 		unpack_clip_save_geojson(all_dates[i])
 		add_date_to_indx(all_dates[i])
-		add_date_to_mainJS(all_dates[i])
+		update_mainJS()
 	}
 }
 
