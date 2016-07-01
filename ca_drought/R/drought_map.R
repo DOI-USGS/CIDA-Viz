@@ -53,7 +53,7 @@ add_date_to_indx = function(date){
 
 
 start = as.Date('2011-01-04')
-end = start + as.difftime(1+ceiling(as.numeric(Sys.Date() - start, units='days')/7)*7, units='days')
+end = start + as.difftime(ceiling(as.numeric(Sys.Date() - start, units='days')/7)*7, units='days') - 7
 all_dates = seq(start, end, by=7)
 
 
