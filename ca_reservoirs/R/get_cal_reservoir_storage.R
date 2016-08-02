@@ -2,8 +2,25 @@ library(RCurl)
 library(XML)
 
 scrape_ca_storage = function(site){
-  theurl = sprintf('http://cdec.water.ca.gov/cgi-progs/queryDaily?%s&d=%s&span=5382days', 
-                   site, format(Sys.time(), '%d-%b-%y'))
+  #Deal with if csv does not exist
+  filePath <- paste0('../storage_data/', site, '.csv')
+  if(file.exists(filePath)){
+    existingData <- read.csv(filePath, stringsAsFactors = FALSE)
+    names(existingData) = c("Date", "Storage(acre-feet)")
+    existingData$Date <- as.POSIXlt(existingData$Date)  
+    lastDay <- tail(existingData$Date[!is.na(existingData$`Storage(acre-feet)`)],1)
+    #get rid of any NA at and existing data
+    existingData <- existingData[existingData$Date <= lastDay,] 
+    #days in URL is before today, and today is counted by difftime
+    numdays <- as.integer(difftime(Sys.Date(),as.Date(lastDay),units="days")) - 1 
+    allNewData <- FALSE
+  }else{
+    numDays <- 5382 #as per the original URL construction  
+    allNewData <- TRUE
+  }
+  #todo: input number of days to retrieve in url
+  theurl = sprintf('http://cdec.water.ca.gov/cgi-progs/queryDaily?%s&d=%s&span=%sdays', 
+                   site, format(Sys.time(), '%d-%b-%y'), numdays)
   cat(theurl,'\n')
   tables = readHTMLTable(theurl)
   
@@ -17,6 +34,12 @@ scrape_ca_storage = function(site){
   
   data$Date = strptime(data$Date, '%m/%d/%Y')
   data$`Storage(acre-feet)` = as.numeric(as.character(data[,2]))
+  
+  if(!allNewData){
+    data <- rbind(existingData,data)
+  }
+  
+  
   return(data)
 }
 
