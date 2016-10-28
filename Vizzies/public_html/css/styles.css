@@ -74,6 +74,22 @@ body{height:100%;}
 	text-decoration: none; 
 }
 
+#archiveWarning{
+	background:red;
+	text-align:center;
+	padding:2px;
+	}
+	
+#archiveWarning a{
+	font-weight:bold;
+	text-decoration:underline;
+	color:#000;
+	}
+	
+#archiveWarning a:hover{
+	text-decoration:none;
+	}
+
 #watermark{
 	position: fixed;
 	bottom: 15px;
