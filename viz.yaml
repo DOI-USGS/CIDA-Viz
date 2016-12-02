@@ -1,0 +1,20 @@
+vizlab: "0.1.5"
+info:
+  id: ca-drought
+  name: California drought viz
+  date: 2016-12-02
+  publish-date: 2015-12-16
+  path: https://cida.usgs.gov/ca_drought/
+  analytics-id: UA-78530187-1
+  description: >-
+    California drought, visualized with open data
+  thumbnail: 
+    url: images/thumbnail.jpg
+    width: 250    
+    height: 250   
+    type: image/jpg
+    alttext: California drought overview map
+fetch:
+process:
+visualize:
+publish:
