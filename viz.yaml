@@ -9,7 +9,7 @@ info:
   description: >-
     California drought, visualized with open data
   thumbnail: 
-    url: images/thumbnail.jpg
+    url: thumbnail.jpg
     width: 250    
     height: 250   
     type: image/jpg
