@@ -4,7 +4,7 @@ info:
   name: California drought viz
   date: 2016-12-02
   publish-date: 2014-11-04
-  path: https://cida.usgs.gov/ca_drought/
+  path: https://cida.usgs.gov/ca_drought
   analytics-id: UA-78530187-1
   description: >-
     California drought, visualized with open data
