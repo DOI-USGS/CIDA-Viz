@@ -7,3 +7,4 @@ Vizzies/nbproject/
 **.RData
 ca_drought/shp/*
 ca_discharge/Figures/*
+.Rapp.history
