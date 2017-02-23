@@ -14,7 +14,7 @@ info:
     height: 250   
     type: image/jpg
     alttext: California drought overview map
-  landing-thumbnail:
+  thumbnail-landing:
     url: thumbnail.jpg
     width: 250
     height: 250
