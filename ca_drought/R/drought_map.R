@@ -26,6 +26,13 @@ unpack_clip_save_geojson = function(date){
 	unzip(zipfile, exdir='../shp')
 	
 	data = readOGR('../shp', paste0('USDM_', fmt_date))
+	if(is.na(proj4string(data))){
+	  # droughtmon did something odd...
+	  proj4string(data) <- "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m
++nadgrids=@null +no_defs"
+    data <- spTransform(data, CRS("+proj=longlat +datum=WGS84 +no_defs +ellps=WGS84 +towgs84=0,0,0"))
+	}
+	
   data_0buff <- gBuffer(data, byid=TRUE, width=0)
 	clipped.data = crop(data_0buff, ca_outline, byid=TRUE)
 	clipped.simp = gSimplify(clipped.data, tol = .03, topologyPreserve=TRUE)
