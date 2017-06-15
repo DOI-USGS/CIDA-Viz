@@ -9,7 +9,7 @@ scrape_ca_storage = function(site){
     names(existingData) = c("Date", "Storage(acre-feet)")
     existingData$Date <- as.POSIXlt(existingData$Date)  
     lastDay <- tail(existingData$Date[!is.na(existingData$`Storage(acre-feet)`)],1)
-    #get rid of any NA at and existing data
+    #get rid of any NA at end of existing data
     existingData <- existingData[existingData$Date <= lastDay,] 
     #days in URL is before today, and today is counted by difftime
     numdays <- as.integer(difftime(Sys.Date(),as.Date(lastDay),units="days")) - 1 
@@ -26,7 +26,9 @@ scrape_ca_storage = function(site){
   
   ## it seems to be the only table grabbed. We must be lucky
   data = tables[[1]]
-  data = data[,c('Date', 'STORAGE&nbsp')]
+  #6/15/17 - new characters showing up in column names
+  names(data) <- gsub("\\s|Â", "", names(data))
+  data = data[,c('Date', 'STORAGE')]
   
   #2nd row are units. Drop them
   data = data[-1,]
