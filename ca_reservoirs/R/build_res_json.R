@@ -1,7 +1,7 @@
 library(rjson)
 
 first_date <- as.POSIXlt('2011-01-04')
-week_time <- seq.POSIXt(first_date, as.POSIXlt(Sys.time()), by = 'week')
+week_time <- seq.POSIXt(first_date, as.POSIXlt('2017-11-06'), by = 'week')
 library(jsonlite)
 json_res <- jsonlite::fromJSON('../Data/ca_reservoirs.json')
 #yes, this is goofy
@@ -82,7 +82,6 @@ for (i in 1:num_station){
       
     }
   }
-
   rmv_station[i] <- any(is.na(res_mat[,1])) # should be none!!
   j_id <- which(json_res$ID == station_names[i])
   cap <- json_res[j_id, 10]
