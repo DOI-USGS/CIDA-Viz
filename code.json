@@ -4,7 +4,7 @@
     "organization": "U.S. Geological Survey",
     "description": "Datasets and docs for CIDA's data visualization challenge",
     "version": "main",
-    "status": "Development",
+    "status": "Production",
     "permissions": {
       "usageType": "openSource",
       "licenses": [
@@ -19,7 +19,7 @@
     "disclaimerURL": "https://github.com/USGS-VIZLAB/CIDA-Viz/blob/main/DISCLAIMER.md",
     "repositoryURL": "https://github.com/USGS-VIZLAB/CIDA-Viz.git",
     "vcs": "git",
-    "laborHours": -1,
+    "laborHours": 50,
     "tags": [
       "R",
       "USGS"
@@ -31,8 +31,8 @@
       "CSS"
     ],
     "contact": {
-      "name": "jordansread",
-      "email": "FILL ME IN"
+      "name": "Cee Nell",
+      "email": "cnell@usgs.gov"
     },
     "date": {
       "metadataLastUpdated": "2023-04-07"
